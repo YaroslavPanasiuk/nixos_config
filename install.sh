@@ -11,6 +11,7 @@ cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/shared/Wal
 cp -r ~/nixos/dotfiles/vlc ~/.config/vlc
 cp -r ~/nixos/dotfiles/wal ~/.config/wal
 cp -r ~/nixos/dotfiles/rofi ~/.config/rofi
+cp -r ~/nixos/dotfiles/dunst ~/.config/dunst
 cp -r ~/nixos/dotfiles/walogram ~/.cache/walogram
 
 
