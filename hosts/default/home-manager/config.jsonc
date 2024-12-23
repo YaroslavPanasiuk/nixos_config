@@ -1,0 +1,263 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 5, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "margin-top": 3,
+    "reload_style_on_change": true,
+
+
+
+    "modules-left": [
+        "custom/wallpaper_change",
+"wlr/taskbar",
+        "custom/left-arrow-dark",
+        "cpu",
+        "memory",
+        "temperature",
+        "custom/left-arrow-dark",
+        "custom/windows"
+        //"custom/macos",
+        //"custom/android"
+    ],
+
+
+
+    "modules-center": [
+        //"custom/left-arrow-dark",
+        "clock#1",
+        "clock#2",
+        //"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "hyprland/workspaces",
+        "custom/right-arrow-dark",
+        //c"custom/right-arrow-light",
+        "clock#3"
+        //"custom/right-arrow-dark"
+    ],
+
+
+    "modules-right": [
+        //"custom/media",
+        //"hyprland/language",
+        "tray",
+        "custom/left-arrow-dark",
+        "pulseaudio",
+        "backlight",
+        "battery",
+        "power-profiles-daemon"
+    ], 
+
+
+
+     "wlr/taskbar": {
+        "format": "{icon}",
+        "max-length": 15,
+        "icon-size": 20,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "on-click-right": "close",
+        //"ignore-list": ["kitty"],
+        "on-update": "~/.config/waybar/kill_taskbar.sh"
+    },
+
+
+
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 8,
+        "tooltip": false
+    },
+
+    "clock#1": {
+        "format": "{:%a}",
+        "tooltip": false,
+        "on-click": "obsidian"
+
+    },
+    "clock#2": {
+        "format": "{:%d.%m}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "on-click": "~/.config/waybar/open_calendar.sh"
+    },
+    "clock#3": {
+        "format": "{:%H:%M}",
+        "tooltip": false,
+        "on-click": "gnome-clocks"
+    },
+
+    "cpu": {
+        "format": "<span font_family='Sans' size='x-large'> </span><span font_family='Sans' size='small'>{usage}%</span>",
+        "tooltip": false,
+        "on-click": "gnome-system-monitor"
+    },
+    "memory": {
+        "format": "<span font_family='Sans' size='large'></span>   <span font_family='Sans' size='small'>{}%</span>",
+        "tooltip-format": "Memory Usage {}%",
+        "on-click": "gnome-system-monitor"
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        //"critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "<span font_family='Sans' size='large'>{icon}</span> <span font_family='Sans' size='small'>{temperatureC}°C</span>",
+        "format-icons": ["", "", ""],
+        "on-click": "gnome-system-monitor"
+    },
+    "custom/wallpaper_change": {
+        "format": "󰸉",
+        //"exec": "~/.config/waybar/wallp_status.sh",
+        "on-click": "~/.config/waybar/wallpaper_change.sh",
+        "on-click-right": "~/Documents/wallp-rofi.sh",
+        "tooltip": false
+    },
+    "custom/windows": {
+        "format": "󰖳",
+        "on-click": "~/Documents/start_windows.sh",
+        "on-click-right": "~/Documents/stop_windows.sh",
+        "tooltip": false
+    },
+    "custom/android": {
+        "format": "",
+        "on-click": "~/Documents/start_waydroid.sh",
+        "on-click-right": "~/Documents/stop_waydroid.sh",
+        "tooltip": false
+    },
+    "custom/macos": {
+        "format": "",
+        "on-click": "~/Documents/start_macos.sh ",
+        "on-click-right": "pkill qemu",
+        "tooltip": false
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "<span font_family='Sans' size='large'>{icon}</span><span font_family='Sans' size='small'>{percent}%</span>",
+        "on-click": "~/.config/waybar/redshift.sh",
+        "tooltip-format": "Brigthness {percent}%",
+        "format-icons": ["󰃞 ", "󰃞 ", "󰃟 ", "󰃝 ", "󰃠 "]
+    },
+    "battery": {
+        //"full-at": 80,
+        //"design-capacity": true,
+        "states": {
+        "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "interval": 1,
+        "format": "<span font_family='Sans' size='large'>{icon}</span><span font_family='Sans' size='small'>{capacity}%</span>",
+        "format-full": "<span font_family='Sans' size='large'>{icon}</span><span font_family='Sans' size='small'>{capacity}%</span>",
+        "format-charging": "<span font_family='Sans' size='medium'></span> <span font_family='Sans' size='small'>{capacity}%</span>",
+        "format-plugged": "<span font_family='Sans' size='medium'></span> <span font_family='Sans' size='small'>{capacity}%</span>",
+        "format-good": "<span font_family='Sans' size='large'>{icon}</span><span font_family='Sans' size='small'>{capacity}%</span>",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "on-click": "gnome-power-statistics"
+    },
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "interval": 10,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": "󰌪"
+      }
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "󰖪 Disconnected ",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "<span font_family='Sans' size='x-large'>{icon}</span> <span font_family='Sans' size='small'>{volume}%</span>",
+        //"format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "<span font_family='Sans' size='x-large'>󰖁</span> <span font_family='Sans' size='small'>{volume}%</span>",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": "󰋋 ",
+            "hands-free": " ",
+            "headset": " ",
+            "phone": " ",
+            "portable": " ",
+            "car": " ",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "~/Documents/volume.sh mute"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true
+        //"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/left-arrow-dark": {
+        "format": "|",
+        "tooltip": false
+    },
+    "custom/left-arrow-light": {
+        "format": "|",
+        "tooltip": false
+    },
+    "custom/right-arrow-dark": {
+        "format": "|",
+        "tooltip": false
+    },
+    "custom/right-arrow-light": {
+        "format": "|",
+        "tooltip": false
+    },
+
+    "hyprland/language": {
+        "format": "Lang: {long}",
+        "format-en": "AMERICA, HELL YEAH!",
+        "format-ua": "As bayraklar",
+        "keyboard-name": "at-translated-set-2-keyboard"
+    },
+
+    "bluetooth": {
+	"format": " {status}",
+	"format-connected": " {device_alias}",
+	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+
+    "hyprland/workspaces": {
+	"format": "{name}"
+}
+}
