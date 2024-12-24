@@ -30,6 +30,7 @@
         "lxqt-policykit-agent"
         "sleep 3 && nm-applet"
         "sleep 2 && blueman-applet"
+        "kando"
       ];
 
       env = [
@@ -183,6 +184,7 @@
         "Alt_L, Shift_L, exec, layout_msg.sh"
 
         "Alt_L, T, exec, ~/Downloads/Thorium.AppImage"
+        ",mouse:274, global, kando:example-menu"
       ];
 
       binde = [
@@ -200,10 +202,17 @@
       ];
 
       windowrule = [
-        "float, (org.gnome.SystemMonitor)|(nm-tray)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "float, (pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, (.scrcpy-wrapped)"
         "workspace empty (Waydroid)|(qemu)|(virt-viewer)"
         "fullscreen, (Waydroid)|(qemu)"
+        "noblur, kando"
+        "opaque, kando"
+        "size 100% 100%, kando"
+        "size 40% 50%, zenity"
+        "noborder, kando"
+        "noanim, kando"
+        "pin, kando"
       ];
 
       windowrulev2 = [
@@ -223,7 +232,7 @@
         gapsIn = 0;
         gapsOut = 0;
         workspaceMargin = 7;
-        reservedArea = 0;
+        reservedArea = 38;
         disableBlur = "true";
         #panelColor = "$color1";
         workspaceActiveBackground = "$color3"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour3})";

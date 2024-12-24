@@ -126,25 +126,25 @@
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   #systemd.services."getty@tty1".enable = false;
   #systemd.services."autovt@tty1".enable = false;
-  systemd.services.battery = {
-    wantedBy = [ "multi-user.target" ];
-    description = "Battery Level Checker";
-    serviceConfig = {
-      Restart="always";
-      RestartSec=60;
-      ExecStart="battery_listener.sh";
-    };
-  };
+  #systemd.services.battery = {
+  #  wantedBy = [ "multi-user.target" ];
+  #  description = "Battery Level Checker";
+  #  serviceConfig = {
+  #    Restart="always";
+  #    RestartSec=60;
+  #   ExecStart="battery_listener.sh";
+  #  };
+  #};
 
-  systemd.services.battery_reset = {
-    wantedBy = [ "multi-user.target" ];
-    description = "Battery Level Checker";
-    serviceConfig = {
-      Restart="always";
-      RestartSec=600;
-      ExecStart="battery_reset.sh";
-    };
-  };
+  #systemd.services.battery_reset = {
+  #  wantedBy = [ "multi-user.target" ];
+  #  description = "Battery Level Checker";
+  #  serviceConfig = {
+  #    Restart="always";
+  #    RestartSec=600;
+  #    ExecStart="battery_reset.sh";
+  #  };
+  #};
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -225,15 +225,11 @@
     pkgs.android-udev-rules
   ];
 
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
 	obsidian
 	#jetbrains.pycharm-community
 	onlyoffice-bin
 	obs-studio
- #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   wget
   flatpak
   telegram-desktop
@@ -250,16 +246,18 @@
 	#sublime
   qimgv
   zoom-us
+  cmake
 	brightnessctl	
 	#kdePackages.kdenlive
 	xdotool
 	pywal
   libinput
   anbox
-  teams
-  teams-for-linux
+  #teams
+  #teams-for-linux
   libinput-gestures
 	glib
+  kando
 	gvfs
   pinta
   ffmpeg
@@ -308,6 +306,7 @@
 	zip
 	imagemagick
   jq
+  zenity
   #wineWowPackages.waylandFull
   #winetricks
   ags

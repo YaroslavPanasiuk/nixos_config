@@ -9,7 +9,7 @@
     ./home-manager/kitty.nix
     #./rofi/colors-rofi.nix
     #./home-manager/firefox.nix
-    inputs.pywal-nix.homeManagerModules.x86_64-linux.default
+    #inputs.pywal-nix.homeManagerModules.x86_64-linux.default
   ];
 
   nixpkgs = {
@@ -25,29 +25,6 @@
     homeDirectory = "/home/yaros";
     packages = with pkgs;[
       davinci-resolve
-      (pkgs.writeShellScriptBin "colour-scheme-sample" ''
-        echo '${config.pywal-nix.colourScheme.wallpaper}'
-        echo '${config.pywal-nix.colourScheme.special.background}'
-        echo '${config.pywal-nix.colourScheme.colours.colour0}'
-        echo '${config.pywal-nix.colourScheme.colours.colour1}'
-        echo '${config.pywal-nix.colourScheme.colours.colour2}'
-        echo '${config.pywal-nix.colourScheme.colours.colour3}'
-        echo '${config.pywal-nix.colourScheme.colours.colour4}'
-        echo '${config.pywal-nix.colourScheme.colours.colour5}'
-        echo '${config.pywal-nix.colourScheme.colours.colour6}'
-        echo '${config.pywal-nix.colourScheme.colours.colour7}'
-        echo '${config.pywal-nix.colourScheme.colours.colour8}'
-        echo '${config.pywal-nix.colourScheme.colours.colour9}'
-        echo '${config.pywal-nix.colourScheme.colours.colour10}'
-        echo '${config.pywal-nix.colourScheme.colours.colour11}'
-        echo '${config.pywal-nix.colourScheme.colours.colour12}'
-        echo '${config.pywal-nix.colourScheme.colours.colour13}'
-        echo '${config.pywal-nix.colourScheme.colours.colour14}'
-        echo '${config.pywal-nix.colourScheme.colours.colour15}'
-        echo '${config.pywal-nix.colourScheme.special.background}'
-        echo '${config.pywal-nix.colourScheme.special.foreground}'
-        echo '${config.pywal-nix.colourScheme.special.cursor}'
-      '')
     ];
   };
 
@@ -73,8 +50,32 @@
     };
   };
 
-  pywal-nix = {
-    wallpaper = ./home-manager/extra_resources/Wallpaper.jpg;                  
+  #pywal-nix = {
+  #  wallpaper = ./home-manager/extra_resources/Wallpaper.jpg;                  
+  #};
+
+  systemd.user.startServices = "sd-switch";
+  systemd.user.services = {
+    battery = {
+      Unit = {
+        Description = "Battery Level Checker";
+      };
+      Service = {
+        Restart="always";
+        RestartSec=60;
+        ExecStart="battery_listener.sh";
+      };
+    };
+    battery_reset = {
+      Unit = {
+        Description = "Battery Level Checker Reset";
+      };
+      Service = {
+        Restart="always";
+        RestartSec=600;
+        ExecStart="battery_reset.sh";
+      };
+    };
   };
 
   programs.home-manager.enable = true;

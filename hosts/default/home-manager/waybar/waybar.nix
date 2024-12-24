@@ -6,7 +6,7 @@
     style = (builtins.readFile ./waybar.css);
     settings = [
       {
-        "layer" = "top";
+        "layer" = "bottom";
         "position" = "top";
         "spacing" = 5;
         "margin-top" = 3;
@@ -73,19 +73,19 @@
 
         "custom/windows" = {
         "format" = "󰖳";
-        "on-click" = "~/Documents/start_windows.sh";
-        "on-click-right" = "~/Documents/stop_windows.sh";
+        "on-click" = "start_windows.sh";
+        "on-click-right" = "stop_windows.sh";
         "tooltip" = false;
         };
         "custom/android" = {
         "format" = "";
-        "on-click" = "~/Documents/start_waydroid.sh";
-        "on-click-right" = "~/Documents/stop_waydroid.sh";
+        "on-click" = "start_waydroid.sh";
+        "on-click-right" = "stop_waydroid.sh";
         "tooltip" = false;
         };
         "custom/macos" = {
         "format" = "";
-        "on-click" = "~/Documents/start_macos.sh ";
+        "on-click" = "start_macos.sh ";
         "on-click-right" = "pkill qemu";
         "tooltip" = false;
         };
@@ -133,12 +133,12 @@
             "default" = ["󰕿" "󰖀" "󰕾"];
         };
         "on-click" = "pavucontrol";
-        "on-click-right" = "~/Documents/volume.sh mute";
+        "on-click-right" = "volume.sh mute";
         };
 
         "backlight" = {
         "format" = "<span font_family='Sans' size='large'>{icon}</span><span font_family='Sans' size='small'>{percent}%</span>";
-        "on-click" = "~/.config/waybar/redshift.sh";
+        "on-click" = "redshift.sh";
         "tooltip-format" = "Brigthness {percent}%";
         "format-icons" = ["󰃞 " "󰃞 " "󰃟 " "󰃝 " "󰃠 "];
         };

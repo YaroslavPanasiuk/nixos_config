@@ -33,13 +33,16 @@ if pidof -qx "rofi"; then
 fi
 cp ~/.cache/wal/dunstrc ~/.config/dunst 
 cp ~/.cache/wal/colors-sddm.conf ~/nixos/hosts/default/sddm/sddm-sugar-dark/theme.conf
-cp ~/.cache/wal/_variables.css ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/_variables.css
+#cp ~/.cache/wal/_variables.css ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/_variables.css
+#cp ~/.cache/wal/kando-theme.json5 ~/.config/kando/menu-themes/nether-labels/theme.json5 
+cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json 
 cp "/$path" ~/nixos/hosts/default/sddm/sddm-sugar-dark/Background.jpg
 cp "/$path" ~/shared/CurrentWallpaper/Background1.jpg
 cp "/$path" ~/shared/CurrentWallpaper/Background2.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
-cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
+#cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
 
+kando --reload-menu-theme
 pkill dunst 
 update_telegram.sh -B -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 #reload_firefox.sh

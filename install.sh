@@ -19,8 +19,15 @@ cp -r ~/nixos/dotfiles/walogram ~/.cache/walogram
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
 sudo nixos-rebuild switch --flake ~/nixos#default;
 
+swww-daemon
 wal -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 wpg-install.sh -gG
+
+git clone --depth 1 https://codeberg.org/thirtysix/walogram.git ~/.walogram
+cd ~/.walogram
+sudo make install
+cd ..
+rm -rf ~/.walogram
 
 wallp
 
