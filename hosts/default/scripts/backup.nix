@@ -10,6 +10,8 @@ cp -rf ~/shared ~/backup
 cp -rf ~/Documents ~/backup
 cp -rf ~/nixos ~/backup
 
+cp -rf ~/backup /run/media/yaros/yaros_usb/yaros_backup
+
 cd ~/nixos
 git add .
 git commit -m "message"
