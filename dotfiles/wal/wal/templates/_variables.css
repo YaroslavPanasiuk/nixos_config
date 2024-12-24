@@ -1,0 +1,33 @@
+:root {{
+    --moonlight-desaturated-gray: {color10};
+    --moonlight-dark-blue: {color2};
+    --moonlight-blue: {color1};
+    --moonlight-sky-blue: {color1};
+    --moonlight-cyan: {color1};
+    --moonlight-red: {color9};
+    --moonlight-dark-red: {color8};
+    --moonlight-light-red: {color7};
+    --moonlight-yellow: {color6};
+    --moonlight-orange: {color5};
+    --moonlight-dark-orange: {color6};
+    --moonlight-teal: {color4};
+    --moonlight-green: {color3};
+    --moonlight-purple: {color13};
+    --moonlight-pink: {color12};
+    --moonlight-indigo: {color11};
+    --moonlight-bright-cyan: {color1};
+    --moonlight-gray-10-alt: {foreground};
+    --moonlight-gray-10: {foreground};
+    --moonlight-gray-9: {foreground};
+    --moonlight-gray-8: #a9b8e8;
+    --moonlight-gray-7: #828bb8;
+    --moonlight-gray-6: #444a73;
+    --moonlight-gray-5: #2f334d;
+    --moonlight-gray-4: #222436;
+    --moonlight-gray-3: {background};
+    --moonlight-gray-2: {background};
+    --moonlight-gray-1: {background};
+    --moonlight-gray: #f00;
+    
+    --scrollbar-chrome-size: 6px;
+}}

@@ -1,0 +1,453 @@
+{
+  "menus": [
+    {
+      "shortcut": "Control+Space",
+      "shortcutID": "example-menu",
+      "centered": false,
+      "root": {
+        "type": "submenu",
+        "name": "Example Menu",
+        "icon": "nixos",
+        "iconTheme": "simple-icons",
+        "children": [
+          {
+            "type": "submenu",
+            "name": "Apps",
+            "icon": "apps",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "flatpak run life.bolls.bolls"
+                },
+                "name": "Bible",
+                "icon": "bolls.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "submenu",
+                "data": {
+                  "command": "code"
+                },
+                "name": "VS code",
+                "icon": "vscode.svg",
+                "iconTheme": "scalable",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code ~/nixos/",
+                      "delayed": false
+                    },
+                    "name": "Nixos folder",
+                    "icon": "folder_data",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code",
+                      "delayed": false
+                    },
+                    "name": "Open VS Code",
+                    "icon": "text_ad",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code ~/.config",
+                      "delayed": false
+                    },
+                    "name": ".config folder",
+                    "icon": "folder_managed",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code \"$(zenity --file-selection)\"",
+                      "delayed": false
+                    },
+                    "name": "Open file",
+                    "icon": "file_open",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code \"$(zenity --file-selection --directory)\"",
+                      "delayed": false
+                    },
+                    "name": "Open folder",
+                    "icon": "folder_code",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "obsidian"
+                },
+                "name": "Obsidian",
+                "icon": "obsidian.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "telegram-desktop"
+                },
+                "name": "Telegram",
+                "icon": "telegram.svg",
+                "iconTheme": "scalable"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Firefox",
+            "icon": "firefoxbrowser",
+            "iconTheme": "simple-icons",
+            "children": [
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://calendar.google.com/calendar/u/0/r"
+                },
+                "name": "Calendar",
+                "icon": "calendar.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://chatgpt.com/"
+                },
+                "name": "ChatGPT",
+                "icon": "openai.webp",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://github.com"
+                },
+                "name": "GitHub",
+                "icon": "github.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://www.youtube.com"
+                },
+                "name": "YouTube",
+                "icon": "youtube.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "uri",
+                "data": {
+                  "uri": "https://music.youtube.com/"
+                },
+                "name": "YT music",
+                "icon": "Youtube_Music.png",
+                "iconTheme": "scalable"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Settings",
+            "icon": "settings",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "kando -s",
+                  "delayed": false
+                },
+                "name": "Kando",
+                "icon": "award_star",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "pavucontrol",
+                  "delayed": false
+                },
+                "name": "Sound",
+                "icon": "volume_up",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "blueman-manager",
+                  "delayed": false
+                },
+                "name": "Bluetooth",
+                "icon": "bluetooth",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "gnome-system-monitor",
+                  "delayed": false
+                },
+                "name": "Task manager",
+                "icon": "earthquake",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Record",
+            "icon": "screen_record",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprshot -m region --clipboard-only",
+                  "delayed": false
+                },
+                "name": "Screen area",
+                "icon": "screenshot_region",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "submenu",
+                "data": {},
+                "name": "Record screen",
+                "icon": "screen_record",
+                "iconTheme": "material-symbols-rounded",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh ai",
+                      "delayed": false
+                    },
+                    "name": "With microphone",
+                    "icon": "mic",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh",
+                      "delayed": false
+                    },
+                    "name": "No audio",
+                    "icon": "volume_off",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh ao",
+                      "delayed": false
+                    },
+                    "name": "With output",
+                    "icon": "volume_up",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprshot -m output --clipboard-only",
+                  "delayed": false
+                },
+                "name": "Whole screen",
+                "icon": "screenshot_monitor",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Power",
+            "icon": "power_settings_circle",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "restart",
+                  "delayed": false
+                },
+                "name": "Reboot",
+                "icon": "frame_reload",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "poweroff",
+                  "delayed": false
+                },
+                "name": "Shutdown",
+                "icon": "power_settings_new",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprctl dispatch exit",
+                  "delayed": false
+                },
+                "name": "Log out",
+                "icon": "logout",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Nixos",
+            "icon": "nixos",
+            "iconTheme": "simple-icons",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty home-manager switch --flake ~/nixos/#yaros",
+                  "delayed": false
+                },
+                "name": "Switch",
+                "icon": "wifi_home",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty backup.sh",
+                  "delayed": false
+                },
+                "name": "backup",
+                "icon": "backup",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty rebuild.sh",
+                  "delayed": false
+                },
+                "name": "Rebuild",
+                "icon": "sync",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Files",
+            "icon": "folder_open",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "thunar ~/Downloads",
+                  "delayed": false
+                },
+                "name": "Downloads",
+                "icon": "download_2",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "thunar ~/Documents",
+                  "delayed": false
+                },
+                "name": "Documents",
+                "icon": "docs",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "thunar ~/nixos",
+                  "delayed": false
+                },
+                "name": "nixos",
+                "icon": "nixos",
+                "iconTheme": "simple-icons"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "thunar ~/",
+                  "delayed": false
+                },
+                "name": "yaros",
+                "icon": "home",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "thunar ~/shared",
+                  "delayed": false
+                },
+                "name": "shared",
+                "icon": "share",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Steam",
+            "icon": "steam",
+            "iconTheme": "simple-icons",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "xdg-open \"$(xdg-user-dir DOWNLOAD)\""
+                },
+                "name": "Terraria",
+                "icon": "Terraria.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "xdg-open ~"
+                },
+                "name": "Hollow knight",
+                "icon": "hollow.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "xdg-open \"$(xdg-user-dir MUSIC)\""
+                },
+                "name": "TmodLoader",
+                "icon": "Tmod.webp",
+                "iconTheme": "scalable"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "templates": []
+}
