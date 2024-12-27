@@ -127,7 +127,7 @@
                   "uri": "https://chatgpt.com/"
                 },
                 "name": "ChatGPT",
-                "icon": "openai.webp",
+                "icon": "openai.png",
                 "iconTheme": "scalable"
               },
               {
@@ -136,7 +136,7 @@
                   "uri": "https://github.com"
                 },
                 "name": "GitHub",
-                "icon": "github.png",
+                "icon": "github.svg",
                 "iconTheme": "scalable"
               },
               {
@@ -145,7 +145,7 @@
                   "uri": "https://www.youtube.com"
                 },
                 "name": "YouTube",
-                "icon": "youtube.png",
+                "icon": "youtube.svg",
                 "iconTheme": "scalable"
               },
               {
@@ -154,7 +154,7 @@
                   "uri": "https://music.youtube.com/"
                 },
                 "name": "YT music",
-                "icon": "Youtube_Music.png",
+                "icon": "youtube-music.svg",
                 "iconTheme": "scalable"
               }
             ]
@@ -284,7 +284,17 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "restart",
+                  "command": "systemctl suspend",
+                  "delayed": false
+                },
+                "name": "Sleep",
+                "icon": "nights_stay",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "systemctl reboot",
                   "delayed": false
                 },
                 "name": "Reboot",
@@ -294,12 +304,13 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "poweroff",
+                  "command": "systemctl poweroff",
                   "delayed": false
                 },
                 "name": "Shutdown",
                 "icon": "power_settings_new",
-                "iconTheme": "material-symbols-rounded"
+                "iconTheme": "material-symbols-rounded",
+                "angle": 180
               },
               {
                 "type": "command",
@@ -322,7 +333,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty home-manager switch --flake ~/nixos/#yaros",
+                  "command": "kitty home-manager -b backup switch --flake ~/nixos/#yaros &",
                   "delayed": false
                 },
                 "name": "Switch",
@@ -449,5 +460,16 @@
       }
     }
   ],
-  "templates": []
+  "templates": [
+    {
+      "type": "command",
+      "data": {
+        "command": "",
+        "delayed": false
+      },
+      "name": "Run Command",
+      "icon": "terminal",
+      "iconTheme": "material-symbols-rounded"
+    }
+  ]
 }

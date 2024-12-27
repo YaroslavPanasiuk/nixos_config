@@ -23,25 +23,23 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
-        "swww init"
-        "sleep 2 && waybar"
-        "dunst"
+        "swww-daemon"
+        #"sleep 2 && waybar"
+        #"dunst"
         "hyprctl setcursor volantes_cursors 24"
         "lxqt-policykit-agent"
-        "sleep 3 && nm-applet"
-        "sleep 2 && blueman-applet"
+        #"sleep 3 && nm-applet"
+        #"sleep 2 && blueman-applet"
+        "systemctl --user start battery"
+        "systemctl --user start battery_reset"
         "kando"
-      ];
-
-      env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
+        "hyprpanel && hyprpanel useTheme .cache/wal/hyprbar.json"
       ];
 
       general = { 
         gaps_in = 2;
         gaps_out = 3;
-        border_size = 3;
+        border_size = 2;
         "col.active_border" = "$color1 $color2 45deg"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1}) rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour2}) 45deg";
         "col.inactive_border" = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
         resize_on_border = "false";
@@ -234,7 +232,6 @@
         workspaceMargin = 7;
         reservedArea = 38;
         disableBlur = "true";
-        #panelColor = "$color1";
         workspaceActiveBackground = "$color3"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour3})";
         workspaceInactiveBackground = "$color4"; #" #rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour4})";
         workspaceActiveBorder = "$color1"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1})";

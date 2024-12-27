@@ -38,13 +38,12 @@
     #firewall.allowPing = true;
   };
   
-  home-manager = {
-    extraSpecialArgs = {inherit inputs;};
-    users = {
-      "yaros" = import ./home.nix;
-    };
-    backupFileExtension = "hm-backup";
-  };
+  #home-manager = {
+  #  users = {
+  #    "yaros" = import ./home.nix;
+  #  };
+  #  backupFileExtension = "hm-backup";
+  #};
 
   time.timeZone = "Europe/Kyiv";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -342,6 +341,7 @@
 	pavucontrol
 	nm-tray
 	killall
+  matugen
   blueman
   gnome-power-manager
   hyprshot
@@ -390,9 +390,9 @@
     (import ./scripts/wallp_status.nix { inherit pkgs; })
     (import ./scripts/wallp.nix { inherit pkgs; })
     (import ./scripts/alttab.nix { inherit pkgs; })
-    (import ./scripts/poweroff.nix { inherit pkgs; })
-    (import ./scripts/restart.nix { inherit pkgs; })
     (import ./scripts/install.nix { inherit pkgs; })
+    (import ./scripts/toggle_wifi.nix { inherit pkgs; })
+
   ];
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

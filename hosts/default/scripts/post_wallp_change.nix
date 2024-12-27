@@ -31,7 +31,8 @@ if pidof -qx "rofi"; then
  	pkill rofi
  	rofi -show drun -config ~/.config/wofi/config.rasi # && echo "set rofi"
 fi
-cp ~/.cache/wal/dunstrc ~/.config/dunst 
+hyprpanel useTheme .cache/wal/hyprbar.json
+#cp ~/.cache/wal/dunstrc ~/.config/dunst 
 cp ~/.cache/wal/colors-sddm.conf ~/nixos/hosts/default/sddm/sddm-sugar-dark/theme.conf
 #cp ~/.cache/wal/_variables.css ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/_variables.css
 #cp ~/.cache/wal/kando-theme.json5 ~/.config/kando/menu-themes/nether-labels/theme.json5 

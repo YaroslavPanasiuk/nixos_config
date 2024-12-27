@@ -13,34 +13,39 @@
         "reload_style_on_change" = true;
         "height" = 30;
         modules-left = [
-        "custom/wallpaper_change"
-        "wlr/taskbar"
-        "cpu"
-        "memory"
-        "temperature"
-        "custom/windows"
-        #"custom/macos"
-        #"custom/android"
+          "custom/wallpaper_change"
+          "wlr/taskbar"
+          #"cpu"
+          #"memory"
+          #"temperature"
+          "custom/separator"
+          "custom/windows"
+          #"custom/macos"
+          #"custom/android"
         ];
         modules-center = [ 
-        "clock#1"
-        "clock#2"
-        "hyprland/workspaces"
-        "clock#3"
+          "clock#1"
+          "clock#2"
+          "custom/separator"
+          "hyprland/workspaces"
+          "custom/separator"
+          "clock#3"
         ];
         modules-right = [ 
-        "tray"
-        "pulseaudio"
-        "backlight"
-        "battery"
-        "power-profiles-daemon"
+          "tray"
+          "custom/separator"
+          "hyprland/language"
+          "pulseaudio"
+          "backlight"
+          "battery"
+          "power-profiles-daemon"
         ];
 
         "custom/wallpaper_change" = {
-        "format" = "󰸉";
-        "on-click" = "wallpaper_change.sh";
-        "on-click-right" = "wallp-rofi.sh";
-        "tooltip" = false;
+          "format" = "󰸉";
+          "on-click" = "wallpaper_change.sh";
+          "on-click-right" = "wallp-rofi.sh";
+          "tooltip" = false;
         };
         
         "wlr/taskbar" = {
@@ -91,7 +96,7 @@
         };
 
         "clock#1" = {
-        "format" = "{:%a}";
+        "format" = "{:%A}";
         "tooltip" = false;
         "on-click" = "obsidian";
 
@@ -102,7 +107,7 @@
         "on-click" = "~/.config/waybar/open_calendar.sh";
         };
         "clock#3" = {
-        "format" = "{:%H:%M}";
+        "format" = "{:%H:%M:%S}";
         "tooltip" = false;
         "on-click" = "gnome-clocks";
         };
@@ -167,7 +172,19 @@
             "performance" = "";
             "balanced" = "";
             "power-saver" = "󰌪";
+          };
         };
+
+        "custom/separator" = {
+          "format" = "|";
+          "tooltip" = false;
+        };
+
+        "hyprland/language" = {
+          "format" = "Lang: {long}";
+          "format-en" = "AMERICA, HELL YEAH!";
+          "format-tr" = "As bayrakları";
+          "keyboard-name" = "Keyboard at 1f7d4970";
         };
       }
     ];

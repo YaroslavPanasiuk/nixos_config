@@ -4,10 +4,10 @@
     "darkMenuTheme": "default",
     "menuThemeColors": {
       "clean-circle": {
-        "action-icon-color": "#273B48",
-        "submenu-icon-color": "#325567",
-        "background-color": "#0b0e0d",
-        "text-color": "#e4e6e1"
+        "action-icon-color": "#9DDF60",
+        "submenu-icon-color": "#60C2AD",
+        "background-color": "#00001B",
+        "text-color": "#c0c0c2"
       },
       "default": {
         "text-color": "rgba(60, 60, 60, 1)"

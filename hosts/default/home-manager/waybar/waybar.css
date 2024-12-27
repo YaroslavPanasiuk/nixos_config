@@ -292,15 +292,9 @@ window#waybar {
     background-image: linear-gradient(135deg, @color0a, @color1a);
 }
 
-#custom-right-arrow-dark,
-#custom-left-arrow-dark {
+#custom-separator {
     color: @color1;
     font-size: 15px;
-}
-#custom-right-arrow-light,
-#custom-left-arrow-light {
-    color: @background;
-    background: @color1;
 }
 
 #tray{

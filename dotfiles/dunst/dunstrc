@@ -30,33 +30,33 @@
 
 [urgency_normal]
 
-    background = "#0b0e0dd0"
-    foreground = "#e4e6e1"
-    frame_color = "#273B48"
+    background = "#0f1f34d0"
+    foreground = "#d8dadd"
+    frame_color = "#ABAFB7"
     timeout = 5
    
 
 [urgency_low]
 
-    background = "#0b0e0dd0"
-    foreground = "#e4e6e1"
-    frame_color = "#273B48"
+    background = "#0f1f34d0"
+    foreground = "#d8dadd"
+    frame_color = "#ABAFB7"
     set_stack_tag = "ulow"
     timeout = 4
 
 [telegram-desktop]
     desktop_entry = "org.telegram.desktop"
-    background = "#0b0e0dd0"
-    foreground = "#e4e6e1"
-    frame_color = "#273B48"
+    background = "#0f1f34d0"
+    foreground = "#d8dadd"
+    frame_color = "#ABAFB7"
     timeout = 7
 
 
 [urgency_critical]
 
     background = "#6e0404"
-    foreground = "#e4e6e1"
-    frame_color = "#273B48"
+    foreground = "#d8dadd"
+    frame_color = "#ABAFB7"
     timeout = 0
 
 [volume]
@@ -64,7 +64,7 @@
     summary = "volume"
     max_icon_size = 24
     min_icon_size = 24
-    highlight = "#e4e6e1"
+    highlight = "#d8dadd"
     format = "  %b%n%%"
     word_wrap = false
     timeout = 1

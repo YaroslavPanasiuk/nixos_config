@@ -20,12 +20,12 @@ fi
 
 if [ $layout == '"Ukrainian"' ]; then
     hyprctl switchxkblayout at-translated-set-2-keyboard 0
-    dunstify -a "Layout" "English" -i "/home/yaros/.config/dunst/america-flag.png" -u low
+    #dunstify -a "Layout" "English" -i "/home/yaros/.config/dunst/america-flag.png" -u low
     exit
 fi
 if [ $layout == '(US)"' ]; then
     hyprctl switchxkblayout at-translated-set-2-keyboard 1
-    dunstify -a "Layout" "Ukrainian" -i "/home/yaros/.config/dunst/flag.png" -u low
+    #dunstify -a "Layout" "Ukrainian" -i "/home/yaros/.config/dunst/flag.png" -u low
     exit
 fi
 ''

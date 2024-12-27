@@ -27,23 +27,30 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ags.url = "github:Aylur/ags";
+    stylix.url = "github:danth/stylix";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
 
-    pywal-nix = {
-      url = "github:Fuwn/pywal.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #pywal-nix = {
+    #  url = "github:Fuwn/pywal.nix";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
       # Systems that can run tests:
       supportedSystems = [ "x86_64-linux" ];
@@ -60,6 +67,7 @@
         modules = [
           ./hosts/default/configuration.nix
           inputs.home-manager.nixosModules.default
+          #{nixpkgs.overlays = [inputs.hyprpanel.overlay];}   
         ];
       };
 
@@ -82,9 +90,15 @@
     };
 
     homeConfigurations.yaros = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          inputs.hyprpanel.overlay
+        ];
+      };
       modules = [ 
         ./hosts/default/home.nix 
+        inputs.ags.homeManagerModules.default     
       ];
       extraSpecialArgs = { inherit inputs; };
     };

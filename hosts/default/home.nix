@@ -7,9 +7,12 @@
     ./home-manager/waybar/waybar.nix
     #./home-manager/dunst/dunst.nix
     ./home-manager/kitty.nix
+    ./home-manager/stylix.nix
     #./rofi/colors-rofi.nix
     #./home-manager/firefox.nix
     #inputs.pywal-nix.homeManagerModules.x86_64-linux.default
+    ./home-manager/hyprpanel.nix
+
   ];
 
   nixpkgs = {
@@ -25,6 +28,7 @@
     homeDirectory = "/home/yaros";
     packages = with pkgs;[
       davinci-resolve
+      hyprpanel
     ];
   };
 
@@ -50,9 +54,14 @@
     };
   };
 
+  #programs.ags = {
+  #  enable = true;
+  #  configDir = ./home-manager/ags;
+  #};
+
   #pywal-nix = {
   #  wallpaper = ./home-manager/extra_resources/Wallpaper.jpg;                  
-  #};
+  #};  
 
   systemd.user.startServices = "sd-switch";
   systemd.user.services = {
