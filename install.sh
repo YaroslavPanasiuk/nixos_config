@@ -6,6 +6,7 @@ echo "done cloning"
 mkdir ~/shared
 mkdir ~/shared/Projects
 mkdir ~/shared/Wallpapers
+mkdir ~/Videos/recordings
 
 cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/shared/Wallpapers/1.jpg
 cp -r ~/nixos/dotfiles/vlc ~/.config/vlc
