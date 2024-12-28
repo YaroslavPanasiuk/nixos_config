@@ -28,12 +28,13 @@
         #"dunst"
         "hyprctl setcursor volantes_cursors 24"
         "lxqt-policykit-agent"
+        #"libinput-gestures"
         #"sleep 3 && nm-applet"
         #"sleep 2 && blueman-applet"
-        "systemctl --user start battery"
-        "systemctl --user start battery_reset"
+        #"systemctl --user start battery"
+        #"systemctl --user start battery_reset"
         "kando"
-        "hyprpanel && hyprpanel useTheme .cache/wal/hyprbar.json"
+        "pkill dunst; hyprpanel && hyprpanel useTheme .cache/wal/hyprbar.json"
       ];
 
       general = { 
@@ -50,7 +51,7 @@
       gestures = {
           workspace_swipe = "true";
           workspace_swipe_distance = 100;
-          workspace_swipe_min_speed_to_force = 5;
+          workspace_swipe_min_speed_to_force = 50;
           workspace_swipe_min_fingers = "true";
           workspace_swipe_cancel_ratio = "0.1";
           workspace_swipe_touch = "true";
@@ -157,7 +158,7 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        "$mainMod SHIFT, W, exec, kill_waybar.sh; waybar"
+        "$mainMod SHIFT, W, exec, reset_waybar.sh; waybar"
         ", XF86AudioMute, exec, volume.sh mute"
         "SUPER, F, fullscreen,f"
         "$mainMod,XF86MonBrightnessDown, exec , brightnessctl set 0"
@@ -225,6 +226,7 @@
       "plugin:overview" = {
         overrideAnimSpeed = "0.01";
         #exitOnSwitch = "true";
+        disableGestures = "true";
         showEmptyWorkspace = "true";
         overrideGaps = "true";
         gapsIn = 0;

@@ -5,7 +5,7 @@ HIGH_THRESHOLD=80
 LOW_THRESHOLD=20
 CRITICAL_LOW_THRESHOLD=10
 
-BATTERY_LEVEL=10#$(cat /sys/class/power_supply/BAT0/capacity)
+BATTERY_LEVEL=$(cat /sys/class/power_supply/BAT0/capacity)
 BATTERY_STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
 if [ "$BATTERY_STATUS" == "Charging" ] && [ "$BATTERY_LEVEL" -ge "$HIGH_THRESHOLD" ]; then

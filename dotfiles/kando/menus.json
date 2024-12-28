@@ -118,7 +118,7 @@
                   "uri": "https://calendar.google.com/calendar/u/0/r"
                 },
                 "name": "Calendar",
-                "icon": "calendar.png",
+                "icon": "google-calendar.svg",
                 "iconTheme": "scalable"
               },
               {
@@ -127,7 +127,7 @@
                   "uri": "https://chatgpt.com/"
                 },
                 "name": "ChatGPT",
-                "icon": "openai.png",
+                "icon": "openai.svg",
                 "iconTheme": "scalable"
               },
               {
@@ -172,38 +172,18 @@
                   "command": "kando -s",
                   "delayed": false
                 },
-                "name": "Kando",
-                "icon": "award_star",
-                "iconTheme": "material-symbols-rounded"
+                "name": "Kando settings",
+                "icon": "kando.svg",
+                "iconTheme": "scalable"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "pavucontrol",
+                  "command": "redshift.sh",
                   "delayed": false
                 },
-                "name": "Sound",
-                "icon": "volume_up",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "blueman-manager",
-                  "delayed": false
-                },
-                "name": "Bluetooth",
-                "icon": "bluetooth",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "gnome-system-monitor",
-                  "delayed": false
-                },
-                "name": "Task manager",
-                "icon": "earthquake",
+                "name": "Sepia",
+                "icon": "local_fire_department",
                 "iconTheme": "material-symbols-rounded"
               }
             ]
@@ -333,7 +313,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty home-manager -b backup switch --flake ~/nixos/#yaros &",
+                  "command": "kitty  --hold --detach home-manager -b backup switch --flake ~/nixos/#yaros",
                   "delayed": false
                 },
                 "name": "Switch",
@@ -343,7 +323,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty backup.sh",
+                  "command": "kitty --hold --detach backup.sh",
                   "delayed": false
                 },
                 "name": "backup",
@@ -353,7 +333,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty rebuild.sh",
+                  "command": "kitty  --hold --detach rebuild.sh",
                   "delayed": false
                 },
                 "name": "Rebuild",
@@ -365,59 +345,39 @@
           {
             "type": "submenu",
             "data": {},
-            "name": "Files",
-            "icon": "folder_open",
+            "name": "Virtual machines",
+            "icon": "view_in_ar",
             "iconTheme": "material-symbols-rounded",
             "children": [
               {
                 "type": "command",
                 "data": {
-                  "command": "thunar ~/Downloads",
+                  "command": "start_windows.sh",
                   "delayed": false
                 },
-                "name": "Downloads",
-                "icon": "download_2",
-                "iconTheme": "material-symbols-rounded"
+                "name": "Windows",
+                "icon": "windows.svg",
+                "iconTheme": "scalable"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "thunar ~/Documents",
+                  "command": "blueman-manager",
                   "delayed": false
                 },
-                "name": "Documents",
-                "icon": "docs",
-                "iconTheme": "material-symbols-rounded"
+                "name": "MacOs",
+                "icon": "apple.svg",
+                "iconTheme": "scalable"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "thunar ~/nixos",
+                  "command": "gnome-system-monitor",
                   "delayed": false
                 },
-                "name": "nixos",
-                "icon": "nixos",
-                "iconTheme": "simple-icons"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "thunar ~/",
-                  "delayed": false
-                },
-                "name": "yaros",
-                "icon": "home",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "thunar ~/shared",
-                  "delayed": false
-                },
-                "name": "shared",
-                "icon": "share",
-                "iconTheme": "material-symbols-rounded"
+                "name": "Android",
+                "icon": "android.svg",
+                "iconTheme": "scalable"
               }
             ]
           },

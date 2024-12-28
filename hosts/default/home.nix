@@ -4,7 +4,8 @@
   imports = [
     ./home-manager/hyprland/hyprland.nix
     ./home-manager/gtk/gtk.nix
-    ./home-manager/waybar/waybar.nix
+    #./home-manager/waybar/waybar.nix
+    ./home-manager/waybar/taskbar.nix
     #./home-manager/dunst/dunst.nix
     ./home-manager/kitty.nix
     ./home-manager/stylix.nix
@@ -12,6 +13,7 @@
     #./home-manager/firefox.nix
     #inputs.pywal-nix.homeManagerModules.x86_64-linux.default
     ./home-manager/hyprpanel.nix
+    ./home-manager/xdg.nix
 
   ];
 

@@ -101,19 +101,19 @@
         dashboard = {
           directories = {
             left = {
-              directory1.command = "thunar ~/";
+              directory1.command = "thunar";
               directory1.label = "󱂵 yaros";
-              directory2.command = "thunar ~/Downloads";
+              directory2.command = "thunar Downloads";
               directory2.label = "󰉍 Downloads";
-              directory3.command = "thunar ~/Documents";
+              directory3.command = "thunar Documents";
               directory3.label = "󱧶 Documents";
             };
             right = {
-              directory1.command = "thunar ~/shared";
+              directory1.command = "thunar shared";
               directory1.label = "󰉏 shared";
-              directory2.command = "thunar ~/nixos";
+              directory2.command = "thunar nixos";
               directory2.label = "󰚝 nixos";
-              directory3.command = "thunar ~/.config";
+              directory3.command = "thunar .config";
               directory3.label = "󰚝 .config";
             };
           };
@@ -150,7 +150,7 @@
       theme = {
         bar = {
           buttons = {
-            opacity = 85;
+            opacity = 80;
             workspaces.fontSize = "1.4em";
             workspaces.pill.active_width = "8em";
             workspaces.spacing = "0.8em";
