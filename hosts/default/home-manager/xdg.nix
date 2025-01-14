@@ -72,7 +72,7 @@
       enable = true;
       source = ./dunst/dunstrc;
     };
-    "hyprland/greeting.conf" = {
+    "hypr/greeting.conf" = {
       enable = true;
       source = ./hyprland/greeting.conf;
     };
@@ -97,7 +97,7 @@
       source = ./Thunar;
     };
     "touchegg" = {
-      enable = true;
+      enable = false;
       recursive = true;
       source = ./touchegg;
     };

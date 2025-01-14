@@ -14,7 +14,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/6a321969-cddf-492f-801a-7f306fffa21f";
+    { device = "/dev/disk/by-uuid/2e6f023a-e352-4c10-a63c-6ca40d176fa3";
       fsType = "ext4";
     };
 
@@ -22,16 +22,6 @@
     { device = "/dev/disk/by-uuid/E0C4-264D";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
-    };
-
-  fileSystems."/var/lib/lxd/shmounts" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
-    };
-
-  fileSystems."/var/lib/lxd/devlxd" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
     };
 
   swapDevices = [ ];

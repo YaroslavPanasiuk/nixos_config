@@ -16,7 +16,7 @@
 
     settings = {
       
-      source = "~/.cache/wal/colors-hyprland.conf";
+      source = "/home/yaros/.cache/wal/colors-hyprland.conf";
       monitor = ",preferred,auto,1"; 
 
       "$terminal" = "kitty";

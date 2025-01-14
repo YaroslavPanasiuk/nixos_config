@@ -2,7 +2,7 @@
 window {
 	background-image: linear-gradient(135deg, @color1a, @color4a, @color7a);
 	border-radius: 16px;
-	border: 2px solid @colora;
+	border: 2px solid @color1;
 }
 
 #box {

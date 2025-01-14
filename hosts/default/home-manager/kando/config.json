@@ -45,7 +45,7 @@
     "gamepadCloseButton": 2
   },
   "editorOptions": {
-    "showSidebarButtonVisible": true,
-    "showEditorButtonVisible": true
+    "showSidebarButtonVisible": false,
+    "showEditorButtonVisible": false
   }
 }
