@@ -435,6 +435,7 @@ in
     (import ./scripts/toggle_hyprpanel.nix { inherit pkgs; })
     (import ./scripts/set_as_wallpaper.nix { inherit pkgs; })
     (import ./scripts/backup_usb.nix { inherit pkgs; })
+    (import ./scripts/generate_ssh.nix { inherit pkgs; })
 
   ];
   
