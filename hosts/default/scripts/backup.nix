@@ -19,4 +19,9 @@ cd ~/nixos
 git add .
 git commit -m "message"
 git push -f origin main
+
+cd ~/Documents/test
+git add .
+git commit -m "message"
+git push -f origin main
 ''

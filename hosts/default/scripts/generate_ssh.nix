@@ -8,4 +8,6 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 cat ~/.ssh/id_ed25519.pub
 xclip -sel clip < ~/.ssh/id_ed25519.pub
+xdg-open https://github.com/settings/keys
+
 ''
