@@ -125,7 +125,7 @@
             };
           };
           powermenu = {
-            avatar.image = "~/Documents/biceps016.jpg";
+            avatar.image = "~/Documents/logo.png";
             avatar.name = "Panas";
           };
           shortcuts.enabled = false;

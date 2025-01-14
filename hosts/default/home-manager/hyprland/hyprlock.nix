@@ -41,7 +41,7 @@
 
         image = {
             monitor = "";
-            path = "$HOME/Documents/biceps.png";
+            path = "$HOME/Documents/logo.png";
             border_size = 2;
             border_color = "$color1 $color2 45deg";
             size = 100;
