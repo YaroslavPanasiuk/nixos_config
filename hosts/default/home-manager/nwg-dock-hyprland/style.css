@@ -1,0 +1,39 @@
+@import "../../.cache/wal/gtk-theme.css";
+window {
+	background-image: linear-gradient(135deg, @color1a, @color4a, @color7a);
+	border-radius: 16px;
+	border: 2px solid @colora;
+}
+
+#box {
+  /* Define attributes of the box surrounding icons here */
+  padding: 10px 15px 6px 15px;  
+}
+
+button {
+	background: none;
+	border-style: none;
+	box-shadow: none;
+
+}
+
+button {
+	padding: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 5px;
+	color: #eee;
+  font-size: 12px
+}
+
+#box > * > * > *:not(#active) *:hover{
+	background-color: @color1a;
+	border-radius: 8px;
+}
+
+#box > * > * > *#active > button{
+	background-color: @color1a;
+	border-radius: 8px;
+}
+
+

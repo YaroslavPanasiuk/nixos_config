@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1734996864522581-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Set as Background</name>
+	<submenu></submenu>
+	<unique-id>1736289966286446-1</unique-id>
+	<command>set_as_wallpaper.sh %f</command>
+	<description>Set .png, .jpg, .gif or .mp4 file as a wallpaper</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Copy path</name>
+	<submenu></submenu>
+	<unique-id>1736326616331956-1</unique-id>
+	<command>echo -n %f | xclip -sel clip</command>
+	<description>Copy whole file path</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>

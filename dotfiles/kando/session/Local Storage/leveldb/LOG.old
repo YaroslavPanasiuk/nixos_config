@@ -1,3 +1,1 @@
-2025/01/13-16:56:43.643 6ed Reusing MANIFEST /home/yaros/.config/kando/session/Local Storage/leveldb/MANIFEST-000001
-2025/01/13-16:56:43.658 6ed Recovering log #3
-2025/01/13-16:56:43.658 6ed Reusing old log /home/yaros/.config/kando/session/Local Storage/leveldb/000003.log 
+/nix/store/p4llrjwx9h4riz6cv16gvqx4p7a6jp53-home-manager-files/.config/kando/session/Local Storage/leveldb/LOG.old

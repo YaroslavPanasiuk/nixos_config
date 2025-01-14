@@ -9,20 +9,13 @@ mkdir ~/shared/Wallpapers
 mkdir ~/Videos/recordings
 
 cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/shared/Wallpapers/1.jpg
-cp -r ~/nixos/dotfiles/vlc ~/.config/vlc
-cp -r ~/nixos/dotfiles/wal ~/.config/wal
-cp -r ~/nixos/dotfiles/rofi ~/.config/rofi
-cp -r ~/nixos/dotfiles/dunst ~/.config/dunst
-cp -r ~/nixos/dotfiles/walogram ~/.cache/walogram
-
-
 
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
 sudo nixos-rebuild switch --flake ~/nixos#default;
 
 swww-daemon
-wal -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
-wpg-install.sh -gG
+wallp -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
+#wpg-install.sh -gG
 
 git clone --depth 1 https://codeberg.org/thirtysix/walogram.git ~/.walogram
 cd ~/.walogram

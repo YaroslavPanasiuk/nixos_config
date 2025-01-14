@@ -11,6 +11,7 @@
         "text/markdown" = [ "code.desktop" ];
         "text/csv" = [ "code.desktop" ];
         "text/html" = [ "code.desktop" ];
+        "text/x-shellscript" = [ "code.desktop" ];
         
         "image/png" = [ "qimgv.desktop" ];
         "image/jpeg" = [ "qimgv.desktop" ];
@@ -38,8 +39,12 @@
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "org.gnome.Evince.desktop" ];
         "application/vnd.ms-excel" = [ "org.gnome.Evince.desktop" ];
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	.xlsx" = [ "org.gnome.Evince.desktop" ];
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "onlyoffice-desktopeditors.desktop" "org.gnome.Evince.desktop" ];
+        "application/vnd.ms-powerpoint" = [ "onlyoffice-desktopeditors.desktop" "org.gnome.Evince.desktop" ];
         "application/vnd.oasis.opendocument.text" = [ "org.gnome.Evince.desktop" ];
         "application/epup+zip" = [ "org.gnome.Evince.desktop" ];
+        "application/x-shellscript" = [ "code.desktop" ];
+        "application/x-sh" = [ "code.desktop" ];
 
         "application/zip" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
@@ -50,5 +55,53 @@
         "inode/directory" = [ "thunar.desktop" ];
       };
     };
+
+    configFile = {
+    "kando" = {
+      enable = true;
+      recursive = true;
+      source = ./kando;
+    };
+    "rofi" = {
+      enable = true;
+      recursive = true;
+      source = ./rofi;
+    };
+    "dunst/dunstrc" = {
+      enable = true;
+      source = ./dunst/dunstrc;
+    };
+    "vlc" = {
+      enable = true;
+      recursive = true;
+      source = ./vlc;
+    };
+    "wal" = {
+      enable = true;
+      recursive = true;
+      source = ./wal;
+    };
+    "walogram" = {
+      enable = true;
+      recursive = true;
+      source = ./walogram;
+    };
+    "Thunar" = {
+      enable = true;
+      recursive = true;
+      source = ./Thunar;
+    };
+    "touchegg" = {
+      enable = true;
+      recursive = true;
+      source = ./touchegg;
+    };
+    "nwg-dock-hyprland" = {
+      enable = true;
+      recursive = true;
+      source = ./nwg-dock-hyprland;
+    };
+  };
+
   };
 }

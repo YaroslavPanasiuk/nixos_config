@@ -1,0 +1,23 @@
+
+{{
+  name: 'Nether Labels',
+  author: 'Simon Schneegans, Elfi Ox',
+  license: 'CC0-1.0',
+  themeVersion: '1.0',
+  engineVersion: 1,
+  maxMenuRadius: 160,
+  drawChildrenBelow: false,
+  colors: {{
+    'accent-color': '{color1}',
+    'hover-color': '{color2}',
+    'connector-color': '{color3}',
+    'circle-color' : '{background}',
+    'border-color': '{color5}',
+    'label-background-color': '{background}',
+    'text-color' : '{foreground}'
+  }},
+  layers: [
+    {{ class: 'icon-layer', content: 'icon' }},
+    {{ class: 'label-layer', content: 'name' }},
+  ],
+}}
