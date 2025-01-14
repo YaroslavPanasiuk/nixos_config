@@ -1,5 +1,13 @@
 { lib, config, pkgs, inputs, ... }:
 
+let
+  backupScript = pkgs.writeShellScriptBin "backup_usb" ''
+    #!/usr/bin/env bash
+    notify-send -a "USB inserted" -i "/home/yaros/.config/dunst/power.png" -u low "USB" "Udev rule works!!"
+    cp -rf /home/yaros/backup /run/media/yaros/yaros_usb/yaros_backup
+  '';
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -235,6 +243,10 @@
     pkgs.android-udev-rules
   ];
 
+  services.udev.extraRules = ''
+    ACTION=="add", KERNEL=="sd*", ENV{ID_FS_LABEL}=="yaros_usb", RUN+="${backupScript}/bin/backup_usb"
+  '';
+
   environment.systemPackages = with pkgs; [
 	obsidian
 	#jetbrains.pycharm-community
@@ -422,6 +434,7 @@
     (import ./scripts/toggle_mpvpaper.nix { inherit pkgs; })
     (import ./scripts/toggle_hyprpanel.nix { inherit pkgs; })
     (import ./scripts/set_as_wallpaper.nix { inherit pkgs; })
+    (import ./scripts/backup_usb.nix { inherit pkgs; })
 
   ];
   

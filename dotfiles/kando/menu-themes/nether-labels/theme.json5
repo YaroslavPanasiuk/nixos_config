@@ -1,1 +1,23 @@
-/nix/store/p4llrjwx9h4riz6cv16gvqx4p7a6jp53-home-manager-files/.config/kando/menu-themes/nether-labels/theme.json5
+
+{
+  name: 'Nether Labels',
+  author: 'Simon Schneegans, Elfi Ox',
+  license: 'CC0-1.0',
+  themeVersion: '1.0',
+  engineVersion: 1,
+  maxMenuRadius: 160,
+  drawChildrenBelow: false,
+  colors: {
+    'accent-color': '#5C9DDF',
+    'hover-color': '#58AFF3',
+    'connector-color': '#6EB3EC',
+    'circle-color' : '#073660',
+    'border-color': '#8DB5E4',
+    'label-background-color': '#073660',
+    'text-color' : '#cbe7f5'
+  },
+  layers: [
+    { class: 'icon-layer', content: 'icon' },
+    { class: 'label-layer', content: 'name' },
+  ],
+}

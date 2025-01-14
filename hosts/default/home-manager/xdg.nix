@@ -45,6 +45,7 @@
         "application/epup+zip" = [ "org.gnome.Evince.desktop" ];
         "application/x-shellscript" = [ "code.desktop" ];
         "application/x-sh" = [ "code.desktop" ];
+        "application/octet-stream" = [ "code.desktop" ];
 
         "application/zip" = [ "org.gnome.FileRoller.desktop" ];
         "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
@@ -58,7 +59,7 @@
 
     configFile = {
     "kando" = {
-      enable = true;
+      enable = false;
       recursive = true;
       source = ./kando;
     };
@@ -70,6 +71,10 @@
     "dunst/dunstrc" = {
       enable = true;
       source = ./dunst/dunstrc;
+    };
+    "hyprland/greeting.conf" = {
+      enable = true;
+      source = ./hyprland/greeting.conf;
     };
     "vlc" = {
       enable = true;

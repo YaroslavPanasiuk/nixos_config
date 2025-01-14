@@ -10,6 +10,9 @@ mkdir ~/Videos/recordings
 
 cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/shared/Wallpapers/1.jpg
 
+cp -rf ~/nixos/dotfiles/kando ~/.config/kando
+
+
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
 sudo nixos-rebuild switch --flake ~/nixos#default;
 
