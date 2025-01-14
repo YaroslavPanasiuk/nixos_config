@@ -1,13 +1,2 @@
-#!/bin/sh
 
-if pidof waybar; then
-    pkill waybar
-    exit
-fi
-
-cat ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
-
-if [[ "$(cat ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt)" != "open" ]]; then
-    hyprctl dispatch overview:open
-    echo "open" > ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
-fi
+nwg-dock-hyprland -r -mb 4 -ml 10 -mr 10 -c "rofi -show drun" -ico /home/yaros/Downloads/apps.svg

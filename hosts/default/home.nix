@@ -3,15 +3,16 @@
 {
   imports = [
     ./home-manager/hyprland/hyprland.nix
+    ./home-manager/hyprland/hyprlock.nix
+    ./home-manager/hyprland/hypridle.nix
     ./home-manager/gtk/gtk.nix
-    #./home-manager/waybar/waybar.nix
-    ./home-manager/waybar/taskbar.nix
+    ./home-manager/waybar/waybar.nix
+    #./home-manager/waybar/taskbar.nix
     #./home-manager/dunst/dunst.nix
     ./home-manager/kitty.nix
-    ./home-manager/stylix.nix
+    #./home-manager/stylix.nix
     #./rofi/colors-rofi.nix
     #./home-manager/firefox.nix
-    #inputs.pywal-nix.homeManagerModules.x86_64-linux.default
     ./home-manager/hyprpanel.nix
     ./home-manager/xdg.nix
 
@@ -30,7 +31,7 @@
     homeDirectory = "/home/yaros";
     packages = with pkgs;[
       davinci-resolve
-      hyprpanel
+      #hyprpanel
     ];
   };
 
@@ -56,17 +57,9 @@
     };
   };
 
-  #programs.ags = {
-  #  enable = true;
-  #  configDir = ./home-manager/ags;
-  #};
-
-  #pywal-nix = {
-  #  wallpaper = ./home-manager/extra_resources/Wallpaper.jpg;                  
-  #};  
-
   systemd.user.startServices = "sd-switch";
   systemd.user.services = {
+    
     battery = {
       Unit = {
         Description = "Battery Level Checker";
@@ -76,15 +69,22 @@
         RestartSec=60;
         ExecStart="battery_listener.sh";
       };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
     };
+
     battery_reset = {
       Unit = {
-        Description = "Battery Level Checker Reset";
+        Description = "Battery service resetter";
       };
       Service = {
         Restart="always";
-        RestartSec=600;
+        RestartSec=1200;
         ExecStart="battery_reset.sh";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
       };
     };
   };

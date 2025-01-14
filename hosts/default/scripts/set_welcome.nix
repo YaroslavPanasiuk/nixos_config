@@ -6,7 +6,6 @@ greetings=("Hello Yarych" "Wassupp myman" "Welcome" "Feeling good?" "Добри�
 
 # Get the number of elements in the array
 num_greets=''${#greetings[@]}
-echo "$num_greets"
 
 # Generate a random index between 0 and the last index of the array
 random_index=$((RANDOM % num_greets))
@@ -14,5 +13,8 @@ random_index=$((RANDOM % num_greets))
 greeting=''${greetings[$random_index]}
 
 echo "$greeting"
+
+echo "\$greeting = $greeting" > ~/.config/hypr/greeting.conf
+
 sed -i  "s/^.*HeaderText=.*$/HeaderText=''${greeting}/" ~/nixos/hosts/default/sddm/sddm-sugar-dark/theme.conf
 ''

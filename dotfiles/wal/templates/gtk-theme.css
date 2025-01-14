@@ -30,3 +30,14 @@
 @define-color color7a rgba({color7.rgb}, 0.2);
 @define-color color8a rgba({color8.rgb}, 0.2);
 @define-color color9a rgba({color9.rgb}, 0.2);
+
+@define-color color0aa rgba({color0.rgb}, 0.1);
+@define-color color1aa rgba({color1.rgb}, 0.1);
+@define-color color2aa rgba({color2.rgb}, 0.1);
+@define-color color3aa rgba({color3.rgb}, 0.1);
+@define-color color4aa rgba({color4.rgb}, 0.1);
+@define-color color5aa rgba({color5.rgb}, 0.1);
+@define-color color6aa rgba({color6.rgb}, 0.1);
+@define-color color7aa rgba({color7.rgb}, 0.1);
+@define-color color8aa rgba({color8.rgb}, 0.1);
+@define-color color9aa rgba({color9.rgb}, 0.1);

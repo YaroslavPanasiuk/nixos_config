@@ -9,24 +9,32 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    #hyprland = {
-    #  type = "git";
-    #  url = "https://github.com/hyprwm/Hyprland";
-    #  submodules = true;
+    #firefox-addons = {
+    #  url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     Hyprspace = {
       url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprtasking = {
+      url = "github:raybbian/hyprtasking";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    #hyprland.url = "github:hyprwm/Hyprland";
     hyprpanel = {
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +74,6 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/default/configuration.nix
-          inputs.home-manager.nixosModules.default
           #{nixpkgs.overlays = [inputs.hyprpanel.overlay];}   
         ];
       };
@@ -90,6 +97,7 @@
     };
 
     homeConfigurations.yaros = inputs.home-manager.lib.homeManagerConfiguration {
+      #pkgs = nixpkgs.legacyPackages."x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
@@ -98,7 +106,6 @@
       };
       modules = [ 
         ./hosts/default/home.nix 
-        inputs.ags.homeManagerModules.default     
       ];
       extraSpecialArgs = { inherit inputs; };
     };

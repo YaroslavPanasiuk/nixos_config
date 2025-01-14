@@ -1,4 +1,3 @@
-# *.nix
 { inputs, ... }:
 {
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
@@ -8,6 +7,7 @@
     # Enable the module.
     # Default: false
     enable = true;
+    overlay.enable = true;
 
     # Automatically restart HyprPanel with systemd.
     # Useful when updating your config so that you
@@ -35,9 +35,9 @@
     layout = {
       "bar.layouts" = {
         "0" = {
-          left = [ "dashboard" "windowtitle" "media" ];
+          left = [ "dashboard" "systray" "windowtitle" "media" ];
           middle = [ "workspaces" ];
-          right = [ "systray" "kbinput" "network" "bluetooth" "volume" "clock" "battery" "notifications" ];
+          right = [ "kbinput" "network" "bluetooth" "volume" "battery" "clock" "notifications" ];
         };
       }; 
     };
@@ -66,7 +66,7 @@
           leftClick = "layout_msg.sh";
         };
         network = {
-          truncation_size = 4;
+          truncation_size = 3;
           rightClick = "toggle_wifi.sh";
         };
         notifications = {
@@ -80,8 +80,15 @@
           rightClick = "hyprctl dispatch killactive";
         };
         workspaces = {
-          show_icons = true;
-          workspaces = 10;
+          #show_icons = true;
+          #workspaceMask = true;
+          scroll_speed = 1;
+          showAllActive = true;
+          workspaces = 9;
+        };
+        media = {
+          #show_label = false;
+          show_active_only = true;
         };
 
 
@@ -150,25 +157,29 @@
       theme = {
         bar = {
           buttons = {
-            opacity = 80;
+            opacity = 75;
             workspaces.fontSize = "1.4em";
-            workspaces.pill.active_width = "8em";
-            workspaces.spacing = "0.8em";
-            y_margins = "0";
+            workspaces.pill.active_width = "10em";
+            workspaces.pill.width = "4em";
+            workspaces.pill.height = "4em";
+            workspaces.pill.radius = "1.9rem * 0.6";
+            workspaces.spacing = "1.2em";
+            y_margins = "2px";
+
           };
 
-          floating = true;
+          floating = false;
           layer = "bottom";
-          margin_sides = "0px";
-          margin_top = "0.3em";
-          margin_bottom = "0.1em";
+          margin_sides = "0";
+          margin_top = "0";
+          margin_bottom = "0";
 
           menus = {
             menu.clock.scaling = 90;
             menu.notifications.height = "40em";
           };
-          opacity = 30;
-          outer_spacing = "0.3em";
+          opacity = 70;
+          outer_spacing = "0";
 
         };
 

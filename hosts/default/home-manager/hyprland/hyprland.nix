@@ -8,7 +8,10 @@
 
     plugins = [
       inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      #inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
+      #inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
     ];
 
     settings = {
@@ -23,24 +26,26 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
+        "hyprlock || hyprctl dispatch exit"
+        "hupridle"
         "swww-daemon"
         #"sleep 2 && waybar"
         #"dunst"
         "hyprctl setcursor volantes_cursors 24"
+        "sleep 2 && launch_dock.sh && pkill -f -37 nwg-dock-hyprland"
         "lxqt-policykit-agent"
-        #"libinput-gestures"
-        #"sleep 3 && nm-applet"
-        #"sleep 2 && blueman-applet"
-        #"systemctl --user start battery"
-        #"systemctl --user start battery_reset"
+        "systemctl --user start battery"
+        "systemctl --user start battery_reset"
         "kando"
-        "pkill dunst; hyprpanel && hyprpanel useTheme .cache/wal/hyprbar.json"
+        "touchegg"
+        "thunar --daemon"
+        "sleep 5 && hyprpanel useTheme $HOME/.cache/wal/hyprbar.json"
       ];
 
       general = { 
-        gaps_in = 2;
-        gaps_out = 3;
-        border_size = 2;
+        gaps_in = 3;
+        gaps_out = 0;
+        border_size = 3;
         "col.active_border" = "$color1 $color2 45deg"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1}) rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour2}) 45deg";
         "col.inactive_border" = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
         resize_on_border = "false";
@@ -50,24 +55,26 @@
 
       gestures = {
           workspace_swipe = "true";
-          workspace_swipe_distance = 100;
+          workspace_swipe_distance = 60;
           workspace_swipe_min_speed_to_force = 50;
           workspace_swipe_min_fingers = "true";
-          workspace_swipe_cancel_ratio = "0.1";
+          workspace_swipe_cancel_ratio = "0.5";
           workspace_swipe_touch = "true";
           workspace_swipe_invert = "true";
+          #workspace_swipe_create_new = "false";
       };
 
       animations = {
         enabled = "true";
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
+          "windows, 1, 1, default"
+          #"windowsOut, 1, 7, default, popin 80%"
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
+          "layersIn, 1, 3, default, slide 50%"
         ];
       };
 
@@ -116,6 +123,12 @@
         disable_hyprland_logo = "true";
       };
 
+      workspace = [
+        "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
+        "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
+
+      ];
+
       bind = [
         "$mainMod, Q, exec, layout_msg.sh us && $terminal"
         "$mainMod, C, killactive,"
@@ -158,7 +171,9 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        "$mainMod SHIFT, W, exec, reset_waybar.sh; waybar"
+        #"$mainMod SHIFT, W, exec, hyprctl dispatch hyprtasking:toggle all"
+        #"$mainMod SHIFT, Q, hyprtasking:toggle, all"
+        "$mainMod SHIFT, P, exec, toggle_mpvpaper.sh"
         ", XF86AudioMute, exec, volume.sh mute"
         "SUPER, F, fullscreen,f"
         "$mainMod,XF86MonBrightnessDown, exec , brightnessctl set 0"
@@ -181,6 +196,9 @@
 
         "Shift_L, Alt_L, exec, layout_msg.sh"
         "Alt_L, Shift_L, exec, layout_msg.sh"
+        
+        "Control_L, bracketleft, exec, echo 'multiply speed 0.9' | socat - /tmp/mpv-socket"
+        "Control_L, bracketright, exec, echo 'multiply speed 1.1' | socat - /tmp/mpv-socket"
 
         "Alt_L, T, exec, ~/Downloads/Thorium.AppImage"
         ",mouse:274, global, kando:example-menu"
@@ -198,6 +216,10 @@
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+
+      binds = [
+        #"Control_L, W&P, exec, toggle_mpvpaper.sh"
       ];
 
       windowrule = [
@@ -221,9 +243,14 @@
         "workspace +0 title:System Monitor"
         "workspace +0 title:Volume"
         "workspace +0 title:Power Statistics"
+        #"bordersize 0, floating:0, onworkspace:w[tv1]"
+        #"rounding 0, floating:0, onworkspace:w[tv1]"
+        #"bordersize 0, floating:0, onworkspace:f[1]"
+        #"rounding 0, floating:0, onworkspace:f[1]"
       ];
 
       "plugin:overview" = {
+        drawActiveWorkspace = true;
         overrideAnimSpeed = "0.01";
         #exitOnSwitch = "true";
         disableGestures = "true";
@@ -239,10 +266,40 @@
         workspaceActiveBorder = "$color1"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1})";
         workspaceInactiveBorder = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
         dragAlpha = "0.7";
-        drawActiveWorkspace = "true";
         workspaceBorderSize = 2;
         panelHeight = 200;
+        #onBottom = true;
       };
+
+      
+
+      "plugin:hyprexpo" = {
+        columns = 3;
+        gap_size = 8;
+        bg_col = "$background";
+        workspace_method = "first 1";
+        enable_gesture = false;
+      };
+
+      
+
+      #"plugin:hyprtasking" = {
+      #  layout = "grid";
+      #  gap_size = 20;
+      #  bg_color = "$background";
+      #  border_size = 4;
+      #  exit_behavior = "active hovered interacted original";
+      #  gaps = {
+      #      rows = 3;
+      #  };
+      #  linear = {
+      #      height = 300;
+      #      scroll_speed = "1.1";
+      #  };
+      #  grid = {
+      #    rows = 3;
+      #  };
+      #};
 
     };
 

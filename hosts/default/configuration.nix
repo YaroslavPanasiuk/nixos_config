@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -34,16 +34,18 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    firewall.enable = false;
-    #firewall.allowPing = true;
+    firewall.enable = true;
+    firewall.allowPing = true;
+    firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
   
-  #home-manager = {
-  #  users = {
-  #    "yaros" = import ./home.nix;
-  #  };
-  #  backupFileExtension = "hm-backup";
-  #};
+  home-manager = {
+    users = {
+      "yaros" = import ./home.nix;
+    };
+    extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "hm-backup";
+  };
 
   time.timeZone = "Europe/Kyiv";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -59,33 +61,34 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
-  services.displayManager.sddm = {
-    wayland.enable = true;
-    enable = true;
-    theme = "${import ./sddm/sddm-theme.nix {inherit pkgs;}}";
-  };
+  #services.displayManager.sddm = {
+  #  wayland.enable = true;
+  #  enable = true;
+  #  theme = "${import ./sddm/sddm-theme.nix {inherit pkgs;}}";
+  #};
 
   security.wrappers.fusermount = {
     source = "${pkgs.fuse}/bin/fusermount";
     setuid = true;
   };
+  security = {
+    polkit.enable = true;
+    pam.services.hyprlock = {};
+  };
 
   # Configure keymap in X11
   services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-  services.xserver = {
-  enable = true;
+    enable = true;
     desktopManager.gnome.enable = true;
-    #desktopManager.gtk = {
-    #enable = true;
-    #theme = "Adwaita";
-    #iconTheme = "kora";
-  #};
   };
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.touchegg.enable = true;
+
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -105,26 +108,31 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yaros = {
     isNormalUser = true;
     description = "Yaroslav Panasiuk";
     extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers"];
-    password = "1972";
+    password = "1";
   };
 
   security.sudo.configFile = "yaros ALL=(ALL) NOPASSWD: ALL";
 
-  # Enable automatic login for the user.
-  #services.xserver.displayManager.autoLogin.enable = true;
-  #services.xserver.displayManager.autoLogin.user = "yaros";
+  services.greetd = {
+    enable = true;
+    settings = {
+      initial_session = {
+        command = "Hyprland";
+        user = "yaros";
+      };
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
 
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  #systemd.services."getty@tty1".enable = false;
-  #systemd.services."autovt@tty1".enable = false;
+
   #systemd.services.battery = {
   #  wantedBy = [ "multi-user.target" ];
   #  description = "Battery Level Checker";
@@ -147,6 +155,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+  programs.hyprlock.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -154,6 +163,7 @@
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import <nixos-unstable> { };
   };
+  nixpkgs.overlays = [inputs.hyprpanel.overlay];
   
   services.flatpak.enable = true;
   
@@ -167,11 +177,12 @@
   programs.thunar.enable = true; 
   programs.xfconf.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
-	thunar-archive-plugin
-	thunar-media-tags-plugin
-	thunar-volman
+    thunar-archive-plugin
+    thunar-media-tags-plugin
+    thunar-volman
   ];
   services.gvfs.enable = true;
+  services.gvfs.package = lib.mkForce pkgs.gnome.gvfs;
   services.tumbler.enable = true;
   virtualisation = {
     libvirtd = {
@@ -235,12 +246,12 @@
   appimage-run
   #snapcraft
   ventoy-full
-  nixos-generators
+  #nixos-generators
   vlc
   home-manager
 	python3Full
   python3
-  apt
+  #apt
   nix-index
 	#sublime
   qimgv
@@ -251,10 +262,10 @@
 	xdotool
 	pywal
   libinput
-  anbox
+  #anbox
   #teams
   #teams-for-linux
-  libinput-gestures
+  #libinput-gestures
 	glib
   kando
 	gvfs
@@ -267,10 +278,13 @@
   iproute2
   libosinfo
   curl
-  steamcmd
+  #steamcmd
+  #fprintd
 
   #hyprlandPlugins.hyprgrass
 
+  nwg-dock-hyprland
+  #nwg-drawer
 	file
   wmctrl
   scrcpy
@@ -279,6 +293,7 @@
   #remmina
   davinci-resolve
   libvirt
+  mpvpaper
   virt-manager  # Optional, for managing VMs with a GUI
   OVMF 
   (pkgs.writeShellScriptBin "qemu-system-x86_64-uefi" ''
@@ -292,12 +307,12 @@
   #spice-protocol
   win-virtio
   virtiofsd
-  poetry
+  #poetry
   #vivaldi
   #win-spice
   #quickemu
-	xfce.catfish
-	xfce.exo
+	#xfce.catfish
+	#xfce.exo
 	libxml2
 	libxslt
 	fd
@@ -310,8 +325,8 @@
   #winetricks
   ags
 	ghostscript
-	libsForQt5.qt5.qtquickcontrols2
-	libsForQt5.qt5.qtgraphicaleffects
+	#libsForQt5.qt5.qtquickcontrols2
+	#libsForQt5.qt5.qtgraphicaleffects
 	bc
 	xorg.xkill
 	xorg.xauth
@@ -328,31 +343,39 @@
   xfce.xfce4-settings
   waydroid
 	gtk3
-	xwayland
+	#xwayland
 	gtk4
   nix-prefetch-git
   wpgtk
 	gnome-multi-writer
-	waybar
+	#waybar
   swappy
+  postman
   wl-clipboard
   wf-recorder
+  socat
 	map-cmd
 	pavucontrol
 	nm-tray
 	killall
-  matugen
+  #matugen
   blueman
   gnome-power-manager
+  hyprlock
+  hyprpicker
   hyprshot
   hyprlandPlugins.hyprspace
   xorg.xrdb
-  networkmanagerapplet
+  #networkmanagerapplet
 	gammastep
 	lxqt.lxqt-policykit
-	geoclue2  
-	(waybar.overrideAttrs(oldAttrs: {mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];}))
+	#geoclue2  
   dunst
+  gdrive3
+  plocate
+  zeitgeist
+  xclip
+  cifs-utils
   ] ++ [
   	libnotify
   	swww
@@ -368,6 +391,7 @@
     (import ./scripts/mp4_to_wallp.nix { inherit pkgs; })
     (import ./scripts/phone_camera.nix { inherit pkgs; })
     (import ./scripts/push_sddm.nix { inherit pkgs; })
+    (import ./scripts/push_wallp.nix { inherit pkgs; })
     (import ./scripts/rebuild.nix { inherit pkgs; })
     (import ./scripts/record_screen.nix { inherit pkgs; })
     (import ./scripts/record_screen_as_camera.nix { inherit pkgs; })
@@ -392,6 +416,12 @@
     (import ./scripts/alttab.nix { inherit pkgs; })
     (import ./scripts/install.nix { inherit pkgs; })
     (import ./scripts/toggle_wifi.nix { inherit pkgs; })
+    (import ./scripts/swipe_up.nix { inherit pkgs; })
+    (import ./scripts/swipe_down.nix { inherit pkgs; })
+    (import ./scripts/launch_dock.nix { inherit pkgs; })
+    (import ./scripts/toggle_mpvpaper.nix { inherit pkgs; })
+    (import ./scripts/toggle_hyprpanel.nix { inherit pkgs; })
+    (import ./scripts/set_as_wallpaper.nix { inherit pkgs; })
 
   ];
   
@@ -419,6 +449,10 @@
     gnome-tour
   ]);
 
+  environment.variables = {
+    USER_DESCRIPTION = config.users.users.yaros.description;
+  };
+
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
    programs.mtr.enable = true;
    programs.gnupg.agent = {
@@ -426,23 +460,33 @@
      enableSSHSupport = true;
    };
 
-  # List services that you want to enable:
+  system.stateVersion = "unstable";
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    openFirewall = true;
+    settings = {
+      global = {
+        "server string" = "smbnix";
+        "netbios name" = "smbnix";
+        "security" = "user";
+        "hosts allow" = "192.168.31.231 192.168.122.151 127.0.0.1 localhost";
+        "hosts deny" = "0.0.0.0/0";
+      };
+      "shared" = {
+        "path" = "/home/yaros/shared";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "public" = "yes";
+      };
+    };
+  };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "unstable"; # Did you read the comment?
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
 
 }
