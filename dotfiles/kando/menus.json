@@ -440,7 +440,7 @@
                   "command": "steam --quiet steam://rungameid/1281930"
                 },
                 "name": "TmodLoader",
-                "icon": "Tmod.png",
+                "icon": "tmod.ico",
                 "iconTheme": "scalable"
               }
             ]

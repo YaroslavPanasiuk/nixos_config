@@ -1,16 +1,7 @@
 { lib, config, pkgs, inputs, ... }:
-
-let
-  backupScript = pkgs.writeShellScriptBin "backup_usb" ''
-    #!/usr/bin/env bash
-    notify-send -a "USB inserted" -i "/home/yaros/.config/dunst/power.png" -u low "USB" "Udev rule works!!"
-    cp -rf /home/yaros/backup /run/media/yaros/yaros_usb/yaros_backup
-  '';
-in
-
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -124,8 +115,6 @@ in
     password = "1";
   };
 
-  security.sudo.configFile = "yaros ALL=(ALL) NOPASSWD: ALL";
-
   services.greetd = {
     enable = true;
     settings = {
@@ -139,27 +128,6 @@ in
       };
     };
   };
-
-
-  #systemd.services.battery = {
-  #  wantedBy = [ "multi-user.target" ];
-  #  description = "Battery Level Checker";
-  #  serviceConfig = {
-  #    Restart="always";
-  #    RestartSec=60;
-  #   ExecStart="battery_listener.sh";
-  #  };
-  #};
-
-  #systemd.services.battery_reset = {
-  #  wantedBy = [ "multi-user.target" ];
-  #  description = "Battery Level Checker";
-  #  serviceConfig = {
-  #    Restart="always";
-  #    RestartSec=600;
-  #    ExecStart="battery_reset.sh";
-  #  };
-  #};
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -242,10 +210,6 @@ in
   services.udev.packages = [
     pkgs.android-udev-rules
   ];
-
-  services.udev.extraRules = ''
-    ACTION=="add", KERNEL=="sd*", ENV{ID_FS_LABEL}=="yaros_usb", RUN+="${backupScript}/bin/backup_usb"
-  '';
 
   environment.systemPackages = with pkgs; [
 	obsidian
@@ -463,10 +427,6 @@ in
     gnome-tour
   ]);
 
-  environment.variables = {
-    USER_DESCRIPTION = config.users.users.yaros.description;
-  };
-
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
    programs.mtr.enable = true;
    programs.gnupg.agent = {
@@ -484,7 +444,7 @@ in
         "server string" = "smbnix";
         "netbios name" = "smbnix";
         "security" = "user";
-        "hosts allow" = "192.168.31.231 192.168.122.151 127.0.0.1 localhost";
+        "hosts allow" = "192.168.31.231 192.168.122.156 127.0.0.1 localhost";
         "hosts deny" = "0.0.0.0/0";
       };
       "shared" = {

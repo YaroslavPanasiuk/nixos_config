@@ -28,6 +28,8 @@ sudo make install
 cd ..
 rm -rf ~/.walogram
 
+git clone https://github.com/YaroslavPanasiuk/obsidian.git ~/Documents/test
+
 wallp
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -37,3 +39,5 @@ cd ~/nixos
 git remote remove origin
 git remote add origin git@github.com:YaroslavPanasiuk/nixos_config.git
 generete_ssh.sh
+
+sudo smbpasswd yaros

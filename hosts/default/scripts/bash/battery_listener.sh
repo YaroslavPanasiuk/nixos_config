@@ -26,7 +26,7 @@ fi
 
 if [ "$BATTERY_STATUS" == "Discharging" ] && [ "$BATTERY_LEVEL" -le "$LOW_THRESHOLD" ] && [ "$last_message" != "low" ]; then
     notify-send -a "Low battery" -i "/home/yaros/.config/dunst/battery-status.png" "charge" "Low battery (${BATTERY_LEVEL}% left)"
-    echo "critical_low" > $filename
+    echo "low" > $filename
     exit
 fi
 
