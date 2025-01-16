@@ -68,9 +68,10 @@
       recursive = true;
       source = ./rofi;
     };
-    "dunst/dunstrc" = {
+    "dunst" = {
       enable = true;
-      source = ./dunst/dunstrc;
+      recursive = true;
+      source = ./dunst;
     };
     "hypr/greeting.conf" = {
       enable = true;
