@@ -2,15 +2,12 @@
 
 pkgs.writeShellScriptBin "swipe_down.sh" '' 
 #!/bin/sh
-if pidof nwg-dock-hyprland; then
+if [[ "$(cat ~/nixos/hosts/default/scripts/DOCK_STATUS.txt)" == "open" ]]; then
     pkill -f -37 nwg-dock-hyprland
+    echo "close" > ~/nixos/hosts/default/scripts/DOCK_STATUS.txt
     exit
 fi
 
-cat ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
-
-if [[ "$(cat ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt)" != "open" ]]; then
-    hyprctl dispatch overview:open
-    echo "open" > ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
-fi
+hyprctl dispatch overview:open
+echo "open" > ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
 ''

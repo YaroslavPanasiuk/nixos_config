@@ -27,10 +27,10 @@
 
       exec-once = [
         "hyprlock || hyprctl dispatch exit"
-        "hupridle"
+        "hypridle"
         "swww-daemon"
         #"sleep 2 && waybar"
-        #"dunst"
+        "pkill dunst"
         "hyprctl setcursor volantes_cursors 24"
         "sleep 2 && swipe_up.sh && swipe_down.sh"
         "lxqt-policykit-agent"
@@ -126,7 +126,15 @@
       workspace = [
         "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-
+        "1, persistent:true"
+        "2, persistent:true"
+        "3, persistent:true"
+        "4, persistent:true"
+        "5, persistent:true"
+        "6, persistent:true"
+        "7, persistent:true"
+        "8, persistent:true"
+        "9, persistent:true"
       ];
 
       bind = [
@@ -259,7 +267,7 @@
         gapsIn = 0;
         gapsOut = 0;
         workspaceMargin = 7;
-        reservedArea = 38;
+        reservedArea = 0;
         disableBlur = "true";
         workspaceActiveBackground = "$color3"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour3})";
         workspaceInactiveBackground = "$color4"; #" #rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour4})";
