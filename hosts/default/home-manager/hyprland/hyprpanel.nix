@@ -58,7 +58,7 @@
           rightClick = "hyprctl dispatch killactive";
         };
         workspaces = {
-          show_icons = true;
+          #show_icons = true;
           #workspaceMask = true;
           scroll_speed = 1;
           showAllActive = true;

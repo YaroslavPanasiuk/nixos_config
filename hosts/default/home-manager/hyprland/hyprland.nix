@@ -21,7 +21,7 @@
 
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
-      "$menu" = "layout_msg.sh us && rofi -show drun -config ~/nixos/hosts/default/rofi/config.rasi";
+      "$menu" = "layout_msg.sh us && rofi -show drun";
       "$browser" = "firefox";
       "$mainMod" = "SUPER";
 
@@ -275,7 +275,9 @@
         workspaceInactiveBorder = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
         dragAlpha = "0.7";
         workspaceBorderSize = 2;
-        panelHeight = 200;
+        panelHeight = 118;
+        #autoDrag = false;
+        autoScroll = true;
         #onBottom = true;
       };
 
