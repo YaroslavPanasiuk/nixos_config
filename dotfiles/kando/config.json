@@ -4,10 +4,10 @@
   "darkMenuTheme": "default",
   "menuThemeColors": {
     "clean-circle": {
-      "action-icon-color": "#41469D",
-      "submenu-icon-color": "#A22D93",
-      "background-color": "#020217",
-      "text-color": "#d3d5e8"
+      "action-icon-color": "#5D5C6B",
+      "submenu-icon-color": "#9A5E66",
+      "background-color": "#070710",
+      "text-color": "#acb5ba"
     },
     "default": {
       "text-color": "rgba(60, 60, 60, 1)"
@@ -25,6 +25,8 @@
   "soundTheme": "none",
   "soundVolume": 0.5,
   "sidebarVisible": false,
+  "ignoreWriteProtectedConfigFiles": false,
+  "trayIconFlavor": "color",
   "enableVersionCheck": false,
   "zoomFactor": 1,
   "menuOptions": {

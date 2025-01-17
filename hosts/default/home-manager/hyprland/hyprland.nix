@@ -32,14 +32,14 @@
         #"sleep 2 && waybar"
         #"dunst"
         "hyprctl setcursor volantes_cursors 24"
-        "sleep 2 && launch_dock.sh && pkill -f -37 nwg-dock-hyprland"
+        "sleep 2 && swipe_up.sh && swipe_down.sh"
         "lxqt-policykit-agent"
         "systemctl --user start battery"
         "systemctl --user start battery_reset"
         "kando"
         "touchegg"
         "thunar --daemon"
-        "sleep 5 && hyprpanel useTheme $HOME/.cache/wal/hyprbar.json"
+        "sleep 5 && hyprpanel useTheme /home/yaros/.cache/wal/hyprbar.json"
       ];
 
       general = { 
@@ -283,23 +283,23 @@
 
       
 
-      #"plugin:hyprtasking" = {
-      #  layout = "grid";
-      #  gap_size = 20;
-      #  bg_color = "$background";
-      #  border_size = 4;
-      #  exit_behavior = "active hovered interacted original";
-      #  gaps = {
-      #      rows = 3;
-      #  };
-      #  linear = {
-      #      height = 300;
-      #      scroll_speed = "1.1";
-      #  };
-      #  grid = {
-      #    rows = 3;
-      #  };
-      #};
+      "plugin:hyprtasking" = {
+        layout = "grid";
+        gap_size = 20;
+        bg_color = "$background";
+        border_size = 4;
+        exit_behavior = "active hovered interacted original";
+        gaps = {
+            rows = 3;
+        };
+        linear = {
+            height = 300;
+            scroll_speed = "1.1";
+        };
+        grid = {
+          rows = 3;
+        };
+      };
 
     };
 

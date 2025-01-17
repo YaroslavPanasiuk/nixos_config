@@ -58,10 +58,19 @@
     };
 
     configFile = {
-    "kando" = {
-      enable = false;
+    "kando/icon-themes" = {
+      enable = true;
       recursive = true;
-      source = ./kando;
+      source = ./kando/icon-themes;
+    };
+    "kando/menu-themes" = {
+      enable = true;
+      recursive = true;
+      source = ./kando/menu-themes;
+    };
+    "kando/menus.json" = {
+      enable = true;
+      source = ./kando/menus.json;
     };
     "rofi" = {
       enable = true;
@@ -72,10 +81,6 @@
       enable = true;
       recursive = true;
       source = ./dunst;
-    };
-    "hypr/greeting.conf" = {
-      enable = true;
-      source = ./hyprland/greeting.conf;
     };
     "vlc" = {
       enable = true;

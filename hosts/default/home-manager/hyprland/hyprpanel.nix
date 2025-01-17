@@ -3,48 +3,19 @@
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
   
   programs.hyprpanel = {
-
-    # Enable the module.
-    # Default: false
     enable = true;
     overlay.enable = true;
-
-    # Automatically restart HyprPanel with systemd.
-    # Useful when updating your config so that you
-    # don't need to manually restart it.
-    # Default: false
-    systemd.enable = true;
-
-    # Add '/nix/store/.../hyprpanel' to the
-    # 'exec-once' in your Hyprland config.
-    # Default: false
     hyprland.enable = true;
-
-    # Fix the overwrite issue with HyprPanel.
-    # See below for more information.
-    # Default: false
     overwrite.enable = true;
-
-    # Import a specific theme from './themes/*.json'.
-    # Default: ""
-    #theme = "/home/yaros/.cache/wal/";
-
-    # Configure bar layouts for monitors.
-    # See 'https://hyprpanel.com/configuration/panel.html'.
-    # Default: null
     layout = {
       "bar.layouts" = {
         "0" = {
-          left = [ "dashboard" "systray" "windowtitle" "media" ];
+          left = [ "dashboard" "systray" "windowtitle" "media" "cava" ];
           middle = [ "workspaces" ];
           right = [ "kbinput" "network" "bluetooth" "volume" "battery" "clock" "notifications" ];
         };
       }; 
     };
-
-    # Configure and theme *most* of the options from the GUI.
-    # See './nix/module.nix:103'.
-    # Default: <same as gui>
     settings = {
       bar = {
         launcher = {
@@ -65,6 +36,13 @@
         customModules.kbLayout = {
           leftClick = "layout_msg.sh";
         };
+        
+        customModules.cava = {
+          showActiveOnly = true;
+          showIcon = false;
+          bars = 10;
+        };
+        
         network = {
           truncation_size = 3;
           rightClick = "toggle_wifi.sh";

@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #firefox-addons = {
-    #  url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,24 +29,18 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    #hyprland.url = "github:hyprwm/Hyprland";
     hyprpanel = {
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ags.url = "github:Aylur/ags";
-    stylix.url = "github:danth/stylix";
+    #ags.url = "github:Aylur/ags";
+    #stylix.url = "github:danth/stylix";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
-
-    #pywal-nix = {
-    #  url = "github:Fuwn/pywal.nix";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

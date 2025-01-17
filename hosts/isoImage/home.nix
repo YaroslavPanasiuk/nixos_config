@@ -7,7 +7,7 @@
     ./home-manager/waybar/waybar.nix
     ./home-manager/dunst/dunst.nix
     #./home-manager/firefox.nix
-    inputs.pywal-nix.homeManagerModules.x86_64-linux.default
+    #inputs.pywal-nix.homeManagerModules.x86_64-linux.default
   ];
 
   nixpkgs = {

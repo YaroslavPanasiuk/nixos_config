@@ -354,6 +354,11 @@
     "theme.bar.buttons.modules.hypridle.text": "{foreground}",
     "theme.bar.buttons.modules.hypridle.border": "{color6}",
     "theme.bar.menus.menu.network.scroller.color": "{color11}",
-    "theme.bar.menus.menu.bluetooth.scroller.color": "{color14}"
+    "theme.bar.menus.menu.bluetooth.scroller.color": "{color14}",
+    "theme.bar.buttons.modules.cava.text": "{foreground}",
+    "theme.bar.buttons.modules.cava.background": "{background}00",
+    "theme.bar.buttons.modules.cava.icon_background": "{background}00",
+    "theme.bar.buttons.modules.cava.icon": "{foreground}",
+    "theme.bar.buttons.modules.cava.border": "{color4}00"
   }}
   

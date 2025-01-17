@@ -25,7 +25,7 @@
     "soundTheme": "none",
     "soundVolume": 0.5,
     "sidebarVisible": false,
-    "enableVersionCheck": true,
+    "enableVersionCheck": false,
     "zoomFactor": 1,
     "menuOptions": {{
       "centerDeadZone": 50,
@@ -45,8 +45,8 @@
       "gamepadCloseButton": 2
     }},
     "editorOptions": {{
-      "showSidebarButtonVisible": true,
-      "showEditorButtonVisible": true
+      "showSidebarButtonVisible": false,
+      "showEditorButtonVisible": false
     }}
   }}
   
