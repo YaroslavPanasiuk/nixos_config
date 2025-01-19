@@ -16,7 +16,7 @@
 
     settings = {
       
-      source = "/home/yaros/.cache/wal/colors-hyprland.conf";
+      source = "$HOME/.cache/wal/colors-hyprland.conf";
       monitor = ",preferred,auto,1"; 
 
       "$terminal" = "kitty";
@@ -32,14 +32,14 @@
         #"sleep 2 && waybar"
         "pkill dunst"
         "hyprctl setcursor volantes_cursors 24"
-        "sleep 2 && swipe_up.sh && swipe_down.sh"
+        "sleep 2 && hyprctl dispatch overview:close"
         "lxqt-policykit-agent"
         "systemctl --user start battery"
         "systemctl --user start battery_reset"
         "kando"
         "touchegg"
         "thunar --daemon"
-        "sleep 5 && hyprpanel useTheme /home/yaros/.cache/wal/hyprbar.json"
+        "sleep 5 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
       ];
 
       general = { 

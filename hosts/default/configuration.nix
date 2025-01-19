@@ -1,4 +1,7 @@
 { lib, config, pkgs, inputs, ... }:
+let
+  user = "yaros";
+in
 {
   imports =
     [
@@ -40,7 +43,7 @@
   
   home-manager = {
     users = {
-      "yaros" = import ./home.nix;
+      ${user} = import ./home.nix;
     };
     extraSpecialArgs = { inherit inputs; };
     backupFileExtension = "hm-backup";
@@ -90,7 +93,7 @@
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   #sound.enable = true;
   services.pipewire = {
@@ -108,11 +111,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.yaros = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "Yaroslav Panasiuk";
     extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers"];
-    password = "1";
   };
 
   services.greetd = {
@@ -120,7 +121,7 @@
     settings = {
       initial_session = {
         command = "Hyprland";
-        user = "yaros";
+        user = "${user}";
       };
       default_session = {
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd Hyprland";
@@ -360,10 +361,7 @@
   ] ++ [
     (import ./scripts/volume.nix { inherit pkgs; })
     (import ./scripts/backup.nix { inherit pkgs; })
-    (import ./scripts/battery_listener.nix { inherit pkgs; })
-    (import ./scripts/battery_reset.nix { inherit pkgs; })
     (import ./scripts/brightness.nix { inherit pkgs; })
-    (import ./scripts/layout_msg.nix { inherit pkgs; })
     (import ./scripts/mp4_to_wallp.nix { inherit pkgs; })
     (import ./scripts/phone_camera.nix { inherit pkgs; })
     (import ./scripts/push_sddm.nix { inherit pkgs; })
@@ -448,7 +446,7 @@
         "hosts deny" = "0.0.0.0/0";
       };
       "shared" = {
-        "path" = "/home/yaros/shared";
+        "path" = "$HOME/Public";
         "browseable" = "yes";
         "read only" = "no";
         "guest ok" = "no";

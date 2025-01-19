@@ -6,7 +6,6 @@ pkgs.writeShellScriptBin "brightness.sh" ''
 
 function send_notification {
 	echo "changing brightness"
-    #dunstify -a "volume_notification" "volume" -i "/home/yaros/.config/dunst/brightness.png" -h int:value:$(($(brightnessctl get) * 100 / $(brightnessctl max))) -r 2593 -u normal "Brightness: "
 }
 
 case $1 in

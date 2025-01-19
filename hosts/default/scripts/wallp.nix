@@ -17,15 +17,15 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -n "$file" ]]; then
-    if [[ -f "/home/yaros/shared/Wallpapers/$file" ]]; then
+    if [[ -f "$HOME/Public/Wallpapers/$file" ]]; then
         echo "Using image: $file"
-        swww img "/home/yaros/shared/Wallpapers/$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2
+        swww img "$HOME/Public/Wallpapers/$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2
     else
-        echo "File does not exist: /home/yaros/shared/Wallpapers/$file"
+        echo "File does not exist: $HOME/Public/Wallpapers/$file"
     fi
 else
     echo "No file provided. Proceeding with a random image."
-    DIR=~/shared/Wallpapers/
+    DIR=~/Public/Wallpapers/
     PICS=($(ls ''${DIR}))
     RANDOMPICS=''${PICS[ $RANDOM % ''${#PICS[@]} ]}
     swww img ''${DIR}/''${RANDOMPICS} --transition-fps 60 --transition-type grow --transition-pos 20,1060  --transition-duration 3

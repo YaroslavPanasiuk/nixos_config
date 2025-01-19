@@ -16,7 +16,6 @@ function is_mute {
 
 function send_notification {
     volume=`get_volume`
-    #dunstify -a "volume_notification" "volume" -i "/home/yaros/.config/dunst/volume(1).png" -h int:value:$(($(echo $volume | awk '{printf "%3d ",$1*100}'))) -r 2593 -u normal "Volume: "
 }
 
     
@@ -41,7 +40,6 @@ case $1 in
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 	if is_mute ; then
 		echo "is mute"
-	    #dunstify -a "volume_notification" "muted" -i "/home/yaros/.config/dunst/volume-mute.png" -r 2593 -u normal "Muted"
 	else
 	    send_notification
 	fi

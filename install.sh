@@ -3,14 +3,16 @@
 nix-shell -p git --command "git clone https://github.com/YaroslavPanasiuk/nixos_config.git ~/nixos"
 echo "done cloning"
 
-mkdir ~/shared
-mkdir ~/shared/Projects
-mkdir ~/shared/Wallpapers
-mkdir ~/shared/CurrentWallpaper
-mkdir ~/shared/CurrentWallpaper/Windows
+sed -i "s/yaros/$USER/g" ~/nixos/hosts/default/configuration.nix
+sed -i "s/yaros/$USER/g" ~/nixos/hosts/default/home.nix
+sed -i "s/yaros/$USER/g" ~/nixos/hosts/default/home-manager/services.nix
+
+mkdir ~/Public/Wallpapers
+mkdir ~/Public/CurrentWallpaper
+mkdir ~/Public/CurrentWallpaper/Windows
 mkdir ~/Videos/recordings
 
-cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/shared/Wallpapers/1.jpg
+cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/Public/Wallpapers/1.jpg
 
 cp -rf ~/nixos/dotfiles/kando ~/.config/kando
 cp -rf ~/nixos/dotfiles/touchegg ~/.config/touchegg
@@ -40,4 +42,4 @@ git remote remove origin
 git remote add origin git@github.com:YaroslavPanasiuk/nixos_config.git
 #generate_ssh.sh
 
-sudo smbpasswd yaros
+sudo smbpasswd $USER

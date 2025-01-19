@@ -2,7 +2,7 @@
 
 pkgs.writeShellScriptBin "wallpaper_change.sh" '' 
 #!/bin/sh
-DIR=~/shared/Wallpapers/
+DIR=~/Public/Wallpapers/
 PICS=($(ls ''${DIR}))
 
 RANDOMPICS=''${PICS[ $RANDOM % ''${#PICS[@]} ]}

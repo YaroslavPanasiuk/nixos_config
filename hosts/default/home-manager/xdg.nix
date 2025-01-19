@@ -82,11 +82,6 @@
       recursive = true;
       source = ./dunst;
     };
-    "vlc" = {
-      enable = true;
-      recursive = true;
-      source = ./vlc;
-    };
     "wal" = {
       enable = true;
       recursive = true;

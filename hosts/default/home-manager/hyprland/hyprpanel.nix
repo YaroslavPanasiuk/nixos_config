@@ -87,7 +87,7 @@
           directories = {
             left = {
               directory1.command = "thunar";
-              directory1.label = "󱂵 yaros";
+              directory1.label = "󱂵 home";
               directory2.command = "thunar Downloads";
               directory2.label = "󰉍 Downloads";
               directory3.command = "thunar Documents";

@@ -6,14 +6,13 @@ pkgs.writeShellScriptBin "backup.sh" ''
 mkdir ~/backup
 cp -rf ~/.cache ~/backup
 cp -rf ~/.config ~/backup
-cp -rf ~/shared ~/backup
+cp -rf ~/Public ~/backup
 cp -rf ~/Documents ~/backup
 cp -rf ~/nixos ~/backup
 
-cp -rf ~/.config/kando ~/nixos/dotfiles
 cp -rf ~/.config/touchegg ~/nixos/dotfiles
 
-cp -rf ~/backup /run/media/yaros/yaros_usb/yaros_backup
+cp -rf ~/backup /run/media/$USER/yaros_usb/$USER_backup
 
 cd ~/nixos
 git add .

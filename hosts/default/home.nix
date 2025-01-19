@@ -1,5 +1,7 @@
 { config, pkgs, inputs, ... }:
-
+let
+  user = "yaros";
+in
 {
   imports = [
     ./home-manager/hyprland/hyprland.nix
@@ -28,9 +30,9 @@
   };
 
   home = {
-    username = "yaros";
+    username = "${user}";
     stateVersion = "24.11";
-    homeDirectory = "/home/yaros";
+    homeDirectory = "/home/${user}";
     packages = with pkgs;[
       davinci-resolve
       #hyprpanel

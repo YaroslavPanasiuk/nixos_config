@@ -8,13 +8,13 @@ extension="''${path##*.}"
 echo $extension
 parent_folder=$(dirname "$path")
 
-if [[ $parent_folder"" == "$HOME/shared/Wallpapers" ]]; then
+if [[ $parent_folder"" == "$HOME/Public/Wallpapers" ]]; then
     wallp $(basename "$path")
     exit
 fi
 
 name_file() {
-    local folder="$HOME/shared/Wallpapers"  # The folder to check, default is current directory
+    local folder="$HOME/Public/Wallpapers"  # The folder to check, default is current directory
     local counter=1         # Start numbering files from 1
 
     while true; do

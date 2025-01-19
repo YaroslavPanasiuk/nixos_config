@@ -66,26 +66,10 @@
           #{nixpkgs.overlays = [inputs.hyprpanel.overlay];}   
         ];
       };
-
-      workmachine = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/default/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
-
-      exampleIso = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/isoImage/configuration.nix
-          inputs.home-manager.nixosModules.default
-        ];
-      };
       
     };
 
-    homeConfigurations.yaros = inputs.home-manager.lib.homeManagerConfiguration {
+    homeConfigurations.default_user = inputs.home-manager.lib.homeManagerConfiguration {
       #pkgs = nixpkgs.legacyPackages."x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;

@@ -5,7 +5,7 @@ pkgs.writeShellScriptBin "mp4_to_wallp.sh" ''
 
 name_file() {
     echo "$extention"
-    local folder="/home/yaros/shared/Wallpapers"  # The folder to check, default is current directory
+    local folder="$HOME/Public/Wallpapers"  # The folder to check, default is current directory
     local counter=1         # Start numbering files from 1
 
     # Ensure the extension starts with a dot

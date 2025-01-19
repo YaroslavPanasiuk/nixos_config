@@ -342,7 +342,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty  --hold --detach home-manager -b backup switch --flake ~/nixos/#yaros",
+                  "command": "kitty  --hold --detach home-manager -b backup switch --flake ~/nixos/#default_user",
                   "delayed": false
                 },
                 "name": "Switch",

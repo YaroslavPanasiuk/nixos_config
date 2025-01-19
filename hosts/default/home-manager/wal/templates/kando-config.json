@@ -4,7 +4,7 @@
     "darkMenuTheme": "default",
     "menuThemeColors": {{
       "clean-circle": {{
-        "action-icon-color": "{color1}",
+        "action-icon-color": "{foreground}",
         "submenu-icon-color": "{color3}",
         "background-color": "{background}",
         "text-color": "{foreground}"

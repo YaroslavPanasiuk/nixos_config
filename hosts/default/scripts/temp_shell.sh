@@ -1,53 +1,36 @@
+force=false
+file=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -f|--force)
+            force=true
+            shift # Move to the next argument
+            ;;
+        *)
+            file="$1"
+            shift # Move to the next argument
+            ;;
+    esac
+done
 
-path=$1
-extension="${path##*.}"
-echo $extension
-parent_folder=$(dirname "$path")
-
-if [[ $parent_folder"" == "$HOME/shared/Wallpapers" ]]; then
-    wallp $(basename "$path")
-    exit
+if [[ -n "$file" ]]; then
+    if [[ -f "$HOME/Public/Wallpapers/$file" ]]; then
+        echo "Using image: $file"
+        swww img "$HOME/Public/Wallpapers/$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2
+    else
+        echo "File does not exist: $HOME/Public/Wallpapers/$file"
+    fi
+else
+    echo "No file provided. Proceeding with a random image."
+    DIR=~/Public/Wallpapers/
+    PICS=($(ls ''${DIR}))
+    RANDOMPICS=''${PICS[ $RANDOM % ''${#PICS[@]} ]}
+    swww img ''${DIR}/''${RANDOMPICS} --transition-fps 60 --transition-type grow --transition-pos 20,1060  --transition-duration 3
 fi
 
-name_file() {
-    local folder="$HOME/shared/Wallpapers"  # The folder to check, default is current directory
-    local counter=1         # Start numbering files from 1
-
-    while true; do
-        local filename="$folder/$counter$1"
-        if [[ ! -e "$filename" ]]; then
-            echo $filename
-            return 0
-        fi
-        ((counter++))
-    done
-}
-
-destination=""
-
-case $extension in
-    jpg)
-        destination=$(echo "$(name_file .jpg)" | tr -d '\n')
-        cp $path $destination
-        ;;
-    png)
-        destination=$(echo "$(name_file .jpg)" | tr -d '\n')
-        convert $path $destination
-        ;;
-    gif)
-        destination=$(echo "$(name_file _GIF_.jpg)" | tr -d '\n')
-        mp4_to_wallp.sh $path gif
-        ;;
-    mp4)
-        destination=$(echo "$(name_file _MP4_.jpg)" | tr -d '\n')
-        mp4_to_wallp.sh $path mp4
-        ;;
-    *)
-        exit
-        ;;
-esac
-
-if [[ -n "$destination" ]]; then
-    echo $destination
-    wallp $(basename "$destination")
+if [[ "$force" == true ]]; then
+    echo "The system will rebuild"
+    post_setting.sh -f
+else
+    post_setting.sh
 fi

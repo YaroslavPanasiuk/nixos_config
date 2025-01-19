@@ -38,11 +38,11 @@ cp ~/.cache/wal/colors-sddm.conf ~/nixos/hosts/default/sddm/sddm-sugar-dark/them
 #cp ~/.cache/wal/kando-theme.json5 ~/.config/kando/menu-themes/nether-labels/theme.json5 
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json 
 #cp "/$path" ~/nixos/hosts/default/sddm/sddm-sugar-dark/Background.jpg
-cp "/$path" ~/shared/CurrentWallpaper/Windows/Background1.jpg
-cp "/$path" ~/shared/CurrentWallpaper/Windows/Background2.jpg
-convert /$path ~/shared/CurrentWallpaper/Background.png
-magick /$path -blur 0x10 -fill black -colorize 50% ~/shared/CurrentWallpaper/BlurredBackground.jpg
-magick /$path -blur 0x17 -fill black -colorize 70% ~/shared/CurrentWallpaper/VeryBlurredBackground.jpg
+cp "/$path" ~/Public/CurrentWallpaper/Windows/Background1.jpg
+cp "/$path" ~/Public/CurrentWallpaper/Windows/Background2.jpg
+convert /$path ~/Public/CurrentWallpaper/Background.png
+magick /$path -blur 0x10 -fill black -colorize 50% ~/Public/CurrentWallpaper/BlurredBackground.jpg
+magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 #cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
 
