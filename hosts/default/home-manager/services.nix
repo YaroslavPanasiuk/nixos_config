@@ -10,7 +10,7 @@
       Service = {
         Restart="always";
         RestartSec=30;
-        ExecStart="/home/yaros/nixos/hosts/default/scripts/bash/battery_listener.sh";
+        ExecStart="/home/slavko/nixos/hosts/default/scripts/bash/battery_listener.sh";
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];
@@ -24,7 +24,7 @@
       Service = {
         Restart="always";
         RestartSec=900;
-        ExecStart="/home/yaros/nixos/hosts/default/scripts/bash/battery_reset.sh";
+        ExecStart="/home/slavko/nixos/hosts/default/scripts/bash/battery_reset.sh";
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];

@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  user = "yaros";
+  user = "slavko";
 in
 {
   imports = [

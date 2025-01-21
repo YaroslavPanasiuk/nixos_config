@@ -42,4 +42,4 @@ git remote remove origin
 git remote add origin git@github.com:YaroslavPanasiuk/nixos_config.git
 #generate_ssh.sh
 
-sudo smbpasswd $USER
+sudo smbpasswd -a $USER

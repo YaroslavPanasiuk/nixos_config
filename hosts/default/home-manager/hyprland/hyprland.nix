@@ -21,7 +21,7 @@
 
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
-      "$menu" = "layout_msg.sh us && rofi -show drun";
+      "$menu" = "set_layout.sh us && rofi -show drun";
       "$browser" = "firefox";
       "$mainMod" = "SUPER";
 
@@ -29,7 +29,6 @@
         "hyprlock || hyprctl dispatch exit"
         "hypridle"
         "swww-daemon"
-        #"sleep 2 && waybar"
         "pkill dunst"
         "hyprctl setcursor volantes_cursors 24"
         "sleep 2 && hyprctl dispatch overview:close"
@@ -138,7 +137,7 @@
       ];
 
       bind = [
-        "$mainMod, Q, exec, layout_msg.sh us && $terminal"
+        "$mainMod, Q, exec, set_layout.sh us && $terminal"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, E, exec, $fileManager"
@@ -202,8 +201,8 @@
         "$mainMod SHIFT, C, exec, phone_camera.sh"
         "$mainMod ALT, C, exec, phone_camera.sh -c"
 
-        "Shift_L, Alt_L, exec, layout_msg.sh"
-        "Alt_L, Shift_L, exec, layout_msg.sh"
+        "Shift_L, Alt_L, exec, set_layout.sh"
+        "Alt_L, Shift_L, exec, set_layout.sh"
         
         "Control_L, bracketleft, exec, echo 'multiply speed 0.9' | socat - /tmp/mpv-socket"
         "Control_L, bracketright, exec, echo 'multiply speed 1.1' | socat - /tmp/mpv-socket"

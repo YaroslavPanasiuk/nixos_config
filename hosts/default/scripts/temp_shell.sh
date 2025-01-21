@@ -1,36 +1,12 @@
-force=false
-file=""
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        -f|--force)
-            force=true
-            shift # Move to the next argument
-            ;;
-        *)
-            file="$1"
-            shift # Move to the next argument
-            ;;
-    esac
-done
-
-if [[ -n "$file" ]]; then
-    if [[ -f "$HOME/Public/Wallpapers/$file" ]]; then
-        echo "Using image: $file"
-        swww img "$HOME/Public/Wallpapers/$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2
-    else
-        echo "File does not exist: $HOME/Public/Wallpapers/$file"
-    fi
-else
-    echo "No file provided. Proceeding with a random image."
-    DIR=~/Public/Wallpapers/
-    PICS=($(ls ''${DIR}))
-    RANDOMPICS=''${PICS[ $RANDOM % ''${#PICS[@]} ]}
-    swww img ''${DIR}/''${RANDOMPICS} --transition-fps 60 --transition-type grow --transition-pos 20,1060  --transition-duration 3
+#!/bin/sh
+if [[ "$(cat ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt)" == "open" ]]; then
+    hyprctl dispatch overview:close
+    echo "close" > ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
+    exit
 fi
 
-if [[ "$force" == true ]]; then
-    echo "The system will rebuild"
-    post_setting.sh -f
-else
-    post_setting.sh
+if ! pidof nwg-dock-hyprland; then
+    launch_dock.sh
 fi
+pkill -f -36 nwg-dock-hyprland
+echo "open" > ~/nixos/hosts/default/scripts/DOCK_STATUS.txt
