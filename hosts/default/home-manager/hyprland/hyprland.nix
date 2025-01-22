@@ -38,7 +38,7 @@
         "kando"
         "touchegg"
         "thunar --daemon"
-        "sleep 5 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
+        #"sleep 5 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
       ];
 
       general = { 
