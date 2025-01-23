@@ -54,10 +54,11 @@
 
       gestures = {
           workspace_swipe = "true";
-          workspace_swipe_distance = 60;
-          workspace_swipe_min_speed_to_force = 50;
+          workspace_swipe_distance = 1500;
+          workspace_swipe_min_speed_to_force = 5;
           workspace_swipe_min_fingers = "true";
-          workspace_swipe_cancel_ratio = "0.5";
+          workspace_swipe_cancel_ratio = "0.1";
+          workspace_swipe_direction_lock = false;
           workspace_swipe_touch = "true";
           workspace_swipe_invert = "true";
           #workspace_swipe_create_new = "false";
@@ -72,7 +73,7 @@
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
           "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          "workspaces, 1, 7, default"
           "layersIn, 1, 3, default, slide 50%"
         ];
       };
@@ -258,7 +259,7 @@
 
       "plugin:overview" = {
         drawActiveWorkspace = true;
-        overrideAnimSpeed = "0.01";
+        overrideAnimSpeed = "5";
         #exitOnSwitch = "true";
         disableGestures = "true";
         showEmptyWorkspace = "true";
@@ -267,7 +268,7 @@
         gapsOut = 0;
         workspaceMargin = 7;
         reservedArea = 0;
-        disableBlur = "true";
+        disableBlur = true;
         workspaceActiveBackground = "$color3"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour3})";
         workspaceInactiveBackground = "$color4"; #" #rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour4})";
         workspaceActiveBorder = "$color1"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1})";
