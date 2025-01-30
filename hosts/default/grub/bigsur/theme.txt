@@ -45,7 +45,7 @@ terminal-box: "terminal_*.png"
     item_spacing = 35
     menu_pixmap_style = "boot_menu_*.png"
     item_font = "Unifont Regular 16"
-    item_color = "#757575"
+    item_color = "#353535"
     item_pixmap_style = "item_*.png"
     selected_item_color = "#ffffff"
     selected_item_pixmap_style = "select_*.png"
