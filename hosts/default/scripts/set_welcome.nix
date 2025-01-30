@@ -16,5 +16,5 @@ echo "$greeting"
 
 echo "\$greeting = $greeting" > ~/.config/hypr/greeting.conf
 
-sed -i  "s/^.*HeaderText=.*$/HeaderText=''${greeting}/" ~/nixos/hosts/default/sddm/sddm-sugar-dark/theme.conf
+#sed -i  "s/^.*HeaderText=.*$/HeaderText=''${greeting}/" ~/nixos/hosts/default/sddm/sddm-sugar-dark/theme.conf
 ''

@@ -3,9 +3,8 @@
 nix-shell -p git --command "git clone https://github.com/YaroslavPanasiuk/nixos_config.git ~/nixos"
 echo "done cloning"
 
-sed -i "s/yaros/$USER/g" ~/nixos/hosts/default/configuration.nix
-sed -i "s/yaros/$USER/g" ~/nixos/hosts/default/home.nix
-sed -i "s/yaros/$USER/g" ~/nixos/hosts/default/home-manager/services.nix
+sed -i "s/__user__/$USER/g" ~/nixos/hosts/default/configuration_modules/user.nix
+sed -i "s/__home__/$HOME/g" ~/nixos/hosts/default/configuration_modules/user.nix
 
 mkdir ~/Public/Wallpapers
 mkdir ~/Public/CurrentWallpaper
@@ -18,7 +17,7 @@ cp -rf ~/nixos/dotfiles/kando ~/.config/kando
 cp -rf ~/nixos/dotfiles/touchegg ~/.config/touchegg
 
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
-sudo nixos-rebuild switch --flake ~/nixos#default;
+sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#default;
 
 swww-daemon
 wal -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg

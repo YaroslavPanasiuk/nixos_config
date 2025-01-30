@@ -30,5 +30,19 @@
         WantedBy = [ "graphical-session.target" ];
       };
     };
+
+    hyprpanel_theme = {
+      Unit = {
+        Description = "Set hyrpanel theme";
+      };
+      Service = {
+        Restart="always";
+        RestartSec=900;
+        ExecStart="/home/slavko/nixos/hosts/default/scripts/bash/battery_reset.sh";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
   };
 }

@@ -72,6 +72,10 @@
       enable = true;
       source = ./kando/menus.json;
     };
+    #"kando/config.json" = {
+    #  enable = true;
+    #  source = ./kando/config.json;
+    #};
     "rofi" = {
       enable = true;
       recursive = true;

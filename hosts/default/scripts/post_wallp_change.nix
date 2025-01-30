@@ -29,19 +29,22 @@ if pidof -qx "rofi"; then
  	rofi -show drun -config ~/.config/wofi/config.rasi # && echo "set rofi"
 fi
 
+cat ~/.cache/wal/colors | while read -r color; do
+  echo -en "\e]P${color:1}\e\\"
+done
+
 #pkill -f nwg-dock-hyprland
 launch_dock.sh &
 pkill -f -37 nwg-dock-hyprland
 
-cp ~/.cache/wal/colors-sddm.conf ~/nixos/hosts/default/sddm/sddm-sugar-dark/theme.conf
-#cp ~/.cache/wal/_variables.css ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/_variables.css
-#cp ~/.cache/wal/kando-theme.json5 ~/.config/kando/menu-themes/nether-labels/theme.json5 
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json 
-#cp "/$path" ~/nixos/hosts/default/sddm/sddm-sugar-dark/Background.jpg
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background1.jpg
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background2.jpg
 convert /$path ~/Public/CurrentWallpaper/Background.png
 magick /$path -blur 0x10 -fill black -colorize 50% ~/Public/CurrentWallpaper/BlurredBackground.jpg
+cp ~/Public/CurrentWallpaper/BlurredBackground.jpg ~/nixos/hosts/default/grub/bigsur/background.jpg
+convert ~/Public/CurrentWallpaper/BlurredBackground.jpg ~/Public/CurrentWallpaper/BlurredBackground.png
+cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/slavko/yaros_usb/ventoy/themes/bigsur/background.png
 magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 #cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
