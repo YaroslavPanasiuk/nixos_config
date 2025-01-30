@@ -4,7 +4,6 @@ nix-shell -p git --command "git clone https://github.com/YaroslavPanasiuk/nixos_
 echo "done cloning"
 
 sed -i "s/__user__/$USER/g" ~/nixos/hosts/default/configuration_modules/user.nix
-sed -i "s/__home__/$HOME/g" ~/nixos/hosts/default/configuration_modules/user.nix
 
 mkdir ~/Public/Wallpapers
 mkdir ~/Public/CurrentWallpaper

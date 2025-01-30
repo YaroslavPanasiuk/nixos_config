@@ -5,14 +5,13 @@ pkgs.writeShellScriptBin "backup.sh" ''
 
 mkdir ~/backup
 
+sed -i "s/$USER/__user__/g" ~/nixos/hosts/default/configuration_modules/user.nix
+
 cp -rf ~/.cache ~/backup
 cp -rf ~/.config ~/backup
 cp -rf ~/Public ~/backup
 cp -rf ~/Documents ~/backup
 cp -rf ~/nixos ~/backup
-
-sed -i "s/$USER/__user__/g" ~/backup/nixos/hosts/default/configuration_modules/user.nix
-sed -i "s/$HOME/__home__/g" ~/backup/nixos/hosts/default/configuration_modules/user.nix
 
 cp -rf ~/.config/touchegg ~/nixos/dotfiles
 
@@ -27,5 +26,8 @@ cd ~/Documents/test
 git add .
 git commit -m "message"
 git push -f origin main
+
+sed -i "s/__user__/$USER/g" ~/nixos/hosts/default/configuration_modules/user.nix
+
 
 ''
