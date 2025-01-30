@@ -46,6 +46,7 @@ terminal-box: "terminal_*.png"
     menu_pixmap_style = "boot_menu_*.png"
     item_font = "Unifont Regular 16"
     item_color = "#ffffff"
+    item_pixmap_style = "item_*.png"
     selected_item_color = "#ffffff"
     selected_item_pixmap_style = "select_*.png"
     scrollbar = true
