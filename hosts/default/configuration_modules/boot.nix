@@ -56,8 +56,8 @@ in
         fsIdentifier          = "uuid";
         device               = "nodev";
         configurationLimit = 20;
-        splashImage = "/home/${user.name}/Public/CurrentWallpaper/VeryBlurredBackground.jpg";
-        theme = "/home/slavko/nixos/hosts/default/grub/bigsur";
+        #splashImage = "${user.path}/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg";
+        theme = "${user.path}/nixos/hosts/default/grub/bigsur";
         extraEntries = ''
           menuentry "Boot from USB" --class usb {
             insmod ext2

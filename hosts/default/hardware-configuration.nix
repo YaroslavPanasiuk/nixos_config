@@ -18,10 +18,9 @@
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/83B0-4501";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
+  fileSystems."/var/lib/lxd/devlxd" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
     };
 
   fileSystems."/var/lib/lxd/shmounts" =
@@ -29,9 +28,10 @@
       fsType = "tmpfs";
     };
 
-  fileSystems."/var/lib/lxd/devlxd" =
-    { device = "tmpfs";
-      fsType = "tmpfs";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/83B0-4501";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =

@@ -46,6 +46,7 @@ cp ~/Public/CurrentWallpaper/BlurredBackground.jpg ~/nixos/hosts/default/grub/bi
 convert ~/Public/CurrentWallpaper/BlurredBackground.jpg ~/Public/CurrentWallpaper/BlurredBackground.png
 cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/slavko/yaros_usb/ventoy/themes/bigsur/background.png
 magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg
+cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 #cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
 
