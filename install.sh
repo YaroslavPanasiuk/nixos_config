@@ -38,6 +38,10 @@ flatpak install -y flathub life.bolls.bolls
 cd ~/nixos
 git remote remove origin
 git remote add origin git@github.com:YaroslavPanasiuk/nixos_config.git
+
+cd ~/Documents/test
+git remote remove origin
+git remote add origin git@github.com:YaroslavPanasiuk/obsidian.git
 #generate_ssh.sh
 
 sudo smbpasswd -a $USER
