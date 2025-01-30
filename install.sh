@@ -1,5 +1,5 @@
 #!/bin/sh
-
+rm -rf ~/nixos
 nix-shell -p git --command "git clone https://github.com/YaroslavPanasiuk/nixos_config.git ~/nixos"
 echo "done cloning"
 

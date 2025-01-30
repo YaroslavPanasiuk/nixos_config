@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  user = "slavko";
+  user = "pedro";
 in
 {
   imports = [
@@ -34,7 +34,7 @@ in
     stateVersion = "24.11";
     homeDirectory = "/home/${user}";
     packages = with pkgs;[
-      davinci-resolve
+      #davinci-resolve
       #hyprpanel
     ];
   };

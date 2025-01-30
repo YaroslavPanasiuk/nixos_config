@@ -56,7 +56,7 @@
     android-tools
     qemu
     #remmina
-    davinci-resolve
+    #davinci-resolve
     libvirt
     mpvpaper
     virt-manager  # Optional, for managing VMs with a GUI
