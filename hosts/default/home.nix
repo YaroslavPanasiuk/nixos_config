@@ -1,6 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
-  user = "pedro";
+  user = import ./configuration_modules/user.nix;
 in
 {
   imports = [
@@ -30,9 +30,9 @@ in
   };
 
   home = {
-    username = "${user}";
+    username = "${user.name}";
     stateVersion = "24.11";
-    homeDirectory = "/home/${user}";
+    homeDirectory = "${user.path}";
     packages = with pkgs;[
       #davinci-resolve
       #hyprpanel
