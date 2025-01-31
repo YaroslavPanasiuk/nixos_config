@@ -22,6 +22,7 @@
     qimgv
     zoom-us
     cmake
+    gnumake
     brightnessctl	
     #kdePackages.kdenlive
     xdotool
@@ -45,11 +46,9 @@
     curl
     #steamcmd
     #fprintd
-
     #hyprlandPlugins.hyprgrass
 
     nwg-dock-hyprland
-    #nwg-drawer
     file
     wmctrl
     scrcpy
