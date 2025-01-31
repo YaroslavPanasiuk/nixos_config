@@ -362,6 +362,16 @@
               {
                 "type": "command",
                 "data": {
+                  "command": "kitty --hold --detach cleanup.sh",
+                  "delayed": false
+                },
+                "name": "cleanup",
+                "icon": "delete",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
                   "command": "kitty  --hold --detach rebuild.sh",
                   "delayed": false
                 },

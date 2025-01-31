@@ -142,6 +142,7 @@
     cifs-utils
     libreoffice
     poppler_utils
+    gimp
   ] ++ [
   	libnotify
   	swww
@@ -189,5 +190,6 @@
     (import ../scripts/generate_ssh.nix { inherit pkgs; })
     (import ../scripts/set_layout.nix { inherit pkgs; })
     (import ../scripts/export_images.nix { inherit pkgs; })
+    (import ../scripts/cleanup.nix { inherit pkgs; })
   ];
 }
