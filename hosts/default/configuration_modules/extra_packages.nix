@@ -2,63 +2,45 @@
 {  
   environment.systemPackages = with pkgs; [
     obsidian
-    #jetbrains.pycharm-community
     onlyoffice-bin
     obs-studio
     wget
     flatpak
     telegram-desktop
     appimage-run
-    #snapcraft
     ventoy-full
-    #nixos-generators
     vlc
     home-manager
     python3Full
     python3
-    #apt
     nix-index
-    #sublime
     qimgv
     zoom-us
     cmake
     gnumake
     brightnessctl	
-    #kdePackages.kdenlive
     xdotool
     pywal
     libinput
-    #anbox
-    #teams
-    #teams-for-linux
-    #libinput-gestures
     glib
     kando
     gvfs
     pinta
     ffmpeg
-    wofi
     fuse
     haskellPackages.libfuse3
-    #appimage-run
     iproute2
     libosinfo
     curl
-    #steamcmd
-    #fprintd
-    #hyprlandPlugins.hyprgrass
-
     nwg-dock-hyprland
     file
     wmctrl
     scrcpy
     android-tools
     qemu
-    #remmina
-    #davinci-resolve
     libvirt
     mpvpaper
-    virt-manager  # Optional, for managing VMs with a GUI
+    virt-manager
     OVMF 
     (pkgs.writeShellScriptBin "qemu-system-x86_64-uefi" ''
           qemu-system-x86_64 \
@@ -67,30 +49,17 @@
     '')
     virt-viewer
     spice
-    #spice-gtk
-    #spice-protocol
     win-virtio
     virtiofsd
-    #poetry
-    #vivaldi
-    #win-spice
-    #quickemu
-    #xfce.catfish
-    #xfce.exo
     libxml2
     libxslt
     fd
-    #lxappearance
     zip
     imagemagick
     jq
     zenity
-    #wineWowPackages.waylandFull
-    #winetricks
     ags
     ghostscript
-    #libsForQt5.qt5.qtquickcontrols2
-    #libsForQt5.qt5.qtgraphicaleffects
     bc
     xorg.xkill
     xorg.xauth
@@ -99,20 +68,15 @@
     parted
     pandoc
     gettext
-    python311Packages.lxml	
-    python312Packages.lxml
-    #gparted
     vscode
     gnupg
     xfce.xfce4-settings
     waydroid
     gtk3
-    #xwayland
     gtk4
     nix-prefetch-git
     wpgtk
     gnome-multi-writer
-    #waybar
     swappy
     postman
     wl-clipboard
@@ -121,19 +85,14 @@
     map-cmd
     pavucontrol
     nm-tray
-    killall
-    #matugen
     blueman
     gnome-power-manager
     hyprlock
     hyprpicker
-    hyprshot
     hyprlandPlugins.hyprspace
     xorg.xrdb
-    #networkmanagerapplet
     gammastep
     lxqt.lxqt-policykit
-    #geoclue2  
     dunst
     gdrive3
     plocate
@@ -143,11 +102,12 @@
     libreoffice
     poppler_utils
     gimp
-  ] ++ [
-  	libnotify
+    kdePackages.kdenlive
+    parabolic
+    libnotify
   	swww
-	  rofi-wayland
   	kitty
+    rofi-wayland
   ] ++ [
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })

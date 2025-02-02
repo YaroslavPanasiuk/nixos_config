@@ -1,4 +1,7 @@
 { ... }:
+let
+  user = import ../configuration_modules/user.nix;
+in
 {  
   systemd.user.startServices = "sd-switch";
   systemd.user.services = {
@@ -10,7 +13,7 @@
       Service = {
         Restart="always";
         RestartSec=30;
-        ExecStart="/home/slavko/nixos/hosts/default/scripts/bash/battery_listener.sh";
+        ExecStart="/home/${user.name}/nixos/hosts/default/scripts/bash/battery_listener.sh";
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];
@@ -24,21 +27,7 @@
       Service = {
         Restart="always";
         RestartSec=900;
-        ExecStart="/home/slavko/nixos/hosts/default/scripts/bash/battery_reset.sh";
-      };
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
-
-    hyprpanel_theme = {
-      Unit = {
-        Description = "Set hyrpanel theme";
-      };
-      Service = {
-        Restart="always";
-        RestartSec=900;
-        ExecStart="/home/slavko/nixos/hosts/default/scripts/bash/battery_reset.sh";
+        ExecStart="/home/${user.name}/nixos/hosts/default/scripts/bash/battery_reset.sh";
       };
       Install = {
         WantedBy = [ "graphical-session.target" ];
