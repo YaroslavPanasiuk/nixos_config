@@ -37,7 +37,7 @@ in
           rightClick = "rfkill toggle bluetooth";
         };
         customModules.kbLayout = {
-          leftClick = "layout_msg.sh";
+          leftClick = "set_layout.sh";
         };
         
         customModules.cava = {
