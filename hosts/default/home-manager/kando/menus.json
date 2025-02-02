@@ -108,55 +108,30 @@
           },
           {
             "type": "submenu",
-            "name": "Firefox",
-            "icon": "firefoxbrowser",
-            "iconTheme": "simple-icons",
+            "name": "Editing",
+            "icon": "edit_audio",
+            "iconTheme": "material-symbols-rounded",
             "children": [
               {
-                "type": "uri",
+                "type": "command",
                 "data": {
-                  "uri": "https://calendar.google.com/calendar/u/0/r"
+                  "command": "gimp",
+                  "delayed": false
                 },
-                "name": "Calendar",
-                "icon": "google-calendar.svg",
+                "name": "GIMP",
+                "icon": "gimp.svg",
                 "iconTheme": "scalable"
               },
               {
-                "type": "uri",
+                "type": "command",
                 "data": {
-                  "uri": "https://chatgpt.com/"
+                  "command": "kdenlive",
+                  "delayed": false
                 },
-                "name": "ChatGPT",
-                "icon": "openai.svg",
+                "name": "KDEnlive",
+                "icon": "kdenlive.svg",
                 "iconTheme": "scalable"
-              },
-              {
-                "type": "uri",
-                "data": {
-                  "uri": "https://github.com"
-                },
-                "name": "GitHub",
-                "icon": "github.svg",
-                "iconTheme": "scalable"
-              },
-              {
-                "type": "uri",
-                "data": {
-                  "uri": "https://www.youtube.com"
-                },
-                "name": "YouTube",
-                "icon": "youtube.svg",
-                "iconTheme": "scalable"
-              },
-              {
-                "type": "uri",
-                "data": {
-                  "uri": "https://music.youtube.com/"
-                },
-                "name": "YT music",
-                "icon": "youtube-music.svg",
-                "iconTheme": "scalable"
-              }
+              }              
             ]
           },
           {
