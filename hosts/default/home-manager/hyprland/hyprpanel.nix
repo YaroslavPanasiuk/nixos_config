@@ -1,4 +1,7 @@
 { inputs, ... }:
+let
+  user = import ../../configuration_modules/user.nix;
+in
 {
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
   
@@ -104,7 +107,7 @@
           };
           powermenu = {
             avatar.image = "~/Documents/logo.png";
-            avatar.name = "Panas";
+            avatar.name = "${user.name}";
           };
           shortcuts.enabled = false;
           stats.interval = 5000;
