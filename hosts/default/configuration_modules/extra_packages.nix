@@ -71,7 +71,7 @@
     vscode
     gnupg
     xfce.xfce4-settings
-    waydroid
+    #waydroid
     gtk3
     gtk4
     nix-prefetch-git
@@ -105,9 +105,14 @@
     kdePackages.kdenlive
     parabolic
     libnotify
-  	swww
-  	kitty
+    swww
+    kitty
     rofi-wayland
+    hyprshot
+    protonup
+    mission-center
+    pulseaudioFull
+    pipewire
   ] ++ [
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })

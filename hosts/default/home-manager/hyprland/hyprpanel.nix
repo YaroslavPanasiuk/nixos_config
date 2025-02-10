@@ -137,6 +137,8 @@ in
 
       theme = {
         bar = {
+          scaling = 85;
+
           buttons = {
             opacity = 75;
             workspaces.fontSize = "1.4em";
@@ -145,7 +147,8 @@ in
             workspaces.pill.height = "4em";
             workspaces.pill.radius = "1.9rem * 0.6";
             workspaces.spacing = "1.2em";
-            y_margins = "2px";
+            y_margins = "0px";
+            padding_y = "0px";
 
           };
 
@@ -155,25 +158,34 @@ in
           margin_top = "0";
           margin_bottom = "0";
 
-          menus = {
-            menu.clock.scaling = 90;
-            menu.notifications.height = "40em";
+          menus.menu = {
+            clock.scaling = 80;
+            dashboard.scaling = 75;
+            network.scaling = 90;
+            bluetooth.scaling = 90;
+            battery.scaling = 90;
+            notifications.scaling = 90;
+            volume.scaling = 90;
+            notifications.height = "35em";
           };
-          opacity = 70;
+          menus.popover.scaling = 70;
+          opacity = 80;
           outer_spacing = "0";
 
         };
 
         font = {
           name = "CaskaydiaCove NF";
-          size = "15px";
+          size = "17px";
           weight = 600;
         };
 
         osd = {
-          scaling = 120;
+          scaling = 85;
           margins = "0px 8px 0px 0px";
         };
+        tooltip.scaling = 90;
+        notification.scaling = 90;
         #matugen = true;
       };
     };

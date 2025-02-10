@@ -32,6 +32,8 @@
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     };
 
+    gamemode.enable = true;
+
     mtr.enable = true;
     gnupg.agent = {
       enable = true;

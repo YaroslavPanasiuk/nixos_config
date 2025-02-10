@@ -144,6 +144,16 @@
               {
                 "type": "command",
                 "data": {
+                  "command": "missioncenter",
+                  "delayed": false
+                },
+                "name": "System monitor",
+                "icon": "monitor_heart",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
                   "command": "kando -s",
                   "delayed": false
                 },
