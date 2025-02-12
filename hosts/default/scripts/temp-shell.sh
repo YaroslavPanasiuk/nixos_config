@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
-path=$1
-filename=$(basename $path)
-filename_no_ext=${filename%.*}
-dir=$(dirname $path)
-extension=${filename##*.}
 
-if [[ "$extension" != "pdf" ]]; then
-    soffice --headless --convert-to pdf $filename
-fi
-mkdir $filename_no_ext"_pptx"
-pdftoppm -png -r 96 $filename_no_ext.pdf ./$filename_no_ext"_pptx"/$filename_no_ext
-
-if [[ "$extension" != "pdf" ]]; then
-    rm -f $filename_no_ext.pdf
+# Check if any media player is playing
+if playerctl status --all-players 2>/dev/null | grep -q "Playing"; then
+    echo "Media is playing, preventing sleep/lock."
+    exit 1  # Exit with non-zero status to prevent sleep/lock
+else
+    echo "No media playing, allowing sleep/lock."
+    exit 0  # Exit with zero status to allow sleep/lock
 fi

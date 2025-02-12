@@ -111,6 +111,11 @@
       recursive = true;
       source = ./nwg-dock-hyprland;
     };
+    "hyprswitch" = {
+      enable = true;
+      recursive = true;
+      source = ./hyprswitch;
+    };
   };
 
   };

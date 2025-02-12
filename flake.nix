@@ -10,7 +10,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.47.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -34,8 +34,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #ags.url = "github:Aylur/ags";
-    #stylix.url = "github:danth/stylix";
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
+    
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hycov={
+      url = "github:bighu630/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";

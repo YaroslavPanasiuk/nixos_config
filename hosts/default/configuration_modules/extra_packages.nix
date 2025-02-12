@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {  
   environment.systemPackages = with pkgs; [
     obsidian
@@ -113,6 +113,13 @@
     mission-center
     pulseaudioFull
     pipewire
+    playerctl
+    ani-cli
+    hyprsunset
+    gparted
+    cliphist
+    woomer
+
   ] ++ [
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
@@ -156,5 +163,7 @@
     (import ../scripts/set_layout.nix { inherit pkgs; })
     (import ../scripts/export_images.nix { inherit pkgs; })
     (import ../scripts/cleanup.nix { inherit pkgs; })
+    (import ../scripts/toggle_dock.nix { inherit pkgs; })
+    (import ../scripts/media_is_playing.nix { inherit pkgs; })
   ];
 }

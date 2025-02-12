@@ -7,7 +7,5 @@ if [[ "$(cat ~/nixos/hosts/default/scripts/DOCK_STATUS.txt)" == "open" ]]; then
     echo "close" > ~/nixos/hosts/default/scripts/DOCK_STATUS.txt
     exit
 fi
-
-hyprctl dispatch overview:open
-echo "open" > ~/nixos/hosts/default/scripts/HYPRSPACE_STATUS.txt
+hyprctl dispatch killactive
 ''

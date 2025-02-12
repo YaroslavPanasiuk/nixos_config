@@ -34,6 +34,7 @@ in
     stateVersion = "24.11";
     homeDirectory = "${user.path}";
     packages = with pkgs;[
+      inputs.hyprswitch.packages.x86_64-linux.default
       #davinci-resolve
       #hyprpanel
     ];

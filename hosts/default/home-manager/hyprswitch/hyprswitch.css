@@ -1,0 +1,149 @@
+@import "../../.cache/wal/gtk-theme.css";
+* {
+    border: unset;
+}
+
+:root {
+    --border-color: @color2;
+    --border-color-workspace: @color5;
+    --border-color-client: @color4a;
+    --border-color-active: @color1;
+    --bg-color: @backgrounds;
+    --bg-color-hover: @color1a;
+    --bg-color-active: @color1aa;
+    --index-border-color: @color7;
+    --border-radius: 12px;
+    --border-size: 2px;
+}
+
+.monochrome {
+    filter: grayscale(100%);
+}
+
+.rotating {
+    animation: rotating 1s linear infinite;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.window {
+    padding: 2px;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+}
+
+.monitor {
+    font-size: 15px;
+}
+
+.monitor:hover {
+    background-color: var(--bg-color-hover);
+}
+
+.monitor_active {
+    background-color: var(--bg-color-hover);
+    border: var(--border-size) solid var(--border-color-active);
+}
+
+
+.index {
+    margin: 3px;
+    padding: 2px 4px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: monospace;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    border: 1px solid var(--index-border-color);
+}
+
+
+.workspace {
+    font-size: 15px;
+    font-weight: bold;
+
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    border: var(--border-size) solid var(--border-color-workspace);
+}
+
+.workspace:hover {
+    background-color: var(--bg-color-hover);
+}
+
+.workspace_special {
+    border: var(--border-size) solid @color15;
+}
+
+.workspace_active {
+    border: var(--border-size) solid var(--border-color-active);
+}
+
+
+.client-image {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.client {
+    font-size: 12px;
+    font-weight: normal;
+
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+    border: var(--border-size) solid var(--border-color-client);
+}
+
+border: var(--border-size) solid var(--border-color-active);
+.client:hover {
+    background-color: var(--bg-color-hover);
+}
+
+.client_active {
+    background-color: var(--bg-color-hover);
+    border: 3px solid var(--border-color-active);
+}
+
+.launcher {
+    min-width: 600px;
+    font-size: 15px;
+}
+
+.launcher-entry {
+    margin: 6px;
+    padding-top: 6px;
+    padding-bottom: 4px;
+    padding-left: 12px;
+}
+
+.launcher-exec {
+    font-size: 10px;
+}
+
+.launcher-list {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 1px;
+}
+
+.launcher-item {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.launcher-item:hover {
+    background-color: var(--bg-color-hover);
+}
+
+.launcher-item-selected {
+    background-color: var(--bg-color-hover);
+}

@@ -2,9 +2,9 @@
 
 pkgs.writeShellScriptBin "redshift.sh" '' 
 #!/bin/sh
-if pidof -qx "gammastep"; then
- 	pkill gammastep
+if pidof -qx "hyprsunset"; then
+ 	pkill hyprsunset
  	exit
 fi
-gammastep -O 4000
+hyprsunset -t 4000
 ''

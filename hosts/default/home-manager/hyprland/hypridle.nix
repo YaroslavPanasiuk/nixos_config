@@ -19,16 +19,16 @@
             }
             {
                 timeout = 600;
-                on-timeout = "loginctl lock-session";
+                on-timeout = "if ! media_is_playing.sh; then loginctl lock-session; fi";
             }
             {
                 timeout = 900;
-                on-timeout = "hyprctl dispatch dpms off";
+                on-timeout = "if ! media_is_playing.sh; then hyprctl dispatch dpms off; fi";
                 on-resume = "hyprctl dispatch dpms on";
             }
             {
                 timeout = 1800;
-                on-timeout = "systemctl suspend";
+                on-timeout = "if ! media_is_playing.sh; then systemctl suspend; fi";
             }
         ];
     };

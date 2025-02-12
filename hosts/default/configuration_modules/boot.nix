@@ -60,7 +60,7 @@ in
         theme = "${user.path}/nixos/hosts/default/grub/bigsur";
         extraEntries = ''
           menuentry "Nobara" --class nobara {
-            set root=(hd1,2)
+            set root=UUID=7469-2840
             linux /vmlinuz-6.12.11-204.nobara.fc41.x86_64 root=/dev/nvme0n1p3 rootflags=subvol=@ ro
             initrd /initramfs-6.12.11-204.nobara.fc41.x86_64.img
             boot

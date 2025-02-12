@@ -1,5 +1,6 @@
 @define-color foreground rgb({foreground.rgb});
 @define-color background rgba({background.rgb}, 0.9);
+@define-color backgrounds rgb({background.rgb});
 @define-color base rgba(0, 0, 0, 0.9);
 @define-color cursor rgb({cursor.rgb});
 
@@ -41,3 +42,14 @@
 @define-color color7aa rgba({color7.rgb}, 0.1);
 @define-color color8aa rgba({color8.rgb}, 0.1);
 @define-color color9aa rgba({color9.rgb}, 0.1);
+
+@define-color color0A rgba({color0.rgb}, 0.5);
+@define-color color1A rgba({color1.rgb}, 0.5);
+@define-color color2A rgba({color2.rgb}, 0.5);
+@define-color color3A rgba({color3.rgb}, 0.5);
+@define-color color4A rgba({color4.rgb}, 0.5);
+@define-color color5A rgba({color5.rgb}, 0.5);
+@define-color color6A rgba({color6.rgb}, 0.5);
+@define-color color7a rgba({color7.rgb}, 0.5);
+@define-color color8A rgba({color8.rgb}, 0.5);
+@define-color color9A rgba({color9.rgb}, 0.5);

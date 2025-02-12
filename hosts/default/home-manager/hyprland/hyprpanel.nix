@@ -30,7 +30,7 @@ in
           rightClick = "gnome-clocks";
         };
         battery = {
-          rightClick = "gnome-power-statistics";
+          rightClick = "redshift.sh";
         };
         bluetooth = {
           label = false;
@@ -64,7 +64,7 @@ in
           #show_icons = true;
           #workspaceMask = true;
           scroll_speed = 1;
-          showAllActive = true;
+          #showAllActive = true;
           workspaces = 9;
         };
         media = {

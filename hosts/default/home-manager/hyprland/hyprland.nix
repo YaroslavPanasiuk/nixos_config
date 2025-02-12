@@ -7,11 +7,15 @@
     package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
 
     plugins = [
-      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
       #inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       #inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
-      #inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
+      inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
+      inputs.hyprgrass.packages.${pkgs.system}.hyprgrass-pulse
+      inputs.hyprgrass.packages.${pkgs.system}.default
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      #inputs.hycov.packages.${pkgs.system}.hycov
     ];
 
     settings = {
@@ -26,7 +30,7 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
-        "hyprlock || hyprctl dispatch exit"
+        "hyprlock"
         "hypridle"
         "swww-daemon"
         "pkill dunst"
@@ -38,12 +42,14 @@
         "kando"
         "touchegg"
         "thunar --daemon"
+        "wl-paste --watch cliphist store"
+        "hyprswitch init --size-factor 4 --custom-css ~/.config/hyprswitch/hyprswitch.css"
         "sleep 10 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
       ];
 
       general = { 
         gaps_in = 3;
-        gaps_out = 0;
+        gaps_out = 5;
         border_size = 3;
         "col.active_border" = "$color1 $color2 45deg"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1}) rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour2}) 45deg";
         "col.inactive_border" = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
@@ -59,7 +65,7 @@
           workspace_swipe_min_fingers = "true";
           workspace_swipe_cancel_ratio = "0.1";
           workspace_swipe_direction_lock = false;
-          workspace_swipe_touch = "true";
+          #workspace_swipe_touch = "true";
           workspace_swipe_invert = "true";
           #workspace_swipe_create_new = "false";
       };
@@ -128,21 +134,24 @@
       workspace = [
         "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-        "1, persistent:true"
-        "2, persistent:true"
-        "3, persistent:true"
-        "4, persistent:true"
-        "5, persistent:true"
-        "6, persistent:true"
-        "7, persistent:true"
-        "8, persistent:true"
-        "9, persistent:true"
+        #"1, persistent:true"
+        #"2, persistent:true"
+        #"3, persistent:true"
+        #"4, persistent:true"
+        #"5, persistent:true"
+        #"6, persistent:true"
+        #"7, persistent:true"
+        #"8, persistent:true"
+        #"9, persistent:true"
       ];
 
       bind = [
         "$mainMod, Q, exec, set_layout.sh us && $terminal"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
+        "$mainMod, A, exec, ani-cli --vlc --rofi -q 1080p"
+        "$mainMod, Z, exec, woomer"
+        "$mainMod, X, exec, rofi -modi clipboard:~/nixos/hosts/default/scripts/bash/cliphist-rofi-img -config ~/.config/rofi/clip-config.rasi -show clipboard -show-icons"
         "$mainMod, E, exec, $fileManager"
         "$mainMod, w, exec, $browser"
         "$mainMod, V, togglefloating,"
@@ -182,7 +191,7 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         #"$mainMod SHIFT, W, exec, hyprctl dispatch hyprtasking:toggle all"
-        #"$mainMod SHIFT, Q, hyprtasking:toggle, all"
+        "$mainMod SHIFT, Q, hyprtasking:toggle, all"
         "$mainMod SHIFT, P, exec, toggle_mpvpaper.sh"
         ", XF86AudioMute, exec, volume.sh mute"
         "SUPER, F, fullscreen,f"
@@ -191,7 +200,7 @@
         "$mainMod ALT, F4, exec ,echo 1 | sudo -S reboot -h nowstart"
         "ALT, F4, exec ,poweroff"
 
-        "ALT, TAB, exec , alttab.sh"
+        "ALT, TAB, exec , hyprswitch gui --mod-key alt --key tab --close mod-key-release --show-workspaces-on-all-monitors --monitors eDP-1"
         "$mainMod ALT, W, exec, wallp-rofi.sh"
         "$mainMod ALT, T, exec, update_telegram.sh"
 
@@ -293,13 +302,15 @@
         enable_gesture = false;
       };
 
-      
-
       "plugin:hyprtasking" = {
         layout = "grid";
-        gap_size = 20;
+        gap_size = 5;
         bg_color = "$background";
-        border_size = 4;
+        border_size = 2;
+        gestures = {
+          enabled = 0;
+          open_positive = 0;
+        };
         exit_behavior = "active hovered interacted original";
         gaps = {
             rows = 3;
@@ -312,6 +323,20 @@
           rows = 3;
         };
       };
+
+      "plugin:touch_gestures" = {
+        hyprgrass-bind = [
+          ", edge:r:l, workspace, +1"
+          ", edge:l:r, workspace, -1"
+          ", swipe:4:d, killactive"
+          ", tap:3, global, kando:example-menu"
+        ];
+      };
+
+      "plugin:hyprgrass-pulse" = {
+        edge = "r";
+      };
+      
 
     };
 
