@@ -164,6 +164,6 @@
     (import ../scripts/export_images.nix { inherit pkgs; })
     (import ../scripts/cleanup.nix { inherit pkgs; })
     (import ../scripts/toggle_dock.nix { inherit pkgs; })
-    (import ../scripts/media_is_playing.nix { inherit pkgs; })
+    (import ../scripts/idle_action.nix { inherit pkgs; })
   ];
 }

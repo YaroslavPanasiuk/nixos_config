@@ -1,5 +1,4 @@
 { config, pkgs, inputs, ... }:
-
 {
   services.hypridle = {
     enable = true;
@@ -14,21 +13,21 @@
         listener = [
             {
                 timeout = 300;
-                on-timeout = "brightnessctl -s set 1";
+                on-timeout = "/run/current-system/sw/bin/idle_action.sh dim";
                 on-resume = "brightnessctl -r";
             }
             {
                 timeout = 600;
-                on-timeout = "if ! media_is_playing.sh; then loginctl lock-session; fi";
+                on-timeout = "/run/current-system/sw/bin/idle_action.sh lock";
             }
             {
                 timeout = 900;
-                on-timeout = "if ! media_is_playing.sh; then hyprctl dispatch dpms off; fi";
+                on-timeout = "/run/current-system/sw/bin/idle_action.sh dpms";
                 on-resume = "hyprctl dispatch dpms on";
             }
             {
                 timeout = 1800;
-                on-timeout = "if ! media_is_playing.sh; then systemctl suspend; fi";
+                on-timeout = "/run/current-system/sw/bin/idle_action.sh suspend";
             }
         ];
     };
