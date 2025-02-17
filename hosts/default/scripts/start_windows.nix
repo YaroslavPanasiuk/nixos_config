@@ -16,16 +16,5 @@ for i in "''${!windows[@]}"; do
     fi
 done
 
-virsh --connect qemu:///system net-start default
-virsh --connect qemu:///system start 'RDPWindows'
-virt-viewer --connect qemu:///system --full-screen 'RDPWindows'
-
-while pgrep -x "virt-viewer" > /dev/null
-do
-  echo "check"
-  sleep 30
-done
-
-echo "virt-viewer closed, shutting down VM..."
-~/Documents/stop_windows.sh
+quickemu --vm ~/virtual/windows-10.conf
 ''

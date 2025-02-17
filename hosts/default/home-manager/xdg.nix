@@ -116,6 +116,11 @@
       recursive = true;
       source = ./hyprswitch;
     };
+    "GIMP/2.10/scripts" = {
+      enable = true;
+      recursive = true;
+      source = ../scripts/gimp;
+    };
   };
 
   };

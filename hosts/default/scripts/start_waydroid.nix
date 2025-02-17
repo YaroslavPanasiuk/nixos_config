@@ -16,7 +16,7 @@ for i in "''${!windows[@]}"; do
     fi
 done
 
-echo 1 | sudo -S systemctl start waydroid-container
+systemctl start waydroid-container
 waydroid session start &
 waydroid show-full-ui
 ''

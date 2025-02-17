@@ -148,6 +148,7 @@
       bind = [
         "$mainMod, Q, exec, set_layout.sh us && $terminal"
         "$mainMod, C, killactive,"
+        "Alt_L, C, hyprtasking:killhovered,"
         "$mainMod, M, exit,"
         "$mainMod, A, exec, ani-cli --vlc --rofi -q 1080p"
         "$mainMod, Z, exec, woomer"
@@ -234,6 +235,7 @@
 
       bindm = [
         "$mainMod, mouse:272, movewindow"
+        "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
 
@@ -244,8 +246,8 @@
       windowrule = [
         "float, (pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, (.scrcpy-wrapped)"
-        "workspace empty (Waydroid)|(qemu)|(virt-viewer)"
-        "fullscreen, (Waydroid)|(qemu)"
+        "workspace empty (Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
+        "fullscreen, (Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"
         "noblur, kando"
         "opaque, kando"
         "size 100% 100%, kando"

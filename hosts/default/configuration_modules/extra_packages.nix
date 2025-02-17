@@ -119,7 +119,15 @@
     gparted
     cliphist
     woomer
-
+    fh
+    quickemu
+    losslesscut-bin
+    textpieces
+    #stirling-pdf
+    earlyoom
+    lzip
+    viber
+    
   ] ++ [
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })

@@ -376,7 +376,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "start_windows.sh",
+                  "command": "quickemu --vm $HOME/virtual/windows-10.conf",
                   "delayed": false
                 },
                 "name": "Windows",
@@ -386,7 +386,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "blueman-manager",
+                  "command": "quickemu --vm $HOME/virtual/macos-big-sur.conf",
                   "delayed": false
                 },
                 "name": "MacOs",
@@ -396,7 +396,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "gnome-system-monitor",
+                  "command": "start_waydroid.sh",
                   "delayed": false
                 },
                 "name": "Android",

@@ -70,6 +70,7 @@ in
     spice-vdagentd.enable = true;
     openssh.enable = true;
     blueman.enable = true;
+    #stirling-pdf.enable = true;
 
   };
 }

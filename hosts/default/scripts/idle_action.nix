@@ -5,7 +5,7 @@ pkgs.writeShellScriptBin "idle_action.sh" ''
 
 if playerctl status --all-players 2>/dev/null | grep -q 'Playing'; then 
   echo "Media is currently playing"
-    exit 1; 
+  exit 1
 fi
 
 if [ $# -eq 0 ]; then

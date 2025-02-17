@@ -32,6 +32,8 @@ git clone https://github.com/YaroslavPanasiuk/obsidian.git ~/Documents/test
 
 wallp
 
+waydroid init
+
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub life.bolls.bolls
 

@@ -20,6 +20,7 @@ in
     ./home-manager/services.nix
     ./home-manager/dconf.nix
     ./home-manager/programs/git.nix
+    #./home-manager/waydroid/waydroid.nix
   ];
 
   nixpkgs = {

@@ -15,5 +15,5 @@ for i in "''${!windows[@]}"; do
     fi
 done
 
-~/OSX-KVM/OpenCore-Boot.sh &
+quickemu --vm ~/virtual/macos-bugsur.conf
 ''

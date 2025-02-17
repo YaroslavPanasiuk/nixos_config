@@ -12,6 +12,7 @@ in
       ./configuration_modules/services.nix
       ./configuration_modules/programs.nix
       ./configuration_modules/extra_packages.nix
+      ./configuration_modules/fonts.nix
     ];  
 
   systemd.packages = [ pkgs.libinput-gestures ];
@@ -82,23 +83,6 @@ in
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  fonts.fontconfig.enable = true;
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    vistafonts
-    corefonts
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
-    proggyfonts
-    font-awesome
-    nerd-fonts.ubuntu
-  ]; 
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
