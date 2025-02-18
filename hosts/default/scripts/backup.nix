@@ -15,7 +15,8 @@ cp -rf ~/nixos ~/backup
 
 cp -rf ~/.config/touchegg ~/nixos/dotfiles
 
-cp -rf ~/backup /run/media/$USER/yaros_usb/$USER_backup
+cp -rf ~/backup /run/media/$USER/yaros_usb
+cp -rf ~/virtual /run/media/$USER/yaros_usb
 
 cd ~/nixos
 git add .

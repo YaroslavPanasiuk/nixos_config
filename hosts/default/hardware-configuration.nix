@@ -24,6 +24,16 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/var/lib/lxd/shmounts" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
+  fileSystems."/var/lib/lxd/devlxd" =
+    { device = "tmpfs";
+      fsType = "tmpfs";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/6bf30790-cbb5-41e2-b8ec-e929458bb18c"; }
     ];

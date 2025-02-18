@@ -6,6 +6,7 @@
       enable = true;
       defaultApplications = {
         "text/plain" = [ "code.desktop" ];
+        "inode/x-empty" = [ "code.desktop" ];
         "text/css" = [ "code.desktop" ];
         "text/javascript" = [ "code.desktop" ];
         "text/markdown" = [ "code.desktop" ];
@@ -35,12 +36,12 @@
         "video/x-msvideo" = [ "vlc.desktop" ];
 
         "application/pdf" = [ "org.gnome.Evince.desktop" ];
-        "application/msword" = [ "org.gnome.Evince.desktop" ];
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "org.gnome.Evince.desktop" ];
-        "application/vnd.ms-excel" = [ "org.gnome.Evince.desktop" ];
-        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	.xlsx" = [ "org.gnome.Evince.desktop" ];
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "onlyoffice-desktopeditors.desktop" "org.gnome.Evince.desktop" ];
-        "application/vnd.ms-powerpoint" = [ "onlyoffice-desktopeditors.desktop" "org.gnome.Evince.desktop" ];
+        "application/msword" = [ "libreoffice-writer.desktop" "onlyoffice-desktopeditors.desktop" ];
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "libreoffice-writer.desktop" "onlyoffice-desktopeditors.desktop" ];
+        "application/vnd.ms-excel" = [ "libreoffice-calc.desktop" ];
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	.xlsx" = [ "libreoffice-calc.desktop" "onlyoffice-desktopeditors.desktop" ];
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "libreoffice-impress.desktop" "onlyoffice-desktopeditors.desktop" ];
+        "application/vnd.ms-powerpoint" = [ "libreoffice-impress.desktop" "onlyoffice-desktopeditors.desktop" ];
         "application/vnd.oasis.opendocument.text" = [ "org.gnome.Evince.desktop" ];
         "application/epup+zip" = [ "org.gnome.Evince.desktop" ];
         "application/x-shellscript" = [ "code.desktop" ];
@@ -101,10 +102,9 @@
       recursive = true;
       source = ./Thunar;
     };
-    "touchegg" = {
-      enable = false;
-      recursive = true;
-      source = ./touchegg;
+    "touchegg/touchegg.conf" = {
+      enable = true;
+      source = ./touchegg/touchegg.conf;
     };
     "nwg-dock-hyprland" = {
       enable = true;

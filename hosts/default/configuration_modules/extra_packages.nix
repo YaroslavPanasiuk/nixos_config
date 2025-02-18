@@ -173,5 +173,6 @@
     (import ../scripts/cleanup.nix { inherit pkgs; })
     (import ../scripts/toggle_dock.nix { inherit pkgs; })
     (import ../scripts/idle_action.nix { inherit pkgs; })
+    (import ../scripts/waydroid_init.nix { inherit pkgs; })
   ];
 }

@@ -98,6 +98,15 @@
               {
                 "type": "command",
                 "data": {
+                  "command": "viber"
+                },
+                "name": "Viber",
+                "icon": "viber.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
                   "command": "telegram-desktop"
                 },
                 "name": "Telegram",
@@ -131,7 +140,65 @@
                 "name": "KDEnlive",
                 "icon": "kdenlive.svg",
                 "iconTheme": "scalable"
-              }              
+              },
+              {
+                "type": "submenu",
+                "name": "LibreOfice",
+                "icon": "libreofficeimpress",
+                "iconTheme": "simple-icons",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice-writer",
+                      "delayed": false
+                    },
+                    "name": "Writer",
+                    "icon": "writer.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice-impress",
+                      "delayed": false
+                    },
+                    "name": "Impress",
+                    "icon": "impress.svg",
+                    "iconTheme": "scalable"
+                  },        
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice-calc",
+                      "delayed": false
+                    },
+                    "name": "Calc",
+                    "icon": "calc.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice-base",
+                      "delayed": false
+                    },
+                    "name": "Base",
+                    "icon": "base.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice-draw",
+                      "delayed": false
+                    },
+                    "name": "Draw",
+                    "icon": "draw.svg",
+                    "iconTheme": "scalable"
+                  }
+                ]
+              }       
             ]
           },
           {
@@ -342,6 +409,16 @@
                 },
                 "name": "backup",
                 "icon": "backup",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty --hold --detach nix run github:YaroslavPanasiuk/nixos_config",
+                  "delayed": false
+                },
+                "name": "update",
+                "icon": "update",
                 "iconTheme": "material-symbols-rounded"
               },
               {

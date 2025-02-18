@@ -39,6 +39,10 @@ in
       #davinci-resolve
       #hyprpanel
     ];
+    file."Templates" = {
+      source = ./home-manager/Templates;
+      recursive = true;
+    };
   };
 
   programs.home-manager.enable = true;

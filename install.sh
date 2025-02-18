@@ -13,7 +13,6 @@ mkdir ~/Videos/recordings
 cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/Public/Wallpapers/1.jpg
 
 cp -rf ~/nixos/dotfiles/kando ~/.config/kando
-cp -rf ~/nixos/dotfiles/touchegg ~/.config/touchegg
 
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
 sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#default;
@@ -31,8 +30,6 @@ rm -rf ~/.walogram
 git clone https://github.com/YaroslavPanasiuk/obsidian.git ~/Documents/test
 
 wallp
-
-waydroid init
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub life.bolls.bolls
