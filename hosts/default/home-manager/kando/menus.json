@@ -219,6 +219,35 @@
                 "iconTheme": "material-symbols-rounded"
               },
               {
+                "type": "submenu",
+                "data": {},
+                "name": "Phone",
+                "icon": "phone_android",
+                "iconTheme": "material-symbols-rounded",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "phone_camera.sh",
+                      "delayed": false
+                    },
+                    "name": "Connect camera",
+                    "icon": "camera",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh",
+                      "delayed": false
+                    },
+                    "name": "VNC connect",
+                    "icon": "screen_share",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
+              },
+              {
                 "type": "command",
                 "data": {
                   "command": "kando -s",

@@ -1,5 +1,4 @@
 #!/bin/sh
-nix-store --gc
-nix-collect-garbage -d
-nix-store --gc
-
+ip=$(ip -4 r | awk '{print $9; exit}')
+wayvnc $ip 5900 &
+notify-send "VNC server" "Listening for connections on $ip:5900"

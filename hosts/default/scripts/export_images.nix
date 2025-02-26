@@ -13,7 +13,7 @@ if [[ "$extension" != "pdf" ]]; then
     soffice --headless --convert-to pdf $filename
 fi
 mkdir $filename_no_ext"_"$extension
-pdftoppm -png -r 96 $filename_no_ext.pdf ./$filename_no_ext"_pptx"/$filename_no_ext
+pdftoppm -png -r 96 "$filename_no_ext.pdf" "./$filename_no_ext"_pptx"/$filename_no_ext"
 
 if [[ "$extension" != "pdf" ]]; then
     rm -f $filename_no_ext.pdf

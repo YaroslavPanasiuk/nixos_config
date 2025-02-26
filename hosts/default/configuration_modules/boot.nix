@@ -50,7 +50,7 @@ in
 
       grub = {
         enable                = true;
-        #useOSProber           = true;
+        useOSProber           = true;
         copyKernels           = true;
         efiSupport            = true;
         fsIdentifier          = "uuid";

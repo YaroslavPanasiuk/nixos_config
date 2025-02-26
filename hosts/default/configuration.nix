@@ -22,6 +22,7 @@ in
     networkmanager.enable = true;
     firewall.enable = true;
     firewall.allowPing = true;
+    firewall.allowedTCPPorts = [ 5900 ];
     firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
   
@@ -83,6 +84,10 @@ in
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.extraOptions = ''
+    trusted-users = root yarko
+  '';
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos

@@ -12,12 +12,13 @@ mkdir ~/Videos/recordings
 
 cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/Public/Wallpapers/1.jpg
 
-cp -rf ~/nixos/dotfiles/kando ~/.config/kando
+cp -f ~/nixos/dotfiles/kando/config.json ~/.config/kando/config.json
 
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
 sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#default;
 
 swww-daemon
+swww img ~/Public/Wallpapers/1.jpg
 wal -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 wpg-install.sh -gG
 

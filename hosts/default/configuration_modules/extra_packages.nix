@@ -12,7 +12,7 @@
     vlc
     home-manager
     python3Full
-    python3
+    python312Full
     nix-index
     qimgv
     zoom-us
@@ -127,6 +127,13 @@
     earlyoom
     lzip
     viber
+    #nodejs_23
+    mpv
+    #figma-linux
+    varia
+    devenv
+    neovim
+    wayvnc
     
   ] ++ [
     (import ../scripts/volume.nix { inherit pkgs; })
@@ -174,5 +181,6 @@
     (import ../scripts/toggle_dock.nix { inherit pkgs; })
     (import ../scripts/idle_action.nix { inherit pkgs; })
     (import ../scripts/waydroid_init.nix { inherit pkgs; })
+    (import ../scripts/vnc_server.nix { inherit pkgs; })
   ];
 }

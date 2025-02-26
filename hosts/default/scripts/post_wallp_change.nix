@@ -4,7 +4,6 @@ pkgs.writeShellScriptBin "post_setting.sh" ''
 #!/bin/sh
 
 pkill mpvpaper
-#kill "''${processes[-1]}"
 
 query=$(swww query)
 path="''${query#*/}"
@@ -22,8 +21,7 @@ fi
 echo $path
 wpg -s "/''${path}"
 wal -i "/''${path}"
-#restart_thunar.sh 
-#echo "set waybar"
+
 if pidof -qx "rofi"; then
  	pkill rofi
  	rofi -show drun -config ~/.config/wofi/config.rasi # && echo "set rofi"
@@ -33,11 +31,15 @@ cat ~/.cache/wal/colors | while read -r color; do
   echo -en "\e]P${color:1}\e\\"
 done
 
-#pkill -f nwg-dock-hyprland
 launch_dock.sh &
 pkill -f -37 nwg-dock-hyprland
 
-cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json 
+colors=()
+while IFS= read -r line; do
+    colors+=("$line")
+done < ~/.cache/wal/colors
+
+cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background1.jpg
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background2.jpg
 convert /$path ~/Public/CurrentWallpaper/Background.png
@@ -49,6 +51,11 @@ magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/Ver
 cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 #cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
+
+#sed -i "s/\(\"action-icon-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[15]}\"\2/" ~/.config/kando/config.json
+#sed -i "s/\(\"submenu-icon-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[3]}\"\2/" ~/.config/kando/config.json
+#sed -i "s/\(\"background-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[0]}\"\2/" ~/.config/kando/config.json
+#sed -i "s/\(\"text-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[15]}\"\2/" ~/.config/kando/config.json
 
 kando --reload-menu-theme &
 update_telegram.sh -B -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
