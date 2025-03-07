@@ -3,17 +3,7 @@
 pkgs.writeShellScriptBin "start_macos.sh" '' 
 #!/bin/sh
 
-~/Documents/stop_windows.sh &
+pkill qemu
 
-mapfile -t windows < <( hyprctl clients | grep "class: " | awk '{print $2}' )
-mapfile -t workspaces < <( hyprctl clients | grep "workspace: " | awk '{print $2}' )
-
-for i in "''${!windows[@]}"; do
-    if [[ "''${windows[$i]}" == "qemu" ]]; then
-        hyprctl dispatch workspace "''${workspaces[$i]}"
-        exit
-    fi
-done
-
-quickemu --vm ~/virtual/macos-bugsur.conf
+quickemu --vm ~/virtual/macos-big-sur.conf --width 1920 --height 1080
 ''

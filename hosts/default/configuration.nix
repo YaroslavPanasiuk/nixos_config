@@ -52,7 +52,7 @@ in
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers"];
   };
-
+  nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.packageOverrides = pkgs: {

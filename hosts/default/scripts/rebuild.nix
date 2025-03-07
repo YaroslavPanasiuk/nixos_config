@@ -2,6 +2,9 @@
 
 pkgs.writeShellScriptBin "rebuild.sh" '' 
 #!/bin/sh
+
+cd ~/nixos
+git add .
 sudo nixos-rebuild switch --flake ~/nixos/#default
 if [[ "$1" != "-r" ]]; then
     exit

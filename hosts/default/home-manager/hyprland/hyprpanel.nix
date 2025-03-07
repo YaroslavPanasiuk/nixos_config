@@ -4,7 +4,7 @@ let
 in
 {
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
-  
+
   programs.hyprpanel = {
     enable = true;
     overlay.enable = true;
@@ -12,7 +12,7 @@ in
     overwrite.enable = true;
     layout = {
       "bar.layouts" = {
-        "0" = {
+        "*" = {
           left = [ "dashboard" "systray" "windowtitle" "media" "cava" ];
           middle = [ "workspaces" ];
           right = [ "kbinput" "network" "bluetooth" "volume" "battery" "clock" "notifications" ];
@@ -65,7 +65,7 @@ in
           #workspaceMask = true;
           scroll_speed = 1;
           #showAllActive = true;
-          workspaces = 9;
+          #workspaces = 9;
         };
         media = {
           #show_label = false;

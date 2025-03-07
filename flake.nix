@@ -48,7 +48,8 @@
       url = "github:bighu630/hycov";
       inputs.hyprland.follows = "hyprland";
     };
-
+    
+    gBar.url = "github:scorpion-26/gBar";
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
     hyprland-plugins = {

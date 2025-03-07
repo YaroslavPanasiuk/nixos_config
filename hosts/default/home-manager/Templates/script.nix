@@ -1,6 +1,6 @@
 { pkgs }:
 
-pkgs.writeShellScriptBin "alttab.sh" '' 
+pkgs.writeShellScriptBin "SCRIPT_NAME.sh" '' 
 #!/usr/bin/env bash
 
 ''

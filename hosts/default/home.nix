@@ -17,6 +17,7 @@ in
     #./home-manager/firefox.nix
     ./home-manager/hyprland/hyprpanel.nix
     ./home-manager/xdg.nix
+    #./home-manager/gbar.nix
     ./home-manager/services.nix
     ./home-manager/dconf.nix
     ./home-manager/programs/git.nix

@@ -150,7 +150,17 @@
                   {
                     "type": "command",
                     "data": {
-                      "command": "libreoffice-writer",
+                      "command": "libreoffice",
+                      "delayed": false
+                    },
+                    "name": "Launcher",
+                    "icon": "libreoffice-main.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice --writer",
                       "delayed": false
                     },
                     "name": "Writer",
@@ -160,7 +170,7 @@
                   {
                     "type": "command",
                     "data": {
-                      "command": "libreoffice-impress",
+                      "command": "libreoffice --impress",
                       "delayed": false
                     },
                     "name": "Impress",
@@ -170,7 +180,7 @@
                   {
                     "type": "command",
                     "data": {
-                      "command": "libreoffice-calc",
+                      "command": "libreoffice --calc",
                       "delayed": false
                     },
                     "name": "Calc",
@@ -180,7 +190,7 @@
                   {
                     "type": "command",
                     "data": {
-                      "command": "libreoffice-base",
+                      "command": "libreoffice --base",
                       "delayed": false
                     },
                     "name": "Base",
@@ -190,7 +200,7 @@
                   {
                     "type": "command",
                     "data": {
-                      "command": "libreoffice-draw",
+                      "command": "libreoffice --draw",
                       "delayed": false
                     },
                     "name": "Draw",
@@ -238,11 +248,21 @@
                   {
                     "type": "command",
                     "data": {
-                      "command": "vnc_server.sh",
+                      "command": "vnc_server.sh remote_control",
                       "delayed": false
                     },
-                    "name": "VNC connect",
+                    "name": "Remote control",
                     "icon": "screen_share",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh second_monitor",
+                      "delayed": false
+                    },
+                    "name": "Second monitor",
+                    "icon": "magnify_fullscreen",
                     "iconTheme": "material-symbols-rounded"
                   }
                 ]
@@ -482,7 +502,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "quickemu --vm $HOME/virtual/windows-10.conf",
+                  "command": "start_vm.sh windows",
                   "delayed": false
                 },
                 "name": "Windows",
@@ -492,7 +512,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "quickemu --vm $HOME/virtual/macos-big-sur.conf",
+                  "command": "start_vm.sh macos",
                   "delayed": false
                 },
                 "name": "MacOs",
@@ -545,6 +565,91 @@
                 "iconTheme": "scalable"
               }
             ]
+          }
+        ]
+      }
+    },
+    {
+    "shortcut": "Control+Space",
+      "shortcutID": "playerctl-menu",
+      "centered": false,
+      "root": {
+        "type": "submenu",
+        "name": "Playerctl Menu",
+        "icon": "play_circle",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -a pause"
+            },
+            "name": "Pause all",
+            "icon": "pause",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p chromium play"
+            },
+            "name": "Play YT music",
+            "icon": "youtube-music.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p firefox play"
+            },
+            "name": "Play Firefox",
+            "icon": "firefox.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p vlc play"
+            },
+            "name": "Play VLC",
+            "icon": "vlc.svg",
+            "iconTheme": "scalable"
+          },          
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p vlc position 0"
+            },
+            "name": "VLC restart",
+            "icon": "autopause",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p vlc pause"
+            },
+            "name": "Pause VLC",
+            "icon": "vlc.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p firefox pause"
+            },
+            "name": "Pause Firefox",
+            "icon": "firefox.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p chromium pause"
+            },
+            "name": "Pause YT music",
+            "icon": "youtube-music.svg",
+            "iconTheme": "scalable"
           }
         ]
       }

@@ -1,4 +1,2 @@
-#!/bin/sh
-ip=$(ip -4 r | awk '{print $9; exit}')
-wayvnc $ip 5900 &
-notify-send "VNC server" "Listening for connections on $ip:5900"
+#!/usr/bin/env bash
+printf "[general]\nframerate=60\nbars = 20\n[output]\nmethod = raw\nraw_target = /dev/stdout\ndata_format = ascii\nascii_max_range = 9\n[input]\nmethod=pulse\nsource=auto\n" | cava -p /dev/stdin | sed -u 's/;//g;s/0/⠀/g;s/1/⢀/g;s/2/⣀/g;s/3/⣄/g;s/4/⣤/g;s/5/⣦/g;s/6/⣶/g;s/7/⣷/g;s/8/⣾/g;s/9/⣿/g; ' | awk -v OFS= '{ len = length($0)/2; print substr($0, 2, len); fflush() }'

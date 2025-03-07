@@ -132,6 +132,43 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "gBar": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1734456974,
+        "narHash": "sha256-4OfcG1DcqemLrK5D75S1x25g9K0k2+eEUQUXgYEYBf8=",
+        "owner": "scorpion-26",
+        "repo": "gBar",
+        "rev": "03bedc7471add061fb15e0ca1c9d2f729b8c5d7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "scorpion-26",
+        "repo": "gBar",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -296,7 +333,7 @@
           "nixpkgs"
         ],
         "pre-commit-hooks": "pre-commit-hooks",
-        "systems": "systems_2",
+        "systems": "systems_3",
         "xdph": "xdph"
       },
       "locked": {
@@ -497,11 +534,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739002652,
-        "narHash": "sha256-W83O9ASWUFaDAFY7H9vvW/Gm9PN5Lkh0McYW3bA/6aU=",
+        "lastModified": 1740730563,
+        "narHash": "sha256-OfTKeEdFGeDTBAQdQESy4Yjrx2Vf+0oCRKju0CfgYIY=",
         "owner": "Jas-SinghFSU",
         "repo": "HyprPanel",
-        "rev": "0d5f80ff5cd525b8f27adfb84cef67d90e3d7f10",
+        "rev": "4810d0f502b26469d96de2ea5310a7a84cd4696f",
         "type": "github"
       },
       "original": {
@@ -533,7 +570,7 @@
     "hyprswitch": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -561,7 +598,7 @@
           "hyprland",
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1738781895,
@@ -673,15 +710,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1735831304,
-        "narHash": "sha256-92A/Zr8UzZzlFYmkgO3HAgX/Cr53eodgNyvJA+Ibkz0=",
-        "owner": "nixos",
+        "lastModified": 1701040486,
+        "narHash": "sha256-vawYwoHA5CwvjfqaT3A5CT9V36Eq43gxdwpux32Qkjw=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0725951bfc4bbc2efff3a537837ca13159b4aec9",
+        "rev": "45827faa2132b8eade424f6bdd48d8828754341a",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -699,6 +737,21 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1735831304,
+        "narHash": "sha256-92A/Zr8UzZzlFYmkgO3HAgX/Cr53eodgNyvJA+Ibkz0=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0725951bfc4bbc2efff3a537837ca13159b4aec9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1736883708,
         "narHash": "sha256-uQ+NQ0/xYU0N1CnXsa2zghgNaOPxWpMJXSUJJ9W7140=",
@@ -740,6 +793,7 @@
     "root": {
       "inputs": {
         "Hyprspace": "Hyprspace",
+        "gBar": "gBar",
         "home-manager": "home-manager",
         "hycov": "hycov",
         "hyprgrass": "hyprgrass",
@@ -749,7 +803,7 @@
         "hyprsplit": "hyprsplit",
         "hyprswitch": "hyprswitch",
         "hyprtasking": "hyprtasking",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "split-monitor-workspaces": "split-monitor-workspaces"
       }
     },
@@ -812,6 +866,21 @@
     },
     "systems_2": {
       "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
         "owner": "nix-systems",
@@ -825,7 +894,7 @@
         "type": "github"
       }
     },
-    "systems_3": {
+    "systems_4": {
       "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",

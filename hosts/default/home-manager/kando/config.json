@@ -22,7 +22,7 @@
   },
   "darkMenuThemeColors": {},
   "enableDarkModeForMenuThemes": false,
-  "soundTheme": "none",
+  "soundTheme": "my-sound-theme",
   "soundVolume": 0.5,
   "sidebarVisible": false,
   "ignoreWriteProtectedConfigFiles": false,

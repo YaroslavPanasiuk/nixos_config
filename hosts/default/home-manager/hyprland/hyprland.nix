@@ -21,7 +21,11 @@
     settings = {
       
       source = "$HOME/.cache/wal/colors-hyprland.conf";
-      monitor = ",preferred,auto,1"; 
+      monitor = [
+        ",preferred,auto,1"
+        
+      ];
+      
 
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
@@ -80,7 +84,9 @@
           "borderangle, 1, 8, default"
           "fade, 1, 7, default"
           "workspaces, 1, 7, default"
-          "layersIn, 1, 3, default, slide 50%"
+          "layersIn, 1, 3, default, popin 70%"
+          "fadeLayersOut, 1, 5, default"
+          
         ];
       };
 
@@ -103,7 +109,7 @@
       };
       
       decoration = {
-        rounding = 7;
+        rounding = 8;
         active_opacity = "1.0";
         inactive_opacity = "0.85";
         dim_inactive = true;
@@ -134,15 +140,7 @@
       workspace = [
         "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-        #"1, persistent:true"
-        #"2, persistent:true"
-        #"3, persistent:true"
-        #"4, persistent:true"
-        #"5, persistent:true"
-        #"6, persistent:true"
-        #"7, persistent:true"
-        #"8, persistent:true"
-        #"9, persistent:true"
+        "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
       ];
 
       bind = [
@@ -152,10 +150,12 @@
         "$mainMod, M, exit,"
         "$mainMod, A, exec, ani-cli --vlc --rofi -q 1080p"
         "$mainMod, Z, exec, woomer"
-        "$mainMod, X, exec, rofi -modi clipboard:~/nixos/hosts/default/scripts/bash/cliphist-rofi-img -config ~/.config/rofi/clip-config.rasi -show clipboard -show-icons"
+        "$mainMod, X, exec, hyprctl kill" 
         "$mainMod, E, exec, $fileManager"
+        "$mainMod, D, exec, code"
         "$mainMod, w, exec, $browser"
         "$mainMod, V, togglefloating,"
+        "$mainMod, H, exec, toggle_hyprpanel_visibility.sh unactive"
         "ALT, SPACE, exec, $menu"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
@@ -166,27 +166,27 @@
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
 
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+        "$mainMod, 1, split-workspace, 1"
+        "$mainMod, 2, split-workspace, 2"
+        "$mainMod, 3, split-workspace, 3"
+        "$mainMod, 4, split-workspace, 4"
+        "$mainMod, 5, split-workspace, 5"
+        "$mainMod, 6, split-workspace, 6"
+        "$mainMod, 7, split-workspace, 7"
+        "$mainMod, 8, split-workspace, 8"
+        "$mainMod, 9, split-workspace, 9"
+        "$mainMod, 0, split-workspace, 10"
 
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
+        "$mainMod SHIFT, 1, split-movetoworkspace, 1"
+        "$mainMod SHIFT, 2, split-movetoworkspace, 2"
+        "$mainMod SHIFT, 3, split-movetoworkspace, 3"
+        "$mainMod SHIFT, 4, split-movetoworkspace, 4"
+        "$mainMod SHIFT, 5, split-movetoworkspace, 5"
+        "$mainMod SHIFT, 6, split-movetoworkspace, 6"
+        "$mainMod SHIFT, 7, split-movetoworkspace, 7"
+        "$mainMod SHIFT, 8, split-movetoworkspace, 8"
+        "$mainMod SHIFT, 9, split-movetoworkspace, 9"
+        "$mainMod SHIFT, 0, split-movetoworkspace, 10"
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
@@ -196,12 +196,13 @@
         "$mainMod SHIFT, P, exec, toggle_mpvpaper.sh"
         ", XF86AudioMute, exec, volume.sh mute"
         "SUPER, F, fullscreen,f"
-        "$mainMod,XF86MonBrightnessDown, exec , brightnessctl set 0"
+        "$mainMod,XF86MonBrightnessDown, exec , blank_screen.sh"
 
         "$mainMod ALT, F4, exec ,echo 1 | sudo -S reboot -h nowstart"
         "ALT, F4, exec ,poweroff"
 
         "ALT, TAB, exec , hyprswitch gui --mod-key alt --key tab --close mod-key-release --show-workspaces-on-all-monitors --monitors eDP-1"
+        ", Menu, exec, rofi -modi clipboard:~/nixos/hosts/default/scripts/bash/cliphist-rofi-img -config ~/.config/rofi/clip-config.rasi -show clipboard -show-icons"
         "$mainMod ALT, W, exec, wallp-rofi.sh"
         "$mainMod ALT, T, exec, update_telegram.sh"
 
@@ -221,6 +222,8 @@
         "Control_L, bracketright, exec, echo 'multiply speed 1.1' | socat - /tmp/mpv-socket"
 
         "Alt_L, T, exec, ~/Downloads/Thorium.AppImage"
+        
+        "Control_L, mouse:274, global, kando:playerctl-menu"
         ",mouse:274, global, kando:example-menu"
       ];
 
@@ -235,17 +238,34 @@
 
       bindm = [
         "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
 
       binds = [
-        #"Control_L, W&P, exec, toggle_mpvpaper.sh"
+        "Super_L&Alt_L, 1, exec, switch_monitor.sh 1"
+        "Super_L&Alt_L, 2, exec, switch_monitor.sh 2"
+        "Super_L&Alt_L, 3, exec, switch_monitor.sh 3"
+        "Super_L&Alt_L, 4, exec, switch_monitor.sh 4"
+        "Super_L&Alt_L, 5, exec, switch_monitor.sh 5"
+        "Super_L&Alt_L, 6, exec, switch_monitor.sh 6"
+        "Super_L&Alt_L, 7, exec, switch_monitor.sh 7"
+        "Super_L&Alt_L, 8, exec, switch_monitor.sh 8"
+        "Super_L&Alt_L, 9, exec, switch_monitor.sh 9"
+
+        "Super_L&Alt_R, 1, exec, switch_monitor.sh 1 view"
+        "Super_L&Alt_R, 2, exec, switch_monitor.sh 2 view"
+        "Super_L&Alt_R, 3, exec, switch_monitor.sh 3 view"
+        "Super_L&Alt_R, 4, exec, switch_monitor.sh 4 view"
+        "Super_L&Alt_R, 5, exec, switch_monitor.sh 5 view"
+        "Super_L&Alt_R, 6, exec, switch_monitor.sh 6 view"
+        "Super_L&Alt_R, 7, exec, switch_monitor.sh 7 view"
+        "Super_L&Alt_R, 8, exec, switch_monitor.sh 8 view"
+        "Super_L&Alt_R, 9, exec, switch_monitor.sh 9 view"
       ];
 
       windowrule = [
         "float, (pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
-        "tile, (.scrcpy-wrapped)"
+        "tile, (.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
         "workspace empty (Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
         "fullscreen, (Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"
         "noblur, kando"
@@ -260,14 +280,19 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "float, title:Authentication Required"
+        "fullscreen, title:Waydroid"
+        "workspace empty title:Waydroid"
         "workspace +0 title:Authentication Required"
         "workspace +0 title:System Monitor"
         "workspace +0 title:Volume"
         "workspace +0 title:Power Statistics"
-        #"bordersize 0, floating:0, onworkspace:w[tv1]"
-        #"rounding 0, floating:0, onworkspace:w[tv1]"
-        #"bordersize 0, floating:0, onworkspace:f[1]"
-        #"rounding 0, floating:0, onworkspace:f[1]"
+        "bordersize 3, floating:1"
+        "rounding 8, floating:1"
+        "noanim, onworkspace:r[11-20]"
+        "noblur, onworkspace:r[11-20]"
+        "noborder, onworkspace:r[11-20]"
+        "nodim, onworkspace:r[11-20]"
+        "opaque, onworkspace:r[11-20]"
       ];
 
       "plugin:overview" = {

@@ -1,10 +1,28 @@
 #!/usr/bin/env bash
 
-# Check if any media player is playing
-if playerctl status --all-players 2>/dev/null | grep -q "Playing"; then
-    echo "Media is playing, preventing sleep/lock."
-    exit 1  # Exit with non-zero status to prevent sleep/lock
-else
-    echo "No media playing, allowing sleep/lock."
-    exit 0  # Exit with zero status to allow sleep/lock
-fi
+  status=$(nmcli g | tail -n 1 | awk '{print $1}')
+  signal=$(nmcli dev wifi | rg "\*" | awk '{ print $8 }')
+  essid=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d: -f2)
+
+  icons=("󰤯" "󰤟" "󰤢" "󰤥" "󰤨")
+
+  if [ "$status" = "disconnected" ] ; then
+    icon="󰤭"
+    text=""
+    color="#988ba2"
+  else
+    level=$(awk -v n="$signal" 'BEGIN{print int(n)}')
+    if [ "$level" -gt 4 ]; then
+      level=4
+    fi
+
+    icon=${icons[$level]}
+    color="#cba6f7"
+  fi
+
+case $1 in
+	--COL) echo $color;;
+	--ESSID) echo $essid;;
+	--ICON) echo $icon;;
+esac
+

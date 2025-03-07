@@ -134,8 +134,19 @@
     devenv
     neovim
     wayvnc
+    unoconv
+    #streamcontroller
+    youtube-music
+    #minecraft
+    #factorio
+    #jdk17
+    nodePackages.zx
+    cava
+    ripgrep
+    ironbar
     
   ] ++ [
+    
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
     (import ../scripts/brightness.nix { inherit pkgs; })
@@ -148,11 +159,9 @@
     (import ../scripts/record_screen_as_camera.nix { inherit pkgs; })
     (import ../scripts/reload_firefox.nix { inherit pkgs; })
     (import ../scripts/set_welcome.nix { inherit pkgs; })
-    (import ../scripts/start_macos.nix { inherit pkgs; })
     (import ../scripts/start_waydroid.nix { inherit pkgs; })
-    (import ../scripts/start_windows.nix { inherit pkgs; })
+    (import ../scripts/start_vm.nix { inherit pkgs; })
     (import ../scripts/stop_waydroid.nix { inherit pkgs; })
-    (import ../scripts/stop_windows.nix { inherit pkgs; })
     (import ../scripts/wallp-rofi.nix { inherit pkgs; })
     (import ../scripts/kill_taskbar.nix { inherit pkgs; })
     (import ../scripts/kill_waybar.nix { inherit pkgs; })
@@ -182,5 +191,14 @@
     (import ../scripts/idle_action.nix { inherit pkgs; })
     (import ../scripts/waydroid_init.nix { inherit pkgs; })
     (import ../scripts/vnc_server.nix { inherit pkgs; })
+    (import ../scripts/show_hyprpanel.nix { inherit pkgs; })
+    (import ../scripts/hide_hyprpanel.nix { inherit pkgs; })
+    (import ../scripts/blank_screen.nix { inherit pkgs; })
+    (import ../scripts/close_active.nix { inherit pkgs; })
+    (import ../scripts/switch_monitor.nix { inherit pkgs; })
+    (import ../scripts/toggle_hyprpanel_visibility.nix { inherit pkgs; })
+    (import ../scripts/resize_and_blur.nix { inherit pkgs; })
+    (import ../scripts/images_to_pptx.nix { inherit pkgs; })
+    (import ../scripts/blur_video.nix { inherit pkgs; })
   ];
 }

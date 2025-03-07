@@ -5,16 +5,16 @@ pkgs.writeShellScriptBin "post_setting.sh" ''
 
 pkill mpvpaper
 
-query=$(swww query)
+query=$(swww query | tail -n1 | awk '{print $NF}')
 path="''${query#*/}"
 echo $path
 gif="false"
 mp4="false"
-if [[ "''$path" == *"_GIF_"* ]]; then
+if [[ "$path" == *"_GIF_"* ]]; then
 	path="''${path%.*}.jpg"
 	gif="true"
 fi
-if [[ "''$path" == *"_MP4_"* ]]; then
+if [[ "$path" == *"_MP4_"* ]]; then
 	path="''${path%.*}.jpg"
 	mp4="true"
 fi
@@ -28,7 +28,7 @@ if pidof -qx "rofi"; then
 fi
 
 cat ~/.cache/wal/colors | while read -r color; do
-  echo -en "\e]P${color:1}\e\\"
+  echo -en "\e]P''${color:1}\e\\"
 done
 
 launch_dock.sh &
@@ -50,7 +50,6 @@ cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ve
 magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg
 cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
-#cp "/$path" ~/.mozilla/firefox/o3ylylpw.default/chrome/styles/ASSETS/wallpaper/wallpaper.png
 
 #sed -i "s/\(\"action-icon-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[15]}\"\2/" ~/.config/kando/config.json
 #sed -i "s/\(\"submenu-icon-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[3]}\"\2/" ~/.config/kando/config.json

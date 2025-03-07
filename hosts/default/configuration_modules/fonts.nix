@@ -14,6 +14,7 @@
       vistafonts
       corefonts
       fira-code-symbols
+      nerd-fonts.caskaydia-cove
       mplus-outline-fonts.githubRelease
       dina-font
       proggyfonts
