@@ -1,0 +1,26 @@
+destination:
+    border_color: green
+    language:
+        apertium: Ukrainian
+        argos: Ukrainian
+        bing: Ukrainian
+        chatgpt: Ukrainian
+        deepl: Ukrainian
+        deeplx: Ukrainian
+        google: Ukrainian
+        reverso: Ukrainian
+hide_below: true
+source:
+    border_color: cyan
+    language:
+        apertium: English
+        argos: English
+        bing: English
+        chatgpt: English
+        deepl: English
+        deeplx: English
+        google: English
+        reverso: English
+theme: custom
+translator: DeepL
+transparent: false

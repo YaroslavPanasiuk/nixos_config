@@ -27,19 +27,12 @@ if pidof -qx "rofi"; then
  	rofi -show drun -config ~/.config/wofi/config.rasi # && echo "set rofi"
 fi
 
-cat ~/.cache/wal/colors | while read -r color; do
-  echo -en "\e]P''${color:1}\e\\"
-done
-
 launch_dock.sh &
 pkill -f -37 nwg-dock-hyprland
 
-colors=()
-while IFS= read -r line; do
-    colors+=("$line")
-done < ~/.cache/wal/colors
-
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json
+sed -i 's/#/0x/g' ~/.cache/wal/gtt-theme.yaml
+cp ~/.cache/wal/gtt-theme.yaml ~/.config/gtt/theme.yaml
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background1.jpg
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background2.jpg
 convert /$path ~/Public/CurrentWallpaper/Background.png
@@ -63,10 +56,7 @@ if ! pidof -qx "hyprpanel"; then
  	hyprpanel &
 fi
 hyprpanel useTheme ~/.cache/wal/hyprbar.json
-#reload_firefox.sh
 set_welcome.sh
-#push_sddm.sh
-#push_wallp.sh
 
 if [ "$1" = "-f" ]; then 
     rebuild.sh

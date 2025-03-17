@@ -236,6 +236,11 @@
       recursive = true;
       source = ./hyprswitch;
     };
+    "gtt" = {
+      enable = true;
+      recursive = true;
+      source = ./gtt;
+    };
     "GIMP/2.10/scripts" = {
       enable = true;
       recursive = true;

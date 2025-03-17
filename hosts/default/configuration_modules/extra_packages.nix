@@ -144,6 +144,9 @@
     cava
     ripgrep
     ironbar
+    celluloid
+    translate-shell
+    gtt
     
   ] ++ [
     
