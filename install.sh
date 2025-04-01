@@ -1,25 +1,28 @@
 #!/bin/sh
+
+host="default"
+host=$1
 rm -rf ~/nixos
 nix-shell -p git --command "git clone https://github.com/YaroslavPanasiuk/nixos_config.git ~/nixos"
 echo "done cloning"
 
-sed -i "s/__user__/$USER/g" ~/nixos/hosts/default/configuration_modules/user.nix
+sed -i "s/__user__/$USER/g" ~/nixos/hosts/$host/configuration_modules/user.nix
 
 mkdir ~/Public/Wallpapers
 mkdir ~/Public/CurrentWallpaper
 mkdir ~/Public/CurrentWallpaper/Windows
 mkdir ~/Videos/recordings
 
-cp ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg ~/Public/Wallpapers/1.jpg
+cp ~/nixos/hosts/$host/home-manager/extra_resources/Wallpaper.jpg ~/Public/Wallpapers/1.jpg
 
 cp -f ~/nixos/dotfiles/kando/config.json ~/.config/kando/config.json
 
-sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/default/hardware-configuration.nix
-sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#default;
+sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/$host/hardware-configuration.nix
+sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#$host;
 
 swww-daemon
 swww img ~/Public/Wallpapers/1.jpg
-wal -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
+wal -i ~/nixos/hosts/$host/home-manager/extra_resources/Wallpaper.jpg
 wpg-install.sh -gG
 
 git clone --depth 1 https://codeberg.org/thirtysix/walogram.git ~/.walogram

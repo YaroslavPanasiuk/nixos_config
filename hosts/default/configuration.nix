@@ -26,6 +26,13 @@ in
     firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
   
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ 
+    pkgs.xdg-desktop-portal-gtk
+    pkgs.xdg-desktop-portal-hyprland
+    #pkgs.xdg-desktop-portal-kde
+  ];
+
   home-manager = {
     users = {
       ${user.name} = import ./home.nix;
@@ -94,6 +101,6 @@ in
     gnome-tour
   ]);
 
-  system.stateVersion = "unstable";
+  system.stateVersion = "25.05";
 
 }

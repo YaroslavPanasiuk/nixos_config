@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+case "$1" in
+    "show")
+        ironbar var set soundbar_closing false
+        ironbar var set soundbar_state true
+        ;;
+    "hide")
+        ironbar var set soundbar_state false
+        ;;
+    "hide_delay")
+        ironbar var set soundbar_closing true
+        sleep $2
+        if [ "$(ironbar var get soundbar_closing | tail -1)" = "true" ]; then
+            ironbar var set soundbar_state false
+        fi
+        ;;
+    "toggle")
+        if [ "$(ironbar var get soundbar_state | tail -1)" = "true" ]; then
+            ironbar var set soundbar_state false
+        else
+            ironbar var set soundbar_state true
+        fi
+        ;;
+esac

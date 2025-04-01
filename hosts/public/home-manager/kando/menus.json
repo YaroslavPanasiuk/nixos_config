@@ -1,0 +1,670 @@
+{
+  "menus": [
+    {
+      "shortcut": "Control+Space",
+      "shortcutID": "example-menu",
+      "centered": false,
+      "root": {
+        "type": "submenu",
+        "name": "Example Menu",
+        "icon": "nixos",
+        "iconTheme": "simple-icons",
+        "children": [
+          {
+            "type": "submenu",
+            "name": "Apps",
+            "icon": "apps",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "flatpak run life.bolls.bolls"
+                },
+                "name": "Bible",
+                "icon": "bolls.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "submenu",
+                "data": {
+                  "command": "code"
+                },
+                "name": "VS code",
+                "icon": "vscode.svg",
+                "iconTheme": "scalable",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code ~/nixos/",
+                      "delayed": false
+                    },
+                    "name": "Nixos folder",
+                    "icon": "folder_data",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code",
+                      "delayed": false
+                    },
+                    "name": "Open VS Code",
+                    "icon": "text_ad",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code ~/.config",
+                      "delayed": false
+                    },
+                    "name": ".config folder",
+                    "icon": "folder_managed",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code \"$(zenity --file-selection)\"",
+                      "delayed": false
+                    },
+                    "name": "Open file",
+                    "icon": "file_open",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "code \"$(zenity --file-selection --directory)\"",
+                      "delayed": false
+                    },
+                    "name": "Open folder",
+                    "icon": "folder_code",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "obsidian"
+                },
+                "name": "Obsidian",
+                "icon": "obsidian.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "viber"
+                },
+                "name": "Viber",
+                "icon": "viber.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "telegram-desktop"
+                },
+                "name": "Telegram",
+                "icon": "telegram.svg",
+                "iconTheme": "scalable"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Editing",
+            "icon": "edit_audio",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "gimp",
+                  "delayed": false
+                },
+                "name": "GIMP",
+                "icon": "gimp.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kdenlive",
+                  "delayed": false
+                },
+                "name": "KDEnlive",
+                "icon": "kdenlive.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "submenu",
+                "name": "LibreOfice",
+                "icon": "libreofficeimpress",
+                "iconTheme": "simple-icons",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice",
+                      "delayed": false
+                    },
+                    "name": "Launcher",
+                    "icon": "libreoffice-main.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice --writer",
+                      "delayed": false
+                    },
+                    "name": "Writer",
+                    "icon": "writer.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice --impress",
+                      "delayed": false
+                    },
+                    "name": "Impress",
+                    "icon": "impress.svg",
+                    "iconTheme": "scalable"
+                  },        
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice --calc",
+                      "delayed": false
+                    },
+                    "name": "Calc",
+                    "icon": "calc.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice --base",
+                      "delayed": false
+                    },
+                    "name": "Base",
+                    "icon": "base.svg",
+                    "iconTheme": "scalable"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "libreoffice --draw",
+                      "delayed": false
+                    },
+                    "name": "Draw",
+                    "icon": "draw.svg",
+                    "iconTheme": "scalable"
+                  }
+                ]
+              }       
+            ]
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Settings",
+            "icon": "settings",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "missioncenter",
+                  "delayed": false
+                },
+                "name": "System monitor",
+                "icon": "monitor_heart",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "submenu",
+                "data": {},
+                "name": "Phone",
+                "icon": "phone_android",
+                "iconTheme": "material-symbols-rounded",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "phone_camera.sh",
+                      "delayed": false
+                    },
+                    "name": "Connect camera",
+                    "icon": "camera",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh remote_control",
+                      "delayed": false
+                    },
+                    "name": "Remote control",
+                    "icon": "screen_share",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh second_monitor",
+                      "delayed": false
+                    },
+                    "name": "Second monitor",
+                    "icon": "magnify_fullscreen",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kando -s",
+                  "delayed": false
+                },
+                "name": "Kando settings",
+                "icon": "kando.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "toggle_hyprpanel.sh",
+                  "delayed": false
+                },
+                "name": "Toggle panel",
+                "icon": "subheader",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "redshift.sh",
+                  "delayed": false
+                },
+                "name": "Sepia",
+                "icon": "local_fire_department",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Screen copy",
+            "icon": "screenshot_frame_2",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprshot -m region --clipboard-only",
+                  "delayed": false
+                },
+                "name": "Screen area",
+                "icon": "screenshot_region",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "submenu",
+                "data": {},
+                "name": "Record screen",
+                "icon": "screen_record",
+                "iconTheme": "material-symbols-rounded",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh ai",
+                      "delayed": false
+                    },
+                    "name": "With microphone",
+                    "icon": "mic",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh",
+                      "delayed": false
+                    },
+                    "name": "No audio",
+                    "icon": "volume_off",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh ao",
+                      "delayed": false
+                    },
+                    "name": "With output",
+                    "icon": "volume_up",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprpicker -a -q",
+                  "delayed": false
+                },
+                "name": "Color picker",
+                "icon": "colorize",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprshot -m output --clipboard-only",
+                  "delayed": false
+                },
+                "name": "Whole screen",
+                "icon": "screenshot_monitor",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Power",
+            "icon": "power_settings_circle",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprlock",
+                  "delayed": false
+                },
+                "name": "Lock",
+                "icon": "lock_person",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "systemctl reboot",
+                  "delayed": false
+                },
+                "name": "Reboot",
+                "icon": "frame_reload",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "systemctl poweroff",
+                  "delayed": false
+                },
+                "name": "Shutdown",
+                "icon": "power_settings_new",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "hyprctl dispatch exit",
+                  "delayed": false
+                },
+                "name": "Log out",
+                "icon": "logout",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "systemctl suspend",
+                  "delayed": false
+                },
+                "name": "Sleep",
+                "icon": "nights_stay",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Nixos",
+            "icon": "nixos",
+            "iconTheme": "simple-icons",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty  --hold --detach home-manager -b backup switch --flake ~/nixos/#default_user",
+                  "delayed": false
+                },
+                "name": "Switch",
+                "icon": "wifi_home",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty --hold --detach backup.sh",
+                  "delayed": false
+                },
+                "name": "backup",
+                "icon": "backup",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty --hold --detach nix run github:YaroslavPanasiuk/nixos_config",
+                  "delayed": false
+                },
+                "name": "update",
+                "icon": "update",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty --hold --detach cleanup.sh",
+                  "delayed": false
+                },
+                "name": "cleanup",
+                "icon": "delete",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty  --hold --detach rebuild.sh",
+                  "delayed": false
+                },
+                "name": "Rebuild",
+                "icon": "sync",
+                "iconTheme": "material-symbols-rounded"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "data": {},
+            "name": "Virtual machines",
+            "icon": "view_in_ar",
+            "iconTheme": "material-symbols-rounded",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "start_vm.sh windows",
+                  "delayed": false
+                },
+                "name": "Windows",
+                "icon": "windows.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "start_vm.sh macos",
+                  "delayed": false
+                },
+                "name": "MacOs",
+                "icon": "apple.svg",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "start_waydroid.sh",
+                  "delayed": false
+                },
+                "name": "Android",
+                "icon": "android.svg",
+                "iconTheme": "scalable"
+              }
+            ]
+          },
+          {
+            "type": "submenu",
+            "name": "Steam",
+            "icon": "steam",
+            "iconTheme": "simple-icons",
+            "children": [
+              {
+                "type": "command",
+                "data": {
+                  "command": "steam --quiet steam://rungameid/105600"
+                },
+                "name": "Terraria",
+                "icon": "Terraria.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "steam --quiet steam://rungameid/367520"
+                },
+                "name": "Hollow knight",
+                "icon": "hollow.png",
+                "iconTheme": "scalable"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "steam --quiet steam://rungameid/1281930"
+                },
+                "name": "TmodLoader",
+                "icon": "Tmod.png",
+                "iconTheme": "scalable"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+    "shortcut": "Control+Space",
+      "shortcutID": "playerctl-menu",
+      "centered": false,
+      "root": {
+        "type": "submenu",
+        "name": "Playerctl Menu",
+        "icon": "play_circle",
+        "iconTheme": "material-symbols-rounded",
+        "children": [
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -a pause"
+            },
+            "name": "Pause all",
+            "icon": "pause",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p chromium play"
+            },
+            "name": "Play YT music",
+            "icon": "youtube-music.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p firefox play"
+            },
+            "name": "Play Firefox",
+            "icon": "firefox.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p vlc play"
+            },
+            "name": "Play VLC",
+            "icon": "vlc.svg",
+            "iconTheme": "scalable"
+          },          
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p vlc position 0"
+            },
+            "name": "VLC restart",
+            "icon": "autopause",
+            "iconTheme": "material-symbols-rounded"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p vlc pause"
+            },
+            "name": "Pause VLC",
+            "icon": "vlc.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p firefox pause"
+            },
+            "name": "Pause Firefox",
+            "icon": "firefox.svg",
+            "iconTheme": "scalable"
+          },
+          {
+            "type": "command",
+            "data": {
+              "command": "playerctl -p chromium pause"
+            },
+            "name": "Pause YT music",
+            "icon": "youtube-music.svg",
+            "iconTheme": "scalable"
+          }
+        ]
+      }
+    }
+  ],
+  "templates": [
+    {
+      "type": "command",
+      "data": {
+        "command": "",
+        "delayed": false
+      },
+      "name": "Run Command",
+      "icon": "terminal",
+      "iconTheme": "material-symbols-rounded"
+    }
+  ]
+}

@@ -107,10 +107,10 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "telegram-desktop"
+                  "command": "kitty gtt"
                 },
-                "name": "Telegram",
-                "icon": "telegram.svg",
+                "name": "Translate",
+                "icon": "deepl.svg",
                 "iconTheme": "scalable"
               }
             ]
@@ -313,6 +313,16 @@
                 },
                 "name": "Screen area",
                 "icon": "screenshot_region",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "copy_image_text.sh",
+                  "delayed": false
+                },
+                "name": "Text from image",
+                "icon": "text_compare",
                 "iconTheme": "material-symbols-rounded"
               },
               {

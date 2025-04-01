@@ -1,6 +1,10 @@
 { config, pkgs, inputs, ... }:
 let
   user = import ./configuration_modules/user.nix;
+  zoomPkgs = import inputs.nixpkgs-zoom {
+    system = "x86_64-linux";
+    config.allowUnfree = true;
+  };
 in
 {
   imports = [
@@ -37,6 +41,7 @@ in
     homeDirectory = "${user.path}";
     packages = with pkgs;[
       inputs.hyprswitch.packages.x86_64-linux.default
+      zoomPkgs.zoom-us
       #davinci-resolve
       #hyprpanel
     ];

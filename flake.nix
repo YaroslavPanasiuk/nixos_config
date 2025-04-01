@@ -44,18 +44,20 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hycov={
-      url = "github:bighu630/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
+    #hycov={
+    #  url = "github:bighu630/hycov";
+    #  inputs.hyprland.follows = "hyprland";
+    #};
     
-    gBar.url = "github:scorpion-26/gBar";
+    #gBar.url = "github:scorpion-26/gBar";
     hyprswitch.url = "github:h3rmt/hyprswitch/release";
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -78,14 +80,18 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/default/configuration.nix
-          #{nixpkgs.overlays = [inputs.hyprpanel.overlay];}   
+        ];
+      };
+      public = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/public/configuration.nix
         ];
       };
       
     };
 
     homeConfigurations.default_user = inputs.home-manager.lib.homeManagerConfiguration {
-      #pkgs = nixpkgs.legacyPackages."x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
@@ -94,6 +100,19 @@
       };
       modules = [ 
         ./hosts/default/home.nix 
+      ];
+      extraSpecialArgs = { inherit inputs; };
+    };
+
+    homeConfigurations.public_user = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          inputs.hyprpanel.overlay
+        ];
+      };
+      modules = [ 
+        ./hosts/public/home.nix 
       ];
       extraSpecialArgs = { inherit inputs; };
     };

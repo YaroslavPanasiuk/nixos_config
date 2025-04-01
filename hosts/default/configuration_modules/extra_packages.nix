@@ -15,8 +15,9 @@
     python312Full
     nix-index
     qimgv
-    zoom-us
+    #zoom-us
     cmake
+    ngrok
     gnumake
     brightnessctl	
     xdotool
@@ -39,6 +40,7 @@
     android-tools
     qemu
     libvirt
+    tesseract
     mpvpaper
     virt-manager
     OVMF 
@@ -147,7 +149,7 @@
     celluloid
     translate-shell
     gtt
-    
+    xdg-desktop-portal-hyprland
   ] ++ [
     
     (import ../scripts/volume.nix { inherit pkgs; })
@@ -203,5 +205,6 @@
     (import ../scripts/resize_and_blur.nix { inherit pkgs; })
     (import ../scripts/images_to_pptx.nix { inherit pkgs; })
     (import ../scripts/blur_video.nix { inherit pkgs; })
+    (import ../scripts/copy_image_text.nix { inherit pkgs; })
   ];
 }

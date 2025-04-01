@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1734996864522581-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name>Set as Background</name>
+	<submenu></submenu>
+	<unique-id>1736289966286446-1</unique-id>
+	<command>set_as_wallpaper.sh %f</command>
+	<description>Set .png, .jpg, .gif or .mp4 file as a wallpaper</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Copy path</name>
+	<submenu></submenu>
+	<unique-id>1736326616331956-1</unique-id>
+	<command>echo -n %f | wl-copy</command>
+	<description>Copy whole file path</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Resize and blur</name>
+	<submenu></submenu>
+	<unique-id>1741004813671915-1</unique-id>
+	<command>resize_and_blur.sh -i %F</command>
+	<description>Resizes all selected images and videos to 1920*1080 perserving aspect ratio and blurs the backgound layer</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Extract images</name>
+	<submenu></submenu>
+	<unique-id>1741004813671916-1</unique-id>
+	<command>export_images.sh %f</command>
+	<description>Extracts all slides of .pptx or .pdf file as images into a separate folder</description>
+	<range>*</range>
+	<patterns>*.pdf;*.pptx</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Generate presentation</name>
+	<submenu></submenu>
+	<unique-id>1741004813671917-1</unique-id>
+	<command>images_to_pptx.sh %f</command>
+	<description>Merges all image files in current folder into a .pptx presentation</description>
+	<range></range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>

@@ -1,0 +1,39 @@
+@import "../../.cache/wal/gtk-theme.css";
+
+
+* {
+    font-family: "CaskaydiaCove NF";
+    font-size: 15px;
+    font-weight: bold;
+}
+
+window#waybar {
+    margin-bottom: 5px;
+    background-color: rgba(0,0,0,0);
+}
+
+.modules-center {
+    background: @background;
+    border-radius: 20px;
+    margin: 0px;
+    padding: 0 5px;
+    background-image: linear-gradient(135deg, @color1a, @color4a, @color7a);
+}
+
+#taskbar {
+    border-radius: 20px;
+    padding: 0px 15px 0px 15px;
+}
+
+#taskbar button {
+    border-radius: 0px;
+}
+
+#taskbar button.active {
+    border-bottom: 5px solid @color1;
+}
+
+#taskbar button:hover {
+    background-color: rgba(0,0,0,0);
+    border-bottom: 5px solid @color1;
+}
