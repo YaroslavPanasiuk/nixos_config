@@ -30,7 +30,7 @@
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
       "$menu" = "set_layout.sh us && rofi -show drun";
-      "$browser" = "firefox";
+      "$browser" = "zen";
       "$mainMod" = "SUPER";
 
       exec-once = [

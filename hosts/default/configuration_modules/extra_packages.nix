@@ -151,7 +151,7 @@
     gtt
     xdg-desktop-portal-hyprland
   ] ++ [
-    
+    inputs.zen-browser.packages."${system}".default
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
     (import ../scripts/brightness.nix { inherit pkgs; })
