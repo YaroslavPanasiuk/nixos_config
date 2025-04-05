@@ -4,6 +4,7 @@
       "shortcut": "Control+Space",
       "shortcutID": "example-menu",
       "centered": false,
+      "hoverMode": true,
       "root": {
         "type": "submenu",
         "name": "Example Menu",

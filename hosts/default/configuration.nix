@@ -13,6 +13,7 @@ in
       ./configuration_modules/programs.nix
       ./configuration_modules/extra_packages.nix
       ./configuration_modules/fonts.nix
+      #./overlays/kando.nix
     ];  
 
   systemd.packages = [ pkgs.libinput-gestures ];
@@ -64,8 +65,12 @@ in
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import <nixos-unstable> { };
+    kando-180 = pkgs.callPackage ./packages/kando-180.nix { };
   };
-  nixpkgs.overlays = [inputs.hyprpanel.overlay];
+  nixpkgs.overlays = [
+    inputs.hyprpanel.overlay
+    #(import ./overlays/kando.nix)
+  ];
  
   virtualisation = {
     libvirtd = {

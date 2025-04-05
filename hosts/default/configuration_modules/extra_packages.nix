@@ -24,7 +24,8 @@
     pywal
     libinput
     glib
-    kando
+    #kando
+    kando-180
     gvfs
     pinta
     ffmpeg
