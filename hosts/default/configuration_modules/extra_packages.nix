@@ -25,6 +25,8 @@
     libinput
     glib
     #kando
+    morgen
+    gcolor3
     kando-180
     gvfs
     pinta

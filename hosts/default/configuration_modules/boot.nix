@@ -7,10 +7,10 @@ in
 
     plymouth = {
       enable = true;
-      theme = "colorful_loop";
+      theme = "circle_hud";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "colorful_loop" ];
+          selected_themes = [ "circle_hud" ];
         })
       ];
     };

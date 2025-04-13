@@ -302,7 +302,7 @@
           },
           {
             "type": "submenu",
-            "name": "Screen copy",
+            "name": "Screen",
             "icon": "screenshot_frame_2",
             "iconTheme": "material-symbols-rounded",
             "children": [
@@ -373,6 +373,16 @@
                 },
                 "name": "Color picker",
                 "icon": "colorize",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "gcolor3",
+                  "delayed": false
+                },
+                "name": "Color chooser",
+                "icon": "palette",
                 "iconTheme": "material-symbols-rounded"
               },
               {
@@ -479,6 +489,16 @@
                 },
                 "name": "update",
                 "icon": "update",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "kitty --hold --detach rebuild.sh --rollback",
+                  "delayed": false
+                },
+                "name": "rollback",
+                "icon": "settings_backup_restore",
                 "iconTheme": "material-symbols-rounded"
               },
               {

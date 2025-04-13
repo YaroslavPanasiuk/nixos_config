@@ -170,6 +170,9 @@
         "application/x-rar-compressed" = [ "org.gnome.FileRoller.desktop" ];
 
         "inode/directory" = [ "thunar.desktop" ];
+
+        "x-scheme-handler/http" = [ "zen.desktop" ];
+        "x-scheme-handler/https" = [ "zen.desktop" ];
       };
     };
 

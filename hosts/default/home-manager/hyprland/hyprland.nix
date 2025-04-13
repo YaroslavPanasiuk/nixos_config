@@ -264,7 +264,7 @@
       ];
 
       windowrule = [
-        "float, (pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "float, (gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, (.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
         "workspace empty (Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
         "fullscreen, (Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"

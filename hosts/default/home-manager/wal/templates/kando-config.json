@@ -44,7 +44,7 @@
       "rmbSelectsParent": false,
       "gamepadBackButton": 1,
       "gamepadCloseButton": 2,
-      "hoverModeNeedsConfirmation": true
+      "hoverModeNeedsConfirmation": false
     }},
     "editorOptions": {{
       "showSidebarButtonVisible": false,
