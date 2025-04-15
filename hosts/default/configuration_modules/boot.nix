@@ -12,8 +12,7 @@ in
         (adi1090x-plymouth-themes.override {
           selected_themes = [ "circle_hud" ];
         })
-      ];
-    };
+      ];};
 
     consoleLogLevel = 0;
     initrd.verbose = false;

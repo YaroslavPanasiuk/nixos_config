@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=My Theme
+Description=A custom boot theme
+ModuleName=script
+
+[script]
+ImageDir=/nix/var/nix/profiles/system/sw/share/plymouth/themes/my-theme
+ScriptFile=/nix/var/nix/profiles/system/sw/share/plymouth/themes/my-theme/my-theme.script

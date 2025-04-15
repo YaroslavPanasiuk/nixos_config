@@ -1,7 +1,9 @@
 #!/bin/sh
 
 host="default"
-host=$1
+if [ -n "$1" ]; then 
+    host=$1
+fi
 rm -rf ~/nixos
 nix-shell -p git --command "git clone https://github.com/YaroslavPanasiuk/nixos_config.git ~/nixos"
 echo "done cloning"
