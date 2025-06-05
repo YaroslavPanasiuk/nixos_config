@@ -19,16 +19,25 @@ if [[ "$path" == *"_MP4_"* ]]; then
 	mp4="true"
 fi
 echo $path
-wpg -s "/''${path}"
+
+workspace=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
 wal -i "/''${path}"
+wpg -s "/''${path}"
+
+hyprctl dispatch workspace $workspace
+
+#hyprpanel useTheme ~/.cache/wal/hyprbar.json
+
+set_welcome.sh
 
 if pidof -qx "rofi"; then
  	pkill rofi
  	rofi -show drun -config ~/.config/wofi/config.rasi # && echo "set rofi"
 fi
 
+pkill -f nwg-dock-hyprland
 launch_dock.sh &
-pkill -f -37 nwg-dock-hyprland
+sleep 1 && pkill -f -37 nwg-dock-hyprland
 
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json
 sed -i 's/#/0x/g' ~/.cache/wal/gtt-theme.yaml
@@ -44,19 +53,10 @@ magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/Ver
 cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 
-#sed -i "s/\(\"action-icon-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[15]}\"\2/" ~/.config/kando/config.json
-#sed -i "s/\(\"submenu-icon-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[3]}\"\2/" ~/.config/kando/config.json
-#sed -i "s/\(\"background-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[0]}\"\2/" ~/.config/kando/config.json
-#sed -i "s/\(\"text-color\":\s*\)\"[^\"]*\"\(,\?\)/\1\"''${colors[15]}\"\2/" ~/.config/kando/config.json
-
+pkill -f waybar_colors_update.sh
+waybar_colors_update.sh &
 kando --reload-menu-theme &
 update_telegram.sh -B -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
-pkill dunst
-if ! pidof -qx "hyprpanel"; then
- 	hyprpanel &
-fi
-hyprpanel useTheme ~/.cache/wal/hyprbar.json
-set_welcome.sh
 
 if [ "$1" = "-f" ]; then 
     rebuild.sh

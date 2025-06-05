@@ -2,6 +2,7 @@
 {  
   environment.systemPackages = with pkgs; [
     obsidian
+    teamviewer
     onlyoffice-bin
     obs-studio
     wget
@@ -24,10 +25,9 @@
     pywal
     libinput
     glib
-    #kando
+    kando-180
     morgen
     gcolor3
-    kando-180
     gvfs
     pinta
     ffmpeg
@@ -86,6 +86,8 @@
     postman
     wl-clipboard
     wf-recorder
+    easyeffects
+    helvum
     socat
     map-cmd
     pavucontrol
@@ -153,6 +155,10 @@
     translate-shell
     gtt
     xdg-desktop-portal-hyprland
+    networkmanagerapplet
+    killall
+    wttrbar
+    
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     (import ../scripts/volume.nix { inherit pkgs; })
@@ -209,5 +215,7 @@
     (import ../scripts/images_to_pptx.nix { inherit pkgs; })
     (import ../scripts/blur_video.nix { inherit pkgs; })
     (import ../scripts/copy_image_text.nix { inherit pkgs; })
+    (import ../scripts/fetch_weather.nix { inherit pkgs; })
+    (import ../scripts/waybar_colors_update.nix { inherit pkgs; })
   ];
 }

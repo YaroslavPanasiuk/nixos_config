@@ -1,3 +1,6 @@
+{ pkgs}:
+
+pkgs.writeShellScriptBin "waybar_colors_update.sh" '' 
 #!/usr/bin/env bash
 
 update_waybar() {
@@ -97,3 +100,4 @@ socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.sock
             ;;
     esac
 done
+''

@@ -362,6 +362,16 @@
                     "name": "With output",
                     "icon": "volume_up",
                     "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "record_screen.sh ac",
+                      "delayed": false
+                    },
+                    "name": "Combined audio",
+                    "icon": "frame_person_mic",
+                    "iconTheme": "material-symbols-rounded"
                   }
                 ]
               },

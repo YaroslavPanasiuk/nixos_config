@@ -1,3 +1,6 @@
+{ pkgs}:
+
+pkgs.writeShellScriptBin "fetch_weather.sh" '' 
 #!/usr/bin/env bash
 for i in {1..5}
 do
@@ -15,3 +18,5 @@ do
     sleep 2
 done
 echo "{\"text\":\"error\", \"tooltip\":\"error\"}"
+
+''

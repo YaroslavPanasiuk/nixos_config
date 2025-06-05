@@ -32,8 +32,8 @@ for path in "''${INPUTS[@]}"; do
     extension=''${filename##*.}
     dir=$(dirname "$path")
 
-    WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$path")
-    HEIGHT=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$path")
+    WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$path" | sed 's/,$//')
+    HEIGHT=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$path" | sed 's/,$//')
     RATIO=$(echo "scale=4; $WIDTH/$HEIGHT" | bc)
     TRESHHOLD_RATIO=$(echo "scale=4; $INPUT_WIDTH/$INPUT_HEIGHT" | bc)
     is_wide=$(echo "$RATIO > $TRESHHOLD_RATIO" | bc -l)

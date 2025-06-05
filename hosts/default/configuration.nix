@@ -13,7 +13,6 @@ in
       ./configuration_modules/programs.nix
       ./configuration_modules/extra_packages.nix
       ./configuration_modules/fonts.nix
-      #./overlays/kando.nix
     ];  
 
   systemd.packages = [ pkgs.libinput-gestures ];
@@ -39,7 +38,7 @@ in
       ${user.name} = import ./home.nix;
     };
     extraSpecialArgs = { inherit inputs; };
-    backupFileExtension = "hm-backup";
+    backupFileExtension = "backup";
   };
 
   time.timeZone = "Europe/Kyiv";
@@ -69,7 +68,6 @@ in
   };
   nixpkgs.overlays = [
     inputs.hyprpanel.overlay
-    #(import ./overlays/kando.nix)
   ];
  
   virtualisation = {

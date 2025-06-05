@@ -1,20 +1,23 @@
 @import "../../.cache/wal/gtk-theme.css";
+@import "../../.cache/wal/waybar_css_mutable.css";
 
 
 * {
-    font-family: "Noto Sans CJK KR Regular";
-    font-size: 14px;
+    font-family: "CaskaydiaCove NF";
+    font-size: 14.9px;
     font-weight: bold;
 }
 
 window#waybar {
+    margin-top: 5px;
     border: none;
     border-radius: 0;
     box-shadow: none;
     text-shadow: none;
     transition-duration: 0s;
-    color: #000;
-    background: rgba(0, 0, 0, 0.2);
+    background: @panel_background;
+    background-image: linear-gradient(135deg, @panel_color1 50%, @panel_color2 50%);
+
 }
 
 .modules-left {
@@ -23,15 +26,15 @@ window#waybar {
     margin: 0px;
     padding: 0 5px;
     padding-right: 12px;
-    background-image: linear-gradient(135deg, @color0a 55%, @color1a);
+    background-image: linear-gradient(135deg, @module_color1 55%, @module_color2);
 }
 
 .modules-center {
     background: @background;
     border-radius: 20px;
-    margin: 0px;
+    margin: 0px 5px;
     padding: 0 5px;
-    background-image: linear-gradient(135deg, @color1a, @color4a, @color7a);
+    background-image: linear-gradient(135deg, @module_color2, @module_color3, @module_color4);
 }
 
 .modules-right {
@@ -39,25 +42,24 @@ window#waybar {
     border-radius: 20px 0 0 20px;
     margin: 0px;
     padding: 0 5px;
-    background-image: linear-gradient(135deg, @color7a, @color9a 55%);
+    background-image: linear-gradient(135deg, @module_color4, @module_color5 55%);
 }
 
 #workspaces {
-    margin: 0 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    margin: 0px;
     opacity: 1;
 }
 
 #workspaces button {
-    padding: 0 6px;
+    padding: 0px 0px;
+    margin: 0px 0px;
     color: @color15;
-    border: 3px solid rgba(9, 85, 225, 0);
-    border-radius: 10px;
 }
 
 #workspaces button.active {
     color: @color1;
-    border-radius: 0px;
-    border-bottom: 2px solid @color1;
 }
 
 #workspaces button.urgent {
@@ -66,16 +68,34 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    box-shadow: inherit;
-    border-color: @color1;
-    border-width: 2px;
     color: @color1;
-    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #taskbar {
-    border-radius: 20px;
-    padding: 0 10px;
+    padding-left: 7px;
+    padding-right: 3px;
+    font-size: 10px;
+    margin:0px;
+    
+}
+#taskbar button {
+    padding: 2px 4px;
+    margin:0px;
+}
+
+#taskbar button:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 3px solid @cursor;
+}
+
+#pulseaudio:hover, #cava:hover, #language:hover, #battery:hover, #backlight:hover {
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 2px solid @cursor;
 }
 
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
@@ -87,25 +107,32 @@ window#waybar {
     color: @color2;
 }
 
-#custom-recorder {
-    font-size: 18px;
-    margin: 2px 7px 0px 7px;
-    color:#ee2e24;
+#language {
+    padding-right: 8px;
+    color: @cursor;
 }
 
-#tray,
+
+#tray {
+    padding-right: 5px;
+}
+
+#tray {
+    margin-left: 5px;
+}
+
 #mode,
+#disk,
+#pulseaudio,
+#backlight,
 #battery,
-#temperature,
 #cpu,
 #custom-wallpaper_change,
 #memory,
 #network,
-#pulseaudio,
 #idle_inhibitor,
-#sway-language,
-#backlight,
 #custom-storage,
+#language
 #custom-cpu_speed,
 #custom-powermenu,
 #custom-spotify,
@@ -125,7 +152,7 @@ window#waybar {
 }
 
 #cpu:hover {
-    background-color: @color1a;
+    background-color: @color1A;
 }
 
 #memory {
@@ -133,26 +160,27 @@ window#waybar {
 }
 
 #memory:hover {
-    background-color: @color1a;
+    background-color: @color1A;
 }
 
-#temperature {
+#disk {
     color: @color4;
 }
 
-#temperature:hover {
-    background-color: @color1a;
+#disk:hover {
+    background-color: @color1A;
 }
 
 
 #custom-wallpaper_change {
     color: @background;
-    padding-left: 8px;
-    padding-right: 8px;
-    font-size: 20px;
+    padding-left: 7px;
+    padding-right: 10px;
+    font-size: 17px;
     background-color: @color13;
-    background-image: linear-gradient(135deg, @color13 50%, @color2);
-    border-radius: 17px;
+    transition: background-color 300ms ease-in-out;
+    background-image: linear-gradient(135deg, @color13A 50%, @color2A);
+    border-radius: 13px;
 }
 
 #custom-windows {
@@ -189,8 +217,7 @@ window#waybar {
 }
 
 #custom-wallpaper_change:hover {
-    font-size: 17px;
-    background-color: @color14;
+    background-color: shade(@color13, 0.8);
 }
 
 #network {
@@ -198,11 +225,12 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: @color12;
+    color: shade(@color12, 1.2);
 }
 
-#pulseaudio:hover, #clock:hover {
-    background-color: @color1a;
+#clock:hover {
+    padding: 1px 4px;
+    border-bottom: 2px solid @cursor;
 }
 
 
@@ -212,30 +240,22 @@ window#waybar {
 
 #clock.1, #clock.2, #clock.3 {
     padding: 0 5px;
-    color: @color8;
+    color: @cursor;
 }
 
 #clock.1 {
-    margin-left: 8px;
+    margin-left: 2px;
 }
 #clock.3 {
-    margin-right: 8px;
+    margin-right: 3px;
 }
 
 #backlight {
-    color: @color10;
-}
-
-#backlight:hover {
-    background-color: @color1a;
+    color: shade(@color10, 1.2);
 }
 
 #battery {
-    color: @color3;
-}
-
-#battery:hover {
-    background-color: @color1a;
+    color: shade(@color3, 1.2);
 }
 
 #battery.warning {
@@ -267,29 +287,31 @@ window#waybar {
 
 #power-profiles-daemon {
     margin: 0 0px;
-    padding: 0 10px 0 10px;
     border-radius: 50px;
     font-size: 17px;    font-family: "Segoe UI", "Ubuntu";
+    background-image: linear-gradient(135deg, @color0aa, @color1aa);
 }
 
 #power-profiles-daemon.performance {
     background-color: #f7768e;
+    padding: 0 9px 0 7px;
     color: #282828;
 }
 
 #power-profiles-daemon.balanced {
     background-color: #7aa2f7;
+    padding: 0 8px 0 8px;
     color: #282828;
 }
 
 #power-profiles-daemon.power-saver {
     background-color: #9ece6a;
+    padding: 0 9px 0 7px;
     color: #282828;
 }
 
 #power-profiles-daemon:hover {
-    font-size: 15px;
-    background-image: linear-gradient(135deg, @color0a, @color1a);
+    background-image: linear-gradient(135deg, @color0A, @color1A);
 }
 
 #custom-separator {
@@ -297,9 +319,53 @@ window#waybar {
     font-size: 15px;
 }
 
-#tray{
-    padding-left: 9px;
+#cava {
+    color: shade(@color12, 1.2);
 }
-#keyboard-state {
-    color: @color6;
+
+#pulseaudio-slider slider {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+}
+
+#pulseaudio-slider trough {
+    min-height: 4px;
+    min-width: 60px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid shade(@cursor, 0.5)
+}
+#pulseaudio-slider highlight {
+    min-width: 5px;
+    border-radius: 5px;
+    background-color: shade(@color12, 1.2);
+}
+
+#backlight-slider slider {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+}
+
+#backlight-slider trough {
+    min-height: 4px;
+    min-width: 60px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid shade(@cursor, 0.5)
+}
+#backlight-slider highlight {
+    min-width: 5px;
+    border-radius: 5px;
+    background-color: shade(@color10, 1.2);
+}
+#window {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+#mpris{
+    padding-left: 7px;
+    color: shade(@color14, 1.2);
+}
+#mpris:hover{
+    color: shade(@color14, 0.8);
 }

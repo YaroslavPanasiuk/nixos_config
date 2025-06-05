@@ -44,11 +44,16 @@
         "systemctl --user start battery"
         "systemctl --user start battery_reset"
         "kando"
+        "waybar"
+        "waybar_colors_update.sh"
+        "sleep 3 && nm-applet"
+        "sleep 2 && blueman-applet"
         "touchegg"
         "thunar --daemon"
+        #"easyeffects --gapplication-service"
         "wl-paste --watch cliphist store"
         "hyprswitch init --size-factor 4 --custom-css ~/.config/hyprswitch/hyprswitch.css"
-        "sleep 10 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
+        #"sleep 10 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
       ];
 
       general = { 
@@ -139,6 +144,7 @@
 
       workspace = [
         "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
+        "w[fv1-10], gapsout:4, gapsin:3, bordersize:3, rounding:8"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
       ];
