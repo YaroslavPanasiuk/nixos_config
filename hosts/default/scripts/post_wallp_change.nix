@@ -39,8 +39,10 @@ pkill -f nwg-dock-hyprland
 launch_dock.sh &
 sleep 1 && pkill -f -37 nwg-dock-hyprland
 
+cp ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json
 sed -i 's/#/0x/g' ~/.cache/wal/gtt-theme.yaml
+cp ~/.cache/wal/gtt-theme.yaml ~/.config/gtt/theme.yaml
 cp ~/.cache/wal/gtt-theme.yaml ~/.config/gtt/theme.yaml
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background1.jpg
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background2.jpg
@@ -52,6 +54,8 @@ cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ve
 magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg
 cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
+
+pkill dunst
 
 pkill -f waybar_colors_update.sh
 waybar_colors_update.sh &

@@ -62,8 +62,8 @@
 [volume]
     appname = "volume_notification"
     summary = "volume"
-    max_icon_size = 24
-    min_icon_size = 24
+    max_icon_size = 48
+    min_icon_size = 48
     highlight = "{color15}"
     format = "  %b%n%%"
     word_wrap = false
@@ -72,9 +72,9 @@
 [muted]
     appname = "volume_notification"
     summary = "muted"
-    max_icon_size = 24
-    min_icon_size = 24
-    format = "  %b"
+    max_icon_size = 48
+    min_icon_size = 48
+    format = "  muted"
     timeout = 1
     padding = 5
 

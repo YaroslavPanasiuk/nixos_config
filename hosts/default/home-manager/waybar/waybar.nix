@@ -56,7 +56,7 @@
       };
       "clock#1"= {
         "format"= "{:L%A, %e %B}";
-        "on-click"= "obsidian";
+        "on-click"= "morgen";
         "tooltip-format"= "<tt>{calendar}</tt>";
         "calendar"= {
           "mode"          = "month";
@@ -99,7 +99,7 @@
           "<span color='#FF4000'>▇</span>" 
           "<span color='#FF0000'>█</span>" 
         ];
-        "on-click"= "gnome-system-monitor";
+        "on-click"= "gnome-system-monitor -r";
         "tooltip-format"= "{load}";
       };
       "custom/android"= {
@@ -139,16 +139,16 @@
       "hyprland/workspaces"= {
         "format"= "{icon}";
         "format-icons"= {
-          "urgent"= "🞉";
-          "active"= "🞊";
-          "default"= "🞆";
+          "active" = "🞊";
+          "default" = "🞊";
+          "empty" = "🞆";
         };
       };
       "layer"= "bottom";
       "margin-top"= 0;
       "memory"= {
         "format"= " <span size='small'>{}% </span>";
-        "on-click"= "gnome-system-monitor";
+        "on-click"= "gnome-system-monitor -r";
         "tooltip-format"= "{used} GB/{total} GB; Swap: {swapAvail} GB";
       };
       "disk"= {
@@ -157,14 +157,14 @@
         "tooltip-format"= "{specific_used} GB/{specific_total} GB";
         "unit"= "GB";
         "path"= "/";
+        "on-click"= "gnome-system-monitor -f";
+        "on-click-right"= "baobab";
       };
 
       "modules-center"= [
         "clock#1"
-        
         "hyprland/workspaces"
-        
-        "clock#3"
+        "group/time"
       ];
       "modules-left"= [
         "custom/wallpaper_change"
@@ -297,11 +297,14 @@
         "format"= "{title:.15}";
         "icon"= true;
         "icon-size"= 20;
+        "rewrite" = {
+          "" = "<span size='large'></span> NixOs";
+        };
         "separate-outputs"= true;
       };
       "mpris"= {
-        "format"= "{player_icon} <span size='small'><i>{title:.15}</i></span> ";
-        "format-paused"= "{player_icon} <span size='small'><i>{title:.15}</i></span> ";
+        "format"= "{player_icon} <span size='small'><i>{title:.20}</i></span> ";
+        "format-paused"= "{player_icon} <span size='small'><i>{title:.20}</i></span> ";
         "player-icons"= {
           "chromium"= "";
           "mpv"= "";
@@ -315,6 +318,14 @@
           "interval"= 3600;
           "exec"= "wttrbar";
           "return-type"= "json";
+      };
+      "custom/timer" = {
+        "tooltip" = true;
+        "return-type" = "json";
+        "exec" = "waybar_timer.sh check";
+        "on-click" = "waybar_timer.sh minute_dialog";
+        "on-click-right" = "waybar_timer.sh stop";
+        "interval" = 1;
       };
       "group/audio"= {
         "orientation"= "horizontal";
@@ -357,6 +368,18 @@
           "disk"
           "custom/separator"
           "battery#2"
+        ];
+      };
+      "group/time"= {
+        "orientation"= "horizontal";
+        "drawer"= {
+          "transition-duration"= 500;
+          "click-to-reveal"= false;
+          "transition-left-to-right"= true;
+        };
+        "modules"= [
+          "clock#3"
+          "custom/timer"
         ];
       };
     }];

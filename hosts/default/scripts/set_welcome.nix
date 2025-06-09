@@ -2,7 +2,7 @@
 
 pkgs.writeShellScriptBin "set_welcome.sh" '' 
 #!/bin/sh
-greetings=("Не бійся, Мій черв’ячку @Ісая 41:14" "Hello Yarych" "Wassupp myman" "Welcome" "Feeling good?" "Добрий день" "Здоров Панас" "Let's do some coding" "Ure ure ure" "Go touch some grass" "Get a job" "Omae wa mu sindeiru" "Get a life" "Nice weather innit?" "Доброго здоров'я" "Слава Ісусу Христу" "Здоров" "Хелоу" "Hello" "Greetings" "Go hard or go home" "Let's do it")
+greetings=("Не бійся, Мій черв’ячку" "Hello Yarych" "Wassupp myman" "Welcome" "Feeling good?" "Добрий день" "Здоров Панас" "Let's do some coding" "Ure ure ure" "Go touch some grass" "Get a job" "Omae wa mu sindeiru" "Get a life" "Nice weather innit?" "Доброго здоров'я" "Слава Ісусу Христу" "Здоров" "Хелоу" "Hello" "Greetings" "Go hard or go home" "Let's do it")
 
 # Get the number of elements in the array
 num_greets=''${#greetings[@]}

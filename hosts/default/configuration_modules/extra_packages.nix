@@ -158,6 +158,7 @@
     networkmanagerapplet
     killall
     wttrbar
+    dateutils
     
   ] ++ [
     inputs.zen-browser.packages."${system}".default
@@ -217,5 +218,6 @@
     (import ../scripts/copy_image_text.nix { inherit pkgs; })
     (import ../scripts/fetch_weather.nix { inherit pkgs; })
     (import ../scripts/waybar_colors_update.nix { inherit pkgs; })
+    (import ../scripts/waybar_timer.nix { inherit pkgs; })
   ];
 }

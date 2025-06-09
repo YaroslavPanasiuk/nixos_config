@@ -44,10 +44,13 @@
         "systemctl --user start battery"
         "systemctl --user start battery_reset"
         "kando"
-        "waybar"
-        "waybar_colors_update.sh"
+        "sleep 1 && waybar"
+        "swipe_up.sh && swipe_down.sh"
+        "sleep 2 && waybar_colors_update.sh"
+        "waybar_colors_update.sh update"
         "sleep 3 && nm-applet"
-        "sleep 2 && blueman-applet"
+        "sleep 5 && blueman-tray"
+        "sleep 5 && blueman-applet"
         "touchegg"
         "thunar --daemon"
         #"easyeffects --gapplication-service"
@@ -144,7 +147,7 @@
 
       workspace = [
         "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-        "w[fv1-10], gapsout:4, gapsin:3, bordersize:3, rounding:8"
+        #"w[fv1-10], gapsout:4, gapsin:3, bordersize:3, rounding:8"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
       ];
@@ -271,6 +274,7 @@
 
       windowrule = [
         "float, (gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "rounding 8, (gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, (.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
         "workspace empty (Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
         "fullscreen, (Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"

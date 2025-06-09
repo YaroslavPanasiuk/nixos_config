@@ -1,7 +1,7 @@
 { pkgs }:
 
 pkgs.writeShellScriptBin "wallpaper_change.sh" '' 
-#!/bin/sh
+#!/usr/bin/env bash
 DIR=~/Public/Wallpapers/
 PICS=($(ls ''${DIR}))
 
