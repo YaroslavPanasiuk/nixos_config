@@ -91,6 +91,7 @@ draw_graph() {
     local height=$3
     local -a sunrises=("${!4}")
     local -a sunsets=("${!5}")
+    local base=$6
     local result=""
 
     local MAX_VALUE=${values[0]}
@@ -101,16 +102,18 @@ draw_graph() {
         (( num < MIN_VALUE )) && MIN_VALUE=$num
     done
 
-    if (( MAX_VALUE <= 0 )); then
-        MAX_VALUE=0
-    else
-        MAX_VALUE=$(echo "($MAX_VALUE / 50 + 1) * 50" | bc)
-    fi
+    if [ "$base" = "zero" ]; then 
+        if (( MAX_VALUE <= 0 )); then
+            MAX_VALUE=0
+        else
+            MAX_VALUE=$(echo "($MAX_VALUE / 50 + 1) * 50" | bc)
+        fi
 
-    if (( MIN_VALUE > 0 )); then
-        MIN_VALUE=0
-    else 
-        MIN_VALUE=$(echo "($MIN_VALUE / 50 - 1) * 50" | bc)
+        if (( MIN_VALUE > 0 )); then
+            MIN_VALUE=0
+        else 
+            MIN_VALUE=$(echo "($MIN_VALUE / 50 - 1) * 50" | bc)
+        fi
     fi
 
     local range=$((MAX_VALUE - MIN_VALUE))
@@ -217,11 +220,11 @@ LON=$(curl -s https://ipinfo.io/json | grep -oP '"loc": "\K[^"]+' | cut -d , -f 
 LAT="${LAT:=49.835052840224876}"
 LON="${LON:=23.997055982804596}"
 
-HOURS=16
+HOURS=$1
 MIN_HOURS=1
 MAX_HOURS=100
 WIDTH=$(( $HOURS * 8 - 1))
-HEIGHT=15
+HEIGHT=$2
 
 ((HOURS < MIN_HOURS)) && HOURS=$MIN_HOURS
 ((HOURS > MAX_HOURS)) && HOURS=$MAX_HOURS

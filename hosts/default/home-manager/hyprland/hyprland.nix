@@ -37,7 +37,6 @@
         "hyprlock"
         "hypridle"
         "swww-daemon"
-        "pkill dunst"
         "hyprctl setcursor volantes_cursors 24"
         "sleep 2 && hyprctl dispatch overview:close"
         "lxqt-policykit-agent"
@@ -56,7 +55,6 @@
         #"easyeffects --gapplication-service"
         "wl-paste --watch cliphist store"
         "hyprswitch init --size-factor 4 --custom-css ~/.config/hyprswitch/hyprswitch.css"
-        #"sleep 10 && hyprpanel useTheme ~/.cache/wal/hyprbar.json"
       ];
 
       general = { 

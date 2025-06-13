@@ -110,13 +110,15 @@ fi
 
 # Monitor workspace and window events
 socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock | while read -r line; do
-    case ''${line%>>*} in
-        "workspace"|"openwindow"|"closewindow"|"movewindow")        
-            echo $line | grep "kando" && continue
-            echo $line | grep "openwindow" && hyprctl activewindow | grep -q "floating: 1" && continue
-            
-            update_waybar
-            ;;
-    esac
+    event_type="''${line%>>*}"
+
+    [[ "$event_type" != @("workspace"|"openwindow"|"closewindow"|"movewindow") ]] && continue
+    
+    if [[ $line == *"kando"* || $line == *",,"* || $line == *"Gimp,GNU Image Manipulation Program"* ]] ||
+       { [[ "$event_type" == "openwindow" ]] && hyprctl activewindow | grep -q "floating: 1"; }; then
+        continue
+    fi
+    
+    update_waybar
 done
 ''

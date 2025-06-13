@@ -61,7 +61,6 @@
         "calendar"= {
           "mode"          = "month";
           "mode-mon-col"  = 3;
-          "weeks-pos"     = "right";
           "on-scroll"     = 1;
           "format"= {
             "months"=     "<span color='#fff'><b>{}</b></span>";
@@ -139,7 +138,7 @@
       "hyprland/workspaces"= {
         "format"= "{icon}";
         "format-icons"= {
-          "active" = "🞊";
+          #"active" = "🞊";
           "default" = "🞊";
           "empty" = "🞆";
         };
@@ -248,12 +247,12 @@
         "on-click"= "gnome-system-monitor";
       };
       "tray"= {
-        "icon-size"= 20;
+        "icon-size"= 19;
         "spacing"= 6;
       };
       "wlr/taskbar"= {
         "format"= "{icon}";
-        "icon-size"= 20;
+        "icon-size"= 19;
         "max-length"= 15;
         "ignore-list"= [
           "kitty"
@@ -296,7 +295,7 @@
       "hyprland/window"= {
         "format"= "{title:.15}";
         "icon"= true;
-        "icon-size"= 20;
+        "icon-size"= 19;
         "rewrite" = {
           "" = "<span size='large'></span> NixOs";
         };
@@ -312,12 +311,13 @@
           "firefox"= "";
         };
       };
-      "custom/weather"= {
-          "format"= "<span size='small'>{}°</span>";
-          "tooltip"= true;
-          "interval"= 3600;
-          "exec"= "wttrbar";
-          "return-type"= "json";
+      "custom/weather" = {
+        "exec" = "$HOME/nixos/hosts/default/scripts/bash/fetch_weather.sh 18 6";
+        "return-type" = "json";
+        "format" = "{}";
+        "tooltip" = true;
+        "interval" = 3600;
+        "on-click" = "xdg-open https://www.msn.com/en-xl/weather";
       };
       "custom/timer" = {
         "tooltip" = true;

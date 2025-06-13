@@ -6,15 +6,15 @@ pkgs.writeShellScriptBin "set_layout.sh" ''
 layout=$(hyprctl devices -j | jq '.keyboards.[] | select(.main == true).active_keymap' | awk '{print $NF}')
 
 set=0
-if [ $1 = "ua" ] && [ "$layout" != '"Ukrainian"' ]; then 
+if [[ $1 = "ua" && "$layout" != '"Ukrainian"' ]]; then 
     layout='(US)"'
     set=1
 fi
-if [ $1 = "us" ] && [ "$layout" != '(US)"' ]; then 
+if [[ $1 = "us" && "$layout" != '(US)"' ]]; then 
     layout='"Ukrainian"'
     set=1
 fi
-if [ -n "$1" ] && [ $set -eq 0 ]; then
+if [[ -n "$1" && $set -eq 0 ]]; then
     exit
 fi
 
