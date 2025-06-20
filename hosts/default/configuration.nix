@@ -65,6 +65,7 @@ in
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import <nixos-unstable> { };
     kando-180 = pkgs.callPackage ./packages/kando-180.nix { };
+    scrcpy-33 = pkgs.callPackage ./packages/scrcpy-33.nix { };
   };
   nixpkgs.overlays = [
     inputs.hyprpanel.overlay
@@ -91,6 +92,21 @@ in
     extraPackages = with pkgs; [
         intel-compute-runtime
     ];
+  };
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "Canon_MF420_Series";
+        location = "Studpro";
+        deviceUri = "dnssd://Canon%20MF420%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-00bbc1742b65";
+        model = "drv:///sample.drv/generic.ppd";
+        ppdOptions = {
+          PageSize = "A4";
+        };
+      }
+    ];
+    ensureDefaultPrinter = "Canon_MF420_Series";
   };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

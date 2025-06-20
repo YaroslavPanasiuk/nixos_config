@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+colors_path="$HOME/.cache/wal/colors"
+accent_color=$(awk 'NR==3 {print; exit}' "$colors_path")
+l="<span color='$accent_color'>║</span>"
 
 remove_equally_spaced_elements() {
     local -a arr=("${!1}")
@@ -140,9 +143,9 @@ draw_graph() {
         local current_color=$(get_temp_color $current_level)
         
         if (( i % 5 == 0 )); then
-            result+=$(printf "%-5s║" "$(echo "scale=1; $current_level / 10" | bc)")
+            result+=$(printf "<span color='$current_color'>%-5s</span>$l" "$(echo "scale=1; $current_level / 10" | bc)")
         else
-            result+=$(printf "     ║")
+            result+=$(printf "     $l")
         fi
         local char=""
         local lastchar=""
@@ -206,10 +209,10 @@ draw_graph() {
             x=$(($x+1))
             result+=$(printf "$char")
         done
-        result+="║\n║"
+        result+="$l\n$l"
     done
 
-    echo "${result::-1}"
+    echo "${result::-30}"
 
 }
 
@@ -323,13 +326,13 @@ lines2=()
 
 for i in "${!time_array[@]}"; do
     emoji=" $(echo ${WEATHER_DESCRIPTION[${weather_code_array[i]}]:0:2})           "
-    emojis+=("${emoji:0:6}║")
+    emojis+=("${emoji:0:6}$l")
 
     time="${time_array[i]##*T}                                                     "
-    times+=("${time:0:6}"║)
+    times+=("${time:0:6}$l")
 
     temp="${temp_array[i]}°                                                        "
-    temps+=("${temp:0:6}║")
+    temps+=("${temp:0:6}$l")
 
     if ((i >= MIN_HOURS)); then
         lines1+=("═══════╦")
@@ -349,27 +352,31 @@ delimiter1=""
 delimiter2=""
 info=""
 if (( $HOURS < 8 )); then
-    info="║${condition:0:$((5+HOURS*8))}║\n"
+    info="$l${condition:0:$((5+HOURS*8))}$l\n"
     delimiter1="╠═════╩${lines:0:$((HOURS*8-1))}╣\n"
     delimiter2="╚══════${lines:0:$((HOURS*8-1))}╝"
 elif (( $HOURS < 11 )); then
-    info="║${condition:0:$((4+HOURS*4))}║${rain:0:$((HOURS*4))}║\n"
+    info="$l${condition:0:$((4+HOURS*4))}$l${rain:0:$((HOURS*4))}$l\n"
     delimiter1="╠═════╩${lines:0:$((HOURS*4-2))}╦${lines:0:$((HOURS*4))}╣\n"
     delimiter2="╚══════${lines:0:$((HOURS*4-2))}╩${lines:0:$((HOURS*4))}╝"
 else
-    info="║${condition:0:$((3+HOURS*3))}║${rain:0:$((HOURS*3))}║${wind:0:$((HOURS*2))}║\n"
+    info="$l${condition:0:$((3+HOURS*3))}$l${rain:0:$((HOURS*3))}$l${wind:0:$((HOURS*2))}$l\n"
     delimiter1="╠═════╩${lines:0:$((HOURS*3-3))}╦${lines:0:$((HOURS*3))}╦${lines:0:$((HOURS*2))}╣\n"
     delimiter2="╚══════${lines:0:$((HOURS*3-3))}╩${lines:0:$((HOURS*3))}╩${lines:0:$((HOURS*2))}╝"
 fi
 
 output=""
-output+="╔═╦═╦═╦$(printf "%s" "${lines1[@]}")═══════╗\n"
-output+="║ ╠═╣ ║ ${times[@]}\n╠═╣ ╠═╣ ${emojis[@]}\n║ ╠═╣ ║ ${temps[@]}\n"
-output+="╠═╩═╩═╬$(printf "%s" "${lines2[@]}")═══════╣\n║"
+output+="<span color='$accent_color'>╔═╦═╦═╦$(printf "%s" "${lines1[@]}")═══════╗</span>\n"
+output+="<span color='$accent_color'>║ ╠═╣ ║</span> ${times[@]}\n<span color='$accent_color'>╠═╣ ╠═╣</span> ${emojis[@]}\n<span color='$accent_color'>║ ╠═╣ ║</span> ${temps[@]}\n"
+output+="<span color='$accent_color'>╠═╩═╩═╬$(printf "%s" "${lines2[@]}")═══════╣</span>\n$l"
 output+="$(draw_graph values[@] $WIDTH $HEIGHT sunrises[@] sunsets[@])"
-output+="$delimiter1"
+#output+="<span color='$accent_color'>╠═╦═╦═╬$(printf "%s" "${lines1[@]}")═══════╣</span>\n"
+#output+="<span color='$accent_color'>║ ╠═╣ ║</span> ${times[@]}\n<span color='$accent_color'>╠═╣ ╠═╣</span> ${emojis[@]}\n<span color='$accent_color'>║ ╠═╣ ║</span> ${temps[@]}\n"
+#output+="<span color='$accent_color'>╠═╩═╩═╬$(printf "%s" "${lines2[@]}")═══════╣</span>\n$l"
+#output+="$(draw_graph values[@] $WIDTH $HEIGHT sunrises[@] sunsets[@])"
+output+="<span color='$accent_color'>$delimiter1</span>"
 output+="$info"
-output+="$delimiter2"
+output+="<span color='$accent_color'>$delimiter2</span>"
 
 
 echo "{\"text\":\"$(echo -e ${WEATHER_DESCRIPTION[$WCODE]:0:2}) $TEMP°\", \"tooltip\":\"$output\"}"

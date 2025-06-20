@@ -1,27 +1,31 @@
-#!/usr/bin/env bash
-
-# Coordinates for Berlin (change to your location)
-
-LAT=$(curl -s https://ipinfo.io/json | grep -oP '"loc": "\K[^"]+' | cut -d , -f 1)
-LON=$(curl -s https://ipinfo.io/json | grep -oP '"loc": "\K[^"]+' | cut -d , -f 2)
-LAT="${LAT:=49.835052840224876}"
-LON="${LON:=23.997055982804596}"
-
-DATA=$(curl -s "https://api.open-meteo.com/v1/forecast?latitude=$LAT&longitude=$LON&current_weather=true")
-TEMP=$(echo $DATA | jq '.current_weather.temperature')
-WCODE=$(echo $DATA | jq '.current_weather.weathercode')
-
-# Weather code mapping (simplified)
-case $WCODE in
-    0) ICON="☀️"; DESC="Clear";;
-    1|2|3) ICON="⛅"; DESC="Partly cloudy";;
-    45|48) ICON="🌫️"; DESC="Fog";;
-    51|53|55) ICON="🌧️"; DESC="Drizzle";;
-    61|63|65) ICON="🌧️"; DESC="Rain";;
-    71|73|75) ICON="❄️"; DESC="Snow";;
-    80|81|82) ICON="🌦️"; DESC="Showers";;
-    95|96|99) ICON="⛈️"; DESC="Thunderstorm";;
-    *) ICON="🏗️"; DESC="Unknown";;
-esac
-
-echo "{\"text\":\"$ICON $TEMP°\", \"tooltip\":\"$DESC\"}"
+dunstify -a "camera" "Connecting Phone camera..."
+adb kill-server
+adb start-server
+adb devices
+if [ "$1" = "-c" ]; then 
+    scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio &
+    dunstify -a "camera" "Connected Over cable"
+    exit
+fi
+hotspot=$(adb shell ip -f inet addr show wlan1 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
+ip=$(adb shell ip -f inet addr show wlan0 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
+if [ -z "$ip" ]; then
+    ip=$hotspot
+fi
+if [ -n "$ip" ]; then
+    adb tcpip 5555 
+    sleep 2
+    connected=$(adb connect "$ip:5555" | awk '{print $1}')
+    echo "$connected"
+    if [ "$connected" = "connected" ]; then 
+        dunstify -a "camera" "Connected over wifi" 
+        scrcpy -e --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --audio-source=mic-voice-recognition
+        adb disconnect "$ip:5555"
+    else
+        dunstify -a "camera" "Unable to connect over wifi"
+        scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
+    fi
+else 
+    dunstify -a "camera" "Unable to connect over wifi"
+    scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
+fi

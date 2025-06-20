@@ -1,80 +1,35 @@
-#!/usr/bin/env bash
+INPUT_DIR="./frames"     # Folder containing images to upscale
+OUTPUT_DIR="./output"   # Folder where upscaled images will be saved
 
-# Sample array with positive and negative values
-values=(15 -5 28 42 -12 35 -25 8 -30 17)
+# Create output directory if it doesn't exist
+mkdir -p "$OUTPUT_DIR"
 
-# Graph parameters
-MAX_VALUE=35
-MIN_VALUE=-20
-GRAPH_WIDTH=50  # Width of the graph in characters
+# Supported image extensions
+EXTENSIONS=("jpg" "jpeg" "png" "webp" "bmp")
 
-# Trim values outside the range
-for i in "${!values[@]}"; do
-    if (( values[i] > MAX_VALUE )); then
-        values[i]=$MAX_VALUE
-    elif (( values[i] < MIN_VALUE )); then
-        values[i]=$MIN_VALUE
+# Loop through all files in the input directory
+for file in "$INPUT_DIR"/*; do
+    # Skip directories
+    if [ -d "$file" ]; then
+        continue
+    fi
+
+    # Extract filename and extension
+    filename=$(basename -- "$file")
+    extension="${filename##*.}"
+    filename_noext="${filename%.*}"
+
+    # Check if the file has a supported extension
+    if [[ " ${EXTENSIONS[*]} " =~ " ${extension,,} " ]]; then
+        echo "Upscaling: $filename"
+        
+        # Run Real-ESRGAN
+        realesrgan-ncnn-vulkan \
+            -i "$file" \
+            -o "$OUTPUT_DIR/$filename"
+    else
+        echo "Skipping (unsupported format): $filename"
     fi
 done
 
-# Find the actual min/max after trimming
-actual_max=$MAX_VALUE
-actual_min=$MIN_VALUE
-for v in "${values[@]}"; do
-    (( v > actual_max )) && actual_max=$v
-    (( v < actual_min )) && actual_min=$v
-done
-
-# Calculate scaling factors
-range=$((actual_max - actual_min))
-if (( range == 0 )); then
-    range=1  # avoid division by zero
-fi
-
-# Draw the graph
-echo "Vertical Bar Graph (values trimmed to [$MIN_VALUE, $MAX_VALUE])"
-echo ""
-
-# Draw the bars
-for i in $(seq $GRAPH_WIDTH -1 0); do
-    current_level=$(( actual_min + (i * range) / GRAPH_WIDTH ))
-    
-    # Draw y-axis and bars
-    for v in "${values[@]}"; do
-        if (( v >= current_level && current_level >= 0 )); then
-            printf " \033[32m▓\033[0m"  # Green for positive
-        elif (( v <= current_level && current_level <= 0 )); then
-            printf " \033[31m░\033[0m"  # Red for negative
-        else
-            printf "  "
-        fi
-    done
-    
-    # Draw y-axis label every 5 lines
-    if (( i % 5 == 0 )); then
-        printf " %+d" "$current_level"
-    fi
-    printf "\n"
-done
-
-# Draw x-axis
-printf " "
-for ((i=0; i<${#values[@]}; i++)); do
-    printf "--"
-done
-printf "-\n"
-
-# Draw x-axis labels
-printf " "
-for i in "${!values[@]}"; do
-    printf " %d" "$i"
-done
-printf "\n"
-
-# Display original values
-echo ""
-echo "Original values (after trimming):"
-for i in "${!values[@]}"; do
-    printf "[%d]=%+d " "$i" "${values[i]}"
-done
-printf "\n"
+echo "Batch upscaling complete! Check $OUTPUT_DIR for results."

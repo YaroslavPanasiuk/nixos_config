@@ -14,7 +14,21 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      jack.enable = true;
+      extraConfig.pipewire = {
+        "context.objects" = [
+          {
+            factory = "adapter";
+            args = {
+              factory.name = "support.null-audio-sink";
+              node.name = "VirtualMic";
+              node.description = "Virtual Microphone";
+              media.class = "Audio/Source/Virtual";
+              object.linger = true;
+              audio.position = "FL,FR";
+            };
+          }
+        ];
+      };
     };
 
     greetd = {
@@ -52,6 +66,16 @@ in
       };
     };
 
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
+
+    printing = {
+      enable = true;
+    };
+
     samba-wsdd = {
       enable = true;
       openFirewall = true;
@@ -60,7 +84,6 @@ in
     udev.packages = [ pkgs.android-udev-rules ];
 
     dbus.enable = true;
-    printing.enable = true;
     touchegg.enable = true;
     pulseaudio.enable = false;
     flatpak.enable = true;

@@ -26,6 +26,7 @@
     libinput
     glib
     kando-180
+    scrcpy-33
     morgen
     gcolor3
     gvfs
@@ -39,7 +40,7 @@
     nwg-dock-hyprland
     file
     wmctrl
-    scrcpy
+    #scrcpy
     android-tools
     qemu
     libvirt
