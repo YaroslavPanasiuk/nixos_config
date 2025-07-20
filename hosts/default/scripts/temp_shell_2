@@ -1,25 +1,31 @@
 #!/usr/bin/env bash
 
-case "$1" in
-    "show")
-        ironbar var set soundbar_closing false
-        ironbar var set soundbar_state true
-        ;;
-    "hide")
-        ironbar var set soundbar_state false
-        ;;
-    "hide_delay")
-        ironbar var set soundbar_closing true
-        sleep $2
-        if [ "$(ironbar var get soundbar_closing | tail -1)" = "true" ]; then
-            ironbar var set soundbar_state false
-        fi
-        ;;
-    "toggle")
-        if [ "$(ironbar var get soundbar_state | tail -1)" = "true" ]; then
-            ironbar var set soundbar_state false
-        else
-            ironbar var set soundbar_state true
-        fi
-        ;;
-esac
+output_file=""
+images=""
+INPUTS=()
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -o) output_file="$2"; shift 2;;
+        -i) shift; while [[ $# -gt 0 && ! "$1" =~ ^- ]]; do
+                INPUTS+=("$1")
+                shift
+            done ;;
+        *) echo "Unknown option: $1"; exit 1;;
+    esac
+done
+
+if [ -z "$output_file" ]; then
+    output_file=$(dirname "${INPUTS[0]}")/$(basename "$(dirname "${INPUTS[0]}")").pptx
+fi
+
+cd ~/nixos/hosts/default/scripts/python
+source ./venv/bin/activate
+
+    for path in "${INPUTS[@]}"; do
+        images="$images$path;;"
+    done
+
+
+python images_to_pptx.py --images "$images" --output "$output_file"
+notify-send -t 5000 "Create PowerPoint" "Successfully created Powerpoint presentation at $output_file"

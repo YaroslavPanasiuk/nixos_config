@@ -9,7 +9,7 @@ from pptx.dml.color import RGBColor
 import shutil
 
 
-def create_presentation_from_images(image_folder, output_file, add_thumbnail=True):
+def create_presentation_from_images(images, output_file, add_thumbnail=True):
     """
     Create a PowerPoint presentation from a folder of images.
     Each image will be placed on a separate slide.
@@ -23,7 +23,7 @@ def create_presentation_from_images(image_folder, output_file, add_thumbnail=Tru
 
     # Get all image files from the folder
     image_files = [
-        f for f in os.listdir(image_folder)
+        f for f in images.split(";;")
         if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp'))
     ]
 
@@ -31,7 +31,7 @@ def create_presentation_from_images(image_folder, output_file, add_thumbnail=Tru
     image_files.sort()
 
     if not image_files:
-        print(f"No image files found in {image_folder}")
+        print(f"No image files found in {images}")
         return
 
     # For each image, create a slide
@@ -41,7 +41,7 @@ def create_presentation_from_images(image_folder, output_file, add_thumbnail=Tru
         slide = prs.slides.add_slide(slide_layout)
 
         # Add the image to fill the slide
-        img_path = os.path.join(image_folder, image_file)
+        img_path = image_file
 
                 # Calculate dimensions to maintain aspect ratio
         from PIL import Image
@@ -148,7 +148,7 @@ def process_with_libreoffice(pptx_file):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description='Create a PowerPoint from a folder of images.')
-    parser.add_argument('--folder',
+    parser.add_argument('--images',
                         type=str,
                         required=True,
                         help='Folder containing the images')
@@ -163,7 +163,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     create_presentation_from_images(
-        args.folder, 
+        args.images, 
         args.output,
         add_thumbnail=not args.no_thumbnail
     )

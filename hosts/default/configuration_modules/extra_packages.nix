@@ -160,6 +160,7 @@
     killall
     wttrbar
     dateutils
+    qrrs
     
   ] ++ [
     inputs.zen-browser.packages."${system}".default
@@ -220,5 +221,7 @@
     (import ../scripts/fetch_weather.nix { inherit pkgs; })
     (import ../scripts/waybar_colors_update.nix { inherit pkgs; })
     (import ../scripts/waybar_timer.nix { inherit pkgs; })
+    (import ../scripts/convert_presentation.nix { inherit pkgs; })
+    (import ../scripts/qr_scanner.nix { inherit pkgs; })
   ];
 }

@@ -153,7 +153,7 @@
       "disk"= {
         "interval"= 30;
         "format"= " <span size='small'>{percentage_used}%</span>";
-        "tooltip-format"= "{specific_used} GB/{specific_total} GB";
+        "tooltip-format"= "{specific_free} GB left";
         "unit"= "GB";
         "path"= "/";
         "on-click"= "gnome-system-monitor -f";

@@ -317,14 +317,33 @@
                 "iconTheme": "material-symbols-rounded"
               },
               {
-                "type": "command",
-                "data": {
-                  "command": "copy_image_text.sh",
-                  "delayed": false
-                },
-                "name": "Text from image",
-                "icon": "text_compare",
-                "iconTheme": "material-symbols-rounded"
+                "type": "submenu",
+                "data": {},
+                "name": "Scan",
+                "icon": "document_scanner",
+                "iconTheme": "material-symbols-rounded",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "copy_image_text.sh",
+                      "delayed": false
+                    },
+                    "name": "Text from image",
+                    "icon": "text_compare",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "qr_scanner.sh",
+                      "delayed": false
+                    },
+                    "name": "QR Scanner",
+                    "icon": "qr_code_scanner",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
               },
               {
                 "type": "submenu",

@@ -6,7 +6,7 @@ pkgs.mkShell {
         pkgs.python3
         (pkgs.python3.withPackages(p: with p; [
             python-pptx
-            PIL
+            pdf2image
         ]))
     ];
 }

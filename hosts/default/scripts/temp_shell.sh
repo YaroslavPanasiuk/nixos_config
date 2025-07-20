@@ -1,31 +1,53 @@
-dunstify -a "camera" "Connecting Phone camera..."
-adb kill-server
-adb start-server
-adb devices
-if [ "$1" = "-c" ]; then 
-    scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio &
-    dunstify -a "camera" "Connected Over cable"
-    exit
-fi
-hotspot=$(adb shell ip -f inet addr show wlan1 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-ip=$(adb shell ip -f inet addr show wlan0 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-if [ -z "$ip" ]; then
-    ip=$hotspot
-fi
-if [ -n "$ip" ]; then
-    adb tcpip 5555 
-    sleep 2
-    connected=$(adb connect "$ip:5555" | awk '{print $1}')
-    echo "$connected"
-    if [ "$connected" = "connected" ]; then 
-        dunstify -a "camera" "Connected over wifi" 
-        scrcpy -e --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --audio-source=mic-voice-recognition
-        adb disconnect "$ip:5555"
-    else
-        dunstify -a "camera" "Unable to connect over wifi"
-        scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
-    fi
-else 
-    dunstify -a "camera" "Unable to connect over wifi"
-    scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
-fi
+#!/usr/bin/env bash
+
+final_extension=$1
+
+shift
+
+for path in "$@"; do
+    filename=$(basename "$path")
+    filename_no_ext=''${filename%.*}
+    extension=''${filename##*.}
+    dir=$(dirname "$path")
+
+    case "$extension-$final_extension" in
+        pdf-pdf|pptx-pptx|odp-odp|key-key)
+            continue
+        ;;
+        pdf-pptx)
+            notify-send -t 5000 "Create PowerPoint" "Starting creating Powerpoint presentation..."
+        
+            cd ~/nixos/hosts/default/scripts/python
+            source ./venv/bin/activate
+            nix-shell --run "python pdf_to_pptx.py --input_pdf '$dir/$filename_no_ext.pdf' --output_pptx '$dir/$filename_no_ext.pptx'"
+            
+            notify-send -t 5000 "Create PowerPoint" "Successfully created Powerpoint presentation at $dir/$filename_no_ext.pptx"
+        ;;
+        pdf-odp)
+            notify-send -t 5000 "Create odp" "Starting creating LibreOffice Impress presentation..."
+            cd ~/nixos/hosts/default/scripts/python
+
+            source ./venv/bin/activate
+            python pdf_to_pptx.py --input_pdf "$dir/$filename_no_ext.pdf" --output_pptx "$dir/$filename_no_ext.pptx"
+            deactivate
+
+            soffice --headless --convert-to odp --outdir "$dir" "$dir/$filename_no_ext.pptx"
+            notify-send -t 5000 "Create odp" "Successfully created LibreOffice Impress presentation at $dir/$filename_no_ext.pptx"
+        ;;
+        key-pptx|odp-pptx)
+            soffice --headless --convert-to pptx --outdir "$dir" "$dir/$filename"
+            notify-send -t 5000 "Create PowerPoint" "Successfully created Powerpoint presentation at $dir/$filename_no_ext.pptx"
+        ;;
+        key-odp|pptx-odp)
+            soffice --headless --convert-to odp --outdir "$dir" "$dir/$filename"
+            notify-send -t 5000 "Create odp" "Successfully created LibreOffice Impress presentation at $dir/$filename_no_ext.odp"
+        ;;
+        pptx-pdf|key-pdf|odp-pdf)
+            notify-send -t 5000 "Create PDF" "Starting creating PDF from presentation..."
+            soffice --headless --convert-to pdf --outdir "$dir" "$dir/$filename"
+            notify-send -t 5000 "Create PDF" "Successfully created PDF from presentation at $dir/$filename_no_ext.pdf"
+        ;;
+    esac
+
+done
+

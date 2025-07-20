@@ -59,7 +59,7 @@
 	<command>export_images.sh %f</command>
 	<description>Extracts all slides of .pptx or .pdf file as images into a separate folder</description>
 	<range>*</range>
-	<patterns>*.pdf;*.pptx</patterns>
+	<patterns>*.pdf;*.pptx;*.odp;*.key</patterns>
 	<other-files/>
 	<text-files/>
 </action>
@@ -68,10 +68,46 @@
 	<name>Generate presentation</name>
 	<submenu></submenu>
 	<unique-id>1741004813671917-1</unique-id>
-	<command>images_to_pptx.sh %f</command>
+	<command>images_to_pptx.sh -i %F</command>
 	<description>Merges all image files in current folder into a .pptx presentation</description>
-	<range></range>
+	<range>*</range>
 	<patterns>*</patterns>
-	<directories/>
+	<image-files/>
+</action>
+<action>
+	<icon>gtk-convert</icon>
+	<name>.pdf</name>
+	<submenu>Convert to ...</submenu>
+	<unique-id>1741004813671921-1</unique-id>
+	<command>convert_presentation.sh pdf %f</command>
+	<description>Converts .pptx, .odp or .key presentation to .pdf</description>
+	<range>*</range>
+	<patterns>*.pptx;*.odp;*.key</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>gtk-convert</icon>
+	<name>.pptx</name>
+	<submenu>Convert to ...</submenu>
+	<unique-id>1741004813671922-1</unique-id>
+	<command>convert_presentation.sh pptx %f</command>
+	<description>Converts .pdf, odp or .key presentation to .pptx</description>
+	<range>*</range>
+	<patterns>*.pdf;*.odp;*.key</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>gtk-convert</icon>
+	<name>.odp</name>
+	<submenu>Convert to ...</submenu>
+	<unique-id>1741004813671923-1</unique-id>
+	<command>convert_presentation.sh odp %f</command>
+	<description>Converts .pdf, pptx or .key presentation to .pptx</description>
+	<range>*</range>
+	<patterns>*.pptx;*.key;*.pdf</patterns>
+	<other-files/>
+	<text-files/>
 </action>
 </actions>
