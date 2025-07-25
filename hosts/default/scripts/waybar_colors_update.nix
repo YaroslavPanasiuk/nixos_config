@@ -56,7 +56,7 @@ update_waybar() {
             #mpris { border-left: 2px solid @color1A; }
             $taskbar_border_line
             #tray { border-right: 2px solid @color1A; }
-            #language { border-right: 2px solid @color1A; }
+            #custom-language { border-right: 2px solid @color1A; }
             #custom-weather { border-right: 2px solid @color1A; }
 
 EOF
@@ -95,7 +95,7 @@ EOF
             #mpris { border-left: 4px double shade(@cursor, 0.7); }
             $taskbar_border_line
             #tray { border-right: 4px double shade(@cursor, 0.7); }
-            #language { border-right: 4px double shade(@cursor, 0.7); }
+            #custom-language { border-right: 4px double shade(@cursor, 0.7); }
             #custom-weather { border-right: 4px double shade(@cursor, 0.7); }
 
 EOF

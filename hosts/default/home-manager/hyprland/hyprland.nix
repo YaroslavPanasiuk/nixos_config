@@ -271,18 +271,18 @@
       ];
 
       windowrule = [
-        "float, (gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
-        "rounding 8, (gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
-        "tile, (.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
-        "workspace empty (Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
-        "fullscreen, (Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"
-        "noblur, kando"
-        "opaque, kando"
-        "size 100% 100%, kando"
-        "size 40% 50%, zenity"
-        "noborder, kando"
-        "noanim, kando"
-        "pin, kando"
+        "float, class:(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "rounding 8, class:(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "tile, class:(.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
+        "workspace empty class:(Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
+        "fullscreen, class:(Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"
+        "noblur, class:kando"
+        "opaque, class:kando"
+        "size 100% 100%, class:kando"
+        "size 40% 50%, class:zenity"
+        "noborder, class:kando"
+        "noanim, class:kando"
+        "pin, class:kando"
       ];
 
       windowrulev2 = [
@@ -346,7 +346,7 @@
           enabled = 0;
           open_positive = 0;
         };
-        exit_behavior = "active hovered interacted original";
+        exit_on_hovered = false;
         gaps = {
             rows = 3;
         };

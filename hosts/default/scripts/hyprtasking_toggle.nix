@@ -1,3 +1,6 @@
+{ pkgs }:
+
+pkgs.writeShellScriptBin "hyprtasking_toggle.sh" '' 
 #!/usr/bin/env bash
 
 echo "active" > /tmp/hyprtasking_status
@@ -15,7 +18,7 @@ if [ "$(cat /tmp/hyprtasking_status)" == "inactive" ]; then
 
     while true; do
         hyprctl dispatch hyprtasking:if_not_active exec "echo 'inactive' > /tmp/hyprtasking_status"
-        sleep 1
+        sleep 0.1
         if [ "$(cat /tmp/hyprtasking_status)" == "inactive" ]; then
             hyprctl keyword decoration:blur:enabled true
             hyprctl keyword decoration:inactive_opacity 0.85
@@ -25,3 +28,5 @@ if [ "$(cat /tmp/hyprtasking_status)" == "inactive" ]; then
 else
     hyprctl dispatch hyprtasking:toggle cursor
 fi
+
+''

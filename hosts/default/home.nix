@@ -19,7 +19,7 @@ in
     #./home-manager/stylix.nix
     #./rofi/colors-rofi.nix
     #./home-manager/firefox.nix
-    ./home-manager/hyprland/hyprpanel.nix
+    #./home-manager/hyprland/hyprpanel.nix
     ./home-manager/xdg.nix
     #./home-manager/gbar.nix
     ./home-manager/services.nix

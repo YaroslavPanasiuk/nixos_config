@@ -97,7 +97,7 @@
     gnome-power-manager
     hyprlock
     hyprpicker
-    hyprlandPlugins.hyprspace
+    #hyprlandPlugins.hyprspace
     xorg.xrdb
     gammastep
     lxqt.lxqt-policykit
@@ -223,5 +223,6 @@
     (import ../scripts/waybar_timer.nix { inherit pkgs; })
     (import ../scripts/convert_presentation.nix { inherit pkgs; })
     (import ../scripts/qr_scanner.nix { inherit pkgs; })
+    (import ../scripts/hyprtasking_toggle.nix { inherit pkgs; })
   ];
 }

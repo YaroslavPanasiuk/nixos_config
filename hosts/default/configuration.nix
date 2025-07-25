@@ -7,6 +7,7 @@ in
     [
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+      inputs.hyprland.nixosModules.default
       ./configuration_modules/boot.nix
       #./configuration_modules/scripts.nix
       ./configuration_modules/services.nix
@@ -29,7 +30,7 @@ in
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ 
     pkgs.xdg-desktop-portal-gtk
-    pkgs.xdg-desktop-portal-hyprland
+    #pkgs.xdg-desktop-portal-hyprland
     #pkgs.xdg-desktop-portal-kde
   ];
 
@@ -119,6 +120,10 @@ in
     gnome-photos
     gnome-tour
   ]);
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-1.1.05"
+  ];
 
   system.stateVersion = "25.05";
 

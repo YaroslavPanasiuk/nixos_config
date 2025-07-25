@@ -3,13 +3,12 @@
 
 
 * {
-    font-family: "CaskaydiaCove NF";
-    font-size: 14.9px;
-    font-weight: bold;
+    font-family: "JetBrains Mono", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 window#waybar {
-    margin-top: 5px;
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -46,16 +45,18 @@ window#waybar {
 }
 
 #workspaces {
-    padding-right: 5px;
-    padding-left: 5px;
+    padding: 0 5px;
     margin: 0px;
     opacity: 1;
     transition: border-width 0.3s;
 }
 
 #workspaces button {
-    padding: 0px 0px;
+    padding: 0px 2px;
+    transition: none;
+    border: none;
     margin: 0px 0px;
+    min-height: 10px;  
     color: shade(@color15, 0.6);
 }
 
@@ -75,18 +76,23 @@ window#waybar {
 #workspaces button:hover {
     color: @color1;
     background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border: none;
 }
 
 #taskbar {
-    padding-left: 7px;
+    padding: 0px 0px 0px 7px;
+    margin: 0px;
     transition: border-width 0.3s;
     font-size: 10px;
     margin:0px;
     
 }
 #taskbar button {
+    min-height: 10px;  
     padding: 2px 4px;
     margin:0px;
+    transition: none;
 }
 
 #taskbar button:hover {
@@ -96,11 +102,12 @@ window#waybar {
     border-bottom: 3px solid @cursor;
 }
 
-#pulseaudio:hover, #cava:hover, #language:hover, #battery:hover, #backlight:hover {
+#clock:hover, #cava:hover, #custom-language:hover, #custom-weather:hover, #custom-timer:hover {
     background-color: rgba(0, 0, 0, 0);
     padding-top: 0px;
     padding-bottom: 0px;
     border-bottom: 2px solid @cursor;
+    transition: none;
 }
 
 /* Repeat style here to ensure properties are overwritten as there's no !important and button:hover above resets the colour */
@@ -112,7 +119,7 @@ window#waybar {
     color: @color2;
 }
 
-#language {
+#custom-language {
     padding-right: 8px;
     color: @cursor;
     transition: border-width 0.3s;
@@ -140,7 +147,7 @@ window#waybar {
 #network,
 #idle_inhibitor,
 #custom-storage,
-#language
+#custom-language
 #custom-cpu_speed,
 #custom-powermenu,
 #custom-spotify,
@@ -235,12 +242,13 @@ window#waybar {
 #pulseaudio {
     color: shade(@color12, 1.2);
 }
-
-#clock:hover {
-    padding: 1px 4px;
-    border-bottom: 2px solid @cursor;
-}
-
+#audio:hover {
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 2px solid shade(@color12, 1.2);
+    transition: none;
+}     
 
 #bluetooth {
     color: @color6;
@@ -261,9 +269,23 @@ window#waybar {
 #backlight {
     color: shade(@color10, 1.2);
 }
+#brightness:hover{
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 2px solid shade(@color10, 1.2);
+    transition: none;
+}
 
 #battery {
     color: shade(@color3, 1.2);
+}
+#battery_group:hover {
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom: 2px solid shade(@color3, 1.2);
+    transition: none;
 }
 
 #battery.warning {
@@ -333,8 +355,10 @@ window#waybar {
 }
 
 #pulseaudio-slider slider {
+    opacity: 0;
+    background-image: none;
     background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
+    border: none;
 }
 
 #pulseaudio-slider trough {
@@ -351,8 +375,14 @@ window#waybar {
 }
 
 #backlight-slider slider {
+    opacity: 0;
+    background-image: none;
     background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+#backlight-slider, #pulseaudio-slider{
+    padding: 0;
 }
 
 #backlight-slider trough {
@@ -385,11 +415,14 @@ window#waybar {
 }
 
 tooltip {
+    padding: 3px;
     border: 1px solid rgba(100, 114, 125, 0.5);
-    background-image: linear-gradient(135deg, @backgound, shade(@color1A, 0.7));
+    background-image: linear-gradient(135deg, @backgound, shade(@color1A, 0.8));
 }
 
 tooltip label {
+    padding: 0px;
+    margin: 0px;
     color: @cursor;
     font-family: "DejaVu Sans Mono";
     font-size: 16px;

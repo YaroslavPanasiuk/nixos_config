@@ -56,7 +56,7 @@ case $1 in
     	# Toggle mute
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 	if is_mute ; then
-		notify-send -u low -r 4321 "muted" -a "volume_notification" -i "$HOME/nixos/hosts/default/scripts/resources/volume_mute.png"
+		notify-send -u low -r 4321 "muted" -a "volume_notification" "Muted" -i "$HOME/nixos/hosts/default/scripts/resources/volume_mute.png"
 	else
 	    send_notification up
 	fi

@@ -1,12 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {  
   programs = {
-    hyprland.enable = true;
     dconf.enable = true;
     firefox.enable = true;
     hyprlock.enable = true;
     xfconf.enable = true;
     adb.enable = true;
+
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
 
     thunar = {
       enable = true;

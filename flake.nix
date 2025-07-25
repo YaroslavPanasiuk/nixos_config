@@ -10,14 +10,14 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.47.2";
+      url = "github:hyprwm/Hyprland/v0.49.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
+    #Hyprspace = {
+    #  url = "github:KZDKM/Hyprspace";
+    #  inputs.hyprland.follows = "hyprland";
+    #};
 
     hyprtasking = {
       url = "github:raybbian/hyprtasking";

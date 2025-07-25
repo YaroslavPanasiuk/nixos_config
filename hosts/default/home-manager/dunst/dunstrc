@@ -62,8 +62,8 @@
 [volume]
     appname = "volume_notification"
     summary = "volume"
-    max_icon_size = 36
-    min_icon_size = 36
+    max_icon_size = 48
+    min_icon_size = 48
     highlight = "#d8dadd"
     format = "  %b%n%%"
     word_wrap = false
@@ -72,8 +72,8 @@
 [muted]
     appname = "volume_notification"
     summary = "muted"
-    max_icon_size = 24
-    min_icon_size = 24
+    max_icon_size = 48
+    min_icon_size = 48
     format = "  %b"
     timeout = 1
     padding = 5
