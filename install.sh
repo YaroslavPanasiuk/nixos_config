@@ -25,7 +25,6 @@ sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#$host;
 swww-daemon
 swww img ~/Public/Wallpapers/1.jpg
 wal -i ~/nixos/hosts/$host/home-manager/extra_resources/Wallpaper.jpg
-wpg-install.sh -gG
 
 git clone --depth 1 https://codeberg.org/thirtysix/walogram.git ~/.walogram
 cd ~/.walogram

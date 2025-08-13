@@ -7,6 +7,8 @@
       defaultApplications = {
         "text/plain" = [ "code.desktop" ];
         "inode/x-empty" = [ "code.desktop" ];
+        "application/x-zerosize" = [ "code.desktop" ];
+        "application/json" = [ "code.desktop" ];
         "text/css" = [ "code.desktop" ];
         "text/javascript" = [ "code.desktop" ];
         "text/markdown" = [ "code.desktop" ];
@@ -243,6 +245,19 @@
       enable = true;
       recursive = true;
       source = ./gtt;
+    };
+    "sys64/hud" = {
+      enable = true;
+      recursive = true;
+      source = ./syshud;
+    };
+    "anyrun/style.css" = {
+      enable = true;
+      source = ./anyrun/style.css;
+    };
+    "anyrun/libtranslate_panas.so" = {
+      enable = true;
+      source = ./anyrun/libtranslate_panas.so;
     };
     "GIMP/2.10/scripts" = {
       enable = true;

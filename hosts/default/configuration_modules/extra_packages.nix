@@ -1,5 +1,5 @@
 { pkgs, inputs, ... }:
-{  
+{ 
   environment.systemPackages = with pkgs; [
     obsidian
     teamviewer
@@ -25,8 +25,8 @@
     pywal
     libinput
     glib
-    kando-180
-    scrcpy-33
+    kando
+    scrcpy
     morgen
     gcolor3
     gvfs
@@ -37,7 +37,7 @@
     iproute2
     libosinfo
     curl
-    nwg-dock-hyprland
+    #nwg-dock-hyprland
     file
     wmctrl
     #scrcpy
@@ -161,9 +161,12 @@
     wttrbar
     dateutils
     qrrs
-    
+    syshud
+    wayfreeze    
+    anyrun
   ] ++ [
     inputs.zen-browser.packages."${system}".default
+    inputs.vigiland.packages.${pkgs.system}.vigiland
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
     (import ../scripts/brightness.nix { inherit pkgs; })
@@ -224,5 +227,9 @@
     (import ../scripts/convert_presentation.nix { inherit pkgs; })
     (import ../scripts/qr_scanner.nix { inherit pkgs; })
     (import ../scripts/hyprtasking_toggle.nix { inherit pkgs; })
+    (import ../scripts/waybar_language.nix { inherit pkgs; })
+    (import ../scripts/vigiland.nix { inherit pkgs; })
+    (import ../scripts/connect_phone.nix { inherit pkgs; })
+    (import ../scripts/hyprland_focus_modes.nix { inherit pkgs; })
   ];
 }

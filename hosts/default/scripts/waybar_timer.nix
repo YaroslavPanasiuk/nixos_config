@@ -7,7 +7,7 @@ cmd="$1"
 
 TFILE="$HOME/.config/waybar/timer"
 TIME_ZONE="Europe/Kyiv"
-ICON_SIZE="13"
+ICON_SIZE="12"
 RISE="-2000"
 
 if [ "$cmd" == "check" ]; then
@@ -28,12 +28,12 @@ if [ "$cmd" == "check" ]; then
     DATE_TIME_TARGET_TITLE="''${DATE_TIME_TARGET_ARR[1]}"
 
     if [ "$DATE_TIME_TARGET" == "READY" ]; then
-        echo '{"text": "'"<span font='$ICON_SIZE' rise='$RISE'> 󰔛</span> "'", "tooltip": "Timer is not active"}'
+        echo '{"text": "'"<span font='$ICON_SIZE' rise='$RISE'> 󰔛 </span> "'", "tooltip": "Timer is not active"}'
 
     elif [ "$DATE_TIME_TARGET" == "FINISHED" ]; then
         echo "READY" > "$TFILE"
         zenity --info --no-wrap --text="Timer expired!"
-        echo '{"text": "'"<span font='$ICON_SIZE' rise='$RISE'> 󰔛</span> "'"}'
+        echo '{"text": "'"<span font='$ICON_SIZE' rise='$RISE'> 󰔛 </span> "'"}'
 
     elif datetest "$DATE_TIME_TARGET" --gt "$DATE_TIME_NOW"; then
         REMAINING=$(datediff now "''${DATE_TIME_TARGET}" -f '%dd %0H:%0M:%0S' --from-zone="$TIME_ZONE")
@@ -48,7 +48,7 @@ if [ "$cmd" == "check" ]; then
         else
             echo "READY" > "$TFILE"
         fi
-        echo '{"text": "'"<span font='$ICON_SIZE' rise='$RISE'> 󰔛</span> "'"}'
+        echo '{"text": "'"<span font='$ICON_SIZE' rise='$RISE'> 󰔛 </span> "'"}'
     fi
 
 elif [ "$cmd" == "minute_dialog" ]; then

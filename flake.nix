@@ -62,6 +62,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    vigiland.url = "github:jappie3/vigiland";
+
     nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
   };
 

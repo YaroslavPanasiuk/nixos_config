@@ -1,0 +1,91 @@
+@import "../../../.cache/wal/gtk-theme.css";
+
+* {
+    font-size: 15px;
+    font-weight: 600;
+	color: shade(@foreground, 0.8);
+}
+
+#syshud {
+	background: transparent;
+}
+
+#syshud .box_layout {
+	background: @background;
+	border-radius: 30px;
+	border: 2px solid @color4;
+	margin: 5px;
+    background-image: linear-gradient(135deg, @color2a, @color3a, @color4a);
+
+}
+
+#syshud scale {
+	margin: 0px;
+	padding: 0px;
+}
+#syshud label {
+	color: @foreground;
+}
+
+/* Vertical layout */
+#syshud scale.vertical {
+	padding: 0px;
+	min-width: 6px;
+}
+#syshud scale.vertical trough {
+	border-radius: 3px;
+	background: @background;
+	min-width: 6px;
+	padding: 0px;
+}
+#syshud scale.vertical highlight {
+	border-radius: 3px;
+	min-width: 6px;
+	background: shade(@foreground, 0.8);
+	margin: 0px;
+}
+#syshud scale.vertical slider {
+	margin: 0px;
+	background: transparent;
+	min-width: 6px;
+	box-shadow: none;
+	padding: 0px;
+}
+
+
+
+/* Horizontal layout */
+#syshud scale.horizontal {
+	padding: 0px;
+	min-height: 6px;
+}
+#syshud scale.horizontal trough {
+	border-radius: 3px;
+	background: @background;
+	min-height: 6px;
+	padding: 0px;
+}
+#syshud scale.horizontal highlight {
+	border-radius: 3px;
+	min-height: 6px;
+	background: shade(@foreground, 0.8);
+	margin: 0px;
+}
+#syshud scale.horizontal slider {
+	margin: 0px;
+	background: transparent;
+	min-height: 6px;
+	box-shadow: none;
+	padding: 0px;
+}
+
+/* Levels */
+#syshud .muted {
+}
+#syshud .low {
+}
+#syshud .medium {
+}
+#syshud .high {
+}
+

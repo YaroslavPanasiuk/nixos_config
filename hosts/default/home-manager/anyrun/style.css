@@ -1,0 +1,45 @@
+@import "../../.cache/wal/gtk-theme.css";
+
+* {
+    font-size: 18px;
+    font-weight: 400;
+    color: @cursor;
+    border: none;
+    border-radius: 8px;
+    padding: 0;
+    box-shadow: none;
+
+}
+
+#window {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+entry#entry {
+  border-radius: 8px 8px 0px 0px;
+  background-color: @background;
+  border: 2px solid @color1;
+  border-bottom: 1px dashed @color1;
+  padding: 2px 5px 0 5px;
+  background-image: linear-gradient(135deg, @color4a, @color5a, @color6a);
+}
+
+box > #match {
+  border-radius: 0px 0px 8px 8px;
+  background-color: @background;
+  border: 2px solid @color1;
+  border-top: none;
+  padding: 2px 5px 2px 5px;
+  background-image: linear-gradient(135deg, @color4a, @color5a, @color6a);
+}
+
+#match {
+    background: transparent;
+    border:none;
+    padding: 0px;
+}
+
+label#match-desc {
+  font-size: 12px;
+  color: alpha(@cursor, 0.4)
+}

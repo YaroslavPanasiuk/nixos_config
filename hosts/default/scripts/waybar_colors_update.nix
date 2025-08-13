@@ -22,7 +22,18 @@ update_waybar() {
         taskbar_border_line="#taskbar { border-left: none; }" 
     fi
 
+    focus="no"
     if [ "$window_count" -eq 1 ]; then
+        focus="yes"
+    fi
+    if [ "$1" == "set_focus" ]; then
+        focus="yes"
+    fi
+    if [ "$1" == "set_fancy" ]; then
+        focus="no"
+    fi
+
+    if [ "$focus" == "yes" ]; then
         cat > /home/$USER/.cache/wal/waybar_css_mutable.css <<EOF
             @import "./gtk-theme.css";
 
@@ -60,6 +71,13 @@ update_waybar() {
             #custom-weather { border-right: 2px solid @color1A; }
 
 EOF
+
+    hyprctl keyword decoration:inactive_opacity 1
+    hyprctl keyword decoration:blur:enabled false
+    hyprctl keyword general:gaps_out 0
+    hyprctl keyword general:gaps_in 0
+    hyprctl keyword general:border_size 0
+    hyprctl keyword decoration:rounding 0
         
     else
         cat > /home/$USER/.cache/wal/waybar_css_mutable.css <<EOF
@@ -99,12 +117,29 @@ EOF
             #custom-weather { border-right: 4px double shade(@cursor, 0.7); }
 
 EOF
+
+    hyprctl keyword decoration:inactive_opacity 0.85
+    hyprctl keyword decoration:blur:enabled true
+    hyprctl keyword general:gaps_out 5
+    hyprctl keyword general:gaps_in 3
+    hyprctl keyword general:border_size 2
+    hyprctl keyword decoration:rounding 8
     fi
     # Reload Waybar
 }
 
 if [ "$1" == "update" ]; then
     update_waybar
+    exit
+fi
+
+if [ "$1" == "set_focus" ]; then
+    update_waybar "set_focus"
+    exit
+fi
+
+if [ "$1" == "set_fancy" ]; then
+    update_waybar "set_fancy"
     exit
 fi
 
@@ -118,7 +153,7 @@ socat -U - UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.sock
        { [[ "$event_type" == "openwindow" ]] && hyprctl activewindow | grep -q "floating: 1"; }; then
         continue
     fi
-    
     update_waybar
 done
+
 ''

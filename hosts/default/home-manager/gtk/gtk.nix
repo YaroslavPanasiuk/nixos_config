@@ -1,13 +1,14 @@
-{ config, pkgs, inputs, ... }:
-
+{ config, pkgs, ... }:
+let
+  otis = import ./otis.nix { inherit pkgs; };
+  infinity = import ./Infinity.nix { inherit pkgs; };
+in
 {
   gtk = {
 	enable = true;
-    theme = {
-      name = "linea-nord-color";
-      package = builtins.path {
-		path = ./linea-nord-color;
-	  };
+	theme = {
+      name = "Juno-mirage-v40";
+      package = pkgs.juno-theme;
     };
 	cursorTheme = {
 	  name = "volantes_cursors";

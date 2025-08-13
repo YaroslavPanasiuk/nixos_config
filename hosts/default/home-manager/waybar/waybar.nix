@@ -68,7 +68,7 @@
       
       "battery#2" = {
         format = "<span size='small'>{capacity}%</span>";
-        interval = 18;
+        interval = 30;
         on-click-right = "gnome-power-statistics";
       };
       
@@ -128,13 +128,20 @@
       "clock#3" = {
         format = "{:%H:%M:%S}";
         interval = 1;
-        on-click = "gnome-clocks";
-        timezones = [
-          "Europe/Kyiv"
-          "Etc/UTC"
-          "US/Pacific"
-        ];
-        tooltip-format = "{tz_list}";
+        tooltip-format = "{:%H:%M:%S (%Z)}";
+      };
+
+      "clock#4" = {
+        "format" = " Universal: {:%H:%M} ";
+        "timezone" = "Etc/UTC";
+        "interval" = 60;
+        "tooltip-format" = "{:%H:%M (%Z)}";
+      };
+      "clock#5" = {
+        "format" = " Seattle: {:%H:%M} ";
+        "timezone" = "America/Los_Angeles";
+        "interval" = 60;
+        "tooltip-format" = "{:%H:%M (%Z)}";
       };
       
       cpu = {
@@ -188,14 +195,24 @@
         tooltip = false;
       };
       
-      "custom/weather" = {
-        exec = "$HOME/nixos/hosts/default/scripts/bash/fetch_weather.sh 18 6";
+      "custom/weather#1" = {
+      "exec" = "fetch_weather.sh --hours 18 --height 6 --refresh 900";
         format = "{}";
-        interval = 600;
-        on-click = "xdg-open https://www.msn.com/en-xl/weather";
+        signal = 101;
+        "restart-interval" = "1";
         return-type = "json";
         tooltip = true;
       };
+      
+      "custom/weather#2" = {
+      "exec" = "fetch_weather.sh --hours 18 --height 6 --refresh 900 --city Drohobych";
+        format = "Дрогобич {}";
+        signal = 101;
+        "restart-interval" = "1";
+        return-type = "json";
+        tooltip = true;
+      };
+
       
       "custom/windows" = {
         format = "󰖳";
@@ -223,6 +240,19 @@
           "pulseaudio#1"
           "pulseaudio/slider"
           "pulseaudio#2"
+        ];
+        orientation = "horizontal";
+      };
+
+      "group/weather" = {
+        drawer = {
+          "click-to-reveal" = true;
+          "transition-duration" = 500;
+          "transition-left-to-right" = false;
+        };
+        modules = [
+          "custom/weather#1"
+          "custom/weather#2"
         ];
         orientation = "horizontal";
       };
@@ -273,12 +303,16 @@
       
       "group/time" = {
         drawer = {
-          "click-to-reveal" = false;
+          "click-to-reveal" = true;
           "transition-duration" = 500;
           "transition-left-to-right" = true;
         };
         modules = [
           "clock#3"
+          "custom/separator"
+          "clock#4"
+          "custom/separator"
+          "clock#5"
           "custom/timer"
         ];
         orientation = "horizontal";
@@ -292,7 +326,7 @@
       };
       
       "custom/language" = {
-        exec = "/home/yarko/nixos/hosts/default/scripts/temp_shell_3.sh";
+        exec = "waybar_language.sh";
         format = "{}";
         on-click = "set_layout.sh";
         return-type = "json";
@@ -303,7 +337,7 @@
         format = "{title:.25}";
         tooltip = false;
         icon = true;
-        icon-size = 18;
+        icon-size = 17;
         rewrite = {
           "" = "<span size='large'></span> NixOs";
         };
@@ -341,7 +375,7 @@
       modules-right = [
         "tray"
         "custom/language"
-        "custom/weather"
+        "group/weather"
         "group/audio"
         "cava"
         "group/brightness"
@@ -429,13 +463,13 @@
       };
       
       tray = {
-        icon-size = 18;
+        icon-size = 17;
         spacing = 6;
       };
       
       "wlr/taskbar" = {
         format = "{icon}";
-        icon-size = 18;
+        icon-size = 16;
         ignore-list = [ "kitty" ];
         "max-length" = 15;
         on-click = "activate";

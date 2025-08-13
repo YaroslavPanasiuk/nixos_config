@@ -22,11 +22,8 @@ echo $path
 
 workspace=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
 wal -i "/''${path}"
-wpg -s "/''${path}"
 
 hyprctl dispatch workspace $workspace
-
-#hyprpanel useTheme ~/.cache/wal/hyprbar.json
 
 set_welcome.sh
 
@@ -35,9 +32,13 @@ if pidof -qx "rofi"; then
  	rofi -show drun -config ~/.config/wofi/config.rasi # && echo "set rofi"
 fi
 
-pkill -f nwg-dock-hyprland
-launch_dock.sh &
-sleep 1 && pkill -f -37 nwg-dock-hyprland
+
+pkill syshud 
+syshud &
+
+#pkill -f nwg-dock-hyprland
+#launch_dock.sh &
+#sleep 1 && pkill -f -37 nwg-dock-hyprland
 
 cp ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json
@@ -78,6 +79,6 @@ if [[ "$mp4" == "true" ]]; then
 	exit
 fi
 
-notify-send "Wallpaper change" "Wallpaper set successfully"
+notify-send -a "Wallpaper change" "Wallpaper set successfully"
 exit
 ''

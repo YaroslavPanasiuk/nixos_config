@@ -25,11 +25,11 @@ fi
 cd ~/nixos/hosts/default/scripts/python
 source ./venv/bin/activate
 
+
     for path in "''${INPUTS[@]}"; do
         images="$images$path;;"
     done
 
-
-python images_to_pptx.py --images "$images" --output "$output_file"
+nix-shell --run "python images_to_pptx.py --images '$images' --output '$output_file'"
 notify-send -t 5000 "Create PowerPoint" "Successfully created Powerpoint presentation at $output_file"
 ''

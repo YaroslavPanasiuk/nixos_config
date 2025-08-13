@@ -249,6 +249,16 @@
                   {
                     "type": "command",
                     "data": {
+                      "command": "connect_phone.sh",
+                      "delayed": false
+                    },
+                    "name": "Share screen",
+                    "icon": "screenshot",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
                       "command": "vnc_server.sh remote_control",
                       "delayed": false
                     },

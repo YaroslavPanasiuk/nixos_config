@@ -632,6 +632,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1719254875,
+        "narHash": "sha256-ECni+IkwXjusHsm9Sexdtq8weAq/yUyt1TWIemXt3Ko=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2893f56de08021cffd9b6b6dfc70fd9ccd51eb60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -668,6 +684,7 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-zoom": "nixpkgs-zoom",
         "split-monitor-workspaces": "split-monitor-workspaces",
+        "vigiland": "vigiland",
         "zen-browser": "zen-browser"
       }
     },
@@ -740,6 +757,24 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "vigiland": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1719400387,
+        "narHash": "sha256-Y/MUjPWd09YGUWBIXSjQGAcRmgKLcHAMYNjWvDTiV2c=",
+        "owner": "jappie3",
+        "repo": "vigiland",
+        "rev": "62d0d6be2e19690c88e627eff76161ba41adbf97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jappie3",
+        "repo": "vigiland",
         "type": "github"
       }
     },

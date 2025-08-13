@@ -43,23 +43,23 @@ case $1 in
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
 	# Up the volume (+ 5%)
 	wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%+ 
-    send_notification up
+    #send_notification up
 	;;
     down)
 	# Set the volume on (if it was muted)
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ 0
 	# Up the volume (+ 5%)
 	wpctl set-volume -l 1.4 @DEFAULT_AUDIO_SINK@ 5%-
-    send_notification down
+    #send_notification down
 	;;
     mute)
     	# Toggle mute
 	wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-	if is_mute ; then
-		notify-send -u low -r 4321 "muted" -a "volume_notification" "Muted" -i "$HOME/nixos/hosts/default/scripts/resources/volume_mute.png"
-	else
-	    send_notification up
-	fi
+	#if is_mute ; then
+	#	notify-send -u low -r 4321 "muted" -a "volume_notification" "Muted" -i "$HOME/nixos/hosts/default/scripts/resources/volume_mute.png"
+	#else
+	#    send_notification up
+	#fi
 	;;
 esac
 ''

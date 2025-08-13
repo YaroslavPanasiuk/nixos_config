@@ -1,53 +1,54 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-final_extension=$1
+path=$1
+extension="${path##*.}"
+echo $extension
+parent_folder=$(dirname "$path")
 
-shift
+if [[ $parent_folder"" == "$HOME/Public/Wallpapers" ]]; then
+    wallp $(basename "$path")
+    exit
+fi
 
-for path in "$@"; do
-    filename=$(basename "$path")
-    filename_no_ext=''${filename%.*}
-    extension=''${filename##*.}
-    dir=$(dirname "$path")
+name_file() {
+    local folder="$HOME/Public/Wallpapers"  # The folder to check, default is current directory
+    local counter=1         # Start numbering files from 1
 
-    case "$extension-$final_extension" in
-        pdf-pdf|pptx-pptx|odp-odp|key-key)
-            continue
+    while true; do
+        local filename="$folder/$counter$1"
+        if [[ ! -e "$filename" ]]; then
+            echo $filename
+            return 0
+        fi
+        ((counter++))
+    done
+}
+
+destination=""
+
+case $extension in
+    jpg)
+        destination=$(echo "$(name_file .jpg)" | tr -d '\n')
+        cp $path $destination
         ;;
-        pdf-pptx)
-            notify-send -t 5000 "Create PowerPoint" "Starting creating Powerpoint presentation..."
-        
-            cd ~/nixos/hosts/default/scripts/python
-            source ./venv/bin/activate
-            nix-shell --run "python pdf_to_pptx.py --input_pdf '$dir/$filename_no_ext.pdf' --output_pptx '$dir/$filename_no_ext.pptx'"
-            
-            notify-send -t 5000 "Create PowerPoint" "Successfully created Powerpoint presentation at $dir/$filename_no_ext.pptx"
+    png)
+        destination=$(echo "$(name_file .jpg)" | tr -d '\n')
+        convert $path $destination
         ;;
-        pdf-odp)
-            notify-send -t 5000 "Create odp" "Starting creating LibreOffice Impress presentation..."
-            cd ~/nixos/hosts/default/scripts/python
+    gif)
+        destination=$(echo "$(name_file _GIF_.jpg)" | tr -d '\n')
+        mp4_to_wallp.sh $path gif
+        ;;
+    mp4)
+        destination=$(echo "$(name_file _MP4_.jpg)" | tr -d '\n')
+        mp4_to_wallp.sh $path mp4
+        ;;
+    *)
+        exit
+        ;;
+esac
 
-            source ./venv/bin/activate
-            python pdf_to_pptx.py --input_pdf "$dir/$filename_no_ext.pdf" --output_pptx "$dir/$filename_no_ext.pptx"
-            deactivate
-
-            soffice --headless --convert-to odp --outdir "$dir" "$dir/$filename_no_ext.pptx"
-            notify-send -t 5000 "Create odp" "Successfully created LibreOffice Impress presentation at $dir/$filename_no_ext.pptx"
-        ;;
-        key-pptx|odp-pptx)
-            soffice --headless --convert-to pptx --outdir "$dir" "$dir/$filename"
-            notify-send -t 5000 "Create PowerPoint" "Successfully created Powerpoint presentation at $dir/$filename_no_ext.pptx"
-        ;;
-        key-odp|pptx-odp)
-            soffice --headless --convert-to odp --outdir "$dir" "$dir/$filename"
-            notify-send -t 5000 "Create odp" "Successfully created LibreOffice Impress presentation at $dir/$filename_no_ext.odp"
-        ;;
-        pptx-pdf|key-pdf|odp-pdf)
-            notify-send -t 5000 "Create PDF" "Starting creating PDF from presentation..."
-            soffice --headless --convert-to pdf --outdir "$dir" "$dir/$filename"
-            notify-send -t 5000 "Create PDF" "Successfully created PDF from presentation at $dir/$filename_no_ext.pdf"
-        ;;
-    esac
-
-done
-
+if [[ -n "$destination" ]]; then
+    echo $destination
+    #wallp $(basename "$destination")
+fi

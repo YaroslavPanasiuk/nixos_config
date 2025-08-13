@@ -65,12 +65,9 @@ in
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.packageOverrides = pkgs: {
     unstable = import <nixos-unstable> { };
-    kando-180 = pkgs.callPackage ./packages/kando-180.nix { };
-    scrcpy-33 = pkgs.callPackage ./packages/scrcpy-33.nix { };
+    #kando-180 = pkgs.callPackage ./packages/kando-180.nix { };
+    #scrcpy-33 = pkgs.callPackage ./packages/scrcpy-33.nix { };
   };
-  nixpkgs.overlays = [
-    inputs.hyprpanel.overlay
-  ];
  
   virtualisation = {
     libvirtd = {
@@ -120,6 +117,10 @@ in
     gnome-photos
     gnome-tour
   ]);
+
+  environment.sessionVariables = {
+    GTK_TOOLTIP_TIMEOUT = "1";
+  };
 
   nixpkgs.config.permittedInsecurePackages = [
     "ventoy-1.1.05"

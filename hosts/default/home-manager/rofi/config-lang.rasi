@@ -3,7 +3,7 @@ configuration {
   display-drun:           "⋗";
   drun-display-format:    "{name}";
   font:                   "CaskaydiaCove Nerd Font Mono 13";
-  show-icons:             true;
+  show-icons:             false;
 }
 
 @theme "~/.cache/wal/colors-rofi.rasi"

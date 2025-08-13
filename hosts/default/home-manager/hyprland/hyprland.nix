@@ -37,6 +37,7 @@
         "hyprlock"
         "hypridle"
         "swww-daemon"
+        "syshud"
         "hyprctl setcursor volantes_cursors 24"
         "sleep 2 && hyprctl dispatch overview:close"
         "lxqt-policykit-agent"
@@ -60,7 +61,7 @@
       general = { 
         gaps_in = 3;
         gaps_out = 5;
-        border_size = 3;
+        border_size = 2;
         "col.active_border" = "$color1 $color2 45deg"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1}) rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour2}) 45deg";
         "col.inactive_border" = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
         resize_on_border = "false";
@@ -144,8 +145,7 @@
       };
 
       workspace = [
-        "w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-        #"w[fv1-10], gapsout:4, gapsin:3, bordersize:3, rounding:8"
+        #"w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
       ];
@@ -166,7 +166,7 @@
         "ALT, SPACE, exec, $menu"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
-        "$mainMod, T, exec, telegram-desktop &,"
+        "$mainMod, T, exec, Telegram &,"
         "$mainMod, B, exec, flatpak run life.bolls.bolls &,"
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -198,7 +198,7 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        #"$mainMod SHIFT, W, exec, hyprctl dispatch hyprtasking:toggle all"
+        "$mainMod SHIFT, W, exec, pkill -USR2 waybar && waybar_colors_update.sh &"
         "$mainMod SHIFT, Q, hyprtasking:toggle, all"
         "$mainMod SHIFT, P, exec, toggle_mpvpaper.sh"
         ", XF86AudioMute, exec, volume.sh mute"
@@ -213,7 +213,10 @@
         "$mainMod ALT, W, exec, wallp-rofi.sh"
         "$mainMod ALT, T, exec, update_telegram.sh"
 
-        "$mainMod SHIFT, S, exec, hyprshot -m region --clipboard-only"
+        "$mainMod SHIFT, S, exec, wayfreeze & PID=$!; sleep .01; hyprshot -m region --clipboard-only; kill $PID"
+        "$mainMod, I, exec, vigiland.sh"
+        "$mainMod SHIFT, T, exec, anyrun"
+        "$mainMod SHIFT, F, exec, hyprland_focus_modes.sh"
         "$mainMod SHIFT, E, exec, wl-paste | swappy -f -"
         "$mainMod SHIFT, R, exec, record_screen.sh"
         "$mainMod SHIFT, O, exec, record_screen.sh ao"
@@ -288,6 +291,7 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "float, title:Authentication Required"
+        "float, title:Rename \".*\""       
         "fullscreen, title:Waydroid"
         "workspace empty title:Waydroid"
         "workspace +0 title:Authentication Required"
@@ -342,10 +346,11 @@
         gap_size = 5;
         bg_color = "$background";
         border_size = 2;
-        gestures = {
-          enabled = 0;
-          open_positive = 0;
+        
+        "gestures" = {
+            enabled = false;
         };
+
         exit_on_hovered = false;
         gaps = {
             rows = 3;
