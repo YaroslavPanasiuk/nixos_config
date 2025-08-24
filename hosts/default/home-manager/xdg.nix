@@ -259,6 +259,10 @@
       enable = true;
       source = ./anyrun/libtranslate_panas.so;
     };
+    "goal-tracker/style.css" = {
+      enable = true;
+      source = ./goal-tracker/style.css;
+    };
     "GIMP/2.10/scripts" = {
       enable = true;
       recursive = true;

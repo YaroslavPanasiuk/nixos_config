@@ -31,13 +31,11 @@ for path in "''${INPUTS[@]}"; do
     extension=''${filename##*.}
     dir=$(dirname "$path")
 
-    WIDTH=-1
-    HEIGHT=-1
-    RATIO=$(echo "scale=4; $WIDTH/$HEIGHT" | bc)
-    TRESHHOLD_RATIO=$(echo "scale=4; $INPUT_WIDTH/$INPUT_HEIGHT" | bc)
-    is_wide=$(echo "$RATIO > $TRESHHOLD_RATIO" | bc -l)
     is_image=$(file --mime-type "$path" | grep -qE 'image/(jpeg|png|gif|bmp|webp|tiff)' && echo 1 || echo 0)
     is_video=$(file --mime-type "$path" | grep -qE 'video/(mp4|x-matroska|quicktime|x-msvideo|x-ms-wmv|webm|ogg)' && echo 1 || echo 0)
+
+    WIDTH=-1
+    HEIGHT=-1
 
     if [ "$is_video" -eq 1 ]; then
         ffmpeg -i $path -vf "select=eq(n\,0)" -q:v 2 -frames:v 1 "$path.jpg"
@@ -49,6 +47,11 @@ for path in "''${INPUTS[@]}"; do
         WIDTH=$(identify -format "%w" "$path")
         HEIGHT=$(identify -format "%h" "$path")
     fi
+
+    RATIO=$(echo "scale=4; $WIDTH/$HEIGHT" | bc)
+    TRESHHOLD_RATIO=$(echo "scale=4; $INPUT_WIDTH/$INPUT_HEIGHT" | bc)
+    is_wide=$(echo "$RATIO > $TRESHHOLD_RATIO" | bc -l)
+
 
     if [[ "$WIDTH" -eq "$INPUT_WIDTH" && "$HEIGHT" -eq "$INPUT_HEIGHT" ]]; then
         cp "$path" "$dir/$filename_no_ext"_blurred".$extension"
@@ -80,6 +83,10 @@ for path in "''${INPUTS[@]}"; do
         HEIGHT2=$INPUT_HEIGHT
         HEIGHT1=$NEW_HEIGHT
     fi
+
+    echo "Input: $WIDTHx$HEIGHT, New: $NEW_WIDTHx$NEW_HEIGHT, Target: $INPUT_WIDTHx$INPUT_HEIGHT"
+    echo "is_wide: $is_wide, is_image: $is_image, is_video: $is_video"
+    echo "RATIO: $RATIO, TRESHHOLD_RATIO: $TRESHHOLD_RATIO"
 
     if [[ "$is_image" -eq 1 ]]; then
         ffmpeg -y -i "$path" -filter_complex "[0:v]scale=$WIDTH1:$HEIGHT1, gblur=sigma=30[bg]; [0:v]scale=$WIDTH2:$HEIGHT2[fg]; [bg][fg]overlay=(W-w)/2:(H-h)/2[merged]; [merged]crop=$INPUT_WIDTH:$INPUT_HEIGHT:(iw-$INPUT_WIDTH)/2:(ih-$INPUT_HEIGHT)/2[out]" -map "[out]" "$dir/$filename_no_ext"_blurred".$extension"

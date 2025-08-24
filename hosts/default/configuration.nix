@@ -58,7 +58,7 @@ in
 
   users.users.${user.name} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers"];
+    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers" "docker"];
   };
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfree = true;
@@ -82,6 +82,11 @@ in
     waydroid.enable = true;
     lxd.enable = true;
     #anbox.enable = true;
+    docker.enable = true;
+    docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
   };
 
   hardware.graphics = {

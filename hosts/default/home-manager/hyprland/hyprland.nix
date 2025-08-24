@@ -37,7 +37,7 @@
         "hyprlock"
         "hypridle"
         "swww-daemon"
-        "syshud"
+        "syshud &"
         "hyprctl setcursor volantes_cursors 24"
         "sleep 2 && hyprctl dispatch overview:close"
         "lxqt-policykit-agent"
@@ -45,9 +45,7 @@
         "systemctl --user start battery_reset"
         "kando"
         "sleep 1 && waybar"
-        "swipe_up.sh && swipe_down.sh"
-        "sleep 2 && waybar_colors_update.sh"
-        "waybar_colors_update.sh update"
+        "sleep 2 && hyprland_focus_modes.sh update"
         "sleep 3 && nm-applet"
         "sleep 5 && blueman-tray"
         "sleep 5 && blueman-applet"
@@ -78,7 +76,7 @@
           workspace_swipe_direction_lock = false;
           #workspace_swipe_touch = "true";
           workspace_swipe_invert = "true";
-          #workspace_swipe_create_new = "false";
+          workspace_swipe_create_new = "true";
       };
 
       animations = {
@@ -148,6 +146,7 @@
         #"w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
+        #"r[1-10], persistent:true"
       ];
 
       bind = [
@@ -172,6 +171,7 @@
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
+        "$mainMod, G, togglegroup"
 
         "$mainMod, 1, split-workspace, 1"
         "$mainMod, 2, split-workspace, 2"
@@ -274,7 +274,7 @@
       ];
 
       windowrule = [
-        "float, class:(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "float, class:(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "rounding 8, class:(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, class:(.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
         "workspace empty class:(Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
@@ -283,6 +283,7 @@
         "opaque, class:kando"
         "size 100% 100%, class:kando"
         "size 40% 50%, class:zenity"
+        "size 50% 50%, class:(goal-tracker)|(.goal-tracker-wrapped)"
         "noborder, class:kando"
         "noanim, class:kando"
         "pin, class:kando"
@@ -332,6 +333,12 @@
       };
 
       
+      "plugin:split-monitor-workspaces" = {
+        count = 10;
+        keep_focused = 0;
+        enable_notifications = 0;
+        enable_persistent_workspaces = 1;
+      };
 
       "plugin:hyprexpo" = {
         columns = 3;

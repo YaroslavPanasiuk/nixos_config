@@ -78,7 +78,6 @@
     gnupg
     xfce.xfce4-settings
     #waydroid
-    gtk3
     gtk4
     nix-prefetch-git
     wpgtk
@@ -164,6 +163,8 @@
     syshud
     wayfreeze    
     anyrun
+    gtk3
+    inputs.goal-tracker.packages.${system}.default
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.system}.vigiland

@@ -22,7 +22,7 @@ echo $path
 
 workspace=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
 wal -i "/''${path}"
-
+hyprland_focus_modes.sh update
 hyprctl dispatch workspace $workspace
 
 set_welcome.sh
@@ -57,9 +57,6 @@ cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/hom
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 
 pkill dunst
-
-pkill -f waybar_colors_update.sh
-waybar_colors_update.sh &
 kando --reload-menu-theme &
 update_telegram.sh -B -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 

@@ -64,6 +64,8 @@
 
     vigiland.url = "github:jappie3/vigiland";
 
+    goal-tracker.url = "github:YaroslavPanasiuk/goal-tracker";
+
     nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
   };
 
