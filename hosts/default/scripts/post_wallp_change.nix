@@ -39,6 +39,8 @@ syshud &
 #pkill -f nwg-dock-hyprland
 #launch_dock.sh &
 #sleep 1 && pkill -f -37 nwg-dock-hyprland
+gsettings set org.gnome.desktop.interface gtk-theme "Adwaita" 
+gsettings set org.gnome.desktop.interface gtk-theme "Skeuos" 
 
 cp ~/.cache/wal/dunstrc ~/.config/dunst/dunstrc
 cp ~/.cache/wal/kando-config.json ~/.config/kando/config.json
@@ -47,12 +49,14 @@ cp ~/.cache/wal/gtt-theme.yaml ~/.config/gtt/theme.yaml
 cp ~/.cache/wal/gtt-theme.yaml ~/.config/gtt/theme.yaml
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background1.jpg
 cp "/$path" ~/Public/CurrentWallpaper/Windows/Background2.jpg
-convert /$path ~/Public/CurrentWallpaper/Background.png
+convert /$path ~/Public/CurrentWallpaper/Background.png &
 magick /$path -blur 0x10 -fill black -colorize 50% ~/Public/CurrentWallpaper/BlurredBackground.jpg
 cp ~/Public/CurrentWallpaper/BlurredBackground.jpg ~/nixos/hosts/default/grub/bigsur/background.jpg
 convert ~/Public/CurrentWallpaper/BlurredBackground.jpg ~/Public/CurrentWallpaper/BlurredBackground.png
-cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ventoy/themes/bigsur/background.png
+cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ventoy/themes/bigsur/background.png &
 magick /$path -blur 0x17 -fill black -colorize 70% ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg
+magick ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg -resize 1152 ~/Public/CurrentWallpaper/VeryBlurredBackgroundLowRes.jpg &
+magick ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg -resize 768 ~/Public/CurrentWallpaper/VeryBlurredBackgroundVeryLowRes.jpg &
 cp ~/Public/CurrentWallpaper/VeryBlurredBackground.jpg ~/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg
 cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 

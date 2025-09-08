@@ -27,7 +27,7 @@ mainbox {
     children:               [ inputbar, listview ];
     padding:                20px;
     spacing:                20px;
-    background-image:  url("~/Public/CurrentWallpaper/VeryBlurredBackground.jpg");
+    background-image:  url("~/Public/CurrentWallpaper/VeryBlurredBackgroundVeryLowRes.jpg");
 
 }
 

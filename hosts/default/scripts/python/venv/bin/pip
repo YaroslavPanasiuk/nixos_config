@@ -1,4 +1,4 @@
-#!/home/yarko/nixos/hosts/default/scripts/python/venv/bin/python
+#!/home/yaroslaw/nixos/hosts/default/scripts/python/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

@@ -157,11 +157,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1755962758,
-        "narHash": "sha256-JB+X54RGZy/z6j0TbPBfO+gD5QvKH1wzwxM2PCJ+LVA=",
+        "lastModified": 1756204799,
+        "narHash": "sha256-Koa4GjBZYmPZqzy0qoUQgjzlerJ6hFQdoFBpke+2KxI=",
         "owner": "YaroslavPanasiuk",
         "repo": "goal-tracker",
-        "rev": "e3bf052e7316a701d2fa5627d51159c32b58e504",
+        "rev": "6a64b60e2ee014c5489030b436f725d79fbd8917",
         "type": "github"
       },
       "original": {

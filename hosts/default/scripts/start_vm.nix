@@ -22,7 +22,7 @@ case "$1" in
         quickemu --vm ~/virtual/macos-big-sur.conf --width 1920 --height 1080 &
         ;;
     "windows")
-        quickemu --vm ~/virtual/windows-10.conf &
+        quickemu --vm ~/virtual/windows-10.conf --display spice --fullscreen &
         ;;
     *)
         notify-send "QEMU" "No such device: $1"

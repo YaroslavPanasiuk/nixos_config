@@ -13,203 +13,112 @@
         "children": [
           {
             "type": "submenu",
-            "name": "Apps",
-            "icon": "apps",
-            "iconTheme": "material-symbols-rounded",
+            "data": {
+              "command": "code"
+            },
+            "name": "VS code",
+            "icon": "vscode.svg",
+            "iconTheme": "scalable",
             "children": [
               {
                 "type": "command",
                 "data": {
-                  "command": "flatpak run life.bolls.bolls"
+                  "command": "code ~/nixos/",
+                  "delayed": false
                 },
-                "name": "Bible",
-                "icon": "bolls.png",
-                "iconTheme": "scalable"
-              },
-              {
-                "type": "submenu",
-                "data": {
-                  "command": "code"
-                },
-                "name": "VS code",
-                "icon": "vscode.svg",
-                "iconTheme": "scalable",
-                "children": [
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "code ~/nixos/",
-                      "delayed": false
-                    },
-                    "name": "Nixos folder",
-                    "icon": "folder_data",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "code",
-                      "delayed": false
-                    },
-                    "name": "Open VS Code",
-                    "icon": "text_ad",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "code ~/.config",
-                      "delayed": false
-                    },
-                    "name": ".config folder",
-                    "icon": "folder_managed",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "code \"$(zenity --file-selection)\"",
-                      "delayed": false
-                    },
-                    "name": "Open file",
-                    "icon": "file_open",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "code \"$(zenity --file-selection --directory)\"",
-                      "delayed": false
-                    },
-                    "name": "Open folder",
-                    "icon": "folder_code",
-                    "iconTheme": "material-symbols-rounded"
-                  }
-                ]
+                "name": "Nixos folder",
+                "icon": "folder_data",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "obsidian"
+                  "command": "code",
+                  "delayed": false
                 },
-                "name": "Obsidian",
-                "icon": "obsidian.svg",
-                "iconTheme": "scalable"
+                "name": "Open VS Code",
+                "icon": "text_ad",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "viber"
+                  "command": "code ~/.config",
+                  "delayed": false
                 },
-                "name": "Viber",
-                "icon": "viber.svg",
-                "iconTheme": "scalable"
+                "name": ".config folder",
+                "icon": "folder_managed",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty gtt"
+                  "command": "code \"$(zenity --file-selection)\"",
+                  "delayed": false
                 },
-                "name": "Translate",
-                "icon": "deepl.svg",
-                "iconTheme": "scalable"
+                "name": "Open file",
+                "icon": "file_open",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "code \"$(zenity --file-selection --directory)\"",
+                  "delayed": false
+                },
+                "name": "Open folder",
+                "icon": "folder_code",
+                "iconTheme": "material-symbols-rounded"
               }
             ]
           },
           {
             "type": "submenu",
-            "name": "Editing",
-            "icon": "edit_audio",
+            "data": {},
+            "name": "Phone",
+            "icon": "phone_android",
             "iconTheme": "material-symbols-rounded",
             "children": [
               {
                 "type": "command",
                 "data": {
-                  "command": "gimp",
+                  "command": "phone_camera.sh",
                   "delayed": false
                 },
-                "name": "GIMP",
-                "icon": "gimp.svg",
-                "iconTheme": "scalable"
+                "name": "Connect camera",
+                "icon": "camera",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "kdenlive",
+                  "command": "connect_phone.sh",
                   "delayed": false
                 },
-                "name": "KDEnlive",
-                "icon": "kdenlive.svg",
-                "iconTheme": "scalable"
+                "name": "Share screen",
+                "icon": "screenshot",
+                "iconTheme": "material-symbols-rounded"
               },
               {
-                "type": "submenu",
-                "name": "LibreOfice",
-                "icon": "libreofficeimpress",
-                "iconTheme": "simple-icons",
-                "children": [
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "libreoffice",
-                      "delayed": false
-                    },
-                    "name": "Launcher",
-                    "icon": "libreoffice-main.svg",
-                    "iconTheme": "scalable"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "libreoffice --writer",
-                      "delayed": false
-                    },
-                    "name": "Writer",
-                    "icon": "writer.svg",
-                    "iconTheme": "scalable"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "libreoffice --impress",
-                      "delayed": false
-                    },
-                    "name": "Impress",
-                    "icon": "impress.svg",
-                    "iconTheme": "scalable"
-                  },        
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "libreoffice --calc",
-                      "delayed": false
-                    },
-                    "name": "Calc",
-                    "icon": "calc.svg",
-                    "iconTheme": "scalable"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "libreoffice --base",
-                      "delayed": false
-                    },
-                    "name": "Base",
-                    "icon": "base.svg",
-                    "iconTheme": "scalable"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "libreoffice --draw",
-                      "delayed": false
-                    },
-                    "name": "Draw",
-                    "icon": "draw.svg",
-                    "iconTheme": "scalable"
-                  }
-                ]
-              }       
+                "type": "command",
+                "data": {
+                  "command": "vnc_server.sh remote_control",
+                  "delayed": false
+                },
+                "name": "Remote control",
+                "icon": "screen_share",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "vnc_server.sh second_monitor",
+                  "delayed": false
+                },
+                "name": "Second monitor",
+                "icon": "magnify_fullscreen",
+                "iconTheme": "material-symbols-rounded"
+              }
             ]
           },
           {
@@ -222,61 +131,22 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "missioncenter",
+                  "command": "hyprland_focus_modes.sh",
                   "delayed": false
                 },
-                "name": "System monitor",
-                "icon": "monitor_heart",
+                "name": "focus mode",
+                "icon": "border_outer",
                 "iconTheme": "material-symbols-rounded"
               },
               {
-                "type": "submenu",
-                "data": {},
-                "name": "Phone",
-                "icon": "phone_android",
-                "iconTheme": "material-symbols-rounded",
-                "children": [
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "phone_camera.sh",
-                      "delayed": false
-                    },
-                    "name": "Connect camera",
-                    "icon": "camera",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "connect_phone.sh",
-                      "delayed": false
-                    },
-                    "name": "Share screen",
-                    "icon": "screenshot",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "vnc_server.sh remote_control",
-                      "delayed": false
-                    },
-                    "name": "Remote control",
-                    "icon": "screen_share",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "vnc_server.sh second_monitor",
-                      "delayed": false
-                    },
-                    "name": "Second monitor",
-                    "icon": "magnify_fullscreen",
-                    "iconTheme": "material-symbols-rounded"
-                  }
-                ]
+                "type": "command",
+                "data": {
+                  "command": "vigiland.sh",
+                  "delayed": false
+                },
+                "name": "Idle",
+                "icon": "energy_program_saving",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
@@ -291,7 +161,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "toggle_hyprpanel.sh",
+                  "command": "pkill -SIGUSR1 waybar",
                   "delayed": false
                 },
                 "name": "Toggle panel",
@@ -327,82 +197,24 @@
                 "iconTheme": "material-symbols-rounded"
               },
               {
-                "type": "submenu",
-                "data": {},
-                "name": "Scan",
-                "icon": "document_scanner",
-                "iconTheme": "material-symbols-rounded",
-                "children": [
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "copy_image_text.sh",
-                      "delayed": false
-                    },
-                    "name": "Text from image",
-                    "icon": "text_compare",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "qr_scanner.sh",
-                      "delayed": false
-                    },
-                    "name": "QR Scanner",
-                    "icon": "qr_code_scanner",
-                    "iconTheme": "material-symbols-rounded"
-                  }
-                ]
+                "type": "command",
+                "data": {
+                  "command": "copy_image_text.sh",
+                  "delayed": false
+                },
+                "name": "Text from image",
+                "icon": "text_compare",
+                "iconTheme": "material-symbols-rounded"
               },
               {
-                "type": "submenu",
-                "data": {},
-                "name": "Record screen",
-                "icon": "screen_record",
-                "iconTheme": "material-symbols-rounded",
-                "children": [
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "record_screen.sh ai",
-                      "delayed": false
-                    },
-                    "name": "With microphone",
-                    "icon": "mic",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "record_screen.sh",
-                      "delayed": false
-                    },
-                    "name": "No audio",
-                    "icon": "volume_off",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "record_screen.sh ao",
-                      "delayed": false
-                    },
-                    "name": "With output",
-                    "icon": "volume_up",
-                    "iconTheme": "material-symbols-rounded"
-                  },
-                  {
-                    "type": "command",
-                    "data": {
-                      "command": "record_screen.sh ac",
-                      "delayed": false
-                    },
-                    "name": "Combined audio",
-                    "icon": "frame_person_mic",
-                    "iconTheme": "material-symbols-rounded"
-                  }
-                ]
+                "type": "command",
+                "data": {
+                  "command": "qr_scanner.sh",
+                  "delayed": false
+                },
+                "name": "QR Scanner",
+                "icon": "qr_code_scanner",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
@@ -412,16 +224,6 @@
                 },
                 "name": "Color picker",
                 "icon": "colorize",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "gcolor3",
-                  "delayed": false
-                },
-                "name": "Color chooser",
-                "icon": "palette",
                 "iconTheme": "material-symbols-rounded"
               },
               {
@@ -603,36 +405,50 @@
           },
           {
             "type": "submenu",
-            "name": "Steam",
-            "icon": "steam",
-            "iconTheme": "simple-icons",
+            "data": {},
+            "name": "Record screen",
+            "icon": "screen_record",
+            "iconTheme": "material-symbols-rounded",
             "children": [
               {
                 "type": "command",
                 "data": {
-                  "command": "steam --quiet steam://rungameid/105600"
+                  "command": "record_screen.sh ai",
+                  "delayed": false
                 },
-                "name": "Terraria",
-                "icon": "Terraria.png",
-                "iconTheme": "scalable"
+                "name": "With microphone",
+                "icon": "mic",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "steam --quiet steam://rungameid/367520"
+                  "command": "record_screen.sh",
+                  "delayed": false
                 },
-                "name": "Hollow knight",
-                "icon": "hollow.png",
-                "iconTheme": "scalable"
+                "name": "No audio",
+                "icon": "volume_off",
+                "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "steam --quiet steam://rungameid/1281930"
+                  "command": "record_screen.sh ao",
+                  "delayed": false
                 },
-                "name": "TmodLoader",
-                "icon": "Tmod.png",
-                "iconTheme": "scalable"
+                "name": "With output",
+                "icon": "volume_up",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "record_screen.sh ac",
+                  "delayed": false
+                },
+                "name": "Combined audio",
+                "icon": "frame_person_mic",
+                "iconTheme": "material-symbols-rounded"
               }
             ]
           }

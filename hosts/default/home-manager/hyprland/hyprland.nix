@@ -167,8 +167,8 @@
         "$mainMod, J, togglesplit,"
         "$mainMod, T, exec, Telegram &,"
         "$mainMod, B, exec, flatpak run life.bolls.bolls &,"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
+        "$mainMod, left, split-workspace, -1"
+        "$mainMod, right, split-workspace, +1"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
         "$mainMod, G, togglegroup"
@@ -197,6 +197,9 @@
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        "$mainMod SHIFT, left, split-movetoworkspace, -1"
+        "$mainMod SHIFT, right, split-movetoworkspace, +1"
 
         "$mainMod SHIFT, W, exec, pkill -USR2 waybar && waybar_colors_update.sh &"
         "$mainMod SHIFT, Q, hyprtasking:toggle, all"

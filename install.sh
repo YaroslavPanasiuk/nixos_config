@@ -14,6 +14,7 @@ mkdir ~/Public/Wallpapers
 mkdir ~/Public/CurrentWallpaper
 mkdir ~/Public/CurrentWallpaper/Windows
 mkdir ~/Videos/recordings
+mkdir ~/.config/Dunst
 
 cp ~/nixos/hosts/$host/home-manager/extra_resources/Wallpaper.jpg ~/Public/Wallpapers/1.jpg
 

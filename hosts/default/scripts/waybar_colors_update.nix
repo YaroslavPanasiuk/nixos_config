@@ -14,7 +14,7 @@ update_waybar() {
         ((ignored_count = ignored_count + $(hyprctl clients | grep -c "class: $item")))
     done
 
-    taskbar_border_line="#taskbar { border-left: 4px double shade(@cursor, 0.7); }"
+    taskbar_border_line="#taskbar { border-left: 4px double shade(@cursor, 0.9); }"
     if [ "$window_count" -eq 1 ]; then 
         taskbar_border_line="#taskbar { border-left: 2px solid @color1A; }" 
     fi
@@ -93,28 +93,28 @@ EOF
             @define-color module_color5 @color9a;
 
             .modules-left {
-            border-right: 2px solid shade(@cursor, 0.7);
-            border-top: 2px solid shade(@cursor, 0.7);
-            border-bottom: 2px solid shade(@cursor, 0.7);
+            border-right: 2px solid shade(@cursor, 0.9);
+            border-top: 2px solid shade(@cursor, 0.9);
+            border-bottom: 2px solid shade(@cursor, 0.9);
             }
 
             .modules-center {
-            border: 2px solid shade(@cursor, 0.7);
+            border: 2px solid shade(@cursor, 0.9);
             }
 
             .modules-right {
-            border-left: 2px solid shade(@cursor, 0.7);
-            border-top: 2px solid shade(@cursor, 0.7);
-            border-bottom: 2px solid shade(@cursor, 0.7);
+            border-left: 2px solid shade(@cursor, 0.9);
+            border-top: 2px solid shade(@cursor, 0.9);
+            border-bottom: 2px solid shade(@cursor, 0.9);
             }
 
-            #workspaces { border-left: 4px double shade(@cursor, 0.7); border-right: 4px double shade(@cursor, 0.7); }
-            #custom-timer { border-left: 4px double shade(@cursor, 0.7); }
-            #mpris { border-left: 4px double shade(@cursor, 0.7); }
+            #workspaces { border-left: 4px double shade(@cursor, 0.9); border-right: 4px double shade(@cursor, 0.9); }
+            #custom-timer { border-left: 4px double shade(@cursor, 0.9); }
+            #mpris { border-left: 4px double shade(@cursor, 0.9); }
             $taskbar_border_line
-            #tray { border-right: 4px double shade(@cursor, 0.7); }
-            #custom-language { border-right: 4px double shade(@cursor, 0.7); }
-            #custom-weather { border-right: 4px double shade(@cursor, 0.7); }
+            #tray { border-right: 4px double shade(@cursor, 0.9); }
+            #custom-language { border-right: 4px double shade(@cursor, 0.9); }
+            #custom-weather { border-right: 4px double shade(@cursor, 0.9); }
 
 EOF
 

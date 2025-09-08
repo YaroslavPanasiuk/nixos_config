@@ -32,11 +32,11 @@ destination=""
 case $extension in
     jpg)
         destination=$(echo "$(name_file .jpg)" | tr -d '\n')
-        cp $path $destination
+        magick "$path" -resize 1920x1080^ -gravity center -extent 1920x1080 "$destination" 
         ;;
     png)
         destination=$(echo "$(name_file .jpg)" | tr -d '\n')
-        convert $path $destination
+        magick "$path" -resize 1920x1080^ -gravity center -extent 1920x1080 "$destination" 
         ;;
     gif)
         destination=$(echo "$(name_file _GIF_.jpg)" | tr -d '\n')

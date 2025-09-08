@@ -2,13 +2,22 @@
 let
   otis = import ./otis.nix { inherit pkgs; };
   infinity = import ./Infinity.nix { inherit pkgs; };
+  skeuos = import ./skeuos.nix { inherit pkgs; };
 in
 {
   gtk = {
 	enable = true;
 	theme = {
-      name = "Juno-mirage-v40";
-      package = pkgs.juno-theme;
+      name = "Skeuos";
+      package = skeuos;
+    };
+  gtk3.theme = {
+      name = "Skeuos";
+      package = skeuos;
+    };
+  gtk4.theme = {
+      name = "Skeuos";
+      package = skeuos;
     };
 	cursorTheme = {
 	  name = "volantes_cursors";

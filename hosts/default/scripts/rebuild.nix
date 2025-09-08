@@ -5,7 +5,7 @@ pkgs.writeShellScriptBin "rebuild.sh" ''
 
 cd ~/nixos
 git add .
-rm /home/yarko/.config/mimeapps.list.backup
+rm /home/$USER/.config/mimeapps.list.backup
 if [[ "$1" == "--rollback" ]]; then
     sudo nixos-rebuild switch --rollback --flake ~/nixos/#default
     generation_number=$(sudo nix-env --list-generations --profile /nix/var/nix/profiles/system | tail -n 1 | awk '{print $1}')
@@ -13,6 +13,6 @@ if [[ "$1" == "--rollback" ]]; then
     exit
 fi
 sudo nixos-rebuild switch --flake ~/nixos/#default
-
+kitty --title "reloading wallpaper" wallp current
 
 ''

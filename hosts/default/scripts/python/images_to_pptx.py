@@ -18,8 +18,8 @@ def create_presentation_from_images(images, output_file, add_thumbnail=True):
     prs = Presentation()
 
     # Define slide width and height for 1920x1080 (16:9) presentation
-    prs.slide_width = Inches(16)
-    prs.slide_height = Inches(9)
+    prs.slide_width = Inches(20)
+    prs.slide_height = Inches(11.25)
 
     # Get all image files from the folder
     image_files = [

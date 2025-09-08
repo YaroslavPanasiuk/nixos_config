@@ -130,27 +130,19 @@
     quickemu
     losslesscut-bin
     textpieces
-    #stirling-pdf
     earlyoom
     lzip
     viber
-    #nodejs_23
     mpv
-    #figma-linux
     varia
     devenv
     neovim
     wayvnc
     unoconv
-    #streamcontroller
     youtube-music
-    #minecraft
-    #factorio
-    #jdk17
     nodePackages.zx
     cava
     ripgrep
-    ironbar
     celluloid
     translate-shell
     gtt
@@ -165,6 +157,7 @@
     anyrun
     gtk3
     inputs.goal-tracker.packages.${system}.default
+    newelle
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.system}.vigiland
@@ -232,5 +225,6 @@
     (import ../scripts/vigiland.nix { inherit pkgs; })
     (import ../scripts/connect_phone.nix { inherit pkgs; })
     (import ../scripts/hyprland_focus_modes.nix { inherit pkgs; })
+    (import ../scripts/update_songs_presentation.nix { inherit pkgs; })
   ];
 }

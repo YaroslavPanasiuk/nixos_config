@@ -7,7 +7,6 @@ mkdir ~/backup
 
 sed -i "s/$USER/__user__/g" ~/nixos/hosts/default/configuration_modules/user.nix
 
-cp -rf ~/.cache ~/backup
 cp -rf ~/.config ~/backup
 cp -rf ~/Public ~/backup
 cp -rf ~/Documents ~/backup
