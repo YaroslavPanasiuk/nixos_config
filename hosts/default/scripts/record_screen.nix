@@ -16,14 +16,15 @@ case "$1" in
         ;;
     "ai")
         notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with audio input"
-        wf-recorder --audio="easyeffects_source" -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
+        wf-recorder --audio="rnnoise_output" -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
         ;;
     "ac")
         pactl unload-module $(pactl list short modules | grep combined_sink | awk '{print $1}')
         sink="$(pactl get-default-sink)"
-        source="easyeffects_source"
+        source="rnnoise_output"
         pactl load-module module-null-sink sink_name=combined_sink
-        pw-link $source combined_sink
+        pw-link "$source:capture_MONO" "combined_sink:playback_FL"
+        pw-link "$source:capture_MONO" "combined_sink:playback_FR"
         pw-link $sink combined_sink
         notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with combined audio input"
         wf-recorder --audio="combined_sink.monitor" -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"

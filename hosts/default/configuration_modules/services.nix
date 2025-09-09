@@ -5,9 +5,9 @@ in
 {  
   services = {
     xserver = {
-      enable = true;
-      desktopManager.gnome.enable = true;
+      enable = false;
     };
+    desktopManager.gnome.enable = true;
 
     pipewire = {
       enable = true;
@@ -15,19 +15,93 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
       extraConfig.pipewire = {
-        "context.objects" = [
-          {
-            factory = "adapter";
+        "filter-chain"."context.modules" = [
+          { 
+            name = "libpipewire-module-filter-chain";
             args = {
-              factory.name = "support.null-audio-sink";
-              node.name = "VirtualMic";
-              node.description = "Virtual Microphone";
-              media.class = "Audio/Source/Virtual";
-              object.linger = true;
-              audio.position = "FL,FR";
+              "node.description" = "Noise Cancel (Mic)";
+              "media.name"       = "Noise Cancel (Mic)";
+              "filter.graph" = {
+                nodes = [
+                  { type   = "ladspa";
+                    plugin = "/run/current-system/sw/lib/ladspa/librnnoise_ladspa.so";
+                    label  = "noise_suppressor_mono";
+                    name   = "rnnoise";
+                  }
+                ];
+              };
+              "capture.props" = {
+                "node.name"      = "rnnoise_input";
+              };
+
+              "playback.props" = {
+                "node.name"   = "rnnoise_output";
+                "media.class" = "Audio/Source";  # mark the output as a microphone
+              };
             };
           }
         ];
+      };
+      wireplumber = {
+        enable = true;
+
+        extraScripts = {
+          "50-noise-cancel.lua" = ''
+            Core.onObjectAdded({"node"}, function (node)
+              local name = node.properties["node.name"] or ""
+              if name == "rnnoise_input" then
+                local mic = nil
+                for n in Node("media.class=Audio/Source").iter() do
+                  if n.properties["node.name"] ~= "rnnoise_output" then
+                    mic = n
+                    break
+                  end
+                end
+                if mic then
+                  Log.info("Auto-linking mic " .. mic.properties["node.name"] .. " → rnnoise_input")
+                  Link { output = mic, input = node }:activate(Features.ALL)
+                end
+              end
+            end)
+          '';
+
+          "60-set-default-noise-cancel.lua" = ''
+            Core.onObjectAdded({"node"}, function(node)
+              local name = node.properties["node.name"] or ""
+              local mediaClass = node.properties["media.class"] or ""
+              if name == "rnnoise_output" and mediaClass == "Audio/Source" then
+                Log.info("Setting rnnoise_output as default input")
+                Core.defaultInputNode = node
+              end
+            end)
+          '';
+
+          "70-combined-source.lua" = ''
+            Core.onStartup(function()
+                local default_sink_name = Core.getDefaultNode("Audio/Sink")
+                if not default_sink_name then
+                    Log.warn("No default sink found")
+                    return
+                end
+
+                local sources = {
+                    "rnnoise_output",
+                    default_sink_name .. ".monitor"
+                }
+
+                Log.info("Creating combined source with: " .. table.concat(sources, ", "))
+
+                Node.create({
+                    type = "adapter",
+                    media_class = "Audio/Source",
+                    node_name = "combined_source",
+                    nodes = sources
+                })
+            end)
+          '';
+        };
+
+        # remove extraConfig for components/profiles
       };
     };
 

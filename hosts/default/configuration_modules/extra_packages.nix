@@ -158,6 +158,9 @@
     gtk3
     inputs.goal-tracker.packages.${system}.default
     newelle
+    rnnoise
+    rnnoise-plugin
+    lsp-plugins 
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.system}.vigiland
