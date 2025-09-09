@@ -1,31 +1,34 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-dunstify -a "scrcpy" "connecting device..."
-adb kill-server
-adb start-server
-adb devices
-
-hotspot=$(adb shell ip -f inet addr show wlan1 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-ip=$(adb shell ip -f inet addr show wlan0 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-if [ -z "$ip" ]; then
-    ip=$hotspot
-fi
-echo "ip is $ip"
-if [ -n "$ip" ]; then
-    adb tcpip 5555
-    sleep 2
-    connected=$(adb connect "$ip:5555" | awk '{print $1}')
-    echo "$connected"
-    if [ "$connected" = "connected" ]; then 
-        dunstify -a "scrcpy" "Connected over wifi" 
-        scrcpy -e --video-codec=h265 -m1920 --max-fps=60 --no-audio -K
-        adb disconnect "$ip:5555"
-    else
-        dunstify -a "scrcpy" "Unable to connect over wifi"
-        scrcpy -d --video-codec=h265 -m1920 --max-fps=60 --no-audio -K
-    fi
-else 
-    dunstify -a "scrcpy" "Unable to connect over wifi"
-    scrcpy -d --video-codec=h265 -m1920 --max-fps=60 --no-audio -K
+if pidof -qx "wf-recorder"; then
+ 	pkill -SIGINT wf-recorder 
+    notify-send -t 5000 -i ~/nixos/hosts/default/scripts/resources/harddisk.png "Screen recorder" "Writing file to ~/Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
+    exit
 fi
 
+case "$1" in
+    "ao")
+        notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with audio output"
+        wf-recorder --audio="$(pactl get-default-sink).monitor" -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
+        ;;
+    "ai")
+        notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with audio input"
+        wf-recorder --audio="rnnoise_output" -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
+        ;;
+    "ac")
+        pactl unload-module $(pactl list short modules | grep combined_sink | awk '{print $1}')
+        sink="$(pactl get-default-sink)"
+        source="rnnoise_output"
+        pactl load-module module-null-sink sink_name=combined_sink
+        pw-link "$source:capture_MONO" "combined_sink:playback_FL"
+        pw-link "$source:capture_MONO" "combined_sink:playback_FR"
+        pw-link $sink combined_sink
+        notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with combined audio input"
+        wf-recorder --audio="combined_sink.monitor" -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
+        pactl unload-module $(pactl list short modules | grep combined_sink | awk '{print $1}')
+        ;;
+    *)
+        notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with no audio"
+        wf-recorder -f "Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4"
+        ;;
+esac
