@@ -168,7 +168,8 @@ in
     openssh.enable = true;
     blueman.enable = true;
     teamviewer.enable = true;
+    #tailscale.enable = true;
+    netbird.enable = true;
     #stirling-pdf.enable = true;
-
   };
 }

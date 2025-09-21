@@ -17,6 +17,8 @@ in
     ];  
 
   systemd.packages = [ pkgs.libinput-gestures ];
+
+  #nixpkgs.overlays = [ (import ./overlays/zerotierone.nix) ];
  
   networking = {
     hostName = "nixos";
