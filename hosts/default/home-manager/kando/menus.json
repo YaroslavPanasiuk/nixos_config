@@ -7,7 +7,7 @@
       "hoverMode": true,
       "root": {
         "type": "submenu",
-        "name": "Example Menu",
+        "name": "example-menu",
         "icon": "nixos",
         "iconTheme": "simple-icons",
         "children": [
@@ -461,7 +461,7 @@
       "centered": false,
       "root": {
         "type": "submenu",
-        "name": "Playerctl Menu",
+        "name": "playerctl-menu",
         "icon": "play_circle",
         "iconTheme": "material-symbols-rounded",
         "children": [

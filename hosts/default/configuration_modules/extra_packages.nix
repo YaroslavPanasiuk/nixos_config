@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     obsidian
     teamviewer
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     obs-studio
     wget
     flatpak
@@ -12,8 +12,6 @@
     ventoy-full
     vlc
     home-manager
-    python3Full
-    python312Full
     nix-index
     qimgv
     #zoom-us
@@ -55,7 +53,7 @@
     '')
     virt-viewer
     spice
-    win-virtio
+    virtio-win
     virtiofsd
     libxml2
     libxslt
@@ -91,7 +89,6 @@
     socat
     map-cmd
     pavucontrol
-    nm-tray
     blueman
     gnome-power-manager
     hyprlock
@@ -107,16 +104,16 @@
     xclip
     cifs-utils
     libreoffice
-    poppler_utils
+    poppler-utils
     gimp
     kdePackages.kdenlive
     parabolic
     libnotify
     swww
     kitty
-    rofi-wayland
+    rofi
     hyprshot
-    protonup
+    protonup-ng
     mission-center
     pulseaudioFull
     pipewire
@@ -161,6 +158,12 @@
     rnnoise
     rnnoise-plugin
     lsp-plugins 
+    ruffle
+    python314
+    postgresql_18
+    #python314Packages.pip
+    #python314Packages.virtualenv
+    davinci-resolve
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.system}.vigiland

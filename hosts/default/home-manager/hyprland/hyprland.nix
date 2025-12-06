@@ -7,14 +7,10 @@
     package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
 
     plugins = [
-      #inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-      #inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprwinwrap
       inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
-      inputs.hyprgrass.packages.${pkgs.system}.hyprgrass-pulse
-      inputs.hyprgrass.packages.${pkgs.system}.default
-      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      #inputs.hyprgrass.packages.${pkgs.system}.hyprgrass-pulse
+      #inputs.hyprgrass.packages.${pkgs.system}.default
+      #inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
       #inputs.hycov.packages.${pkgs.system}.hycov
     ];
 
@@ -49,9 +45,8 @@
         "sleep 3 && nm-applet"
         "sleep 5 && blueman-tray"
         "sleep 5 && blueman-applet"
-        "touchegg"
+        #"touchegg"
         "thunar --daemon"
-        #"easyeffects --gapplication-service"
         "wl-paste --watch cliphist store"
         "hyprswitch init --size-factor 4 --custom-css ~/.config/hyprswitch/hyprswitch.css"
       ];
@@ -68,15 +63,20 @@
       };
 
       gestures = {
-          workspace_swipe = "true";
-          workspace_swipe_distance = 1500;
-          workspace_swipe_min_speed_to_force = 5;
-          workspace_swipe_min_fingers = "true";
-          workspace_swipe_cancel_ratio = "0.1";
-          workspace_swipe_direction_lock = false;
-          #workspace_swipe_touch = "true";
-          workspace_swipe_invert = "true";
-          workspace_swipe_create_new = "true";
+        # REMOVED: workspace_swipe = "true";
+        workspace_swipe_distance = 1500;
+        workspace_swipe_min_speed_to_force = 5;
+        # REMOVED: workspace_swipe_min_fingers = "true"; 
+        workspace_swipe_cancel_ratio = "0.1";
+        workspace_swipe_direction_lock = false;
+        workspace_swipe_invert = "true";
+        workspace_swipe_create_new = "true";
+        
+        gesture = [
+          "3, horizontal, workspace"
+          "3, down, close"
+          "3, up, dispatcher, exec, hyprtasking_toggle.sh"
+        ];
       };
 
       animations = {
@@ -146,7 +146,7 @@
         #"w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
-        #"r[1-10], persistent:true"
+        "r[1-10], persistent:true"
       ];
 
       bind = [
@@ -167,39 +167,39 @@
         "$mainMod, J, togglesplit,"
         "$mainMod, T, exec, Telegram &,"
         "$mainMod, B, exec, flatpak run life.bolls.bolls &,"
-        "$mainMod, left, split-workspace, -1"
-        "$mainMod, right, split-workspace, +1"
+        "$mainMod, left, workspace, -1"
+        "$mainMod, right, workspace, +1"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
         "$mainMod, G, togglegroup"
 
-        "$mainMod, 1, split-workspace, 1"
-        "$mainMod, 2, split-workspace, 2"
-        "$mainMod, 3, split-workspace, 3"
-        "$mainMod, 4, split-workspace, 4"
-        "$mainMod, 5, split-workspace, 5"
-        "$mainMod, 6, split-workspace, 6"
-        "$mainMod, 7, split-workspace, 7"
-        "$mainMod, 8, split-workspace, 8"
-        "$mainMod, 9, split-workspace, 9"
-        "$mainMod, 0, split-workspace, 10"
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+        "$mainMod, 4, workspace, 4"
+        "$mainMod, 5, workspace, 5"
+        "$mainMod, 6, workspace, 6"
+        "$mainMod, 7, workspace, 7"
+        "$mainMod, 8, workspace, 8"
+        "$mainMod, 9, workspace, 9"
+        "$mainMod, 0, workspace, 10"
 
-        "$mainMod SHIFT, 1, split-movetoworkspace, 1"
-        "$mainMod SHIFT, 2, split-movetoworkspace, 2"
-        "$mainMod SHIFT, 3, split-movetoworkspace, 3"
-        "$mainMod SHIFT, 4, split-movetoworkspace, 4"
-        "$mainMod SHIFT, 5, split-movetoworkspace, 5"
-        "$mainMod SHIFT, 6, split-movetoworkspace, 6"
-        "$mainMod SHIFT, 7, split-movetoworkspace, 7"
-        "$mainMod SHIFT, 8, split-movetoworkspace, 8"
-        "$mainMod SHIFT, 9, split-movetoworkspace, 9"
-        "$mainMod SHIFT, 0, split-movetoworkspace, 10"
+        "$mainMod SHIFT, 1, movetoworkspace, 1"
+        "$mainMod SHIFT, 2, movetoworkspace, 2"
+        "$mainMod SHIFT, 3, movetoworkspace, 3"
+        "$mainMod SHIFT, 4, movetoworkspace, 4"
+        "$mainMod SHIFT, 5, movetoworkspace, 5"
+        "$mainMod SHIFT, 6, movetoworkspace, 6"
+        "$mainMod SHIFT, 7, movetoworkspace, 7"
+        "$mainMod SHIFT, 8, movetoworkspace, 8"
+        "$mainMod SHIFT, 9, movetoworkspace, 9"
+        "$mainMod SHIFT, 0, movetoworkspace, 10"
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        "$mainMod SHIFT, left, split-movetoworkspace, -1"
-        "$mainMod SHIFT, right, split-movetoworkspace, +1"
+        "$mainMod SHIFT, left, movetoworkspace, -1"
+        "$mainMod SHIFT, right, movetoworkspace, +1"
 
         "$mainMod SHIFT, W, exec, pkill -USR2 waybar && waybar_colors_update.sh &"
         "$mainMod SHIFT, Q, hyprtasking:toggle, all"
@@ -236,8 +236,8 @@
 
         "Alt_L, T, exec, ~/Downloads/Thorium.AppImage"
         
-        "Control_L, mouse:274, global, kando:playerctl-menu"
-        ",mouse:274, global, kando:example-menu"
+        "Control_L, mouse:274, global, org.chromium.Chromium:playerctl-menu"
+        ",mouse:274, global, org.chromium.Chromium:example-menu"
       ];
 
       binde = [
@@ -280,7 +280,7 @@
         "float, class:(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "rounding 8, class:(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, class:(.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
-        "workspace empty class:(Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
+        #"workspace empty class:(Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
         "fullscreen, class:(Waydroid)|(qemu)|(.qemu-system-x86_64-wrapped)"
         "noblur, class:kando"
         "opaque, class:kando"
@@ -297,11 +297,11 @@
         "float, title:Authentication Required"
         "float, title:Rename \".*\""       
         "fullscreen, title:Waydroid"
-        "workspace empty title:Waydroid"
-        "workspace +0 title:Authentication Required"
-        "workspace +0 title:System Monitor"
-        "workspace +0 title:Volume"
-        "workspace +0 title:Power Statistics"
+        #"workspace empty title:Waydroid"
+        #"workspace +0 title:Authentication Required"
+        #"workspace +0 title:System Monitor"
+        #"workspace +0 title:Volume"
+        #"workspace +0 title:Power Statistics"
         "bordersize 3, floating:1"
         "rounding 8, floating:1"
         "noanim, onworkspace:r[11-20]"

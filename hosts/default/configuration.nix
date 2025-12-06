@@ -18,7 +18,10 @@ in
 
   systemd.packages = [ pkgs.libinput-gestures ];
 
-  #nixpkgs.overlays = [ (import ./overlays/zerotierone.nix) ];
+  nixpkgs.overlays = [ 
+    #(import ./overlays/zerotierone.nix) 
+    #(import ./overlays/varia.nix) 
+  ];
  
   networking = {
     hostName = "nixos";
@@ -76,14 +79,10 @@ in
       enable = true;
       qemu = {
         swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
     spiceUSBRedirection.enable = true;
     waydroid.enable = true;
-    lxd.enable = true;
-    #anbox.enable = true;
     docker.enable = true;
     docker.rootless = {
       enable = true;
@@ -130,9 +129,9 @@ in
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.05"
+    "ventoy-1.1.07"
   ];
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
 }

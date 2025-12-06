@@ -13,6 +13,5 @@ if [[ "$1" == "--rollback" ]]; then
     exit
 fi
 sudo nixos-rebuild switch --flake ~/nixos/#default
-kitty --title "reloading wallpaper" wallp current
-
+#kitty --title "reloading wallpaper" wallp current
 ''
