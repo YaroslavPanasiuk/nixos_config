@@ -22,14 +22,14 @@ if [ -n "$ip" ]; then
     echo "$connected"
     if [ "$connected" = "connected" ]; then 
         dunstify -a "camera" "Connected over wifi" 
-        scrcpy -e --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
+        scrcpy -e --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio --render-driver=opengles2
         adb disconnect "$ip:5555"
     else
         dunstify -a "camera" "Unable to connect over wifi"
-        scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
+        scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio --render-driver=opengles2
     fi
 else 
     dunstify -a "camera" "Unable to connect over wifi"
-    scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio 
+    scrcpy -d --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 --no-audio --render-driver=opengles2
 fi
 ''

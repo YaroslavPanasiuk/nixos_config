@@ -163,7 +163,7 @@
     postgresql_18
     #python314Packages.pip
     #python314Packages.virtualenv
-    davinci-resolve
+    #davinci-resolve
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.system}.vigiland
