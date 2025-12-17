@@ -52,8 +52,8 @@
       ];
 
       general = { 
-        gaps_in = 3;
-        gaps_out = 5;
+        gaps_in = 2;
+        gaps_out = 2;
         border_size = 2;
         "col.active_border" = "$color1 $color2 45deg"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour1}) rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour2}) 45deg";
         "col.inactive_border" = "$color15"; #"rgb(${builtins.replaceStrings ["#"] [""] config.pywal-nix.colourScheme.colours.colour15})";
