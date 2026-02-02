@@ -29,12 +29,7 @@ elif [ $branch == 'l' ]; then
     git add .
     git commit -m "message"
     git push -f origin legion
-
-
-cd ~/Documents/test
-git add .
-git commit -m "message"
-git push -f origin main
+fi
 
 sed -i "s/__user__/$USER/g" ~/nixos/hosts/default/configuration_modules/user.nix
 

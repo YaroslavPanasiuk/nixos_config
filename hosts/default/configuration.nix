@@ -113,6 +113,8 @@ in
     ];
     ensureDefaultPrinter = "Canon_MF420_Series";
   };
+
+  hardware.nvidia.open = true;  # see the note above
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -127,12 +129,6 @@ in
 
   environment.sessionVariables = {
     GTK_TOOLTIP_TIMEOUT = "1";
-  };
-
-  fileSystems."/mnt/secondary" = {
-    device = "/dev/disk/by-uuid/10578800-1dda-4ad7-a410-8c2735ff26fb";
-    fsType = "ext4";
-    options = [ "defaults" "nofail" ];
   };
 
   nixpkgs.config.permittedInsecurePackages = [
