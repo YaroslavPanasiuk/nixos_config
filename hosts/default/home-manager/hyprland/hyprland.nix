@@ -27,7 +27,7 @@
       "$fileManager" = "thunar";
       "$menu" = "set_layout.sh us && rofi -show drun";
       "$browser" = "zen";
-      "$mainMod" = "SUPER";
+      "$mainMod" = "Alt_L";
 
       exec-once = [
         "hyprlock"
@@ -250,7 +250,7 @@
       ];
 
       bindm = [
-        "$mainMod, mouse:272, movewindow"
+       # "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
 

@@ -17,9 +17,19 @@ cp -rf ~/virtual /run/media/$USER/yaros_usb
 cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ventoy/themes/bigsur/background.png
 
 cd ~/nixos
-git add .
-git commit -m "message"
-git push -f origin main
+
+read -p "Which branch to push? ('m' - main, 'l' - legion): " branch
+if [ $branch == 'm' ]; then
+    git switch main
+    git add .
+    git commit -m "message"
+    git push -f origin main
+elif [ $branch == 'l' ]; then
+    git switch legion
+    git add .
+    git commit -m "message"
+    git push -f origin legion
+
 
 cd ~/Documents/test
 git add .

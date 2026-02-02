@@ -164,6 +164,8 @@
     #python314Packages.pip
     #python314Packages.virtualenv
     #davinci-resolve
+    discord
+    
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.system}.vigiland
