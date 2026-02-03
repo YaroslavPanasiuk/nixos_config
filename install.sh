@@ -37,6 +37,9 @@ git clone https://github.com/YaroslavPanasiuk/obsidian.git ~/Documents/test
 
 wallp
 
+rm /home/$USER/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
+ln -s /home/$USER/.cache/wal/gtk-theme.css /home/$USER/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
+
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install -y flathub life.bolls.bolls
 

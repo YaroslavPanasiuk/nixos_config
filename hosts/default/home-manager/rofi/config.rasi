@@ -56,7 +56,7 @@ entry {
 
 listview {
     layout:                 vertical;
-    lines:                  6;
+    lines:                  5;
     columns:                1;
     cycle:                  false;
 }

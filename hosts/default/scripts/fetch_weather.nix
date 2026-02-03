@@ -164,25 +164,14 @@ draw_graph() {
         for v in "''${smoothed[@]}"; do
             last_char=$char
 
-            if (( (v >= current_level && current_level >= 0) || (v <= current_level && current_level <= 0) )); then
+            if (( v >= current_level )); then
                 char="<span color='$current_color'>█</span>"
-            elif (( v < range / height / 2 && v > -range / height / 2 && current_level >= 0  && current_level <= range / height / 2 )); then
-                char="<span color='$current_color'>_</span>"
             else
                 char=" "
             fi
 
-            local temp_changed="no"
             if [[ ( $last_char == "<span color='$current_color'>█</span>" && $char == " " ) || ( $last_char == " " && $char == "<span color='$current_color'>█</span>" ) ]]; then
-                temp_changed="yes"
-            fi
-
-            if [[ $temp_changed == "yes" && $current_level -gt 0 ]]; then
                 char="<span color='$current_color'>▄</span>"
-            fi
-
-            if [[ $temp_changed == "yes" && $current_level -lt 0 ]]; then
-                char="<span color='$current_color'>▀</span>"
             fi
 
             local char_shows_rain="no"

@@ -201,20 +201,17 @@
         "$mainMod SHIFT, left, movetoworkspace, -1"
         "$mainMod SHIFT, right, movetoworkspace, +1"
 
-        "$mainMod SHIFT, W, exec, pkill -USR2 waybar && waybar_colors_update.sh &"
+        "$mainMod SHIFT, W, exec, pkill waybar; waybar &"
         "$mainMod SHIFT, Q, hyprtasking:toggle, all"
         "$mainMod SHIFT, P, exec, toggle_mpvpaper.sh"
         ", XF86AudioMute, exec, volume.sh mute"
-        "SUPER, F, fullscreen,f"
+        "$mainMod, F, fullscreen,f"
         "$mainMod,XF86MonBrightnessDown, exec , blank_screen.sh"
 
-        "$mainMod ALT, F4, exec ,echo 1 | sudo -S reboot -h nowstart"
         "ALT, F4, exec ,poweroff"
 
         "ALT, TAB, exec , hyprswitch gui --mod-key alt --key tab --close mod-key-release --show-workspaces-on-all-monitors --monitors eDP-1"
-        ", Menu, exec, rofi -modi clipboard:~/nixos/hosts/default/scripts/bash/cliphist-rofi-img -config ~/.config/rofi/clip-config.rasi -show clipboard -show-icons"
-        "$mainMod ALT, W, exec, wallp-rofi.sh"
-        "$mainMod ALT, T, exec, update_telegram.sh"
+        "Control_L, slash, exec, rofi -modi clipboard:~/nixos/hosts/default/scripts/bash/cliphist-rofi-img -config ~/.config/rofi/clip-config.rasi -show clipboard -show-icons"
 
         "$mainMod SHIFT, S, exec, wayfreeze & PID=$!; sleep .01; hyprshot -m region --clipboard-only; kill $PID"
         "$mainMod, I, exec, vigiland.sh"
@@ -224,17 +221,12 @@
         "$mainMod SHIFT, R, exec, record_screen.sh"
         "$mainMod SHIFT, O, exec, record_screen.sh ao"
         "$mainMod SHIFT, I, exec, record_screen.sh ai"
-        "$mainMod SHIFT, X, exec, record_screen_as_camera.sh"
-        "$mainMod SHIFT, C, exec, phone_camera.sh"
-        "$mainMod ALT, C, exec, phone_camera.sh -c"
 
         "Shift_L, Alt_L, exec, set_layout.sh"
         "Alt_L, Shift_L, exec, set_layout.sh"
         
         "Control_L, bracketleft, exec, echo 'multiply speed 0.9' | socat - /tmp/mpv-socket"
         "Control_L, bracketright, exec, echo 'multiply speed 1.1' | socat - /tmp/mpv-socket"
-
-        "Alt_L, T, exec, ~/Downloads/Thorium.AppImage"
         
         "Control_L, mouse:274, global, org.chromium.Chromium:playerctl-menu"
         ",mouse:274, global, org.chromium.Chromium:example-menu"
@@ -250,30 +242,30 @@
       ];
 
       bindm = [
-       # "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
+        "$mainMod Control_L, mouse:272, movewindow"
+        "$mainMod Control_L, mouse:273, resizewindow"
       ];
 
       binds = [
-        "Super_L&Alt_L, 1, exec, switch_monitor.sh 1"
-        "Super_L&Alt_L, 2, exec, switch_monitor.sh 2"
-        "Super_L&Alt_L, 3, exec, switch_monitor.sh 3"
-        "Super_L&Alt_L, 4, exec, switch_monitor.sh 4"
-        "Super_L&Alt_L, 5, exec, switch_monitor.sh 5"
-        "Super_L&Alt_L, 6, exec, switch_monitor.sh 6"
-        "Super_L&Alt_L, 7, exec, switch_monitor.sh 7"
-        "Super_L&Alt_L, 8, exec, switch_monitor.sh 8"
-        "Super_L&Alt_L, 9, exec, switch_monitor.sh 9"
+        "Control_L&Alt_L, 1, exec, switch_monitor.sh 1"
+        "Control_L&Alt_L, 2, exec, switch_monitor.sh 2"
+        "Control_L&Alt_L, 3, exec, switch_monitor.sh 3"
+        "Control_L&Alt_L, 4, exec, switch_monitor.sh 4"
+        "Control_L&Alt_L, 5, exec, switch_monitor.sh 5"
+        "Control_L&Alt_L, 6, exec, switch_monitor.sh 6"
+        "Control_L&Alt_L, 7, exec, switch_monitor.sh 7"
+        "Control_L&Alt_L, 8, exec, switch_monitor.sh 8"
+        "Control_L&Alt_L, 9, exec, switch_monitor.sh 9"
 
-        "Super_L&Alt_R, 1, exec, switch_monitor.sh 1 view"
-        "Super_L&Alt_R, 2, exec, switch_monitor.sh 2 view"
-        "Super_L&Alt_R, 3, exec, switch_monitor.sh 3 view"
-        "Super_L&Alt_R, 4, exec, switch_monitor.sh 4 view"
-        "Super_L&Alt_R, 5, exec, switch_monitor.sh 5 view"
-        "Super_L&Alt_R, 6, exec, switch_monitor.sh 6 view"
-        "Super_L&Alt_R, 7, exec, switch_monitor.sh 7 view"
-        "Super_L&Alt_R, 8, exec, switch_monitor.sh 8 view"
-        "Super_L&Alt_R, 9, exec, switch_monitor.sh 9 view"
+        "Control_L&Alt_R, 1, exec, switch_monitor.sh 1 view"
+        "Control_L&Alt_R, 2, exec, switch_monitor.sh 2 view"
+        "Control_L&Alt_R, 3, exec, switch_monitor.sh 3 view"
+        "Control_L&Alt_R, 4, exec, switch_monitor.sh 4 view"
+        "Control_L&Alt_R, 5, exec, switch_monitor.sh 5 view"
+        "Control_L&Alt_R, 6, exec, switch_monitor.sh 6 view"
+        "Control_L&Alt_R, 7, exec, switch_monitor.sh 7 view"
+        "Control_L&Alt_R, 8, exec, switch_monitor.sh 8 view"
+        "Control_L&Alt_R, 9, exec, switch_monitor.sh 9 view"
       ];
 
       windowrule = [

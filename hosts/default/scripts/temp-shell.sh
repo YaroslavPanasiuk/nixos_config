@@ -1,37 +1,26 @@
-
 #!/bin/sh
 
-mkdir ~/backup
+layout=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name=="at-translated-set-2-keyboard") | .active_keymap')
+echo $layout
 
-sed -i "s/$USER/__user__/g" ~/nixos/hosts/default/configuration_modules/user.nix
-
-cp -rf ~/.config ~/backup
-cp -rf ~/Public ~/backup
-cp -rf ~/Documents ~/backup
-cp -rf ~/nixos ~/backup
-
-cp -rf ~/backup /run/media/$USER/yaros_usb
-cp -rf ~/virtual /run/media/$USER/yaros_usb
-cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ventoy/themes/bigsur/background.png
-
-cd ~/nixos
-
-read -p "Which branch to push? ('m' - main, 'l' - legion): " branch
-if [ $branch == 'm' ]; then
-    git switch main
-    git add .
-    git commit -m "message"
-    git push -f origin main
-elif [ $branch == 'l' ]; then
-    git switch legion
-    git add .
-    git commit -m "message"
-    git push -f origin legion
+set=0
+if [[ $1 = "ua" && "$layout" != 'Ukrainian' ]]; then 
+    layout='English (US)'
+    set=1
+fi
+if [[ $1 = "us" && "$layout" != 'English (US)' ]]; then 
+    layout='Ukrainian'
+    set=1
+fi
+if [[ -n "$1" && $set -eq 0 ]]; then
+    exit
 fi
 
-cd ~/Documents/test
-git add .
-git commit -m "message"
-git push -f origin main
-
-sed -i "s/__user__/$USER/g" ~/nixos/hosts/default/configuration_modules/user.nix
+if [[ $layout == 'Ukrainian' ]]; then
+    hyprctl switchxkblayout at-translated-set-2-keyboard 0
+    exit
+fi
+if [[ $layout == 'English (US)' ]]; then
+    hyprctl switchxkblayout at-translated-set-2-keyboard 1
+    exit
+fi
