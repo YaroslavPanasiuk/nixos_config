@@ -268,6 +268,10 @@
       recursive = true;
       source = ../scripts/gimp;
     };
+    "uwsm/env".text = ''
+      export AQ_DRM_DEVICES=/dev/dri/card1:/dev/dri/card2
+      export NIXOS_OZONE_WL=1
+    '';
   };
 
   };

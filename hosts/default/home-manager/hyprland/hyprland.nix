@@ -3,8 +3,9 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-
     package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
+    systemd.enable = true; 
+    systemd.variables = ["--all"];
 
     plugins = [
       inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
@@ -18,7 +19,8 @@
       
       source = "$HOME/.cache/wal/colors-hyprland.conf";
       monitor = [
-        ",preferred,auto,1"
+        "eDP-1,1920x1080@120,0x0,1"
+        "DP-1,1920x1080@60,1920x0,1"
         
       ];
       
@@ -28,6 +30,11 @@
       "$menu" = "set_layout.sh us && rofi -show drun";
       "$browser" = "zen";
       "$mainMod" = "Alt_L";
+
+      env = [
+        "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card2"
+        "LIBVA_DRIVER_NAME,nvidia"
+      ];
 
       exec-once = [
         "hyprlock"
@@ -102,6 +109,7 @@
 
       cursor = {
         no_warps = "true";
+        no_hardware_cursors = true;
       };
 
       input = {

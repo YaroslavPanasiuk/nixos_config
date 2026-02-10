@@ -114,7 +114,23 @@ in
     ensureDefaultPrinter = "Canon_MF420_Series";
   };
 
-  hardware.nvidia.open = true;  # see the note above
+  hardware.nvidia = {
+    modesetting.enable = true;
+    
+    open = true; 
+
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
+
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -129,6 +145,11 @@ in
 
   environment.sessionVariables = {
     GTK_TOOLTIP_TIMEOUT = "1";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    LIBVA_DRIVER_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   fileSystems."/mnt/secondary" = {

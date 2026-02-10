@@ -165,6 +165,8 @@
     #python314Packages.virtualenv
     davinci-resolve
     discord
+    mesa-demos
+    pciutils
     
   ] ++ [
     inputs.zen-browser.packages."${system}".default

@@ -3,7 +3,7 @@
 pkgs.writeShellScriptBin "set_layout.sh" '' 
 #!/bin/sh
 
-layout=$(hyprctl devices -j | jq -r '.keyboards[] | select(.name=="at-translated-set-2-keyboard") | .active_keymap')
+layout=$(hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap')
 echo $layout
 
 set=0
@@ -20,11 +20,11 @@ if [[ -n "$1" && $set -eq 0 ]]; then
 fi
 
 if [[ $layout == 'Ukrainian' ]]; then
-    hyprctl switchxkblayout at-translated-set-2-keyboard 0
+    hyprctl switchxkblayout all 0
     exit
 fi
 if [[ $layout == 'English (US)' ]]; then
-    hyprctl switchxkblayout at-translated-set-2-keyboard 1
+    hyprctl switchxkblayout all 1
     exit
 fi
 
