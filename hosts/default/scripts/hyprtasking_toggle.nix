@@ -20,7 +20,9 @@ if [ "$(cat /tmp/hyprtasking_status)" == "active" ]; then
 
     while true; do
         hyprctl dispatch hyprtasking:if_not_active exec "echo 'inactive' > /tmp/hyprtasking_status"
-        sleep 0.05
+        hyprctl keyword decoration:blur:enabled false
+        hyprctl keyword decoration:inactive_opacity 1
+        sleep 0.03
         if [ "$(cat /tmp/hyprtasking_status)" == "inactive" ]; then
             hyprctl keyword decoration:blur:enabled $initial_blur
             hyprctl keyword decoration:inactive_opacity $initial_opacity

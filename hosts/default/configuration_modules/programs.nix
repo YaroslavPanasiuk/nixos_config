@@ -5,17 +5,15 @@
     firefox.enable = true;
     hyprlock.enable = true;
     xfconf.enable = true;
-    adb.enable = true;
 
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     };
 
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
+      plugins = with pkgs; [
         thunar-media-tags-plugin
         thunar-volman
       ];

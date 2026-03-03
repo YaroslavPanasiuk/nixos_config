@@ -1,0 +1,27 @@
+
+@import "../../../.cache/wal/gtk-theme.css";
+window {
+    border-radius: 120px;
+	border: 2px solid @color4;
+    background-image: linear-gradient(135deg, @color2a, @color3a, @color4a);
+}
+
+#osd {
+    padding-right: 15px;
+    padding-left: 5px;
+    margin: 0px;
+}
+
+progressbar:dir(ltr), progressbar:dir(rtl) {
+    background-color: color: shade(@background, 1.2);
+    border-radius: 8px;
+}
+
+progressbar > trough > slider {
+    background-color: shade(@foreground, 0.8);
+    border-radius: 8px;
+}
+
+image {
+    color: shade(@foreground, 0.8);
+}

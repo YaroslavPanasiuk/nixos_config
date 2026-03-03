@@ -75,6 +75,39 @@
 	<image-files/>
 </action>
 <action>
+	<icon></icon>
+	<name>Convert to .jpg</name>
+	<submenu></submenu>
+	<unique-id>1741004813671990-1</unique-id>
+	<command>magick mogrify -format jpg %f</command>
+	<description>Converts image file into .jpg</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<image-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Convert to davinci format</name>
+	<submenu></submenu>
+	<unique-id>1741004813671991-1</unique-id>
+	<command>kitty  --hold --detach nvidia-offload ffmpeg -i %f -c:v dnxhd -profile:v dnxhr_hq -pix_fmt yuv422p -c:a pcm_s16le %f.mov</command>
+	<description>Converts .mp4 video to .mov so that it can be processed by free version of davinci resolve</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<video-files/>
+</action>
+<action>
+	<icon></icon>
+	<name>Convert from davinci format</name>
+	<submenu></submenu>
+	<unique-id>1741004813671992-1</unique-id>
+	<command>kitty  --hold --detach nvidia-offload ffmpeg -i %f -c:v libx264 -crf 18 -c:a aac -b:a 192k %f.mp4</command>
+	<description>Converts .mkv video exported from davinci rsolve to regular .mp4</description>
+	<range>*</range>
+	<patterns>*.mov;*.mkv;</patterns>
+	<video-files/>
+</action>
+<action>
 	<icon>gtk-convert</icon>
 	<name>.pdf</name>
 	<submenu>Convert to ...</submenu>
@@ -109,5 +142,28 @@
 	<patterns>*.pptx;*.key;*.pdf</patterns>
 	<other-files/>
 	<text-files/>
+</action>
+<action>
+    <icon>peazip</icon>
+    <name>Extract to current folder</name>
+    <unique-id>peazip-extract</unique-id>
+    <command>ouch decompress %F</command>
+    <description>Extract selected files</description>
+    <patterns>*</patterns>
+    <other-files/>
+</action>
+<action>
+    <icon>peazip</icon>
+    <name>Add to Archive</name>
+    <unique-id>peazip-add</unique-id>
+    <command>ouch compress -y %F %d/archive.zip</command>
+    <description>Compress selected files</description>
+    <patterns>*</patterns>
+    <directories/>
+    <audio-files/>
+    <image-files/>
+    <other-files/>
+    <text-files/>
+    <video-files/>
 </action>
 </actions>

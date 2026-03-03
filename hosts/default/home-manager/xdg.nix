@@ -152,26 +152,26 @@
         "video/quicktime" = [ "vlc.desktop" ];
         "video/x-msvideo" = [ "vlc.desktop" ];
 
-        "application/pdf" = [ "org.gnome.Evince.desktop" ];
+        "application/pdf" = [ "org.gnome.Papers.desktop" ];
         "application/msword" = [ "writer.desktop" "onlyoffice-desktopeditors.desktop" ];
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" "onlyoffice-desktopeditors.desktop" ];
         "application/vnd.ms-excel" = [ "calc.desktop" ];
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	.xlsx" = [ "calc.desktop" "onlyoffice-desktopeditors.desktop" ];
         "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "impress.desktop" "onlyoffice-desktopeditors.desktop" ];
         "application/vnd.ms-powerpoint" = [ "impress.desktop" "onlyoffice-desktopeditors.desktop" ];
-        "application/vnd.oasis.opendocument.text" = [ "org.gnome.Evince.desktop" ];
-        "application/epup+zip" = [ "org.gnome.Evince.desktop" ];
+        "application/vnd.oasis.opendocument.text" = [ "org.gnome.Papers.desktop" ];
+        "application/epup+zip" = [ "org.gnome.Papers.desktop" ];
         "application/x-shellscript" = [ "code.desktop" ];
         "application/x-sh" = [ "code.desktop" ];
         "application/octet-stream" = [ "code.desktop" ];
 
-        "application/zip" = [ "org.gnome.FileRoller.desktop" ];
-        "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
-        "application/x-7z-compressed" = [ "org.gnome.FileRoller.desktop" ];
-        "application/gzip" = [ "org.gnome.FileRoller.desktop" ];
-        "application/x-rar-compressed" = [ "org.gnome.FileRoller.desktop" ];
+        "application/zip" = [ "xarchiver.desktop" ];
+        "application/x-tar" = [ "xarchiver.desktop" ];
+        "application/x-7z-compressed" = [ "xarchiver.desktop" ];
+        "application/gzip" = [ "xarchiver.desktop" ];
+        "application/x-rar-compressed" = [ "xarchiver.desktop" ];
 
-        "inode/directory" = [ "thunar.desktop" ];
+        "inode/directory" = [ "code.desktop" ];
 
         "x-scheme-handler/http" = [ "zen-beta.desktop" ];
         "x-scheme-handler/https" = [ "zen-beta.desktop" ];
@@ -246,10 +246,9 @@
       recursive = true;
       source = ./gtt;
     };
-    "sys64/hud" = {
+    "swayosd/style.css" = {
       enable = true;
-      recursive = true;
-      source = ./syshud;
+      source = ./swayosd/style.css;
     };
     "anyrun/style.css" = {
       enable = true;

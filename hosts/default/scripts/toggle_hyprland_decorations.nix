@@ -1,3 +1,6 @@
+{ pkgs }:
+
+pkgs.writeShellScriptBin "toggle_hyprland_decorations.sh" '' 
 #!/usr/bin/env bash
 
 if [ -z "$1" ]; then
@@ -11,6 +14,7 @@ case "$mode" in
         hyprctl reload
         hyprland_focus_modes.sh "🎛️ Auto"
         echo "off" > ~/nixos/hosts/default/scripts/toggle_hyprland_decorations.txt
+        notify-send -a "󰘇" "Decorations on"
     ;;
     "off")
         hyprland_focus_modes.sh "🗿 Focus"
@@ -24,6 +28,9 @@ case "$mode" in
         hyprctl keyword misc:disable_hyprland_logo 1
         hyprctl keyword misc:force_default_wallpaper 0
         echo "on" > ~/nixos/hosts/default/scripts/toggle_hyprland_decorations.txt
+        notify-send -a "󰤹" "Decorations off"
     ;;
 esac
 
+
+''

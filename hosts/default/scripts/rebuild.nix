@@ -12,6 +12,6 @@ if [[ "$1" == "--rollback" ]]; then
     sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations "''${generation_number}"
     exit
 fi
-sudo nixos-rebuild switch --flake ~/nixos/#default
+nvidia-offload  sudo nixos-rebuild switch --flake ~/nixos/#default
 #kitty --title "reloading wallpaper" wallp current
 ''

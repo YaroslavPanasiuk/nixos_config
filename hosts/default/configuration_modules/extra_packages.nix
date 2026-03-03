@@ -65,8 +65,8 @@
     ags
     ghostscript
     bc
-    xorg.xkill
-    xorg.xauth
+    xkill
+    xauth
     pinentry-gtk2
     gnum4
     parted
@@ -74,7 +74,7 @@
     gettext
     vscode
     gnupg
-    xfce.xfce4-settings
+    xfce4-settings
     #waydroid
     gtk4
     nix-prefetch-git
@@ -94,7 +94,7 @@
     hyprlock
     hyprpicker
     #hyprlandPlugins.hyprspace
-    xorg.xrdb
+    xrdb
     gammastep
     lxqt.lxqt-policykit
     dunst
@@ -136,7 +136,7 @@
     neovim
     wayvnc
     unoconv
-    youtube-music
+    pear-desktop
     nodePackages.zx
     cava
     ripgrep
@@ -149,11 +149,12 @@
     wttrbar
     dateutils
     qrrs
-    syshud
+    swayosd
     wayfreeze    
     anyrun
     gtk3
     inputs.goal-tracker.packages.${system}.default
+    inputs.macro-grid.packages.${pkgs.stdenv.hostPlatform.system}.default
     newelle
     rnnoise
     rnnoise-plugin
@@ -164,13 +165,15 @@
     #python314Packages.pip
     #python314Packages.virtualenv
     davinci-resolve
-    discord
+    discord-ptb
     mesa-demos
     pciutils
-    
+    peazip
+    pkgs.android-tools
+    ouch
   ] ++ [
     inputs.zen-browser.packages."${system}".default
-    inputs.vigiland.packages.${pkgs.system}.vigiland
+    inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
     (import ../scripts/brightness.nix { inherit pkgs; })
@@ -236,5 +239,6 @@
     (import ../scripts/connect_phone.nix { inherit pkgs; })
     (import ../scripts/hyprland_focus_modes.nix { inherit pkgs; })
     (import ../scripts/update_songs_presentation.nix { inherit pkgs; })
+    (import ../scripts/toggle_hyprland_decorations.nix { inherit pkgs; })
   ];
 }

@@ -20,7 +20,7 @@
     #};
 
     hyprtasking = {
-      url = "github:raybbian/hyprtasking";
+      url = "github:raybbian/hyprtasking/387faba1e3abeaa16e3c867d745e4dc61934cb45";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -29,10 +29,10 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #hyprpanel = {
+    #  url = "github:Jas-SinghFSU/HyprPanel";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     #hyprgrass = {
     #  url = "github:horriblename/hyprgrass";
@@ -65,6 +65,8 @@
     vigiland.url = "github:jappie3/vigiland";
 
     goal-tracker.url = "github:YaroslavPanasiuk/goal-tracker";
+
+    macro-grid.url = "github:YaroslavPanasiuk/macros-grid-gtk";
 
     nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
   };

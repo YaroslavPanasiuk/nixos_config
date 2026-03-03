@@ -15,24 +15,24 @@ in
 
         listener = [
             {
-                timeout = 300;
-                on-timeout = "${working_dir}playerctl status --all-players 2>/dev/null | ${working_dir}grep -q 'Playing' || ${working_dir}brightnessctl -s set 1";
+                timeout = 600;
+                on-timeout = "${working_dir}playerctl status --all-players 2>/dev/null | ${working_dir}grep -q 'Playing' || ${working_dir}brightnessctl -s set 1%";
                 on-resume = "${working_dir}brightnessctl -r";
             }
             
             {
-                timeout = 600;
+                timeout = 900;
                 on-timeout = "${working_dir}playerctl status --all-players | ${working_dir}grep -q 'Playing' || ${working_dir}loginctl lock-session";
             }
             
             {
-                timeout = 900;
+                timeout = 1200;
                 on-timeout = "${working_dir}playerctl status --all-players 2>/dev/null | ${working_dir}grep -q 'Playing' || $HOME/.nix-profile/bin/hyprctl dispatch dpms off";
                 on-resume = "$HOME/.nix-profile/bin/hyprctl dispatch dpms on";
             }
             
             {
-                timeout = 1800;
+                timeout = 2400;
                 on-timeout = "${working_dir}playerctl status --all-players 2>/dev/null | ${working_dir}grep -q 'Playing' || ${working_dir}systemctl suspend";
             }
             

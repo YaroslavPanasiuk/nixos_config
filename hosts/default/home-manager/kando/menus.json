@@ -110,14 +110,33 @@
                 "iconTheme": "material-symbols-rounded"
               },
               {
-                "type": "command",
-                "data": {
-                  "command": "vnc_server.sh second_monitor",
-                  "delayed": false
-                },
+                "type": "submenu",
+                "data": {},
                 "name": "Second monitor",
                 "icon": "magnify_fullscreen",
-                "iconTheme": "material-symbols-rounded"
+                "iconTheme": "material-symbols-rounded",
+                "children": [
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh second_monitor",
+                      "delayed": false
+                    },
+                    "name": "Wifi",
+                    "icon": "wifi",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh second_monitor_cable",
+                      "delayed": false
+                    },
+                    "name": "Cable",
+                    "icon": "cable",
+                    "iconTheme": "material-symbols-rounded"
+                  }
+                ]
               }
             ]
           },
@@ -176,6 +195,16 @@
                 },
                 "name": "Sepia",
                 "icon": "local_fire_department",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "toggle_hyprland_decorations.sh",
+                  "delayed": false
+                },
+                "name": "Toggle decorations",
+                "icon": "rounded_corner",
                 "iconTheme": "material-symbols-rounded"
               }
             ]
@@ -305,7 +334,7 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "kitty  --hold --detach home-manager -b backup switch --flake ~/nixos/#default_user",
+                  "command": "kitty --hold --detach home-manager -b backup switch --flake ~/nixos/#default_user",
                   "delayed": false
                 },
                 "name": "Switch",

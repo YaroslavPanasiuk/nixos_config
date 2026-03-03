@@ -24,8 +24,9 @@ in
     #./home-manager/gbar.nix
     ./home-manager/services.nix
     ./home-manager/dconf.nix
-    ./home-manager/programs/git.nix
+    ./home-manager/git.nix
     ./home-manager/anyrun/anyrun.nix
+    ./home-manager/swayosd/swayosd.nix
     #./home-manager/waydroid/waydroid.nix
   ];
 

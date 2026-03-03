@@ -17,9 +17,19 @@ if [[ "$1" == "remote_control" ]]; then
     exit
 fi
 
+
 if [[ "$1" == "second_monitor" ]]; then
     ip=$(ip -4 r | awk '{print $9; exit}')
     hyprctl output create headless phone_monitor
+    wayvnc --output=phone_monitor $ip 5900 &
+    notify-send "VNC server" "Listening for connections on $ip:5900"
+    exit
+fi
+
+if [[ "$1" == "second_monitor_cable" ]]; then
+    ip=127.0.0.1
+    hyprctl output create headless phone_monitor
+    adb reverse tcp:5900 tcp:5900
     wayvnc --output=phone_monitor $ip 5900 &
     notify-send "VNC server" "Listening for connections on $ip:5900"
     exit

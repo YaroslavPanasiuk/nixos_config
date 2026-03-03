@@ -3,16 +3,17 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland; 
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; 
     systemd.enable = true; 
     systemd.variables = ["--all"];
 
     plugins = [
-      inputs.hyprtasking.packages.${pkgs.system}.hyprtasking
-      #inputs.hyprgrass.packages.${pkgs.system}.hyprgrass-pulse
-      #inputs.hyprgrass.packages.${pkgs.system}.default
-      #inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
-      #inputs.hycov.packages.${pkgs.system}.hycov
+      inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking
+      #inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.hyprgrass-pulse
+      #inputs.hyprgrass.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #inputs.split-monitor-workspaces.packages.${pkgs.stdenv.hostPlatform.system}.split-monitor-workspaces
+      inputs.hyprsplit.packages.${pkgs.stdenv.hostPlatform.system}.hyprsplit
+      #inputs.hycov.packages.${pkgs.stdenv.hostPlatform.system}.hycov
     ];
 
     settings = {
@@ -21,14 +22,14 @@
       monitor = [
         "eDP-1,1920x1080@120,0x0,1"
         "DP-1,1920x1080@60,1920x0,1"
-        
+        "phone_monitor,1600x720@30,0x1080,1"
       ];
       
 
       "$terminal" = "kitty";
       "$fileManager" = "thunar";
       "$menu" = "set_layout.sh us && rofi -show drun";
-      "$browser" = "zen";
+      "$browser" = "zen-beta";
       "$mainMod" = "Alt_L";
 
       env = [
@@ -40,7 +41,7 @@
         "hyprlock"
         "hypridle"
         "swww-daemon"
-        "syshud &"
+        "systemctl --user start swayosd"
         "hyprctl setcursor volantes_cursors 24"
         "sleep 2 && hyprctl dispatch overview:close"
         "lxqt-policykit-agent"
@@ -102,11 +103,6 @@
         ];
       };
 
-      device = {
-        name = "epic-mouse-v1";
-        sensitivity = "-0.5";
-      };  
-
       cursor = {
         no_warps = "true";
         no_hardware_cursors = true;
@@ -120,6 +116,21 @@
           natural_scroll = "true";
         };
       };
+
+      device = [
+        {
+          name = "ugreen-receiver--mouse";
+        accel_profile = "flat";
+          sensitivity = "-0.6";
+        }
+        {
+          name = "syna0001:00-06cb:7f28-touchpad";
+        accel_profile = "adaptive";
+          sensitivity = "0.1";
+        }
+      ];
+
+      
       
       decoration = {
         rounding = 8;
@@ -175,22 +186,31 @@
         "$mainMod, J, togglesplit,"
         "$mainMod, T, exec, Telegram &,"
         "$mainMod, B, exec, flatpak run life.bolls.bolls &,"
-        "$mainMod, left, workspace, -1"
-        "$mainMod, right, workspace, +1"
+        "$mainMod, left, split:workspace, -1"
+        "$mainMod, right, split:workspace, +1"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
         "$mainMod, G, togglegroup"
 
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+        "$mainMod, 1, split:workspace, 1"
+        "$mainMod, 2, split:workspace, 2"
+        "$mainMod, 3, split:workspace, 3"
+        "$mainMod, 4, split:workspace, 4"
+        "$mainMod, 5, split:workspace, 5"
+        "$mainMod, 6, split:workspace, 6"
+        "$mainMod, 7, split:workspace, 7"
+        "$mainMod, 8, split:workspace, 8"
+        "$mainMod, 9, split:workspace, 9"
+
+        "$mainMod, KP_End, workspace, 10"
+        "$mainMod, KP_Down, workspace, 11"
+        "$mainMod, KP_Next, workspace, 12"
+        "$mainMod, KP_Left, workspace, 13"
+        "$mainMod, KP_Begin, workspace, 14"
+        "$mainMod, KP_Right, workspace, 15"
+        "$mainMod, KP_Home, workspace, 16"
+        "$mainMod, KP_Up, workspace, 17"
+        "$mainMod, KP_Prior, workspace, 18"
 
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
@@ -201,18 +221,30 @@
         "$mainMod SHIFT, 7, movetoworkspace, 7"
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        "$mainMod SHIFT, KP_End, movetoworkspace, 10"
+        "$mainMod SHIFT, KP_Down, movetoworkspace, 11"
+        "$mainMod SHIFT, KP_Next, movetoworkspace, 12"
+        "$mainMod SHIFT, KP_Left, movetoworkspace, 13"
+        "$mainMod SHIFT, KP_Begin, movetoworkspace, 14"
+        "$mainMod SHIFT, KP_Right, movetoworkspace, 15"
+        "$mainMod SHIFT, KP_Home, movetoworkspace, 16"
+        "$mainMod SHIFT, KP_Up, movetoworkspace, 17"
+        "$mainMod SHIFT, KP_Prior, movetoworkspace, 18"
 
-        "$mainMod SHIFT, left, movetoworkspace, -1"
-        "$mainMod SHIFT, right, movetoworkspace, +1"
+        "$mainMod, mouse_down, split:workspace, e+1"
+        "$mainMod, mouse_up, split:workspace, e-1"
+
+        "$mainMod SHIFT, left, split:movetoworkspace, -1"
+        "$mainMod SHIFT, right, split:movetoworkspace, +1"
+
+        "$mainMod Control_L, left, movewindow, mon:l"
+        "$mainMod Control_L, right, movewindow, mon:r"
 
         "$mainMod SHIFT, W, exec, pkill waybar; waybar &"
         "$mainMod SHIFT, Q, hyprtasking:toggle, all"
         "$mainMod SHIFT, P, exec, toggle_mpvpaper.sh"
-        ", XF86AudioMute, exec, volume.sh mute"
+        ", XF86AudioMute, exec, swayosd-client --monitor eDP-1 --output-volume mute-toggle"
         "$mainMod, F, fullscreen,f"
         "$mainMod,XF86MonBrightnessDown, exec , blank_screen.sh"
 
@@ -238,42 +270,21 @@
         
         "Control_L, mouse:274, global, org.chromium.Chromium:playerctl-menu"
         ",mouse:274, global, org.chromium.Chromium:example-menu"
+        ",CapsLock, exec, swayosd-client --monitor eDP-1 --caps-lock"
       ];
 
       binde = [
-        ", XF86AudioRaiseVolume, exec, volume.sh up"
-        ", XF86AudioLowerVolume, exec, volume.sh down"
-        ",XF86MonBrightnessDown, exec , brightness.sh down 10"
-        "CapsLock,XF86MonBrightnessDown, exec , brightness.sh down 1"
-        ",XF86MonBrightnessUp, exec ,brightness.sh up 10"
-        "CapsLock,XF86MonBrightnessUp, exec ,brightness.sh up 1"
+        ", XF86AudioRaiseVolume, exec, swayosd-client --monitor eDP-1 --output-volume raise --max-volume 120"
+        ", XF86AudioLowerVolume, exec, swayosd-client --monitor eDP-1 --output-volume lower --max-volume 120"
+        ",XF86MonBrightnessDown, exec , swayosd-client --monitor eDP-1 --brightness -10"
+        ",XF86MonBrightnessUp, exec ,swayosd-client --monitor eDP-1 --brightness +10"
+        "CapsLock,XF86MonBrightnessDown, exec , swayosd-client --monitor eDP-1 --brightness -1"
+        "CapsLock,XF86MonBrightnessUp, exec , swayosd-client --monitor eDP-1 --brightness +1"
       ];
 
       bindm = [
-        "$mainMod Control_L, mouse:272, movewindow"
-        "$mainMod Control_L, mouse:273, resizewindow"
-      ];
-
-      binds = [
-        "Control_L&Alt_L, 1, exec, switch_monitor.sh 1"
-        "Control_L&Alt_L, 2, exec, switch_monitor.sh 2"
-        "Control_L&Alt_L, 3, exec, switch_monitor.sh 3"
-        "Control_L&Alt_L, 4, exec, switch_monitor.sh 4"
-        "Control_L&Alt_L, 5, exec, switch_monitor.sh 5"
-        "Control_L&Alt_L, 6, exec, switch_monitor.sh 6"
-        "Control_L&Alt_L, 7, exec, switch_monitor.sh 7"
-        "Control_L&Alt_L, 8, exec, switch_monitor.sh 8"
-        "Control_L&Alt_L, 9, exec, switch_monitor.sh 9"
-
-        "Control_L&Alt_R, 1, exec, switch_monitor.sh 1 view"
-        "Control_L&Alt_R, 2, exec, switch_monitor.sh 2 view"
-        "Control_L&Alt_R, 3, exec, switch_monitor.sh 3 view"
-        "Control_L&Alt_R, 4, exec, switch_monitor.sh 4 view"
-        "Control_L&Alt_R, 5, exec, switch_monitor.sh 5 view"
-        "Control_L&Alt_R, 6, exec, switch_monitor.sh 6 view"
-        "Control_L&Alt_R, 7, exec, switch_monitor.sh 7 view"
-        "Control_L&Alt_R, 8, exec, switch_monitor.sh 8 view"
-        "Control_L&Alt_R, 9, exec, switch_monitor.sh 9 view"
+        "$mainMod, mouse:275, movewindow"
+        "$mainMod, mouse:276, resizewindow"
       ];
 
       windowrule = [
@@ -285,7 +296,7 @@
         "noblur, class:kando"
         "opaque, class:kando"
         "size 100% 100%, class:kando"
-        "size 40% 50%, class:zenity"
+        "size 40% 50%, class:(zenity)|(pavucontrol)|(org.pulseaudio.pavucontrol)|(.blueman-manager-wrapped)"
         "size 50% 50%, class:(goal-tracker)|(.goal-tracker-wrapped)"
         "noborder, class:kando"
         "noanim, class:kando"
@@ -297,11 +308,6 @@
         "float, title:Authentication Required"
         "float, title:Rename \".*\""       
         "fullscreen, title:Waydroid"
-        #"workspace empty title:Waydroid"
-        #"workspace +0 title:Authentication Required"
-        #"workspace +0 title:System Monitor"
-        #"workspace +0 title:Volume"
-        #"workspace +0 title:Power Statistics"
         "bordersize 3, floating:1"
         "rounding 8, floating:1"
         "noanim, onworkspace:r[11-20]"
@@ -333,6 +339,12 @@
         #autoDrag = false;
         autoScroll = true;
         #onBottom = true;
+      };
+
+      
+      "plugin:hyprsplit" = {
+        num_workspaces = 9;
+        persistent_workspaces = true;
       };
 
       

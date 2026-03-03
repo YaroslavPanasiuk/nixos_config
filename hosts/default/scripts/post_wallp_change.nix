@@ -33,8 +33,7 @@ if pidof -qx "rofi"; then
 fi
 
 
-pkill syshud 
-syshud &
+systemctl --user restart swayosd
 
 #pkill -f nwg-dock-hyprland
 #launch_dock.sh &

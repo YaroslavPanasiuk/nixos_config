@@ -7,6 +7,7 @@
     settings = [{
       height = 26;
       layer = "bottom";
+      "output" = "eDP-1";
       margin-top = 0;
       position = "top";
       reload_style_on_change = true;
@@ -350,17 +351,6 @@
           active = "<span size='small'>󰪥</span>";
           default = "<span size='small'>󰺕</span>";
           empty = "<span size='small'>󰄰</span>";
-        };
-        "persistent-workspaces" = {
-          "1" = [];
-          "2" = [];
-          "3" = [];
-          "4" = [];
-          "5" = [];
-          "6" = [];
-          "7" = [];
-          "8" = [];
-          "9" = [];
         };
       };
       
