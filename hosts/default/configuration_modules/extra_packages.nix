@@ -171,6 +171,7 @@
     peazip
     pkgs.android-tools
     ouch
+    ydotool
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland

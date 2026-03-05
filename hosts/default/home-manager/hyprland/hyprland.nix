@@ -22,7 +22,7 @@
       monitor = [
         "eDP-1,1920x1080@120,0x0,1"
         "DP-1,1920x1080@60,1920x0,1"
-        "phone_monitor,1600x720@30,0x1080,1"
+        "phone_monitor,720x1600@30,0x1080,1"
       ];
       
 
@@ -40,6 +40,7 @@
       exec-once = [
         "hyprlock"
         "hypridle"
+        "ydotoold"
         "swww-daemon"
         "systemctl --user start swayosd"
         "hyprctl setcursor volantes_cursors 24"
@@ -164,8 +165,8 @@
       workspace = [
         #"w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-        "r[11-20], gapsout:0, gapsin:0,bordersize:0, rounding:0"
-        "r[1-10], persistent:true"
+        "r[10-18], gapsout:0, gapsin:0,bordersize:0, rounding:0"
+        "r[1-9], persistent:true"
       ];
 
       bind = [
@@ -192,15 +193,15 @@
         "$mainMod, down, movefocus, d"
         "$mainMod, G, togglegroup"
 
-        "$mainMod, 1, split:workspace, 1"
-        "$mainMod, 2, split:workspace, 2"
-        "$mainMod, 3, split:workspace, 3"
-        "$mainMod, 4, split:workspace, 4"
-        "$mainMod, 5, split:workspace, 5"
-        "$mainMod, 6, split:workspace, 6"
-        "$mainMod, 7, split:workspace, 7"
-        "$mainMod, 8, split:workspace, 8"
-        "$mainMod, 9, split:workspace, 9"
+        "$mainMod, 1, workspace, 1"
+        "$mainMod, 2, workspace, 2"
+        "$mainMod, 3, workspace, 3"
+        "$mainMod, 4, workspace, 4"
+        "$mainMod, 5, workspace, 5"
+        "$mainMod, 6, workspace, 6"
+        "$mainMod, 7, workspace, 7"
+        "$mainMod, 8, workspace, 8"
+        "$mainMod, 9, workspace, 9"
 
         "$mainMod, KP_End, workspace, 10"
         "$mainMod, KP_Down, workspace, 11"
@@ -222,15 +223,15 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
 
-        "$mainMod SHIFT, KP_End, movetoworkspace, 10"
-        "$mainMod SHIFT, KP_Down, movetoworkspace, 11"
-        "$mainMod SHIFT, KP_Next, movetoworkspace, 12"
-        "$mainMod SHIFT, KP_Left, movetoworkspace, 13"
-        "$mainMod SHIFT, KP_Begin, movetoworkspace, 14"
-        "$mainMod SHIFT, KP_Right, movetoworkspace, 15"
-        "$mainMod SHIFT, KP_Home, movetoworkspace, 16"
-        "$mainMod SHIFT, KP_Up, movetoworkspace, 17"
-        "$mainMod SHIFT, KP_Prior, movetoworkspace, 18"
+        "$mainMod SHIFT, KP_End, movetoworkspacesilent, 10"
+        "$mainMod SHIFT, KP_Down, movetoworkspacesilent, 11"
+        "$mainMod SHIFT, KP_Next, movetoworkspacesilent, 12"
+        "$mainMod SHIFT, KP_Left, movetoworkspacesilent, 13"
+        "$mainMod SHIFT, KP_Begin, movetoworkspacesilent, 14"
+        "$mainMod SHIFT, KP_Right, movetoworkspacesilent, 15"
+        "$mainMod SHIFT, KP_Home, movetoworkspacesilent, 16"
+        "$mainMod SHIFT, KP_Up, movetoworkspacesilent, 17"
+        "$mainMod SHIFT, KP_Prior, movetoworkspacesilent, 18"
 
         "$mainMod, mouse_down, split:workspace, e+1"
         "$mainMod, mouse_up, split:workspace, e-1"
@@ -349,7 +350,7 @@
 
       
       "plugin:split-monitor-workspaces" = {
-        count = 10;
+        count = 9;
         keep_focused = 0;
         enable_notifications = 0;
         enable_persistent_workspaces = 1;

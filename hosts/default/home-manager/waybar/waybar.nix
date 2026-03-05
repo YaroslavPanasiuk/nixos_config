@@ -347,6 +347,7 @@
       
       "hyprland/workspaces" = {
         format = "{icon}";
+        signal = 8;
         format-icons = {
           active = "<span size='small'>󰪥</span>";
           default = "<span size='small'>󰺕</span>";
@@ -469,6 +470,7 @@
       };
       
       "wlr/taskbar" = {
+        all-outputs = true;
         format = "{icon}";
         icon-size = 16;
         ignore-list = [ "kitty" ];
