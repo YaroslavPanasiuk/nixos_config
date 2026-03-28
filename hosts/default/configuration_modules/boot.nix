@@ -86,7 +86,7 @@ in
     
     
     extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
-    kernelModules = [ "v4l2loopback" "binder_linux" "ashmem_linux" ];
+    kernelModules = [ "v4l2loopback" "binder_linux" "ashmem_linux" "i2c-dev" "vfio_pci" "vfio" "vfio_iommu_type1" ];
     binfmt.registrations.appimage = {
       wrapInterpreterInShell = false;
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";

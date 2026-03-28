@@ -8,6 +8,7 @@ vm_is_running=$(hyprctl clients | grep "$1")
 if [[ -n $vm_is_running ]]; then
     address=$(hyprctl clients | grep "$1" | grep Window | awk '{print $2}')
     hyprctl dispatch killwindow "address:0x$address"
+    quickemu --vm ~/virtual/windows-10.conf --kill
     exit
 fi
 
@@ -21,8 +22,9 @@ case "$1" in
     "macos")
         nvidia-offload quickemu --vm ~/virtual/macos-big-sur.conf --width 1920 --height 1080 &
         ;;
-    "windows")
-        nvidia-offload quickemu --vm ~/virtual/windows-10.conf --display spice --fullscreen --viewer remote-viewer &
+    "windows")  
+        quickemu --vm ~/virtual/windows-10.conf --kill
+        quickemu --vm ~/virtual/windows-10.conf --fullscreen
         ;;
     *)
         notify-send "QEMU" "No such device: $1"

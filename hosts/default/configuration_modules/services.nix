@@ -10,7 +10,7 @@ in
     };
     desktopManager.gnome.enable = true;
 
-    pipewire = {
+     pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -101,10 +101,9 @@ in
             end)
           '';
         };
-
-        # remove extraConfig for components/profiles
       };
     };
+
 
     greetd = {
       enable = true;
@@ -172,6 +171,10 @@ in
       enable = true;
       openFirewall = true;
     };
+
+    udev.extraRules = ''
+      KERNEL=="i2c-[0-9]*", GROUP="video", MODE="0660"
+    '';
 
     dbus.enable = true;
     touchegg.enable = true;

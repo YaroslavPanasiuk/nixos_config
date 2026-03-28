@@ -27,46 +27,16 @@
                   "delayed": false
                 },
                 "name": "Nixos folder",
-                "icon": "folder_data",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "code",
-                  "delayed": false
-                },
-                "name": "Open VS Code",
-                "icon": "text_ad",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "code ~/.config",
-                  "delayed": false
-                },
-                "name": ".config folder",
                 "icon": "folder_managed",
                 "iconTheme": "material-symbols-rounded"
               },
               {
                 "type": "command",
                 "data": {
-                  "command": "code \"$(zenity --file-selection)\"",
+                  "command": "code ~/Documents/Projects",
                   "delayed": false
                 },
-                "name": "Open file",
-                "icon": "file_open",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
-                  "command": "code \"$(zenity --file-selection --directory)\"",
-                  "delayed": false
-                },
-                "name": "Open folder",
+                "name": "Open Projects folder",
                 "icon": "folder_code",
                 "iconTheme": "material-symbols-rounded"
               }
@@ -87,6 +57,16 @@
                 },
                 "name": "Connect camera",
                 "icon": "camera",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
+                  "command": "connect_phone_mic.sh",
+                  "delayed": false
+                },
+                "name": "Connect mic",
+                "icon": "mic",
                 "iconTheme": "material-symbols-rounded"
               },
               {
@@ -124,6 +104,16 @@
                     },
                     "name": "Wifi",
                     "icon": "wifi",
+                    "iconTheme": "material-symbols-rounded"
+                  },
+                  {
+                    "type": "command",
+                    "data": {
+                      "command": "vnc_server.sh two_monitors",
+                      "delayed": false
+                    },
+                    "name": "Two monitors",
+                    "icon": "splitscreen_vertical_add",
                     "iconTheme": "material-symbols-rounded"
                   },
                   {

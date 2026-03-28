@@ -162,8 +162,8 @@
     ruffle
     python314
     postgresql_18
-    #python314Packages.pip
-    #python314Packages.virtualenv
+    python314Packages.pip
+    python314Packages.virtualenv
     davinci-resolve
     discord-ptb
     mesa-demos
@@ -172,6 +172,10 @@
     pkgs.android-tools
     ouch
     ydotool
+    ddcutil
+    mangal
+    jupyter-all
+    rsync
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
@@ -185,20 +189,17 @@
     (import ../scripts/rebuild.nix { inherit pkgs; })
     (import ../scripts/record_screen.nix { inherit pkgs; })
     (import ../scripts/record_screen_as_camera.nix { inherit pkgs; })
-    (import ../scripts/reload_firefox.nix { inherit pkgs; })
     (import ../scripts/set_welcome.nix { inherit pkgs; })
     (import ../scripts/start_waydroid.nix { inherit pkgs; })
     (import ../scripts/start_vm.nix { inherit pkgs; })
     (import ../scripts/stop_waydroid.nix { inherit pkgs; })
     (import ../scripts/wallp-rofi.nix { inherit pkgs; })
-    (import ../scripts/kill_taskbar.nix { inherit pkgs; })
     (import ../scripts/kill_waybar.nix { inherit pkgs; })
     (import ../scripts/open_calendar.nix { inherit pkgs; })
     (import ../scripts/post_wallp_change.nix { inherit pkgs; })
     (import ../scripts/redshift.nix { inherit pkgs; })
     (import ../scripts/set_wallpaper.nix { inherit pkgs; })
     (import ../scripts/update_telegram.nix { inherit pkgs; })
-    (import ../scripts/wallpaper_change.nix { inherit pkgs; })
     (import ../scripts/wallp_status.nix { inherit pkgs; })
     (import ../scripts/wallp.nix { inherit pkgs; })
     (import ../scripts/alttab.nix { inherit pkgs; })
@@ -241,5 +242,7 @@
     (import ../scripts/hyprland_focus_modes.nix { inherit pkgs; })
     (import ../scripts/update_songs_presentation.nix { inherit pkgs; })
     (import ../scripts/toggle_hyprland_decorations.nix { inherit pkgs; })
+    (import ../scripts/connect_phone_mic.nix { inherit pkgs; })
+    (import ../scripts/select_adb_device.nix { inherit pkgs; })
   ];
 }

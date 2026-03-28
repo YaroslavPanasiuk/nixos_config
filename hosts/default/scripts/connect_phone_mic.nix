@@ -1,3 +1,6 @@
+{ pkgs }:
+
+pkgs.writeShellScriptBin "connect_phone_mic.sh" '' 
 #!/usr/bin/env bash
 
 adb kill-server
@@ -68,3 +71,5 @@ else
     
     notify-send "Phone Mic" "Connected"
 fi
+
+''

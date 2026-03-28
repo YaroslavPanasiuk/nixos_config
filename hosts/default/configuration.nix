@@ -28,7 +28,8 @@ in
     networkmanager.enable = true;
     firewall.enable = true;
     firewall.allowPing = true;
-    firewall.allowedTCPPorts = [ 5900 ];
+    firewall.allowedTCPPorts = [ 5900 5901 56002 59100 ];
+    firewall.allowedUDPPorts = [ 59100 59150 ];
     firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
   
@@ -63,7 +64,7 @@ in
 
   users.users.${user.name} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers" "docker" "video" "i2c"];
   };
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfree = true;
@@ -120,7 +121,7 @@ in
     open = true; 
 
     powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
 
     prime = {
       offload = {

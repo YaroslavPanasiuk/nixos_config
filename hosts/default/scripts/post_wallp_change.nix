@@ -21,7 +21,7 @@ fi
 echo $path
 
 workspace=$(hyprctl activeworkspace | grep "workspace ID" | awk '{print $3}')
-wal -i "/''${path}"
+wal -n -i "/''${path}"
 hyprland_focus_modes.sh update
 hyprctl dispatch workspace $workspace
 
@@ -35,9 +35,6 @@ fi
 
 systemctl --user restart swayosd
 
-#pkill -f nwg-dock-hyprland
-#launch_dock.sh &
-#sleep 1 && pkill -f -37 nwg-dock-hyprland
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita" 
 gsettings set org.gnome.desktop.interface gtk-theme "Skeuos" 
 
@@ -62,10 +59,6 @@ cp "/$path" ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
 pkill dunst
 kando --reload-menu-theme &
 update_telegram.sh -B -i ~/nixos/hosts/default/home-manager/extra_resources/Wallpaper.jpg
-
-if [ "$1" = "-f" ]; then 
-    rebuild.sh
-fi
 
 if [[ "$gif" == "true" ]]; then
 	echo gif

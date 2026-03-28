@@ -191,7 +191,7 @@
       
       "custom/wallpaper_change" = {
         format = "󰸉";
-        on-click = "wallpaper_change.sh";
+        on-click = "wallp.sh";
         on-click-right = "wallp-rofi.sh";
         tooltip = false;
       };

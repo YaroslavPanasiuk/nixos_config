@@ -544,11 +544,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1772221037,
-        "narHash": "sha256-9Rj6V6m//6EMG/K2B+KtHC/DCuPQJITce7AJd1wpuRE=",
+        "lastModified": 1772837255,
+        "narHash": "sha256-waRWj14fzJBq5XKgOzBIGazSGDpT6xemQhSY9fOo/eg=",
         "owner": "YaroslavPanasiuk",
         "repo": "macros-grid-gtk",
-        "rev": "1134604fc36e529e837d74efba219132d5c83aad",
+        "rev": "a88dbd9ae016d6927d62dfcf545693923ce768b8",
         "type": "github"
       },
       "original": {

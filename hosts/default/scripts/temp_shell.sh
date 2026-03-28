@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
 
-if [ -z "$1" ]; then
-    mode="$(cat ~/nixos/hosts/default/scripts/toggle_hyprland_decorations.txt)"
-else
-    mode="$1"
+vm_is_running=$(hyprctl clients | grep "$1")
+
+if [[ -n $vm_is_running ]]; then
+    address=$(hyprctl clients | grep "$1" | grep Window | awk '{print $2}')
+    hyprctl dispatch killwindow "address:0x$address"
+    quickemu --vm ~/virtual/windows-10.conf --kill
+    exit
 fi
 
-case "$mode" in
-    "on")
-        hyprctl reload
-        hyprland_focus_modes.sh "🎛️ Auto"
-        echo "off" > ~/nixos/hosts/default/scripts/toggle_hyprland_decorations.txt
-    ;;
-    "off")
-        hyprland_focus_modes.sh "🗿 Focus"
-        hyprctl keyword animations:enabled 0
-        hyprctl keyword decoration:rounding 0
-        hyprctl keyword decoration:active_opacity 1.0
-        hyprctl keyword decoration:inactive_opacity 1.0
-        hyprctl keyword decoration:dim_inactive 0
-        hyprctl keyword decoration:blur:enabled 0
-        hyprctl keyword decoration:shadow:enabled 0
-        hyprctl keyword misc:disable_hyprland_logo 1
-        hyprctl keyword misc:force_default_wallpaper 0
-        echo "on" > ~/nixos/hosts/default/scripts/toggle_hyprland_decorations.txt
-    ;;
-esac
+if [[ $2 == "single" ]]; then
+    hyprctl clients -j | jq -r '.[] | select(.class == ".qemu-system-x86_64-wrapped") | .address' | while read addr; do
+        hyprctl dispatch killwindow "address:$addr"
+    done
+fi
 
+case "$1" in
+    "macos")
+        nvidia-offload quickemu --vm ~/virtual/macos-big-sur.conf --width 1920 --height 1080 &
+        ;;
+    "windows")
+        quickemu --vm ~/virtual/windows-10.conf --kill
+        quickemu --vm ~/virtual/windows-10.conf --fullscreen
+        ;;
+    *)
+        notify-send "QEMU" "No such device: $1"
+        ;;
+esac

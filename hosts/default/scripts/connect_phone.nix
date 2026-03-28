@@ -20,14 +20,14 @@ if [ -n "$ip" ]; then
     echo "$connected"
     if [ "$connected" = "connected" ]; then 
         dunstify -a "scrcpy" "Connected over wifi" 
-        scrcpy -e --video-codec=h265 -m1920 --max-fps=60 --no-audio -K
+        scrcpy -e --video-codec=h265 -m1920 --max-fps=60 --no-audio -K --render-driver=opengles2
         adb disconnect "$ip:5555"
     else
         dunstify -a "scrcpy" "Unable to connect over wifi"
-        scrcpy -d --video-codec=h265 -m1920 --max-fps=60 --no-audio -K
+        scrcpy -d --video-codec=h265 -m1920 --max-fps=60 --no-audio -K --render-driver=opengles2
     fi
 else 
     dunstify -a "scrcpy" "Unable to connect over wifi"
-    scrcpy -d --video-codec=h265 -m1920 --max-fps=60 --no-audio -K
+    scrcpy -d --video-codec=h265 -m1920 --max-fps=60 --no-audio -K --render-driver=opengles2
 fi
 ''

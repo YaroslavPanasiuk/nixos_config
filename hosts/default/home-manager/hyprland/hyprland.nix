@@ -22,7 +22,9 @@
       monitor = [
         "eDP-1,1920x1080@120,0x0,1"
         "DP-1,1920x1080@60,1920x0,1"
-        "phone_monitor,720x1600@30,0x1080,1"
+        "HDMI-A-1,1920x1080@60,1920x0,1"
+        "phone_monitor_cable,720x1520@60,-360x340,2"
+        "phone_monitor_wifi,720x1600@30,0x1080,2"
       ];
       
 
@@ -163,9 +165,17 @@
       };
 
       workspace = [
-        #"w[tv1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
+        "1, monitor:eDP-1, default:true"
+        "r[2-9], monitor:eDP-1"
+        "10, monitor:DP-1, default:true"
+        "r[11-18], monitor:DP-1"
+        "10, monitor:HDMI-A-1, default:true"
+        "r[11-18], monitor:HDMI-A-1"
         "f[1], gapsout:0, gapsin:0, bordersize:0, rounding:0"
-        "r[10-18], gapsout:0, gapsin:0,bordersize:0, rounding:0"
+        "m[DP-1], gapsout:0, gapsin:0,bordersize:0, rounding:0"
+        "m[HDMI-A-1], gapsout:0, gapsin:0,bordersize:0, rounding:0"
+        "m[phone_monitor_cable], gapsout:0, gapsin:0,bordersize:0, rounding:0"
+        "m[phone_monitor_wifi], gapsout:0, gapsin:0,bordersize:0, rounding:0"
         "r[1-9], persistent:true"
       ];
 
@@ -269,7 +279,7 @@
         "Control_L, bracketleft, exec, echo 'multiply speed 0.9' | socat - /tmp/mpv-socket"
         "Control_L, bracketright, exec, echo 'multiply speed 1.1' | socat - /tmp/mpv-socket"
         
-        "Control_L, mouse:274, global, org.chromium.Chromium:playerctl-menu"
+        "Control_L, mouse:274, movecursor, 960 540"
         ",mouse:274, global, org.chromium.Chromium:example-menu"
         ",CapsLock, exec, swayosd-client --monitor eDP-1 --caps-lock"
       ];
@@ -278,14 +288,20 @@
         ", XF86AudioRaiseVolume, exec, swayosd-client --monitor eDP-1 --output-volume raise --max-volume 120"
         ", XF86AudioLowerVolume, exec, swayosd-client --monitor eDP-1 --output-volume lower --max-volume 120"
         ",XF86MonBrightnessDown, exec , swayosd-client --monitor eDP-1 --brightness -10"
-        ",XF86MonBrightnessUp, exec ,swayosd-client --monitor eDP-1 --brightness +10"
-        "CapsLock,XF86MonBrightnessDown, exec , swayosd-client --monitor eDP-1 --brightness -1"
-        "CapsLock,XF86MonBrightnessUp, exec , swayosd-client --monitor eDP-1 --brightness +1"
+        ",XF86MonBrightnessUp, exec , swayosd-client --monitor eDP-1 --brightness +10"
+        "Control_L,XF86MonBrightnessUp, exec ,ddcutil --model TYPEC setvcp 10 + 10; ddcutil --model HDMI setvcp 10 + 10"
+        "Control_L,XF86MonBrightnessDown, exec ,ddcutil --model TYPEC setvcp 10 - 10; ddcutil --model HDMI setvcp 10 + 10"
+        "Control_L Alt_L,XF86MonBrightnessUp, exec ,adb shell settings put system screen_brightness_mode 0; adb shell settings put system screen_brightness $(($(adb shell settings get system screen_brightness)+10))"
+        "Control_L Alt_L,XF86MonBrightnessDown, exec ,adb shell settings put system screen_brightness_mode 0; adb shell settings put system screen_brightness $(($(adb shell settings get system screen_brightness)-10))"
+        "Shift_L,XF86MonBrightnessDown, exec , swayosd-client --monitor eDP-1 --brightness -1"
+        "Shift_L,XF86MonBrightnessUp, exec , swayosd-client --monitor eDP-1 --brightness +1"
       ];
 
       bindm = [
         "$mainMod, mouse:275, movewindow"
         "$mainMod, mouse:276, resizewindow"
+        "$mainMod Control_L, mouse:272, movewindow"
+        "$mainMod Control_L, mouse:273, resizewindow"
       ];
 
       windowrule = [
@@ -307,7 +323,7 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "float, title:Authentication Required"
-        "float, title:Rename \".*\""       
+        "float, title:Rename \".*\""    
         "fullscreen, title:Waydroid"
         "bordersize 3, floating:1"
         "rounding 8, floating:1"
