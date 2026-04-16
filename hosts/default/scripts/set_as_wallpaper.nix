@@ -14,7 +14,7 @@ if [[ $parent_folder"" == "$HOME/Public/Wallpapers" ]]; then
 fi
 
 name_file() {
-    local folder="$HOME/Public/Wallpapers"  # The folder to check, default is current directory
+    local folder="$HOME/Public/Wallpapers"
     local counter=1         # Start numbering files from 1
 
     while true; do
@@ -29,14 +29,27 @@ name_file() {
 
 destination=""
 
+WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 "$path")
+HEIGHT=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=noprint_wrappers=1:nokey=1 "$path")
+RATIO=$(echo "scale=2; $WIDTH / $HEIGHT" | bc)
+THRESHOLD=3.5
+
 case $extension in
     jpg)
         destination=$(echo "$(name_file .jpg)" | tr -d '\n')
-        magick "$path" -resize 1920x1080^ -gravity center -extent 1920x1080 "$destination" 
+        if (( $(echo "$RATIO > $THRESHOLD" | bc -l) )); then
+            magick "$path" -resize 3840x1080^ -gravity center -extent 3840x1080 "$destination" 
+        else
+            magick "$path" -resize 1920x1080^ -gravity center -extent 1920x1080 "$destination" 
+        fi
         ;;
     png)
         destination=$(echo "$(name_file .jpg)" | tr -d '\n')
-        magick "$path" -resize 1920x1080^ -gravity center -extent 1920x1080 "$destination" 
+        if (( $(echo "$RATIO > $THRESHOLD" | bc -l) )); then
+            magick "$path" -resize 3840x1080^ -gravity center -extent 3840x1080 "$destination" 
+        else
+            magick "$path" -resize 1920x1080^ -gravity center -extent 1920x1080 "$destination" 
+        fi
         ;;
     gif)
         destination=$(echo "$(name_file _GIF_.jpg)" | tr -d '\n')
@@ -53,7 +66,7 @@ esac
 
 if [[ -n "$destination" ]]; then
     echo $destination
-    wallp $(basename "$destination")
+    wallp.sh $(basename "$destination")
 fi
 
 ''

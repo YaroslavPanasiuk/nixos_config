@@ -1,6 +1,6 @@
 let
-  name = "__user__";
-  path = "/home/__user__";
+  name = "yaros1246";
+  path = "/home/yaros1246";
 in 
 {
   inherit name path;

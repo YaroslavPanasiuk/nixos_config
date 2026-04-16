@@ -24,7 +24,7 @@ case "$1" in
         source="rnnoise_output"
         pactl load-module module-null-sink sink_name=combined_sink
         pw-link "$source:capture_1" "combined_sink:playback_FL"
-        pw-link "$source:capture_2" "combined_sink:playback_FR"
+        pw-link "$source:capture_1" "combined_sink:playback_FR"
         pw-link "$source:capture_MONO" "combined_sink:playback_FL"
         pw-link "$source:capture_MONO" "combined_sink:playback_FR"
         pw-link $sink combined_sink

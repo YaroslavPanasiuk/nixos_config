@@ -3,9 +3,8 @@
 pkgs.writeShellScriptBin "connect_phone_mic.sh" '' 
 #!/usr/bin/env bash
 
-adb kill-server
-
 STATE_FILE="/tmp/phone_mic_state"
+adb disconnect
 
 if [ -f "$STATE_FILE" ]; then
     source "$STATE_FILE"
@@ -16,9 +15,7 @@ if [ -f "$STATE_FILE" ]; then
     rm "$STATE_FILE"
     notify-send "Phone Mic" "Disconnected"
 else
-    # Create native PipeWire virtual source
-    NODE_OUTPUT=$(pw-cli create-node adapter '{ factory.name=support.null-audio-sink node.name="PhoneMic" node.description="Phone_Mic" media.class=Audio/Source/Virtual audio.position=[ FL FR ] object.linger=true }')    
-    # Start scrcpy
+    NODE_OUTPUT=$(pw-cli create-node adapter '{ factory.name=support.null-audio-sink node.name="PhoneMic" node.description="Phone_Mic" media.class=Audio/Source/Virtual audio.position=[ MONO ] object.linger=true }')    
     adb start-server
     serial_num=$(select_adb_device.sh)
     echo $serial_num
@@ -59,8 +56,8 @@ else
                     .[] | select(.type == "PipeWire:Interface:Link") |
                     select((.info.props."link.output.node" | IN($ids[])) or (.info.props."link.input.node" | IN($ids[]))) |
                     .id' | xargs -r -n 1 pw-link -d
-                pw-link "SDL Application:output_FL" "PhoneMic:input_FL"
-                pw-link "SDL Application:output_FR" "PhoneMic:input_FR"
+                pw-link "SDL Application:output_FL" "PhoneMic:input_MONO"
+                pw-link "SDL Application:output_FR" "PhoneMic:input_MONO"
                 break
             fi
         done

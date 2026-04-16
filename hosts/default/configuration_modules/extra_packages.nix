@@ -2,7 +2,6 @@
 { 
   environment.systemPackages = with pkgs; [
     obsidian
-    teamviewer
     onlyoffice-desktopeditors
     obs-studio
     wget
@@ -14,7 +13,6 @@
     home-manager
     nix-index
     qimgv
-    #zoom-us
     cmake
     ngrok
     gnumake
@@ -25,7 +23,6 @@
     glib
     kando
     scrcpy
-    morgen
     gcolor3
     gvfs
     pinta
@@ -35,10 +32,8 @@
     iproute2
     libosinfo
     curl
-    #nwg-dock-hyprland
     file
     wmctrl
-    #scrcpy
     android-tools
     qemu
     libvirt
@@ -153,8 +148,6 @@
     wayfreeze    
     anyrun
     gtk3
-    inputs.goal-tracker.packages.${system}.default
-    inputs.macro-grid.packages.${pkgs.stdenv.hostPlatform.system}.default
     newelle
     rnnoise
     rnnoise-plugin
@@ -179,6 +172,8 @@
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
+    inputs.goal-tracker.packages.${system}.default
+    inputs.macro-grid.packages.${pkgs.stdenv.hostPlatform.system}.default
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
     (import ../scripts/brightness.nix { inherit pkgs; })
@@ -198,7 +193,6 @@
     (import ../scripts/open_calendar.nix { inherit pkgs; })
     (import ../scripts/post_wallp_change.nix { inherit pkgs; })
     (import ../scripts/redshift.nix { inherit pkgs; })
-    (import ../scripts/set_wallpaper.nix { inherit pkgs; })
     (import ../scripts/update_telegram.nix { inherit pkgs; })
     (import ../scripts/wallp_status.nix { inherit pkgs; })
     (import ../scripts/wallp.nix { inherit pkgs; })

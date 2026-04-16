@@ -1,70 +1,43 @@
 #!/usr/bin/env bash
 
-adb kill-server
+file=$1
+dir="$HOME/Public/Wallpapers/"
 
-STATE_FILE="/tmp/phone_mic_state"
-
-if [ -f "$STATE_FILE" ]; then
-    source "$STATE_FILE"
-    
-    kill "$SCRCPY_PID" 2>/dev/null
-    pw-dump | jq '.[] | select(.info.props."node.name" == "PhoneMic") | .id' | xargs -r -n 1 pw-cli destroy
-    
-    rm "$STATE_FILE"
-    notify-send "Phone Mic" "Disconnected"
-else
-    # Create native PipeWire virtual source
-    NODE_OUTPUT=$(pw-cli create-node adapter '{ factory.name=support.null-audio-sink node.name="PhoneMic" node.description="Phone_Mic" media.class=Audio/Source/Virtual audio.position=[ FL FR ] object.linger=true }')    
-    # Start scrcpy
-    adb start-server
-    serial_num=$(select_adb_device.sh)
-    echo $serial_num
-	hotspot=$(adb -s $serial_num shell ip -f inet addr show wlan1 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-	ip=$(adb -s $serial_num shell ip -f inet addr show wlan0 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-	if [ -z "$ip" ]; then
-		ip=$hotspot
-	fi
-    
-	if [ -n "$ip" ]; then
-		adb -s $serial_num tcpip 5555
-		connected="false"
-		for i in {1..10}; do
-            sleep 0.5
-            if [ "$(adb connect "$ip:5555" | awk '{print $1}')" = "connected" ]; then 
-				scrcpy -s $serial_num --no-video --no-window --audio-source=mic > /dev/null 2>&1 &
-				connected="true"
-				echo "connected via wifi"
-				break
-			fi
-        done
-		if [ "$connected" = "false" ]; then 
-			scrcpy -s $serial_num --no-video --no-window --audio-source=mic > /dev/null 2>&1 &
-			echo "connected via cable"
-		fi
-	else 
-		scrcpy -s $serial_num --no-video --no-window --audio-source=mic > /dev/null 2>&1 &
-		echo "connected via cable"
-	fi
-    SCRCPY_PID=$!
-    
-    (
-        for i in {1..10}; do
-            sleep 0.5
-            if pw-link -o | grep -qi "SDL Application.*output_FL"; then
-                pw-dump | jq -r '
-                    [ .[] | select(.info.props."node.name" == "SDL Application") | .id ] as $ids |
-                    .[] | select(.type == "PipeWire:Interface:Link") |
-                    select((.info.props."link.output.node" | IN($ids[])) or (.info.props."link.input.node" | IN($ids[]))) |
-                    .id' | xargs -r -n 1 pw-link -d
-                pw-link "SDL Application:output_FL" "PhoneMic:input_FL"
-                pw-link "SDL Application:output_FR" "PhoneMic:input_FR"
-                break
-            fi
-        done
-    ) &
-    pactl set-default-source PhoneMic
-    
-    echo "SCRCPY_PID=$SCRCPY_PID" > "$STATE_FILE"
-    
-    notify-send "Phone Mic" "Connected"
+if [[ ! -f "$dir$file" ]]; then
+    echo "No file provided. Proceeding with a random image."
+    PICS=($(ls ${dir}))
+    RANDOMPICS=${PICS[ $RANDOM % ${#PICS[@]} ]}
+    wallp.sh ${RANDOMPICS}
+    exit 1
 fi
+
+WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 "$dir$file")
+HEIGHT=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=noprint_wrappers=1:nokey=1 "$dir$file")
+RATIO=$(echo "scale=2; $WIDTH / $HEIGHT" | bc)
+THRESHOLD=3.5
+
+
+if [[ -f "$dir$file" ]]; then
+    echo "Using image: $file"
+
+    if (( $(echo "$RATIO > $THRESHOLD" | bc -l) )); then
+        echo "is ultrawide"
+        OUT_L="eDP-1"
+        OUT_R="DP-1"
+        HALF_WIDTH=$(( WIDTH / 2 ))
+        LEFT_PART="/tmp/wp_left.jpg"
+        RIGHT_PART="/tmp/wp_right.jpg"
+        magick "$dir$file" -crop "${HALF_WIDTH}x${HEIGHT}+0+0" "$LEFT_PART"
+        magick "$dir$file" -crop "${HALF_WIDTH}x${HEIGHT}+${HALF_WIDTH}+0" "$RIGHT_PART"
+        swww img "$LEFT_PART" --transition-fps 60 --transition-type wave --transition-pos 20,1060  --transition-duration 2 --outputs "$OUT_L" --resize fit
+        swww img "$RIGHT_PART" --transition-fps 60 --transition-type wave --transition-pos 20,1060  --transition-duration 2 --outputs "$OUT_R" --resize fit
+    else
+        swww img "$dir$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2 --resize fit
+    fi
+else
+    echo "file does not exist: $dir$file"
+fi
+
+
+pkill -f post_setting.sh
+post_setting.sh
