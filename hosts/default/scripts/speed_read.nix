@@ -1,3 +1,6 @@
+{ pkgs }:
+
+pkgs.writeShellScriptBin "speed_read.sh" '' 
 mode=$(echo -e "📋 From clipboard\n📂 From file" | rofi -dmenu -config ~/.config/rofi/config-waybar_mode.rasi)
 
 case "$mode" in
@@ -14,7 +17,7 @@ case "$mode" in
             notify-send "No file selected" -i dialog-error
             exit 1
         fi
-        extension="${file##*.}"
+        extension="''${file##*.}"
         case "$extension" in
             "txt")
                 text=$(cat "$file")
@@ -48,6 +51,7 @@ kitty -o font_size=24 \
       -o cursor_blink_interval=0 \
       --title "SpeedRead" \
       --class "speedread-float" \
-      sh -c "printf '\e[?25l'; speedread -w 250 < $tmp_text; sleep 10; printf '\e[?25h'"
+      sh -c "printf '\e[?25l'; speedread -w 250 < $tmp_text; sleep 15; printf '\e[?25h'"
 
 rm "$tmp_text"
+''

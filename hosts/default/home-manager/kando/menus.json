@@ -238,6 +238,16 @@
               {
                 "type": "command",
                 "data": {
+                  "command": "speed_read.sh",
+                  "delayed": false
+                },
+                "name": "Speed read",
+                "icon": "menu_book",
+                "iconTheme": "material-symbols-rounded"
+              },
+              {
+                "type": "command",
+                "data": {
                   "command": "hyprpicker -a -q",
                   "delayed": false
                 },

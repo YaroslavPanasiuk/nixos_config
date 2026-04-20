@@ -123,8 +123,13 @@
       device = [
         {
           name = "ugreen-receiver--mouse";
-        accel_profile = "flat";
+          #accel_profile = "flat";
           sensitivity = "-0.6";
+        }
+        {
+          name = "ugreen-ble-mouse";
+          #accel_profile = "flat";
+          sensitivity = "-0.8";
         }
         {
           name = "syna0001:00-06cb:7f28-touchpad";
@@ -305,7 +310,7 @@
       ];
 
       windowrule = [
-        "float, class:(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
+        "float, class:(xdg-desktop-portal-gtk)|(speedread-float)|(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "rounding 8, class:(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)"
         "tile, class:(.scrcpy-wrapped)|(.qemu-system-x86_64-wrapped)|(qemu)"
         #"workspace empty class:(Waydroid)|(qemu)|(virt-viewer)|(.qemu-system-x86_64-wrapped)"
@@ -313,6 +318,9 @@
         "noblur, class:kando"
         "opaque, class:kando"
         "size 100% 100%, class:kando"
+        "size 60% 60%, class:xdg-desktop-portal-gtk"
+        "size 900 260, class:speedread-float"
+        "center, class:speedread-float"
         "size 40% 50%, class:(zenity)|(pavucontrol)|(org.pulseaudio.pavucontrol)|(.blueman-manager-wrapped)"
         "size 50% 50%, class:(goal-tracker)|(.goal-tracker-wrapped)"
         "noborder, class:kando"

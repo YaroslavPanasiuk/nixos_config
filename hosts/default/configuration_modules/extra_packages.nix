@@ -169,6 +169,8 @@
     mangal
     jupyter-all
     rsync
+    speedread
+    epub2txt2
   ] ++ [
     inputs.zen-browser.packages."${system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
@@ -238,5 +240,6 @@
     (import ../scripts/toggle_hyprland_decorations.nix { inherit pkgs; })
     (import ../scripts/connect_phone_mic.nix { inherit pkgs; })
     (import ../scripts/select_adb_device.nix { inherit pkgs; })
+    (import ../scripts/speed_read.nix { inherit pkgs; })
   ];
 }
