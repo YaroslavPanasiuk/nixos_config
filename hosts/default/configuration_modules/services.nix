@@ -10,13 +10,17 @@ in
     };
     desktopManager.gnome.enable = true;
 
-     pipewire = {
+    pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      wireplumber.enable = true; # Lua scripts removed; using defaults
+      extraLadspaPackages = [ pkgs.rnnoise-plugin ];
+      
       extraConfig.pipewire = {
         "filter-chain"."context.modules" = [
+          
           { 
             name = "libpipewire-module-filter-chain";
             args = {
@@ -25,82 +29,53 @@ in
               "filter.graph" = {
                 nodes = [
                   { type   = "ladspa";
-                    plugin = "/run/current-system/sw/lib/ladspa/librnnoise_ladspa.so";
+                    plugin = "librnnoise_ladspa";
                     label  = "noise_suppressor_mono";
                     name   = "rnnoise";
                   }
                 ];
               };
               "capture.props" = {
-                "node.name"      = "rnnoise_input";
+                "node.name"    = "rnnoise_input";
+                # Replaces Script 1: Tells PipeWire to auto-link this input to the default hardware microphone
+                "node.passive" = true; 
               };
-
               "playback.props" = {
-                "node.name"   = "rnnoise_output";
-                "media.class" = "Audio/Source";  # mark the output as a microphone
+                "node.name"        = "rnnoise_output";
+                "media.class"      = "Audio/Source";
+                # Replaces Script 2: High priority forces WirePlumber to select this as the system default mic
+                "priority.driver"  = 30000; 
+                "priority.session" = 30000;
               };
             };
           }
-        ];
-      };
-      wireplumber = {
-        enable = true;
 
-        extraScripts = {
-          "50-noise-cancel.lua" = ''
-            Core.onObjectAdded({"node"}, function (node)
-              local name = node.properties["node.name"] or ""
-              if name == "rnnoise_input" then
-                local mic = nil
-                for n in Node("media.class=Audio/Source").iter() do
-                  if n.properties["node.name"] ~= "rnnoise_output" then
-                    mic = n
-                    break
-                  end
-                end
-                if mic then
-                  Log.info("Auto-linking mic " .. mic.properties["node.name"] .. " → rnnoise_input")
-                  Link { output = mic, input = node }:activate(Features.ALL)
-                end
-              end
-            end)
-          '';
-
-          "60-set-default-noise-cancel.lua" = ''
-            Core.onObjectAdded({"node"}, function(node)
-              local name = node.properties["node.name"] or ""
-              local mediaClass = node.properties["media.class"] or ""
-              if name == "rnnoise_output" and mediaClass == "Audio/Source" then
-                Log.info("Setting rnnoise_output as default input")
-                Core.defaultInputNode = node
-              end
-            end)
-          '';
-
-          "70-combined-source.lua" = ''
-            Core.onStartup(function()
-                local default_sink_name = Core.getDefaultNode("Audio/Sink")
-                if not default_sink_name then
-                    Log.warn("No default sink found")
-                    return
-                end
-
-                local sources = {
-                    "rnnoise_output",
-                    default_sink_name .. ".monitor"
+          {
+            name = "libpipewire-module-combine-stream";
+            args = {
+              "combine.mode" = "source";
+              "node.name" = "combined_source";
+              "node.description" = "Combined Mic + Desktop";
+              "combine.props" = {
+                "audio.position" = [ "FL" "FR" ];
+                "media.class" = "Audio/Source";
+              };
+              "stream.rules" = [
+                {
+                  # Capture from the RNNoise microphone
+                  matches = [ { "node.name" = "rnnoise_output"; } ];
+                  actions = { "create-stream" = {}; };
                 }
+                {
+                  # Capture from all desktop audio playback (Sink Monitors)
+                  matches = [ { "media.class" = "Audio/Sink"; } ];
+                  actions = { "create-stream" = {}; };
+                }
+              ];
+            };
+          }
 
-                Log.info("Creating combined source with: " .. table.concat(sources, ", "))
-
-                Node.create({
-                    type = "adapter",
-                    media_class = "Audio/Source",
-                    node_name = "combined_source",
-                    nodes = sources
-                })
-            end)
-          '';
-        };
+        ];
       };
     };
 
@@ -109,7 +84,7 @@ in
       enable = true;
       settings = {
         initial_session = {
-          command = "Hyprland >/dev/null 2>&1";
+          command = "start-hyprland";
           user = "${user.name}";
         };
         default_session = {
@@ -177,6 +152,7 @@ in
     '';
 
     dbus.enable = true;
+    dbus.implementation = "broker";
     touchegg.enable = true;
     pulseaudio.enable = false;
     flatpak.enable = true;

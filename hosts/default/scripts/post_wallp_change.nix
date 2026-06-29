@@ -5,7 +5,7 @@ pkgs.writeShellScriptBin "post_setting.sh" ''
 
 pkill mpvpaper
 
-query=$(swww query | tail -n1 | awk '{print $NF}')
+query=$(awww query | tail -n1 | awk '{print $NF}')
 path="''${query#*/}"
 echo $path
 gif="false"
@@ -62,7 +62,7 @@ update_telegram.sh -B -i ~/nixos/hosts/default/home-manager/extra_resources/Wall
 
 if [[ "$gif" == "true" ]]; then
 	echo gif
-	swww img /"''${path%.*}.gif"
+	awww img /"''${path%.*}.gif"
 	exit
 fi
 

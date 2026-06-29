@@ -75,12 +75,12 @@ update_waybar() {
 
 EOF
 
-    hyprctl keyword decoration:inactive_opacity 1
-    hyprctl keyword decoration:blur:enabled false
-    hyprctl keyword general:gaps_out 0
-    hyprctl keyword general:gaps_in 0
-    hyprctl keyword general:border_size 0
-    hyprctl keyword decoration:rounding 0
+    hyprctl eval 'hl.config({ decoration = { 
+        inactive_opacity = 1, 
+        blur = { enabled = false }, 
+        rounding = 0 }, 
+        general = { gaps_out = 0, gaps_in = 0, border_size = 0 } 
+    })'
         
     else
         cat > /home/$USER/.cache/wal/waybar_css_mutable.css <<EOF
@@ -123,6 +123,13 @@ EOF
             #custom-weather { border-right: 4px double @color15; }
 
 EOF
+
+    hyprctl eval 'hl.config({ decoration = { 
+        inactive_opacity = 0.85, 
+        blur = { enabled = true }, 
+        rounding = 8 }, 
+        general = { gaps_out = 5, gaps_in = 3, border_size = 2 } 
+    })'
 
     hyprctl keyword decoration:inactive_opacity 0.85
     hyprctl keyword decoration:blur:enabled true

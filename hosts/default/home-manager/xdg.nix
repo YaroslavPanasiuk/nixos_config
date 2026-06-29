@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 {  
   xdg = {
     enable = true;
@@ -178,6 +178,12 @@
       };
     };
 
+    portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = "*";
+    };
+
     configFile = {
     "kando/icon-themes" = {
       enable = true;
@@ -208,7 +214,7 @@
       source = ./rofi;
     };
     "dunst" = {
-      enable = true;
+      enable = false;
       recursive = true;
       source = ./dunst;
     };

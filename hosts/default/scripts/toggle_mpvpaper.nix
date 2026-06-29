@@ -8,7 +8,7 @@ if pidof -qx "mpvpaper"; then
     exit
 fi
 
-query=$(swww query)
+query=$(awww query)
 path="''${query#*/}"
 if [[ "''$path" == *"_MP4_"* ]]; then
 	mpvpaper -o "no-audio --loop input-ipc-server=/tmp/mpv-socket" eDP-1 "/''${path%.*}.mp4"

@@ -23,8 +23,8 @@ cp -f ~/nixos/dotfiles/kando/config.json ~/.config/kando/config.json
 sudo nixos-generate-config --show-hardware-config > ~/nixos/hosts/$host/hardware-configuration.nix
 sudo nixos-rebuild switch --install-bootloader --flake ~/nixos#$host;
 
-swww-daemon
-swww img ~/Public/Wallpapers/1.jpg
+awww-daemon
+awww img ~/Public/Wallpapers/1.jpg
 wal -i ~/nixos/hosts/$host/home-manager/extra_resources/Wallpaper.jpg
 
 git clone --depth 1 https://codeberg.org/thirtysix/walogram.git ~/.walogram
@@ -35,7 +35,9 @@ rm -rf ~/.walogram
 
 git clone https://github.com/YaroslavPanasiuk/obsidian.git ~/Documents/test
 
-wallp
+wallp.sh
+
+ln -s /home/yaros/.cache/wal/gtk-theme.css /home/yaros/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
 
 rm /home/$USER/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
 ln -s /home/$USER/.cache/wal/gtk-theme.css /home/$USER/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css

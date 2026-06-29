@@ -16,6 +16,7 @@ in
 
     consoleLogLevel = 0;
     initrd.verbose = false;
+    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     kernelParams = [
       "quiet"
       "splash"
@@ -58,12 +59,6 @@ in
         splashImage = "${user.path}/nixos/hosts/default/home-manager/extra_resources/VeryBlurredBackground.jpg";
         theme = "${user.path}/nixos/hosts/default/grub/bigsur";
         extraEntries = ''
-          #menuentry "Nobara" --class nobara {
-          #  set root=UUID=7469-2840
-          #  linux /vmlinuz-6.12.11-204.nobara.fc41.x86_64 root=/dev/nvme0n1p3 rootflags=subvol=@ ro
-          #  initrd /initramfs-6.12.11-204.nobara.fc41.x86_64.img
-          #  boot
-          #}
           menuentry "Boot from USB" --class usb {
             insmod ext2
             insmod fat

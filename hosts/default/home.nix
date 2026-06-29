@@ -39,7 +39,7 @@ in
 
   home = {
     username = "${user.name}";
-    stateVersion = "24.11";
+    stateVersion = "26.05";
     homeDirectory = "${user.path}";
     packages = with pkgs;[
       #inputs.hyprswitch.packages.x86_64-linux.default

@@ -32,13 +32,6 @@ in
     firewall.allowedUDPPorts = [ 59100 59150 ];
     firewall.extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
-  
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ 
-    pkgs.xdg-desktop-portal-gtk
-    #pkgs.xdg-desktop-portal-hyprland
-    #pkgs.xdg-desktop-portal-kde
-  ];
 
   home-manager = {
     users = {
@@ -161,8 +154,9 @@ in
 
   nixpkgs.config.permittedInsecurePackages = [
     "ventoy-1.1.10"
+    "ventoy-1.1.12"
   ];
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 
 }

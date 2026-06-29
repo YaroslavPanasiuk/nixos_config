@@ -104,7 +104,7 @@
     kdePackages.kdenlive
     parabolic
     libnotify
-    swww
+    awww
     kitty
     rofi
     hyprshot
@@ -132,7 +132,6 @@
     wayvnc
     unoconv
     pear-desktop
-    nodePackages.zx
     cava
     ripgrep
     celluloid

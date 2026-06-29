@@ -92,7 +92,7 @@
         higher_cutoff_freq = 18000;
         input_delay = 2;
         lower_cutoff_freq = 50;
-        method = "pulse";
+        method = "pipewire";
         monstercat = false;
         noise_reduction = 0.35;
         on-click-right = "playerctl pause";
