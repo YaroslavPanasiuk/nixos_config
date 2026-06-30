@@ -6,6 +6,9 @@ pkgs.writeShellScriptBin "waybar_colors_update.sh" ''
 update_waybar() {
     # Get active workspace ID
     active_ws=$(hyprctl activeworkspace -j | jq -r '.id')
+    if [ "$active_ws" -gt 9 ]; then
+        return 
+    fi
     window_count=$(hyprctl clients -j | jq "map(select(.workspace.id == $(hyprctl activeworkspace -j | jq -r '.id')))" | jq "map(select(.floating == false)) | length")
 
     ignore_list=("kitty")

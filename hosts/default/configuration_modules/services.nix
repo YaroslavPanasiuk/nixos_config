@@ -37,41 +37,14 @@ in
               };
               "capture.props" = {
                 "node.name"    = "rnnoise_input";
-                # Replaces Script 1: Tells PipeWire to auto-link this input to the default hardware microphone
                 "node.passive" = true; 
               };
               "playback.props" = {
                 "node.name"        = "rnnoise_output";
                 "media.class"      = "Audio/Source";
-                # Replaces Script 2: High priority forces WirePlumber to select this as the system default mic
                 "priority.driver"  = 30000; 
                 "priority.session" = 30000;
               };
-            };
-          }
-
-          {
-            name = "libpipewire-module-combine-stream";
-            args = {
-              "combine.mode" = "source";
-              "node.name" = "combined_source";
-              "node.description" = "Combined Mic + Desktop";
-              "combine.props" = {
-                "audio.position" = [ "FL" "FR" ];
-                "media.class" = "Audio/Source";
-              };
-              "stream.rules" = [
-                {
-                  # Capture from the RNNoise microphone
-                  matches = [ { "node.name" = "rnnoise_output"; } ];
-                  actions = { "create-stream" = {}; };
-                }
-                {
-                  # Capture from all desktop audio playback (Sink Monitors)
-                  matches = [ { "media.class" = "Audio/Sink"; } ];
-                  actions = { "create-stream" = {}; };
-                }
-              ];
             };
           }
 

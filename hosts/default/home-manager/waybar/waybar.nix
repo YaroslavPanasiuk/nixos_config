@@ -59,7 +59,7 @@
         ];
         format-plugged = "<span size='medium'></span>";
         interval = 1;
-        on-click-right = "gnome-power-statistics";
+        on-click = "gnome-power-statistics";
         states = {
           critical = 15;
           good = 95;
@@ -70,7 +70,7 @@
       "battery#2" = {
         format = "<span size='small'>{capacity}%</span>";
         interval = 30;
-        on-click-right = "gnome-power-statistics";
+        on-click = "gnome-power-statistics";
       };
       
       cava = {
@@ -116,14 +116,8 @@
           "on-scroll" = 1;
         };
         format = "{:L%A, %e %B}";
-        on-click = "morgen";
+        on-click = "open_calendar.sh";
         tooltip-format = "<tt>{calendar}</tt>";
-      };
-      
-      "clock#2" = {
-        format = "{:%d.%m}";
-        on-click = "~/.config/waybar/open_calendar.sh";
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
       
       "clock#3" = {

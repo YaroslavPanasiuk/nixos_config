@@ -8,6 +8,7 @@ local menu = "set_layout.sh us && rofi -show drun"
 local terminal = "kitty"
 local home = os.getenv("HOME")
 local colors = dofile(home .. "/.cache/wal/colors-hyprland.lua")
+local second_mon = "desc:Audio Processing Technology  Ltd TYPEC demoset-1"
 
 -- Environment Variables
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
@@ -96,6 +97,7 @@ hl.config({
     misc = {
         disable_hyprland_logo = true,
         force_default_wallpaper = -1,
+        focus_on_activate = true
     },
     
 })
@@ -130,7 +132,7 @@ hl.device({
 
 -- Monitors
 hl.monitor({ output = "eDP-1", mode = "1920x1080@120", position = "0x0", scale = 1 }) 
-hl.monitor({ output = "desc:Audio Processing Technology  Ltd TYPEC demoset-1", mode = "1920x1080@60", position = "1920x0", scale = 1 })
+hl.monitor({ output = second_mon, mode = "1920x1080@60", position = "1920x0", scale = 1 })
 hl.monitor({ output = "phone_monitor_cable", mode = "720x1520@60", position = "-360x340", scale = 2 })
 hl.monitor({ output = "phone_monitor_wifi", mode = "720x1600@30", position = "0x1080", scale = 2 }) 
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
@@ -153,8 +155,6 @@ hl.bind("ALT + P", hl.dsp.window.pseudo())
 hl.bind("ALT + T", hl.dsp.exec_cmd("Telegram &"))
 hl.bind("ALT + B", hl.dsp.exec_cmd("flatpak run life.bolls.bolls &"))
 
-hl.bind("ALT + up", hl.dsp.focus({ direction = "up" }))
-hl.bind("ALT + down", hl.dsp.focus({ direction = "down" }))
 hl.bind("ALT + G", hl.dsp.group.toggle())
 
 hl.bind("ALT + SHIFT + W", hl.dsp.exec_cmd("pkill waybar; waybar &"))
@@ -179,34 +179,18 @@ hl.bind("SHIFT + Alt_L", hl.dsp.exec_cmd("set_layout.sh"))
 hl.bind("ALT + Shift_L", hl.dsp.exec_cmd("set_layout.sh"))
 hl.bind("CONTROL + bracketleft", hl.dsp.exec_cmd("echo 'multiply speed 0.9' | socat - /tmp/mpv-socket"))
 hl.bind("CONTROL + bracketright", hl.dsp.exec_cmd("echo 'multiply speed 1.1' | socat - /tmp/mpv-socket"))
---hl.bind("CONTROL + mouse:274", hl.dsp.cursor.move({960, 540}))
-hl.bind("mouse:274", hl.dsp.exec_cmd("kando --menu 'example-menu'"), { mouse = true, release = true })
---hl.bind("CapsLock", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --caps-lock"))
+--hl.bind("CONTROL + F", hl.dsp.cursor.move({960, 540}))
+hl.bind("mouse:274", hl.dsp.global("menu.kando.Kando:example-menu"))
 
 -- BindE (Repeating Volume/Brightness bindings)
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --output-volume mute-toggle"))
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --output-volume raise --max-volume 120"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --output-volume lower --max-volume 120"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --output-volume +5 --max-volume 120"), { repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --output-volume -5 --max-volume 120"), { repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --brightness -10"))
-hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("blank_screen.sh"))
+hl.bind("ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --brightness 0"))
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --brightness +10"))
-hl.bind("Control_L + XF86MonBrightnessUp", hl.dsp.exec_cmd("ddcutil --model TYPEC setvcp 10 + 10; ddcutil --model HDMI setvcp 10 + 10"))
-hl.bind("Control_L + XF86MonBrightnessDown", hl.dsp.exec_cmd("ddcutil --model TYPEC setvcp 10 - 10; ddcutil --model HDMI setvcp 10 + 10"))
-hl.bind("CONTROL + ALT + XF86MonBrightnessUp", hl.dsp.exec_cmd("adb shell settings put system screen_brightness_mode 0; adb shell settings put system screen_brightness $(($(adb shell settings get system screen_brightness)+10))"))
-hl.bind("CONTROL + ALT + XF86MonBrightnessDown", hl.dsp.exec_cmd("adb shell settings put system screen_brightness_mode 0; adb shell settings put system screen_brightness $(($(adb shell settings get system screen_brightness)-10))"))
 hl.bind("SHIFT + XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --brightness -1"))
 hl.bind("SHIFT + XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --monitor eDP-1 --brightness +1"))
-
-
--- Absolute Workspaces (Numpad 10-18)
-local numpad_map = {
-    End = 10, Down = 11, Next = 12, Left = 13, Begin = 14, 
-    Right = 15, Home = 16, Up = 17, Prior = 18
-}
-for key, ws in pairs(numpad_map) do
-    hl.bind("ALT + KP_" .. key, hl.dsp.focus({ workspace = ws }))
-    hl.bind("ALT + SHIFT + KP_" .. key, hl.dsp.window.move({ workspace = ws }, { follow = false }))
-end
 
 -- Mouse Bindings
 hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
@@ -219,6 +203,16 @@ hl.window_rule({ name = "suppressevent_maximi", match = { class = ".*" }, suppre
 hl.window_rule({ name = "auth_req_float", match = { title = "Authentication Required" }, float = true })
 hl.window_rule({ name = "rename_float", match = { title = "Rename .*" }, float = true })
 hl.window_rule({ name = "waydroid_full", match = { title = "Waydroid" }, fullscreen = true })
+hl.window_rule({ match = { title = "NixOS GTK Command Grid" }, fullscreen = true })
+
+hl.window_rule({ 
+    match = { class = "(org.gnome.PowerStats)|(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)" }, 
+    float = true, 
+    size = "800 600", 
+    center = true,
+    rounding = 8,
+    border_size = 2,
+})
 
 hl.window_rule({
   name = "kando",
@@ -234,7 +228,8 @@ hl.window_rule({
   border_size = 0,
   no_anim = true,
   float = true,
-  pin = true
+  pin = true,
+  no_initial_focus = false
 })
 
 -- Workspace Rules
@@ -247,14 +242,30 @@ for i = 1, 9 do
   hl.bind("ALT + " .. tostring(i), hl.dsp.focus({ workspace = i }))
   hl.bind("ALT + SHIFT + " .. tostring(i), hl.dsp.window.move({ workspace = i }))
 end
+
+-- Absolute Workspaces (Numpad 10-18)
+local numpad_map = {
+    End = 10, Down = 11, Next = 12, Left = 13, Begin = 14, 
+    Right = 15, Home = 16, Up = 17, Prior = 18
+}
+for key, ws in pairs(numpad_map) do
+    hl.workspace_rule({
+        workspace = tostring(ws),
+        monitor = second_mon,
+        persistent = true
+    })
+    hl.bind("ALT + KP_" .. key, hl.dsp.focus({ workspace = ws }))
+    hl.bind("ALT + SHIFT + KP_" .. key, hl.dsp.window.move({ workspace = ws }, { follow = false }))
+end
+
 hl.bind("ALT + left", hl.dsp.focus({workspace = "r-1"}))
 hl.bind("ALT + right", hl.dsp.focus({workspace = "r+1"}))
 hl.bind("ALT + SHIFT + left", hl.dsp.window.move({workspace = "r-1"}))
 hl.bind("ALT + SHIFT + right", hl.dsp.window.move({workspace = "r+1"}))
 hl.bind("ALT + mouse_up", hl.dsp.focus({workspace = "r+1"}))
 hl.bind("ALT + mouse_down", hl.dsp.focus({workspace = "r-1"}))
-hl.bind("ALT + CONTROL + left", hl.dsp.window.move({workspace = "m-1"}))
-hl.bind("ALT + CONTROL + right", hl.dsp.window.move({workspace = "m+1"}))
+hl.bind("ALT + CONTROL + left", hl.dsp.window.move({ monitor = "eDP-1" }))
+hl.bind("ALT + CONTROL + right", hl.dsp.window.move({ monitor = second_mon }))
 
 
 
@@ -263,13 +274,12 @@ hl.bind("ALT + CONTROL + right", hl.dsp.window.move({workspace = "m+1"}))
 
 -- Autostart
 hl.on("hyprland.start", function()    
+    hl.exec_cmd("hyprctl setcursor volantes_cursors 24")
     hl.exec_cmd("hyprlock")
     hl.exec_cmd("hypridle")
     hl.exec_cmd("ydotoold")
     hl.exec_cmd("awww-daemon")
     hl.exec_cmd("systemctl --user start swayosd")
-    hl.exec_cmd("hyprctl setcursor volantes_cursors 24")
-    hl.exec_cmd("sleep 2 && hyprctl dispatch overview:close")
     hl.exec_cmd("lxqt-policykit-agent")
     hl.exec_cmd("systemctl --user start battery")
     hl.exec_cmd("systemctl --user start battery_reset")

@@ -18,15 +18,7 @@ case "$mode" in
     ;;
     "off")
         hyprland_focus_modes.sh "🗿 Focus"
-        hyprctl keyword animations:enabled 0
-        hyprctl keyword decoration:rounding 0
-        hyprctl keyword decoration:active_opacity 1.0
-        hyprctl keyword decoration:inactive_opacity 1.0
-        hyprctl keyword decoration:dim_inactive 0
-        hyprctl keyword decoration:blur:enabled 0
-        hyprctl keyword decoration:shadow:enabled 0
-        hyprctl keyword misc:disable_hyprland_logo 1
-        hyprctl keyword misc:force_default_wallpaper 0
+        hyprctl eval 'hl.config({ animations = { enabled = false }, decoration = { rounding = 0, active_opacity = 1.0, inactive_opacity = 1.0, dim_inactive = false, blur = { enabled = false }, shadow = { enabled = false } }, misc = { disable_hyprland_logo = true, force_default_wallpaper = false } })'
         echo "on" > ~/nixos/hosts/default/scripts/toggle_hyprland_decorations.txt
         notify-send -a "󰤹" "Decorations off"
     ;;
