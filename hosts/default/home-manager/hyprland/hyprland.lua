@@ -114,6 +114,14 @@ hl.gesture({
     action = "close"
 })
 
+hl.gesture({
+    fingers = 3,
+    direction = "up",
+    action = function()
+        hl.plugin.hyprtasking.toggle("cursor")
+    end
+})
+
 -- Devices
 hl.device({
     name = "ugreen-receiver--mouse",
@@ -158,6 +166,7 @@ hl.bind("ALT + B", hl.dsp.exec_cmd("flatpak run life.bolls.bolls &"))
 hl.bind("ALT + G", hl.dsp.group.toggle())
 
 hl.bind("ALT + SHIFT + W", hl.dsp.exec_cmd("pkill waybar; waybar &"))
+hl.bind("ALT + CONTROL + W", hl.dsp.exec_cmd("wallp-rofi.sh"))
 hl.bind("ALT + SHIFT + P", hl.dsp.exec_cmd("toggle_mpvpaper.sh"))
 hl.bind("ALT + F", hl.dsp.window.fullscreen())
 hl.bind("ALT + F4", hl.dsp.exec_cmd("poweroff"))
@@ -174,6 +183,7 @@ hl.bind("ALT + SHIFT + E", hl.dsp.exec_cmd("wl-paste | swappy -f -"))
 hl.bind("ALT + SHIFT + R", hl.dsp.exec_cmd("record_screen.sh"))
 hl.bind("ALT + SHIFT + O", hl.dsp.exec_cmd("record_screen.sh ao"))
 hl.bind("ALT + SHIFT + I", hl.dsp.exec_cmd("record_screen.sh ai"))
+hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd("wayfreeze & pid=$!;hyprshot -m region --clipboard-only;kill $pid"))
 
 hl.bind("SHIFT + Alt_L", hl.dsp.exec_cmd("set_layout.sh"))
 hl.bind("ALT + Shift_L", hl.dsp.exec_cmd("set_layout.sh"))
@@ -206,7 +216,7 @@ hl.window_rule({ name = "waydroid_full", match = { title = "Waydroid" }, fullscr
 hl.window_rule({ match = { title = "NixOS GTK Command Grid" }, fullscreen = true })
 
 hl.window_rule({ 
-    match = { class = "(org.gnome.PowerStats)|(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(kando)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)|(.scrcpy-wrapped)" }, 
+    match = { class = "(blueman-manager)|(org.gnome.PowerStats)|(goal-tracker)|(.goal-tracker-wrapped)|(gcolor3)|(pavucontrol)|(zenity)|(org.gnome.SystemMonitor)|(org.gnome.clocks)|(org.pulseaudio.pavucontrol)|(gnome-power-statistics)|(.blueman-manager-wrapped)" }, 
     float = true, 
     size = "800 600", 
     center = true,
@@ -269,9 +279,6 @@ hl.bind("ALT + CONTROL + right", hl.dsp.window.move({ monitor = second_mon }))
 
 
 
-
-
-
 -- Autostart
 hl.on("hyprland.start", function()    
     hl.exec_cmd("hyprctl setcursor volantes_cursors 24")
@@ -293,3 +300,46 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --watch cliphist store")
     hl.exec_cmd("hyprswitch init --size-factor 4 --custom-css ~/.config/hyprswitch/hyprswitch.css")
 end)
+
+hl.bind("ALT + TAB", function() hl.plugin.hyprtasking.toggle("cursor") end)
+hl.bind("escape", function()
+  if hl.plugin.hyprtasking.is_active() then
+    hl.plugin.hyprtasking.toggle('all')
+  end
+end, { non_consuming = true })
+hl.bind("ALT + X", function()
+  if hl.plugin.hyprtasking.is_active() then
+    hl.plugin.hyprtasking.killhovered()
+  else
+    hl.dsp.exec_cmd("hyprctl kill")
+  end
+end, { non_consuming = true })
+
+hl.config({
+  plugin = {
+    hyprtasking = {
+      layout = "grid",
+
+      gap_size = 5,
+      bg_color = 0x00000000,
+      border_size = 2,
+      exit_on_hovered = false,
+      warp_on_move_window = 1,
+      close_overview_on_reload = false,
+
+      drag_button = 0x110,   -- left mouse button
+      select_button = 0x111, -- right mouse button
+
+      gestures = {
+        enabled = false
+      },
+
+      grid = {
+        rows = 3,
+        cols = 3,
+        loop = false,
+        gaps_use_aspect_ratio = true,
+      },
+    }
+  },
+})

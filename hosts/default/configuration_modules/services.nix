@@ -15,40 +15,13 @@ in
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
-      wireplumber.enable = true; # Lua scripts removed; using defaults
-      extraLadspaPackages = [ pkgs.rnnoise-plugin ];
-      
-      extraConfig.pipewire = {
-        "filter-chain"."context.modules" = [
-          
-          { 
-            name = "libpipewire-module-filter-chain";
-            args = {
-              "node.description" = "Noise Cancel (Mic)";
-              "media.name"       = "Noise Cancel (Mic)";
-              "filter.graph" = {
-                nodes = [
-                  { type   = "ladspa";
-                    plugin = "librnnoise_ladspa";
-                    label  = "noise_suppressor_mono";
-                    name   = "rnnoise";
-                  }
-                ];
-              };
-              "capture.props" = {
-                "node.name"    = "rnnoise_input";
-                "node.passive" = true; 
-              };
-              "playback.props" = {
-                "node.name"        = "rnnoise_output";
-                "media.class"      = "Audio/Source";
-                "priority.driver"  = 30000; 
-                "priority.session" = 30000;
-              };
-            };
-          }
-
-        ];
+      wireplumber = {
+        enable = true;
+        extraConfig.bluetoothEnhancements = {
+          "monitor.bluez.properties" = {
+            "bluez5.hw-volume" = [ "hfp_ag" "hsp_ag" "a2dp_source" ];
+          };
+        };
       };
     };
 
@@ -136,5 +109,6 @@ in
     openssh.enable = true;
     blueman.enable = true;
     #netbird.enable = true;
+    mullvad-vpn.enable = true;
   };
 }

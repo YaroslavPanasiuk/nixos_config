@@ -170,11 +170,13 @@
     rsync
     speedread
     epub2txt2
+    yt-dlp
   ] ++ [
-    inputs.zen-browser.packages."${system}".default
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
-    inputs.goal-tracker.packages.${system}.default
+    inputs.goal-tracker.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.macro-grid.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.pretested.packages.${pkgs.stdenv.hostPlatform.system}.default
     (import ../scripts/volume.nix { inherit pkgs; })
     (import ../scripts/backup.nix { inherit pkgs; })
     (import ../scripts/brightness.nix { inherit pkgs; })

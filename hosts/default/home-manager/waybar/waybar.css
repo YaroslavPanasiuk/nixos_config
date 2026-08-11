@@ -401,7 +401,7 @@ window#waybar {
     background-color: shade(@color10, 1.2);
 }
 #window {
-    margin-left: 8px;
+    margin-left: 5px;
     margin-right: 8px;
 }
 #mpris{
@@ -432,3 +432,19 @@ tooltip label {
     font-weight: 400;
 }
   
+#custom-nixos-logo {
+    background-image: url("/home/yaros/Downloads/NixOS.svg");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: shade(@cursor, 1.2);
+    min-width: 16px;
+    min-height: 16px;
+    margin: 0px;
+    transition: background-image 0.5s ease-in-out, color 0.3s linear;
+}  
+
+#custom-nixos-logo:hover {
+    background-image: url("/home/yaros/Downloads/nix-snowflake-rainbow.svg");
+    color: @color1
+}

@@ -6,6 +6,10 @@ pkgs.writeShellScriptBin "wallp.sh" ''
 file=$1
 dir="$HOME/Public/Wallpapers/"
 
+if [[ $1 == "current" ]]; then
+    file=$(basename $(awww query | grep "eDP-1" | awk '{print $NF}'))
+fi
+
 if [[ ! -f "$dir$file" ]]; then
     echo "No file provided. Proceeding with a random image."
     PICS=($(ls ''${dir}))
@@ -32,10 +36,10 @@ if [[ -f "$dir$file" ]]; then
         RIGHT_PART="/tmp/wp_right.jpg"
         magick "$dir$file" -crop "''${HALF_WIDTH}x''${HEIGHT}+0+0" "$LEFT_PART"
         magick "$dir$file" -crop "''${HALF_WIDTH}x''${HEIGHT}+''${HALF_WIDTH}+0" "$RIGHT_PART"
-        awww img "$LEFT_PART" --transition-fps 60 --transition-type wave --transition-pos 20,1060  --transition-duration 2 --outputs "$OUT_L" --resize fit
-        awww img "$RIGHT_PART" --transition-fps 60 --transition-type wave --transition-pos 20,1060  --transition-duration 2 --outputs "$OUT_R" --resize fit
+        awww img "$LEFT_PART" --transition-fps 60 --transition-type wave --transition-pos 20,1060  --transition-duration 2 --outputs "$OUT_L"
+        awww img "$RIGHT_PART" --transition-fps 60 --transition-type wave --transition-pos 20,1060  --transition-duration 2 --outputs "$OUT_R"
     else
-        awww img "$dir$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2 --resize fit
+        awww img "$dir$file" --transition-fps 60 --transition-type outer --transition-pos 20,1060  --transition-duration 2
     fi
 else
     echo "file does not exist: $dir$file"

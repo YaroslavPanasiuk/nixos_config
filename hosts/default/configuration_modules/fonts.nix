@@ -19,6 +19,11 @@
       dina-font
       proggyfonts
       font-awesome
+      openmoji-color
+      fantasque-sans-mono
+      roboto
+      dejavu_fonts
+      ttf_bitstream_vera
       nerd-fonts.ubuntu
       (stdenv.mkDerivation {
         name = "ttnorms-bold";

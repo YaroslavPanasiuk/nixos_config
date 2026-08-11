@@ -7,6 +7,9 @@ pkgs.mkShell {
         (pkgs.python3.withPackages(p: with p; [
             python-pptx
             pdf2image
+            beautifulsoup4
+            requests
+            pandas
         ]))
     ];
 }

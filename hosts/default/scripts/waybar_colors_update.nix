@@ -9,7 +9,16 @@ update_waybar() {
     if [ "$active_ws" -gt 9 ]; then
         return 
     fi
+    if [ "$(hyprctl repl 'hl.plugin.hyprtasking.is_active()')" = "true" ]; then
+        return
+    fi
     window_count=$(hyprctl clients -j | jq "map(select(.workspace.id == $(hyprctl activeworkspace -j | jq -r '.id')))" | jq "map(select(.floating == false)) | length")
+    
+    if [ "$window_count" -eq 0 ]; then
+        echo '{"text": "     NixOS"}' > ~/.config/waybar/logo.txt
+    else
+        echo '{"text": ""}' > ~/.config/waybar/logo.txt
+    fi
 
     ignore_list=("kitty")
     ignored_count=0
@@ -134,12 +143,6 @@ EOF
         general = { gaps_out = 5, gaps_in = 3, border_size = 2 } 
     })'
 
-    hyprctl keyword decoration:inactive_opacity 0.85
-    hyprctl keyword decoration:blur:enabled true
-    hyprctl keyword general:gaps_out 5
-    hyprctl keyword general:gaps_in 3
-    hyprctl keyword general:border_size 2
-    hyprctl keyword decoration:rounding 8
     fi
     # Reload Waybar
 }

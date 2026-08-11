@@ -214,7 +214,7 @@
       source = ./rofi;
     };
     "dunst" = {
-      enable = false;
+      enable = true;
       recursive = true;
       source = ./dunst;
     };

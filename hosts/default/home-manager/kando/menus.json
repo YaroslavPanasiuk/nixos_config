@@ -62,16 +62,6 @@
               {
                 "type": "command",
                 "data": {
-                  "command": "connect_phone_mic.sh",
-                  "delayed": false
-                },
-                "name": "Connect mic",
-                "icon": "mic",
-                "iconTheme": "material-symbols-rounded"
-              },
-              {
-                "type": "command",
-                "data": {
                   "command": "connect_phone.sh",
                   "delayed": false
                 },

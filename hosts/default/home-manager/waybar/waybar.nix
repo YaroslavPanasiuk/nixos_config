@@ -1,5 +1,7 @@
 { config, pkgs, inputs, ... }:
-
+let
+  user = import ../../configuration_modules/user.nix;
+in
 { 
   programs.waybar = {
     enable = true;
@@ -47,7 +49,7 @@
       
       "battery#1" = {
         format = "<span size='large'>{icon}</span>";
-        format-charging = "<span size='medium'></span> ";
+        format-charging = " ";
         format-full = "<span size='large'>{icon}</span>";
         format-good = "<span size='large'>{icon}</span>";
         format-icons = [
@@ -57,7 +59,7 @@
           " "
           " "
         ];
-        format-plugged = "<span size='medium'></span>";
+        format-plugged = " ";
         interval = 1;
         on-click = "gnome-power-statistics";
         states = {
@@ -140,7 +142,7 @@
       };
       
       cpu = {
-        format = "<span > </span><span size='small'>{usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}</span>";
+        format = "<span size='large'> </span><span size='small'>{usage}% {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}</span>";
         format-icons = [
           "<span color='#00FF00'>▁</span>"
           "<span color='#80FF00'>▂</span>"
@@ -217,7 +219,7 @@
       };
       
       disk = {
-        format = " <span size='small'>{percentage_used}%</span>";
+        format = "<span size='large'></span> <span size='small'>{percentage_used}%</span>";
         interval = 30;
         on-click = "gnome-system-monitor -f";
         on-click-right = "baobab";
@@ -330,11 +332,11 @@
       
       "hyprland/window" = {
         format = "{title:.25}";
-        tooltip = false;
+        tooltip = true;
         icon = true;
         icon-size = 17;
         rewrite = {
-          "" = "<span size='large'></span> NixOs";
+          "${user.name}@nixos.*" = "kitty 󰄛";
         };
         separate-outputs = true;
       };
@@ -343,14 +345,15 @@
         format = "{icon}";
         signal = 8;
         format-icons = {
-          active = "<span size='small'>󰪥</span>";
-          default = "<span size='small'>󰺕</span>";
-          empty = "<span size='small'>󰄰</span>";
+          active = "<span size='large'>󰪥</span>";
+          default = "<span size='large'>󰺕</span>";
+          empty = "<span size='large'>󰄰</span>";
         };
+        "on-click" = "activate";
       };
       
       memory = {
-        format = " <span size='small'>{}% </span>";
+        format = "<span size='large'></span> <span size='small'>{}% </span>";
         on-click = "gnome-system-monitor -r";
         tooltip-format = "{used} GB/{total} GB; Swap: {swapAvail} GB";
       };
@@ -362,7 +365,8 @@
       ];
       
       modules-left = [
-        "custom/wallpaper_change"
+        #"custom/wallpaper_change"
+        "custom/nixos-logo"
         "hyprland/window"
         "wlr/taskbar"
         "mpris"
@@ -380,8 +384,8 @@
       ];
       
       mpris = {
-        format = "{player_icon} <span size='small'><i>{title:.20}</i></span> ";
-        format-paused = "{player_icon} <span size='small'><i>{title:.20}</i></span> ";
+        format = "<span size='large'>{player_icon}</span> <span size='small'><i>{title:.20}</i></span> <span size='large'></span>";
+        format-paused = "<span size='large'>{player_icon}</span> <span size='small'><i>{title:.20}</i></span> <span size='large'></span>";
         player-icons = {
           chromium = "";
           firefox = "";
@@ -405,8 +409,8 @@
       
       "pulseaudio#1" = {
         format = "<span size='large'>{icon}</span>";
-        format-bluetooth = "{icon} {format_source}";
-        format-bluetooth-muted = " {icon} {format_source}";
+        format-bluetooth = "{icon}<span size='large'>{format_source}</span>";
+        format-bluetooth-muted = "<span size='large'></span> {icon}<span size='large'>{format_source}</span>";
         format-icons = {
           car = " ";
           default = [
@@ -420,9 +424,9 @@
           phone = " ";
           portable = " ";
         };
-        format-muted = "<span >󰖁</span>";
-        format-source = "";
-        format-source-muted = " ";
+        format-muted = "󰖁";
+        format-source = "";
+        format-source-muted = "";
         on-click = "pavucontrol";
         on-click-right = "volume.sh mute";
         on-scroll-down = "volume.sh up 2";
@@ -431,10 +435,10 @@
       
       "pulseaudio#2" = {
         format = "<span size='small'>{volume}%</span>";
-        format-bluetooth = "{volume}%";
+        format-bluetooth = "<span size='small'>{volume}%</span>";
         format-bluetooth-muted = "";
         format-muted = "<span size='small'>{volume}%</span>";
-        format-source = "{volume}%";
+        format-source = "<span size='small'>{volume}%</span>";
         format-source-muted = "";
         on-click = "pavucontrol";
         on-click-right = "volume.sh mute";
@@ -469,10 +473,19 @@
         icon-size = 16;
         ignore-list = [ "kitty" ];
         "max-length" = 15;
-        on-click = "activate";
+        "on-click" = "activate";
         "on-click-middle" = "close";
         "on-click-right" = "close";
         tooltip-format = "{title}";
+      };
+      "custom/nixos-logo" = {
+        "exec" = "cat ~/.config/waybar/logo.txt";
+        "return-type" = "json";
+        "format" = "{}";
+        "tooltip" = false;
+        "interval" = 1;
+        "on-click" = "wallp.sh";
+        "on-click-right" = "wallp-rofi.sh";
       };
     }];
   };
