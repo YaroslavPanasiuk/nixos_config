@@ -18,8 +18,20 @@ in
       wireplumber = {
         enable = true;
         extraConfig.bluetoothEnhancements = {
-          "monitor.bluez.properties" = {
-            "bluez5.hw-volume" = [ "hfp_ag" "hsp_ag" "a2dp_source" ];
+          "10-soundcore-a2dp" = {
+            "monitor.bluez.rules" = [
+              {
+                matches = [
+                  { "device.name" = "~bluez_card.*F4_2B_7D_64_02_17"; }
+                ];
+                actions = {
+                  update-props = {
+                    "bluez5.auto-connect" = [ "a2dp_sink" ];
+                    "bluez5.hw-volume" = [ ];
+                  };
+                };
+              }
+            ];
           };
         };
       };

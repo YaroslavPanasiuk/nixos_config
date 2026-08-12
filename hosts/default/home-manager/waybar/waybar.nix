@@ -19,11 +19,20 @@ in
         device = "intel_backlight";
         format = "<span size='large'>{icon}</span>";
         format-icons = [
-          "󰃞 "
-          "󰃞 "
-          "󰃟 "
-          "󰃝 "
-          "󰃠 "
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
+          ""
         ];
         on-click = "redshift.sh";
         on-scroll-down = "brightness.sh up 2";
@@ -49,18 +58,25 @@ in
       
       "battery#1" = {
         format = "<span size='large'>{icon}</span>";
-        format-charging = " ";
+        format-charging = "󰂄 ";
         format-full = "<span size='large'>{icon}</span>";
         format-good = "<span size='large'>{icon}</span>";
         format-icons = [
-          " "
-          " "
-          " "
-          " "
-          " "
+          "󰂎"
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰂃"
         ];
-        format-plugged = " ";
-        interval = 1;
+        format-plugged = "󰂄 ";
+        interval = 2;
         on-click = "gnome-power-statistics";
         states = {
           critical = 15;
@@ -409,10 +425,10 @@ in
       
       "pulseaudio#1" = {
         format = "<span size='large'>{icon}</span>";
-        format-bluetooth = "{icon}<span size='large'>{format_source}</span>";
-        format-bluetooth-muted = "<span size='large'></span> {icon}<span size='large'>{format_source}</span>";
+        format-bluetooth = "{icon}<span size='large'> {format_source}</span>";
+        format-bluetooth-muted = "<span size='large'></span> {icon}<span size='large'> {format_source}</span>";
         format-icons = {
-          car = " ";
+          car = "";
           default = [
             "󰕿"
             "󰖀"

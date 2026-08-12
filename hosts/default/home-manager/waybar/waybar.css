@@ -280,6 +280,7 @@ window#waybar {
 #battery {
     background-color: rgba(0, 0, 0, 0);
     color: shade(@color3, 1.2);
+    margin: 0 5px;
 }
 #battery_group:hover {
     background-color: rgba(0, 0, 0, 0);

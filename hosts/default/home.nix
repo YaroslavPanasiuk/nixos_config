@@ -52,6 +52,6 @@ in
       recursive = true;
     };
   };
-
+  services.mpris-proxy.enable = true;
   programs.home-manager.enable = true;
 }

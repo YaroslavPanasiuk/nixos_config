@@ -3,6 +3,8 @@
 pkgs.writeShellScriptBin "backup.sh" '' 
 #!/bin/sh
 
+read -p "Which branch to push? ('m' - main, 'l' - legion): " branch
+
 mkdir ~/backup
 
 sed -i "s/$USER/__user__/g" ~/nixos/hosts/default/configuration_modules/user.nix
@@ -18,7 +20,6 @@ cp ~/Public/CurrentWallpaper/BlurredBackground.png /run/media/$USER/yaros_usb/ve
 
 cd ~/nixos
 
-read -p "Which branch to push? ('m' - main, 'l' - legion): " branch
 if [ $branch == 'm' ]; then
     git switch main
     git add .
