@@ -171,6 +171,7 @@
     speedread
     epub2txt2
     yt-dlp
+    inotify-tools
   ] ++ [
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
@@ -242,5 +243,6 @@
     (import ../scripts/connect_phone_mic.nix { inherit pkgs; })
     (import ../scripts/select_adb_device.nix { inherit pkgs; })
     (import ../scripts/speed_read.nix { inherit pkgs; })
+    (import ../scripts/watchdog.nix { inherit pkgs; })
   ];
 }

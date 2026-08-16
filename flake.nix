@@ -84,9 +84,6 @@
     homeConfigurations.default_user = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          inputs.hyprpanel.overlay
-        ];
       };
       modules = [ 
         ./hosts/default/home.nix 

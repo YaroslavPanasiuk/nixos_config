@@ -9,15 +9,13 @@ in
       inputs.home-manager.nixosModules.default
       inputs.hyprland.nixosModules.default
       ./configuration_modules/boot.nix
-      #./configuration_modules/scripts.nix
+      ./configuration_modules/systemd.nix
       ./configuration_modules/services.nix
       ./configuration_modules/programs.nix
       ./configuration_modules/extra_packages.nix
       ./configuration_modules/fonts.nix
       ./configuration_modules/hardware.nix
     ];  
-
-  systemd.packages = [ pkgs.libinput-gestures ];
 
   nixpkgs.overlays = [ 
     #(import ./overlays/zerotierone.nix) 
@@ -105,10 +103,20 @@ in
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  fileSystems."/mnt/secondary" = {
-    device = "/dev/disk/by-uuid/10578800-1dda-4ad7-a410-8c2735ff26fb";
-    fsType = "ext4";
-    options = [ "defaults" "rw" "exec" "nofail" ];
+  fileSystems."/mnt/server_nas" = {
+    device = "//100.113.11.199/NetBird_NAS";
+    fsType = "cifs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=60"
+      "x-systemd.device-timeout=5s"
+      "x-systemd.mount-timeout=5s"
+      "username=yaros"
+      "password=1246"
+      "uid=1000"
+      "gid=100"
+    ];
   };
 
   nixpkgs.config.permittedInsecurePackages = [

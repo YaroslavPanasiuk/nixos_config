@@ -1,78 +1,91 @@
 #!/usr/bin/env bash
+set -e
 
-STATE_FILE="/tmp/phone_mic_state"
-adb disconnect
-
-if [ -f "$STATE_FILE" ]; then
-    source "$STATE_FILE"
-    
-    kill "$SCRCPY_PID" 2>/dev/null
-    pw-dump | jq '.[] | select(.info.props."node.name" == "PhoneMic") | .id' | xargs -r -n 1 pw-cli destroy
-    
-    rm "$STATE_FILE"
-    notify-send "scrcpy" "Disconnected"
-else
-    NODE_OUTPUT=$(pw-cli create-node adapter '{ factory.name=support.null-audio-sink node.name="PhoneMic" node.description="Phone_Mic" media.class=Audio/Source/Virtual audio.position=[ MONO ] object.linger=true }')    
-    adb start-server
-    serial_num=$(select_adb_device.sh)
-    echo $serial_num
-	hotspot=$(adb -s $serial_num shell ip -f inet addr show wlan1 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-	ip=$(adb -s $serial_num shell ip -f inet addr show wlan0 | grep "inet " | awk '{print $2}' | cut -d/ -f1)
-	if [ -z "$ip" ]; then
-		ip=$hotspot
-	fi
-    
-	if [ -n "$ip" ]; then
-		adb -s $serial_num tcpip 5555
-		connected="false"
-		for i in {1..10}; do
-            sleep 0.5
-            if [ "$(adb connect "$ip:5555" | awk '{print $1}')" = "connected" ]; then 
-				scrcpy -s "$ip:5555" --audio-source=mic --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 > /dev/null 2>&1 &
-				connected="true"
-				echo "connected via wifi"
-				break
-			fi
-        done
-		if [ "$connected" = "false" ]; then 
-			scrcpy -s $serial_num --audio-source=mic --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 > /dev/null 2>&1 &
-			echo "connected via cable"
-		fi
-	else 
-		scrcpy -s $serial_num --audio-source=mic --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video0 > /dev/null 2>&1 &
-		echo "connected via cable"
-	fi
-    SCRCPY_PID=$!
-    
-    (
-        for i in {1..10}; do
-            sleep 0.5
-            if pw-link -o | grep -qi "SDL Application.*output_FL"; then
-                pw-dump | jq -r '
-                    [ .[] | select(.info.props."node.name" == "SDL Application") | .id ] as $ids |
-                    .[] | select(.type == "PipeWire:Interface:Link") |
-                    select((.info.props."link.output.node" | IN($ids[])) or (.info.props."link.input.node" | IN($ids[]))) |
-                    .id' | xargs -r -n 1 pw-link -d
-                pw-link "SDL Application:output_FL" "PhoneMic:input_MONO"
-                pw-link "SDL Application:output_FR" "PhoneMic:input_MONO"
-                break
-            else 
-                if pw-link -o | grep -qi "scrcpy:output_FL"; then
-                    pw-dump | jq -r '
-                        [ .[] | select(.info.props."node.name" == "scrcpy") | .id ] as $ids |
-                        .[] | select(.type == "PipeWire:Interface:Link") |
-                        select((.info.props."link.output.node" | IN($ids[])) or (.info.props."link.input.node" | IN($ids[]))) |
-                        .id' | xargs -r -n 1 pw-link -d
-                    pw-link "scrcpy:output_FL" "PhoneMic:input_MONO"
-                    pw-link "scrcpy:output_FR" "PhoneMic:input_MONO"
-                    break
-                fi
-            fi
-        done
-    ) &
-    pactl set-default-source PhoneMic
-    
-    echo "SCRCPY_PID=$SCRCPY_PID" > "$STATE_FILE"
-    
-    notify-send "scrcpy" "Phone Camera and Microphone Connected"
+if [ "$EUID" -ne 0 ]; then
+  echo "Error: Execute this script as root."
+  exit 1
 fi
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "Usage: $0 <github_repo_url> <entry_point>"
+  echo "Example: $0 https://github.com/user/repo.git 'python3 -m bot.main'"
+  exit 1
+fi
+
+REPO_URL=$1
+APP_NAME=$(basename "$REPO_URL" .git)
+ENTRY_POINT=$2
+INSTALL_DIR="/home/yaros/Projects/$APP_NAME"
+SERVICE_FILE="/etc/systemd/system/${APP_NAME}.service"
+ENV_FILE="$INSTALL_DIR/.env"
+WEBHOOK_CONF="/etc/webhook.json"
+REDEPLOY_SCRIPT="/home/yaros/Projects/redeploy_python_app.sh"
+HOOK_ID="${APP_NAME}-update"
+
+echo "Cloning repository..."
+git clone "$REPO_URL" "$INSTALL_DIR"
+sudo git config --global --add safe.directory $INSTALL_DIR
+
+echo "Setting up virtual environment..."
+cd "$INSTALL_DIR"
+python3 -m venv venv
+
+if [ -f "requirements.txt" ]; then
+  echo "Installing dependencies..."
+  ./venv/bin/pip install -r requirements.txt
+fi
+
+echo "Configuring environment file..."
+if [ ! -f "$ENV_FILE" ]; then
+  cp "$INSTALL_DIR/.env.example" "$ENV_FILE"
+  chmod 600 "$ENV_FILE"
+fi
+
+echo "Updating webhook JSON configuration..."
+if [ ! -f "$WEBHOOK_CONF" ]; then
+  echo "[]" > "$WEBHOOK_CONF"
+fi
+
+jq --arg id "$HOOK_ID" \
+   --arg cmd "$REDEPLOY_SCRIPT" \
+   --arg app "$APP_NAME" \
+   --arg wd "$INSTALL_DIR" \
+   'map(select(.id != $id)) + [{
+     "id": $id, 
+     "execute-command": $cmd, 
+     "command-working-directory": $wd,
+     "pass-arguments-to-command": [
+       {
+         "source": "string",
+         "name": $app
+       }
+     ]
+   }]' \
+   "$WEBHOOK_CONF" > "${WEBHOOK_CONF}.tmp" && mv "${WEBHOOK_CONF}.tmp" "$WEBHOOK_CONF"
+
+echo "Creating systemd service..."
+cat <<EOF > "$SERVICE_FILE"
+[Unit]
+Description=$APP_NAME Python Application
+After=network.target
+
+[Service]
+Type=simple
+Environment="PYTHONUNBUFFERED=1"
+User=root
+WorkingDirectory=$INSTALL_DIR
+ExecStart=$INSTALL_DIR/venv/bin/$ENTRY_POINT
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+echo "Starting service..."
+systemctl daemon-reload
+systemctl enable --now "$APP_NAME"
+
+echo "Deployment complete."
+echo "Please add your environment variables to $ENV_FILE, then start the service:"
+echo "sudo systemctl enable --now $APP_NAME"

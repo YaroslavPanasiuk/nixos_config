@@ -120,7 +120,7 @@ in
     spice-vdagentd.enable = true;
     openssh.enable = true;
     blueman.enable = true;
-    #netbird.enable = true;
+    netbird.enable = true;
     mullvad-vpn.enable = true;
   };
 }
