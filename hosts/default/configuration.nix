@@ -57,6 +57,9 @@ in
   users.users.${user.name} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "libvirt" "kvm" "adbusers" "docker" "video" "i2c"];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBdjNvMtfqa4Mu3W3yIS5Cxyp8OHk8hKg0zOThcPjgzC root@nixos"
+    ];
   };
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnfree = true;
@@ -83,16 +86,18 @@ in
     };
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  nix.settings.auto-optimise-store = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix.extraOptions = ''
     trusted-users = root yarko
   '';
-
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]);
 
   environment.sessionVariables = {
     GTK_TOOLTIP_TIMEOUT = "1";
@@ -103,25 +108,63 @@ in
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  fileSystems."/mnt/server_nas" = {
-    device = "//100.113.11.199/NetBird_NAS";
-    fsType = "cifs";
+  system.fsPackages = [ pkgs.sshfs ];
+  programs.fuse.userAllowOther = true;
+
+  #fileSystems."/mnt/server_nas" = {
+  #  device = "//100.113.11.199/NetBird_NAS";
+  #  fsType = "cifs";
+  #  options = [
+  #    "x-systemd.automount"
+  #    "x-systemd.requires=network-online.target"
+  #    "noauto"
+  #    "x-systemd.idle-timeout=60"
+  #    "x-systemd.device-timeout=5s"
+  #    "x-systemd.mount-timeout=5s"
+  #    "noauto"
+  #    "x-gvfs-hide"
+  #    "username=yaros"
+  #    "password=1246"
+  #  ];
+  #};
+
+  fileSystems."/mnt/server_lviv" = {
+    device = "yaros@92.253.238.166:/home/yaros";
+    fsType = "fuse.sshfs";
     options = [
-      "x-systemd.automount"
+      "port=22022"
+      "IdentityFile=/root/.ssh/id_ed25519"
+      "StrictHostKeyChecking=accept-new"
+      "allow_other"
       "noauto"
-      "x-systemd.idle-timeout=60"
-      "x-systemd.device-timeout=5s"
-      "x-systemd.mount-timeout=5s"
-      "username=yaros"
-      "password=1246"
-      "uid=1000"
-      "gid=100"
+      "x-gvfs-hide"
+      "_netdev"
+      "x-systemd.automount"
+      "x-systemd.requires=network-online.target"
+      "reconnect"
     ];
-  };
+  }; 
+
+  #fileSystems."/mnt/server_xiaomi" = {
+  #  device = "root@92.253.238.166:/";
+  #  fsType = "fuse.sshfs";
+  #  options = [
+  #    "port=2223"
+  #    "IdentityFile=/root/.ssh/id_ed25519"
+  #    "StrictHostKeyChecking=accept-new"
+  #    "allow_other"
+  #    "_netdev"
+  #    "noauto"
+  #    "x-gvfs-hide"
+  #    "x-systemd.automount"
+  #    "x-systemd.requires=network-online.target"
+  #    "reconnect"
+  #  ];
+  #}; 
 
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.10"
-    "ventoy-1.1.12"
+    "ventoy-1.1.18"
+    "firefox-esr-140-bin-unwrapped-140.17.0esr"
   ];
 
   system.stateVersion = "26.05";

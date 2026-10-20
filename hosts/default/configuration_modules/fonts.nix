@@ -23,7 +23,7 @@
       fantasque-sans-mono
       roboto
       dejavu_fonts
-      ttf_bitstream_vera
+      ttf-bitstream-vera
       nerd-fonts.ubuntu
       (stdenv.mkDerivation {
         name = "ttnorms-bold";

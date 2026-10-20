@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   watchdog = import ../scripts/watchdog.nix { inherit pkgs; };
+  sync_folders = import ../scripts/sync_folders.nix { inherit pkgs; };
 in
 {  
   systemd = {
@@ -19,6 +20,19 @@ in
             Restart = "always";
             RestartSec = "10s";
         };
+    };
+
+    user.services.multi-sync-scheduler = {
+      description = "cron rsync multiple folders scheduler";
+      serviceConfig.ExecStart = "${sync_folders}/bin/sync_folders.sh";
+    };
+
+    user.timers.multi-sync-scheduler = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "Sun *-*-* 00:00:00";
+        Persistent = true;
+      };
     };
 
   };

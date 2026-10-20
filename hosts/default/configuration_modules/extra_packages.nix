@@ -62,7 +62,6 @@
     bc
     xkill
     xauth
-    pinentry-gtk2
     gnum4
     parted
     pandoc
@@ -98,6 +97,7 @@
     zeitgeist
     xclip
     cifs-utils
+    sshfs
     libreoffice
     poppler-utils
     gimp
@@ -110,7 +110,6 @@
     hyprshot
     protonup-ng
     mission-center
-    pulseaudioFull
     pipewire
     playerctl
     ani-cli
@@ -157,7 +156,6 @@
     python314Packages.pip
     python314Packages.virtualenv
     davinci-resolve
-    discord-ptb
     mesa-demos
     pciutils
     peazip
@@ -172,6 +170,11 @@
     epub2txt2
     yt-dlp
     inotify-tools
+    samba
+    pulseaudio
+    whatsapp-electron
+    zoom-us
+    zotero
   ] ++ [
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland
@@ -244,5 +247,7 @@
     (import ../scripts/select_adb_device.nix { inherit pkgs; })
     (import ../scripts/speed_read.nix { inherit pkgs; })
     (import ../scripts/watchdog.nix { inherit pkgs; })
+    (import ../scripts/toggle_acer_monitor.nix { inherit pkgs; })
+    (import ../scripts/rofi_trans.nix { inherit pkgs; })
   ];
 }

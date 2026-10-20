@@ -1,7 +1,5 @@
 { config, pkgs, ... }:
 let
-  otis = import ./otis.nix { inherit pkgs; };
-  infinity = import ./Infinity.nix { inherit pkgs; };
   skeuos = import ./skeuos.nix { inherit pkgs; };
 in
 {

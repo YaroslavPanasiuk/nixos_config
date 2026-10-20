@@ -6,7 +6,7 @@ in
   boot = {
 
     plymouth = {
-      enable = true;
+      enable = false;
       theme = "circle_hud";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
@@ -15,7 +15,7 @@ in
       ];};
 
     consoleLogLevel = 0;
-    initrd.verbose = false;
+    initrd.verbose = true;
     initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     kernelParams = [
       "quiet"

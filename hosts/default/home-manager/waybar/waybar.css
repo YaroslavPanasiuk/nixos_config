@@ -434,7 +434,7 @@ tooltip label {
 }
   
 #custom-nixos-logo {
-    background-image: url("/home/yaros/Downloads/NixOS.svg");
+    background-image: url("../../nixos/hosts/default/home-manager/waybar/NixOS.svg");
     background-position: left;
     background-repeat: no-repeat;
     background-size: contain;
@@ -446,6 +446,6 @@ tooltip label {
 }  
 
 #custom-nixos-logo:hover {
-    background-image: url("/home/yaros/Downloads/nix-snowflake-rainbow.svg");
+    background-image: url("../../nixos/hosts/default/home-manager/waybar/nix-snowflake-rainbow.svg");
     color: @color1
 }

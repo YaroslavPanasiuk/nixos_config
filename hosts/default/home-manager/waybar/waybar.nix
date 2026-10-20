@@ -136,6 +136,11 @@ in
         format = "{:L%A, %e %B}";
         on-click = "open_calendar.sh";
         tooltip-format = "<tt>{calendar}</tt>";
+        smooth-scrolling-threshold = 1.5;
+        actions = {
+          "on-scroll-up" = "shift_down";
+          "on-scroll-down" = "shift_up";
+        };
       };
       
       "clock#3" = {
@@ -361,9 +366,9 @@ in
         format = "{icon}";
         signal = 8;
         format-icons = {
-          active = "<span size='large'>󰪥</span>";
-          default = "<span size='large'>󰺕</span>";
-          empty = "<span size='large'>󰄰</span>";
+          active = "<span>󰪥</span>";
+          default = "<span>󰺕</span>";
+          empty = "<span>󰄰</span>";
         };
         "on-click" = "activate";
       };

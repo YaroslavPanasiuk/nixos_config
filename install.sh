@@ -37,8 +37,6 @@ git clone https://github.com/YaroslavPanasiuk/obsidian.git ~/Documents/test
 
 wallp.sh
 
-ln -s /home/yaros/.cache/wal/gtk-theme.css /home/yaros/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
-
 rm /home/$USER/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
 ln -s /home/$USER/.cache/wal/gtk-theme.css /home/$USER/nixos/hosts/default/home-manager/gtk/Otis/gtk-theme.css
 

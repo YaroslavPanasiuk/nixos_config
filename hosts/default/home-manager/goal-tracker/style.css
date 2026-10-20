@@ -8,6 +8,7 @@
     font-size: 14px;
     box-shadow: none;
     border: none;
+    transition: background 0.3s, color 0.3s;
 }
 
 #main_vbox {
@@ -21,11 +22,15 @@
     background-image: linear-gradient(135deg, @color4a, @color5a, @color6a);
 }
 
-#datetime_label, #progress_label {
+#italic_label, #datetime_label{
     font-size: 11px;
     font-style: italic; 
     padding: 0px 5px;
     border-radius: 6px;
+}
+
+#datetime_label_event_box:hover {
+    border-bottom: 1px solid @cursor;
 }
 
 #progressbar-time * {
@@ -113,4 +118,29 @@
 #add_task_button  > *{
     font-size: 30px;
     margin-right: 4px;
+}
+
+#label {
+    font-family: monospace;
+    color: @cursor;
+}
+
+#entry button.up {
+        background-color: shade(@color1, 1.1);
+        color: @cursor;
+        border: none;
+}
+
+#entry button.down {
+        background-color: shade(@color1, 0.9);
+        color: @cursor;
+        border: none;
+}
+
+#entry button:hover {
+    background: transparent;
+    background-image: linear-gradient(135deg, shade(@color5, 1.1), shade(@color6, 1.1), @color4);
+    color: @background;
+    border: none;
+    box-shadow: none;
 }

@@ -10,22 +10,12 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.56.0";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #Hyprspace = {
-    #  url = "github:KZDKM/Hyprspace";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
-
-    hyprtasking = {
-      url = "github:raybbian/hyprtasking";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    #hyprsplit = {
-    #  url = "github:shezdy/hyprsplit";
+    #hyprtasking = {
+    #  url = "github:raybbian/hyprtasking";
     #  inputs.hyprland.follows = "hyprland";
     #};
 
@@ -47,7 +37,7 @@
 
     pretested.url = "github:YaroslavPanasiuk/pretested";
 
-    nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
+    #nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

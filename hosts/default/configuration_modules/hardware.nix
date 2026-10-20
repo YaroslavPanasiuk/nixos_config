@@ -16,26 +16,20 @@ in
 
     bluetooth = {
         enable = true;
-        powerOnBoot = false;
-        settings = {
-            General = {
-                Enable = "Source,Sink,Media,Socket";
-                Experimental = false;
-            };
-        };
+        settings.General.Experimental = "true";
     };
 
     printers = {
         ensurePrinters = [
-        {
-            name = "Canon_MF420_Series";
-            location = "Studpro";
-            deviceUri = "dnssd://Canon%20MF420%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-00bbc1742b65";
-            model = "drv:///sample.drv/generic.ppd";
-            ppdOptions = {
-            PageSize = "A4";
-            };
-        }
+            {
+                name = "Canon_MF420_Series";
+                location = "Studpro";
+                deviceUri = "dnssd://Canon%20MF420%20Series._ipp._tcp.local/?uuid=6d4ff0ce-6b11-11d8-8020-00bbc1742b65";
+                model = "drv:///sample.drv/generic.ppd";
+                ppdOptions = {
+                    PageSize = "A4";
+                };
+            }
         ];
         ensureDefaultPrinter = "Canon_MF420_Series";
     };

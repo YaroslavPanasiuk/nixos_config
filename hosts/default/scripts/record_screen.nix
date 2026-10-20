@@ -16,7 +16,7 @@ case "$1" in
         ;;
     "ai")
         notify-send -t 2000 -i ~/nixos/hosts/default/scripts/resources/rec-button.png "Screen recorder" "Started recording with audio input"
-        wf-recorder --audio="rnnoise_output" -f "$HOME/Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4" -o eDP-1
+        wf-recorder --audio="$(pactl get-default-source)" -f "$HOME/Videos/recordings/$(date +'%d.%m.%Y_%H:%M:%S').mp4" -o eDP-1
         ;;
     "ac")
         pactl unload-module $(pactl list short modules | grep combined_sink | awk '{print $1}')

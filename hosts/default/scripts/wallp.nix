@@ -14,8 +14,7 @@ if [[ ! -f "$dir$file" ]]; then
     echo "No file provided. Proceeding with a random image."
     PICS=($(ls ''${dir}))
     RANDOMPICS=''${PICS[ $RANDOM % ''${#PICS[@]} ]}
-    wallp.sh ''${RANDOMPICS}
-    exit 1
+    file=''${RANDOMPICS}
 fi
 
 WIDTH=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=noprint_wrappers=1:nokey=1 "$dir$file")

@@ -12,27 +12,17 @@ in
 
     pipewire = {
       enable = true;
+      audio.enable = true;
       alsa.enable = true;
-      alsa.support32Bit = true;
       pulse.enable = true;
-      wireplumber = {
-        enable = true;
-        extraConfig.bluetoothEnhancements = {
-          "10-soundcore-a2dp" = {
-            "monitor.bluez.rules" = [
-              {
-                matches = [
-                  { "device.name" = "~bluez_card.*F4_2B_7D_64_02_17"; }
-                ];
-                actions = {
-                  update-props = {
-                    "bluez5.auto-connect" = [ "a2dp_sink" ];
-                    "bluez5.hw-volume" = [ ];
-                  };
-                };
-              }
-            ];
-          };
+      jack.enable = true;
+      wireplumber.extraConfig.bluetoothEnhancements = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" "a2dp_sink" "a2dp_source" ];
+          "bluez5.auto-connect" = [ "a2dp_sink" ];
         };
       };
     };
@@ -112,7 +102,6 @@ in
     dbus.enable = true;
     dbus.implementation = "broker";
     touchegg.enable = true;
-    pulseaudio.enable = false;
     flatpak.enable = true;
     gvfs.enable = true;
     gvfs.package = lib.mkForce pkgs.gnome.gvfs;

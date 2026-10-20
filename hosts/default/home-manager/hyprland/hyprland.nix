@@ -8,7 +8,7 @@
     systemd.variables = ["--all"];
 
     plugins = [
-      inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking      
+      #inputs.hyprtasking.packages.${pkgs.stdenv.hostPlatform.system}.hyprtasking      
     ];
 
     extraConfig = builtins.readFile ./hyprland.lua;

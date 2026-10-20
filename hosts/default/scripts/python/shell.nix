@@ -9,6 +9,7 @@ pkgs.mkShell {
             pdf2image
             beautifulsoup4
             requests
+            matplotlib
             pandas
         ]))
     ];
