@@ -7,7 +7,7 @@ in
     [
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
-      inputs.hyprland.nixosModules.default
+      #inputs.hyprland.nixosModules.default
       ./configuration_modules/boot.nix
       ./configuration_modules/systemd.nix
       ./configuration_modules/services.nix
@@ -15,11 +15,12 @@ in
       ./configuration_modules/extra_packages.nix
       ./configuration_modules/fonts.nix
       ./configuration_modules/hardware.nix
+      ./configuration_modules/filesystems.nix
     ];  
 
   nixpkgs.overlays = [ 
     #(import ./overlays/zerotierone.nix) 
-    #(import ./overlays/varia.nix) 
+    (import ./overlays/varia.nix) 
   ];
  
   networking = {
@@ -65,7 +66,7 @@ in
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.packageOverrides = pkgs: {
-    unstable = import <nixos-unstable> { };
+    #unstable = import <nixos-unstable> { };
     #kando-180 = pkgs.callPackage ./packages/kando-180.nix { };
     #scrcpy-33 = pkgs.callPackage ./packages/scrcpy-33.nix { };
   };
@@ -108,62 +109,8 @@ in
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  system.fsPackages = [ pkgs.sshfs ];
-  programs.fuse.userAllowOther = true;
-
-  #fileSystems."/mnt/server_nas" = {
-  #  device = "//100.113.11.199/NetBird_NAS";
-  #  fsType = "cifs";
-  #  options = [
-  #    "x-systemd.automount"
-  #    "x-systemd.requires=network-online.target"
-  #    "noauto"
-  #    "x-systemd.idle-timeout=60"
-  #    "x-systemd.device-timeout=5s"
-  #    "x-systemd.mount-timeout=5s"
-  #    "noauto"
-  #    "x-gvfs-hide"
-  #    "username=yaros"
-  #    "password=1246"
-  #  ];
-  #};
-
-  fileSystems."/mnt/server_lviv" = {
-    device = "yaros@92.253.238.166:/home/yaros";
-    fsType = "fuse.sshfs";
-    options = [
-      "port=22022"
-      "IdentityFile=/root/.ssh/id_ed25519"
-      "StrictHostKeyChecking=accept-new"
-      "allow_other"
-      "noauto"
-      "x-gvfs-hide"
-      "_netdev"
-      "x-systemd.automount"
-      "x-systemd.requires=network-online.target"
-      "reconnect"
-    ];
-  }; 
-
-  #fileSystems."/mnt/server_xiaomi" = {
-  #  device = "root@92.253.238.166:/";
-  #  fsType = "fuse.sshfs";
-  #  options = [
-  #    "port=2223"
-  #    "IdentityFile=/root/.ssh/id_ed25519"
-  #    "StrictHostKeyChecking=accept-new"
-  #    "allow_other"
-  #    "_netdev"
-  #    "noauto"
-  #    "x-gvfs-hide"
-  #    "x-systemd.automount"
-  #    "x-systemd.requires=network-online.target"
-  #    "reconnect"
-  #  ];
-  #}; 
-
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.18"
+    "ventoy-1.1.12"
     "firefox-esr-140-bin-unwrapped-140.17.0esr"
   ];
 

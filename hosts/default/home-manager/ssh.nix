@@ -9,10 +9,17 @@
             SendEnv = "LANG LC_*"; 
         };
         
-        "lvivdeb" = {
+        "lvivhp" = {
             HostName = "92.253.238.166";
             User = "yaros";
             Port = "22022";
+            IdentityFile = "~/.ssh/id_ed25519";
+        };
+        
+        "lvivdell" = {
+            HostName = "92.253.238.166";
+            User = "yaros";
+            Port = "22122";
             IdentityFile = "~/.ssh/id_ed25519";
         };
 

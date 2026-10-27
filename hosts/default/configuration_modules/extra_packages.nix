@@ -79,7 +79,6 @@
     wl-clipboard
     wf-recorder
     easyeffects
-    helvum
     socat
     map-cmd
     pavucontrol
@@ -175,6 +174,9 @@
     whatsapp-electron
     zoom-us
     zotero
+    efibootmgr
+    qbittorrent
+    claude-code
   ] ++ [
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
     inputs.vigiland.packages.${pkgs.stdenv.hostPlatform.system}.vigiland

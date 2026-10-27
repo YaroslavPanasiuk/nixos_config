@@ -2,25 +2,20 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.55.4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #hyprtasking = {
-    #  url = "github:raybbian/hyprtasking";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
+    hyprtasking = {
+      url = "github:raybbian/hyprtasking/765575445ce34989575a99f304d0b279e6a980b6";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -36,8 +31,6 @@
     macro-grid.url = "github:YaroslavPanasiuk/macros-grid-gtk";
 
     pretested.url = "github:YaroslavPanasiuk/pretested";
-
-    #nixpkgs-zoom.url = "github:NixOS/nixpkgs/06031e8a5d9d5293c725a50acf01242193635022";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

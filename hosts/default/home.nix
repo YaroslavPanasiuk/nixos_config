@@ -12,10 +12,7 @@ in
     #./home-manager/waybar/taskbar.nix
     #./home-manager/dunst/dunst.nix
     ./home-manager/kitty.nix
-    #./home-manager/stylix.nix
     #./rofi/colors-rofi.nix
-    #./home-manager/firefox.nix
-    #./home-manager/hyprland/hyprpanel.nix
     ./home-manager/xdg.nix
     #./home-manager/gbar.nix
     ./home-manager/services.nix
@@ -24,7 +21,6 @@ in
     ./home-manager/ssh.nix
     ./home-manager/anyrun/anyrun.nix
     ./home-manager/swayosd/swayosd.nix
-    #./home-manager/waydroid/waydroid.nix
   ];
 
   nixpkgs = {
@@ -40,8 +36,6 @@ in
     homeDirectory = "${user.path}";
     packages = with pkgs;[
       #inputs.hyprswitch.packages.x86_64-linux.default
-      #davinci-resolve
-      #hyprpanel
     ];
     file."Templates" = {
       source = ./home-manager/Templates;
