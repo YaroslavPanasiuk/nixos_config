@@ -19,6 +19,7 @@ gradient_color_5 = '#ff7b00'
 gradient_color_6 = '#ff5f00'
 gradient_color_7 = '#e64a19'
 gradient_color_8 = '#bf360c'
+background = "#000000"
 
 [smoothing]
 monstercat = 1

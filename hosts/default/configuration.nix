@@ -16,6 +16,7 @@ in
       ./configuration_modules/fonts.nix
       ./configuration_modules/hardware.nix
       ./configuration_modules/filesystems.nix
+      ./configuration_modules/security.nix
     ];  
 
   nixpkgs.overlays = [ 

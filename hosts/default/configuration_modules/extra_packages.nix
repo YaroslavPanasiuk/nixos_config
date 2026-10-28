@@ -1,5 +1,17 @@
-{ pkgs, inputs, ... }:
-{ 
+{ pkgs, inputs, lib, ... }:
+let
+  # Every top-level `scripts/*.nix` file is `{ pkgs }: pkgs.writeShellScriptBin ...` and gets
+  # installed automatically. Exclude files here that aren't package wrappers (e.g. scratch
+  # files used to compute a hash, not meant to be built).
+  excludedScripts = [ "temp.nix" ];
+
+  scriptFiles = builtins.attrNames (lib.filterAttrs
+    (name: type: type == "regular" && lib.hasSuffix ".nix" name && !(lib.elem name excludedScripts))
+    (builtins.readDir ../scripts));
+
+  scripts = map (name: import (../scripts + "/${name}") { inherit pkgs; }) scriptFiles;
+in
+{
   environment.systemPackages = with pkgs; [
     obsidian
     onlyoffice-desktopeditors
@@ -183,73 +195,5 @@
     inputs.goal-tracker.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.macro-grid.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.pretested.packages.${pkgs.stdenv.hostPlatform.system}.default
-    (import ../scripts/volume.nix { inherit pkgs; })
-    (import ../scripts/backup.nix { inherit pkgs; })
-    (import ../scripts/brightness.nix { inherit pkgs; })
-    (import ../scripts/mp4_to_wallp.nix { inherit pkgs; })
-    (import ../scripts/phone_camera.nix { inherit pkgs; })
-    (import ../scripts/push_sddm.nix { inherit pkgs; })
-    (import ../scripts/push_wallp.nix { inherit pkgs; })
-    (import ../scripts/rebuild.nix { inherit pkgs; })
-    (import ../scripts/record_screen.nix { inherit pkgs; })
-    (import ../scripts/record_screen_as_camera.nix { inherit pkgs; })
-    (import ../scripts/set_welcome.nix { inherit pkgs; })
-    (import ../scripts/start_waydroid.nix { inherit pkgs; })
-    (import ../scripts/start_vm.nix { inherit pkgs; })
-    (import ../scripts/stop_waydroid.nix { inherit pkgs; })
-    (import ../scripts/wallp-rofi.nix { inherit pkgs; })
-    (import ../scripts/kill_waybar.nix { inherit pkgs; })
-    (import ../scripts/open_calendar.nix { inherit pkgs; })
-    (import ../scripts/post_wallp_change.nix { inherit pkgs; })
-    (import ../scripts/redshift.nix { inherit pkgs; })
-    (import ../scripts/update_telegram.nix { inherit pkgs; })
-    (import ../scripts/wallp_status.nix { inherit pkgs; })
-    (import ../scripts/wallp.nix { inherit pkgs; })
-    (import ../scripts/alttab.nix { inherit pkgs; })
-    (import ../scripts/install.nix { inherit pkgs; })
-    (import ../scripts/toggle_wifi.nix { inherit pkgs; })
-    (import ../scripts/swipe_up.nix { inherit pkgs; })
-    (import ../scripts/swipe_down.nix { inherit pkgs; })
-    (import ../scripts/launch_dock.nix { inherit pkgs; })
-    (import ../scripts/toggle_mpvpaper.nix { inherit pkgs; })
-    (import ../scripts/toggle_hyprpanel.nix { inherit pkgs; })
-    (import ../scripts/set_as_wallpaper.nix { inherit pkgs; })
-    (import ../scripts/backup_usb.nix { inherit pkgs; })
-    (import ../scripts/generate_ssh.nix { inherit pkgs; })
-    (import ../scripts/set_layout.nix { inherit pkgs; })
-    (import ../scripts/export_images.nix { inherit pkgs; })
-    (import ../scripts/cleanup.nix { inherit pkgs; })
-    (import ../scripts/toggle_dock.nix { inherit pkgs; })
-    (import ../scripts/idle_action.nix { inherit pkgs; })
-    (import ../scripts/waydroid_init.nix { inherit pkgs; })
-    (import ../scripts/vnc_server.nix { inherit pkgs; })
-    (import ../scripts/show_hyprpanel.nix { inherit pkgs; })
-    (import ../scripts/hide_hyprpanel.nix { inherit pkgs; })
-    (import ../scripts/blank_screen.nix { inherit pkgs; })
-    (import ../scripts/close_active.nix { inherit pkgs; })
-    (import ../scripts/switch_monitor.nix { inherit pkgs; })
-    (import ../scripts/toggle_hyprpanel_visibility.nix { inherit pkgs; })
-    (import ../scripts/resize_and_blur.nix { inherit pkgs; })
-    (import ../scripts/images_to_pptx.nix { inherit pkgs; })
-    (import ../scripts/blur_video.nix { inherit pkgs; })
-    (import ../scripts/copy_image_text.nix { inherit pkgs; })
-    (import ../scripts/fetch_weather.nix { inherit pkgs; })
-    (import ../scripts/waybar_colors_update.nix { inherit pkgs; })
-    (import ../scripts/waybar_timer.nix { inherit pkgs; })
-    (import ../scripts/convert_presentation.nix { inherit pkgs; })
-    (import ../scripts/qr_scanner.nix { inherit pkgs; })
-    (import ../scripts/hyprtasking_toggle.nix { inherit pkgs; })
-    (import ../scripts/waybar_language.nix { inherit pkgs; })
-    (import ../scripts/vigiland.nix { inherit pkgs; })
-    (import ../scripts/connect_phone.nix { inherit pkgs; })
-    (import ../scripts/hyprland_focus_modes.nix { inherit pkgs; })
-    (import ../scripts/update_songs_presentation.nix { inherit pkgs; })
-    (import ../scripts/toggle_hyprland_decorations.nix { inherit pkgs; })
-    (import ../scripts/connect_phone_mic.nix { inherit pkgs; })
-    (import ../scripts/select_adb_device.nix { inherit pkgs; })
-    (import ../scripts/speed_read.nix { inherit pkgs; })
-    (import ../scripts/watchdog.nix { inherit pkgs; })
-    (import ../scripts/toggle_acer_monitor.nix { inherit pkgs; })
-    (import ../scripts/rofi_trans.nix { inherit pkgs; })
-  ];
+  ] ++ scripts;
 }

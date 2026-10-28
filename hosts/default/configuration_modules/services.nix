@@ -1,8 +1,12 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   user = import ./user.nix;
 in
-{  
+{
+  sops.age.keyFile = "/var/lib/sops-nix/key.txt";
+  sops.defaultSopsFile = ../../../secrets/secrets.yaml;
+  sops.secrets.postgres_password = {};
+
   services = {
     xserver = {
       enable = false;
@@ -74,7 +78,7 @@ in
         host  all      all     ::1/128        trust
       '';
       initialScript = pkgs.writeText "backend-initScript" ''
-        CREATE ROLE yaroslav WITH LOGIN PASSWORD '1246' CREATEDB;
+        CREATE ROLE yaroslav WITH LOGIN CREATEDB;
         CREATE DATABASE nova_bot;
         GRANT ALL PRIVILEGES ON DATABASE nova_bot TO yaroslav;
       '';
@@ -111,5 +115,16 @@ in
     blueman.enable = true;
     #netbird.enable = true;
     #mullvad-vpn.enable = true;
+  };
+
+  # pg_hba above trusts local/loopback connections, so this can run as root without a password.
+  systemd.services.postgresql-set-password = {
+    after = [ "postgresql.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${config.services.postgresql.package}/bin/psql -h 127.0.0.1 -U postgres -c \
+        "ALTER ROLE yaroslav WITH PASSWORD '$(cat ${config.sops.secrets.postgres_password.path})'"
+    '';
   };
 }

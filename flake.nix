@@ -31,6 +31,11 @@
     macro-grid.url = "github:YaroslavPanasiuk/macros-grid-gtk";
 
     pretested.url = "github:YaroslavPanasiuk/pretested";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -53,36 +58,17 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/default/configuration.nix
+          inputs.sops-nix.nixosModules.sops
         ];
       };
-      public = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/public/configuration.nix
-        ];
-      };
-      
     };
 
     homeConfigurations.default_user = inputs.home-manager.lib.homeManagerConfiguration {
       pkgs = import nixpkgs {
         inherit system;
       };
-      modules = [ 
-        ./hosts/default/home.nix 
-      ];
-      extraSpecialArgs = { inherit inputs; };
-    };
-
-    homeConfigurations.public_user = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [
-          inputs.hyprpanel.overlay
-        ];
-      };
-      modules = [ 
-        ./hosts/public/home.nix 
+      modules = [
+        ./hosts/default/home.nix
       ];
       extraSpecialArgs = { inherit inputs; };
     };
